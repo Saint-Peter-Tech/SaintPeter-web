@@ -7,7 +7,7 @@
 }
 
 html{
-  min-height: 200vh;
+  width: 100% !important;
 }
 
 body {
@@ -16,12 +16,16 @@ body {
   background-color: #f6f8ff;
 }
 
-none .navbar {  
+
+
+.navbar {  
   width: 100%;
 }
 
 .container-fluid{
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   width: 100%;
   position: fixed;
   top: 0;
@@ -31,6 +35,7 @@ none .navbar {
   z-index: 100000;
   padding: 0 105px;
   background-color: #2260e1;
+  box-shadow: inset 0 0 17px rgba(0,0,0,0.5);
   backdrop-filter: blur(5px);
 }
 
@@ -43,45 +48,68 @@ none .navbar {
 
 #navbarText ul li a{
   color: #f6f8ff !important;
+  margin-left: 40px;
   z-index: 10000000;
+  border: 2px !important;
+  padding: 4px 6px !important;
+  border-radius: 10px;
 }
+
+#navbarText ul li a:hover{
+  color: #2260e1 !important;
+  border: 2px solid !important;
+  padding: 4px 6px !important;
+  background-color: #ffd500 !important;
+  animation: hoverCima .5s;
+  border-radius: 10px;
+}
+
 
 .container-fluid .navbar-text{
   margin-right: 25px;
   padding: 3px 10px  !important;
-  color: #e9eff9 !important;
-  border: 2px solid #e9eff9 !important;
-  border-radius: 5px;
-  transition: .2s;
+  color: #ffd500 !important;
+  border: 2px solid #ffd500 !important;
+  border-radius: 10px;
 }
 
 .container-fluid .navbar-text:hover{
-  background-color: #2260e1 !important;
-  color: #f6f8ff !important;
-  font-weight: 200;
-  border: 2px solid #f6f8ff !important;
-  transform: translateX(-4px);
-  scale: 1.02;
-  transition: .6s;
+  background-color: #ffd500 !important;
+  color: #2260e1 !important;
+  font-weight: 500;
+  border: 2px solid !important;
+  animation: hoverCima .5s;
 }
+
+@keyframes hoverCima {
+        0% {
+            transform: translateY(0px);
+        }
+    
+        50% {
+            transform: translateY(-3px);
+        }
+    
+        100% {
+            transform: translateY(0px);
+        }
+    }
 
 /* Estilização dos itens interagiveis dentro da navbar */
 .container-fluid a {
   color: #2260e1 !important;
-  margin-right: 2vw;
   font-weight: 400;
 }
 /* Alinhamento dos itens dentro da navbar */
 .navbar-expand-lg .navbar-collapse {
 }
 
-
 /* Banner */
 .banner{
   margin: 0 !important;
   width: 100% !important;
   height: 90vh;
-  background-image: url("../assets/banner.png");
+  background:linear-gradient(rgba(0, 0, 0, 0.148), rgba(0, 0, 0, 0.123)), url("../assets/banner.png");
   background-position: top;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -89,6 +117,7 @@ none .navbar {
   z-index: 1;
   position: static;
 }
+
 
 .banner div{
   width: 33vw; 
@@ -109,41 +138,284 @@ none .navbar {
 /* Sobre nós */
 
 .container-fluid.text-center{
+  margin-left: 2vw !important;
   position: static !important;
   background-color: #f6f8ff !important;
-  margin: 125px 0 100px 0;
-  width: 100vw !important;
+  margin: 155px auto 100px auto !important;
   display: flex;
+  justify-content: center;
+  box-shadow: inset 0 0 0 !important;
 }
 .row.row-cols-2{
   display: flex;
   justify-content: space-evenly;
-  max-width: 100vw;
-}
-
-.cardIndex span{
-  font-size: 40px;
-  font-weight: 400;
-}
-
-.cardIndex p{
-    border: 2px solid #2260e1 !important;
-    width: 80%;
-    justify-self: center;
-    margin-top: 20px;
-    font-size: 35px;
-    font-weight: 300;
-    background-color: #2260e1;
-    text-align: left;
-    color: #f6f8ff;
-    border-radius: 10px;
-    padding: 10px !important;  
+  width: 100%;
 }
 
 .cardIndex{
-  color: #2e72d8 !important;
   margin: 0 auto;
+  
+  span{
+    color: #2e72d8 !important;
+    font-size: 40px;
+    font-weight: 400;
+  }
+  
+  p{
+    justify-self: center;
+    padding: 20px !important;
+  }
+  
 }
+
+
+.caixaTextoAzul{
+  margin-top: 40px;
+  justify-self: center;
+  width: 85%;
+  border: 2px !important;
+  font-size: 32px;
+  font-weight: 200;
+  background-color: #2260e1;
+  text-align: left;
+  color: #f6f8ff;
+  border-radius: 10px;
+  padding: 10px !important;  
+  height: 100% !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+
+/* Como fazemos section */
+
+.container-fluid.como-fazemos{
+  display: flex;
+  position: static;
+  background-color: #2260e1 !important;
+  color: #e9eff9 !important;
+  max-width: 100vw;
+  margin: 125px 0 !important;
+  justify-content: center;
+  align-content: center;
+}
+
+.cardIndex2{
+  margin: 0 auto !important;
+  
+  h1{
+    position: relative !important;
+    top: 20px !important;
+    text-align: center !important;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin: 0 auto !important;
+    color: #e9eff9 !important;
+  }
+  
+  p{
+    font-weight: 200;
+    font-size: 32px;
+    margin-top: 80px !important;
+  }
+}
+
+/* VALORES  */
+
+.row.row-cols-3{
+  width: 100% !important;
+}
+
+.valores {
+  padding: 40px 60px;
+}
+
+.valores h2 {
+  color: #2260e1;
+  margin-left: 100px;
+  font-size: 44px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  display: inline-block;
+  border-bottom: 2.5px solid #1c52c8;
+  padding-bottom: 5px;
+}
+
+.cardIndexValores{
+  display: flex !important;
+  flex-direction: row !important;
+  border: 5px solid #2A76E8 !important;
+  border-radius: 10px;
+  padding: 10px;
+  height: 160px;
+  width: 70%;
+  justify-content: space-evenly;
+  margin: auto;
+  box-shadow: inset 0 0 0;
+  
+  img{
+    height: 80%;
+    margin: auto;
+    transform: translateX(4px);
+  }
+  
+}
+
+.cardIndex3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  
+  img{
+    height: 600px;
+    width: 600px;
+    display: flex;
+    justify-self: center;
+    margin: 20px auto;
+  }
+  
+  h1{
+    position: relative !important;
+    top: 20px !important;
+    text-align: center !important;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin: 0 auto !important;
+    color: #ffd500 !important;
+  } 
+  div{
+    
+    display: flex;
+    flex-direction: column;
+    margin: 70px auto;
+    
+    
+    p{
+      font-size: 30px;
+      font-weight: 200;
+      font-size: 32px;
+      margin: 30px 0 !important;
+    }
+  }
+}
+
+.caixaTexto{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  
+  
+  span{
+    color: #0D1F44;
+    font-weight: 700;
+    font-size: 25px;
+    margin-top: 15px !important;
+  }
+  
+  p{
+    color: #2260e1;
+    font-size: 20px;
+  }
+}
+
+.solucaoCaixa{
+  background: linear-gradient(135deg,#105bff,#1c52c8);
+  border-radius:55px;
+  height: 400px;
+  padding:60px;
+  box-shadow: inset 0 10px 25px rgba(0,0,0,0.25);
+  margin: 200px auto 150px auto;
+  z-index: 100;
+  
+  #notebook{
+    display: flex;
+    position: absolute;
+    top: 0px;
+    z-index: 10000;
+  }
+  
+  #celular{
+    display: flex;
+    position: absolute;
+    left: 30px;
+    top: -12px;
+    z-index: 10000;
+  }
+  
+  .col{
+    
+    display: flex;
+    justify-self: flex-end;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 4%;
+    margin-right: 10%;
+    color: #e9eff9;
+    text-shadow:0 10px 25px rgba(0,0,0,0.25);
+    
+    .botaoCadastroSolucao{
+      background-color: #ffd500;
+      padding: 14px 20px !important;
+      border: 2px solid !important;
+      border-radius: 25px;
+      font-size: 25px;
+      font-style:unset;
+      text-decoration: none;
+      color: #1c52c8;
+      box-shadow: 0 0 17px rgba(0,0,0,0.5);
+      width: fit-content;
+      align-self: center;
+    }
+    .botaoCadastroSolucao:hover{
+        background-color: #1c52c8;
+        border: 2px solid #e9eff9 !important;
+        color: #e9eff9 !important;
+        animation: hoverCima .5s;
+      }
+    }
+
+    
+    
+    @keyframes hoverCima {
+        0% {
+            transform: translateY(0px);
+        }
+    
+        50% {
+            transform: translateY(-3px);
+        }
+    
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    
+    
+  }
+  
+  /* container das barras */
+  
+  .bars{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
+    gap:10px;
+    align-items:flex-end;
+  }
+  
+  /* retângulos em pé */
+
+.bars span{
+    width:17px;
+    background:#2267F9;
+    border-radius:0px;
+    box-shadow:0 10px 25px rgba(0, 0, 0, 0.115);
+}
+
 
 /* LOGIN */
 
@@ -397,3 +669,15 @@ input {
   }
 }
 /* ---------------------- Aqui terminam as alterações da tela de CADASTRO ---------------------- */
+
+/* Footer */
+
+.bg-dark.text-light.pt-5.pb-4{
+  background-color: #0D1F44 !important;
+  color: #ffd500 !important;
+
+  p, a{
+    color: #e9eff9 !important;
+    width: 80%;
+  }
+}

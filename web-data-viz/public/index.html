@@ -1,84 +1,255 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SPT | Início</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="./js/sessao.js"></script>
+  <title>SPT | Início</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./css/estilo.css" />
-    <link rel="icon" href="./assets/icon/favicon2.ico" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-  </head>
+  <script src="./js/sessao.js"></script>
 
-  <body>
-    <div class="container-fluid" id="navegacao">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="./assets/LogoWrittenWhite.png" alt=""/></a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarText"
-            aria-controls="navbarText"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sobre nós</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Solução</a>
-              </li>
-            </ul>
-            <span class="navbar-text"> Login / Cadastro </span>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/LogoClara.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+  <div class="container-fluid" id="navegacao">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="./assets/LogoWrittenWhite.png" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sobreNos">Sobre nós</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Solução</a>
+            </li>
+          </ul>
+          <span class="navbar-text"> Login / Cadastro </span>
+        </div>
+      </div>
+      <div class="container-fluid">
+
+      </div>
+    </nav>
+  </div>
+
+  <section class="banner" id="home">
+    <div id="sobreNos">Monitoramos para você focar no que importa.</div>
+  </section>
+
+  <div class="container-fluid text-center">
+    <div class="row row-cols-2">
+
+      <div class="col">
+        <div class="cardIndex">
+          <span>Quem somos</span>
+          <div class="caixaTextoAzul">
+            <p>A Saint Peter Tech é a evolução para seus monitores, com uma visão aprofundada dos pontos a melhorar.</p>
           </div>
         </div>
-        <div class="container-fluid">
+      </div>
 
+      <div class="col">
+        <div class="cardIndex">
+          <span>Nosso propósito</span>
+          <div class="caixaTextoAzul">
+            <p>Ajudamos você a manter a integridade e qualidade do seu equipamento, te ajudando a salvar inúmeras vidas.
+            </p>
+          </div>
         </div>
-      </nav>
+      </div>
+
     </div>
-    <section class="banner">
-        <div>Monitoramos para você focar no que importa.</div>
-    </section>
-    <div class="container-fluid text-center">
-      <div class="row row-cols-2">
-        <div class="col">
-          <div class="cardIndex">
-            <span>Quem somos?</span>
-            <p>A Saint Peter Tech é a solução para a evolução dos seus monitores com uma visão mais aprofundada dos pontos a melhorar.</p>
+  </div>
+
+  <div class="container-fluid como-fazemos">
+    <div class="row row-cols-2">
+      <div class="col">
+        <div class="cardIndex3">
+          <img src="./assets/monitorICON.png" alt="">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="cardIndex3">
+          <h1>Como fazemos</h1>
+          <div>
+            <p>Monitoramento 24h dos equipamentos em funcionamento.</p>
+            <p>Dashboard com dados em tempo real.</p>
+            <p>Envio de relatórios e alertas à sua equipe de suporte, manutenção e desenvolvimento.</p>
           </div>
         </div>
-        <div class="col">
-          <div class="cardIndex">
-            <span>Quem somos?</span>
-            <p>A Saint Peter Tech é a solução para a evolução dos seus monitores com uma visão mais aprofundada dos pontos a melhorar.</p>
-          </div>
-        </div>
-      </div> 
+      </div>
+
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  </div>
+
+  <div class="valores">
+    <h2>Nossos Valores</h2>
+  </div>
+  <div class="container-fluid text-center">
+    <div class="row row-cols-3">
+
+      <div class="col">
+        <div class="cardIndexValores">
+          <img src="./assets/ServirIcon.svg" alt="">
+          <div class="caixaTexto">
+            <span>Foco no Cliente</span>
+            <p>Empatia e soluções centradas em você, e para você.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="cardIndexValores">
+          <img src="./assets/AcordoIcon.svg" alt="">
+          <div class="caixaTexto">
+            <span>Transparência</span>
+            <p>Integridade e honestidade nas relações e processos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="cardIndexValores">
+          <img src="./assets/ValorIcon.svg" alt="">
+          <div class="caixaTexto">
+            <span>Excelência</span>
+            <p>Serviços de alto padrão, disponibilidade e confiabilidade.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <section class="solucao">
+    <div class="container">
+      <div class="solucaoCaixa position-relative overflow-hidden">
+        <div  class="container">
+          <img id="celular" src="./assets/celularPNG.png" alt="">
+          <img id="notebook" src="./assets/notebookPNG.png" alt="">
+        </div>
+        <div class="bars">
+          
+          <span style="height:60px"></span>
+          <span style="height:90px"></span>
+          <span style="height:120px"></span>
+          <span style="height:53px"></span>
+          <span style="height:187px"></span>
+          <span style="height:190px"></span>
+          <span style="height:170px"></span>
+          <span style="height:167px"></span>
+          <span style="height:100px"></span>
+          <span style="height:78px"></span>
+          <span style="height:210px"></span>
+          <span style="height:180px"></span>
+          <span style="height:230px"></span>
+          <span style="height:110px"></span>
+          <span style="height:170px"></span>
+          <span style="height:140px"></span>
+          <span style="height:60px"></span>
+          <span style="height:90px"></span>
+          <span style="height:230px"></span>
+          <span style="height:80px"></span>
+          <span style="height:210px"></span>
+          <span style="height:110px"></span>
+          <span style="height:215px"></span>
+          <span style="height:140px"></span>
+          <span style="height:60px"></span>
+          <span style="height:90px"></span>
+          <span style="height:120px"></span>
+          <span style="height:80px"></span>
+          <span style="height:150px"></span>
+          <span style="height:110px"></span>
+          <span style="height:170px"></span>
+          <span style="height:140px"></span>
+          <span style="height:60px"></span>
+          <span style="height:90px"></span>
+          <span style="height:220px"></span>
+          <span style="height:210px"></span>
+          <span style="height:150px"></span>
+          <span style="height:110px"></span>
+          <span style="height:170px"></span>
+          <span style="height:140px"></span>
+          <span style="height:210px"></span>
+          <span style="height:110px"></span>
+          <span style="height:215px"></span>
+          <span style="height:140px"></span>
+          <span style="height:60px"></span>
+          <span style="height:167px"></span>
+          <span style="height:100px"></span>
+          <span style="height:78px"></span>
+          <span style="height:210px"></span>
+
+        </div>
+
+        <div class="col">
+          <h2>Conheça seu próximo investimento!</h4>
+
+          <a class="botaoCadastroSolucao">
+            CADASTRE-SE
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <footer class="bg-dark text-light pt-5 pb-4">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Saint Peter Technology</h5>
+          <p class="text-secondary">
+            Monitoramento inteligente de hardware para monitores de sinais vitais,
+            garantindo segurança e eficiência para seus dispositivos.
+          </p>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#home" class="text-secondary text-decoration-none">Home</a></li>
+            <li><a href="#sobreNos" class="text-secondary text-decoration-none">Quem somos</a></li>
+            <li><a href="#" class="text-secondary text-decoration-none">Serviços</a></li>
+            <li><a href="#" class="text-secondary text-decoration-none">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Contato</h5>
+          <p class="text-secondary mb-1">contato@saintpetertech.com</p>
+          <p class="text-secondary mb-1">(11) 4002-8922</p>
+          <p class="text-secondary">São Paulo - Brasil</p>
+        </div>
+
+      </div>
+
+      <hr class="border-secondary">
+
+      <div class="text-center text-secondary">
+        © 2026 Saint Peter Technology — Feito com esmero por Grupo 10
+      </div>
+
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
