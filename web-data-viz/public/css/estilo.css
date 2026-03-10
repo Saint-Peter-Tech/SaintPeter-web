@@ -261,18 +261,23 @@ body {
   
 }
 
-.cardIndex3{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  
-  img{
-    height: 600px;
-    width: 600px;
+.col{
+  height: fit-content !important;
+
+  .cardIndex3{
+
     display: flex;
-    justify-self: center;
-    margin: 20px auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  
+    img{
+      height: 30vw !important;
+      width: 30vw !important;
+      display: flex;
+      justify-self: center;
+      margin: auto auto;
+    }
   }
   
   h1{
@@ -282,6 +287,7 @@ body {
     font-size: 40px;
     font-weight: 500;
     letter-spacing: 3px;
+    margin-bottom: 2vw !important;
     margin: 0 auto !important;
     color: #ffd500 !important;
   } 
@@ -289,14 +295,14 @@ body {
     
     display: flex;
     flex-direction: column;
-    margin: 70px auto;
+    margin: 2vw 0 1vw 0;
     
     
     p{
       font-size: 30px;
       font-weight: 200;
       font-size: 32px;
-      margin: 30px 0 !important;
+      margin: 15px 0 !important;
     }
   }
 }
@@ -323,7 +329,7 @@ body {
 .solucaoCaixa{
   background: linear-gradient(135deg,#105bff,#1c52c8);
   border-radius:55px;
-  height: 400px;
+  height: 29vw;
   padding:60px;
   box-shadow: inset 0 10px 25px rgba(0,0,0,0.25);
   margin: 200px auto 150px auto;
@@ -351,7 +357,7 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     margin-top: 4%;
-    margin-right: 10%;
+    margin-right: 7%;
     color: #e9eff9;
     text-shadow:0 10px 25px rgba(0,0,0,0.25);
     
