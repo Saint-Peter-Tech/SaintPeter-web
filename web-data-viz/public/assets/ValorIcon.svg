@@ -1,3 +1,40 @@
-<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M62.5 131.5L0 56.5L18.75 19H106.25L125 56.5L62.5 131.5ZM45 51.8125H80L68.2812 28.375H56.7188L45 51.8125ZM57.8125 111.344V61.1875H16.0938L57.8125 111.344ZM67.1875 111.344L108.906 61.1875H67.1875V111.344ZM90.4688 51.8125H111.719L100 28.375H78.75L90.4688 51.8125ZM13.2812 51.8125H34.5312L46.25 28.375H25L13.2812 51.8125Z" fill="#2A76E8"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="150"
+   height="150"
+   viewBox="0 0 150 150"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="ValorIcon.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.7"
+     inkscape:cx="74.912281"
+     inkscape:cy="75"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="1358"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="M 75.394737,131.5 9.2982456,56.5 29.127193,19 h 92.535087 l 19.82895,37.5 z M 56.887719,51.8125 H 93.901754 L 81.508609,28.375 H 69.280864 Z M 70.4375,111.344 V 61.1875 H 26.318145 Z m 9.914474,0 44.119136,-50.1565 H 80.351974 Z M 104.97297,51.8125 h 22.47302 L 115.05263,28.375 H 92.579825 Z m -81.629273,0 H 45.816505 L 58.209649,28.375 H 35.736842 Z"
+     fill="#2a76e8"
+     id="path1"
+     style="stroke-width:1.02836" />
 </svg>

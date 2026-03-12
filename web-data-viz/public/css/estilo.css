@@ -26,7 +26,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 100%;
+  width: 100vw !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -110,7 +110,7 @@ body {
   width: 100% !important;
   height: 90vh;
   background:linear-gradient(rgba(0, 0, 0, 0.148), rgba(0, 0, 0, 0.123)), url("../assets/banner.png");
-  background-position: top;
+  background-position: right;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -148,8 +148,14 @@ body {
 }
 .row.row-cols-2{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-content: center;
   width: 100%;
+  .col{
+    justify-self: center;
+    align-self: center;
+    
+  }
 }
 
 .cardIndex{
@@ -157,6 +163,7 @@ body {
   justify-content: center;
   align-content: center;
   margin: auto;
+  width: 40vw;
   
   span{
     color: #2e72d8 !important;
@@ -177,7 +184,6 @@ body {
   justify-self: center;
   margin-top: 40px;
   margin: auto;
-  width: 90vh;
   border: 2px !important;
   font-size: 32px;
   font-weight: 200;
@@ -229,6 +235,13 @@ body {
 
 .row.row-cols-3{
   width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  
+  .col{
+    flex: 0 0 auto;
+  }
+
 }
 
 .valores {
@@ -269,6 +282,7 @@ body {
 .col{
   height: fit-content !important;
   align-items: center;
+  flex-wrap: wrap;
 
   .cardIndex3{
 
@@ -276,6 +290,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    min-height: 100%;
+
+    div{
+      margin-top: 50px;
+
+    }
   
     img{
       height: 30vw !important;
@@ -329,6 +349,7 @@ body {
   p{
     color: #2260e1;
     font-size: 20px;
+    font-weight: 300 !important;
   }
 }
 
@@ -366,13 +387,20 @@ body {
     margin-right: 7%;
     color: #e9eff9;
     text-shadow:0 10px 25px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 10000;
+
+    h2{
+      font-size: 40px;
+    }
     
     .botaoCadastroSolucao{
+      margin-top: 100px;
       background-color: #ffd500;
       padding: 14px 20px !important;
       border: 2px solid !important;
       border-radius: 25px;
-      font-size: 25px;
+      font-size: 35px;
       font-style:unset;
       text-decoration: none;
       color: #1c52c8;
@@ -427,7 +455,6 @@ body {
     border-radius:0px;
     box-shadow:0 10px 25px rgba(0, 0, 0, 0.115);
 }
-
 
 /* LOGIN */
 
@@ -692,4 +719,258 @@ input {
     color: #e9eff9 !important;
     width: 80%;
   }
+}
+
+@media screen and (max-width: 1897px){
+  .row.row-cols-3{
+      .col{
+        .cardIndexValores{
+          display: flex;
+          flex-direction: column !important;
+          
+          img#servirIMG{
+            margin-top: 13px;
+          }
+
+          img{
+            align-self: center;
+            justify-self: center;
+          }
+          .caixaTexto{
+            span{
+              font-size: 27px !important;
+            }
+            p{
+              font-size: 25px !important;
+              font-weight: 300 !important;
+            }
+          }
+        }
+
+      }
+}
+}
+
+@media screen and (max-width: 1200px){
+
+  .banner{
+    background:linear-gradient(rgba(0, 0, 0, 0.202), rgba(0, 0, 0, 0.194)), url("../assets/bannerCrop.png");
+    background-position: center;
+  }
+
+  .banner div{
+    width: 50vw;
+    font-size: 36px;
+    line-height: 50px;
+  }
+
+  .caixaTextoAzul{
+    font-size: 26px;
+  }
+
+  .row.row-cols-3{
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-content: center;
+    
+
+    .col{
+      flex: 0 0 auto;
+      width: 70vw;
+      .cardIndexValores{
+
+        p{
+          font-size: 22px;
+          font-weight: 400 !important;
+        }
+        
+      }
+    }
+  }
+
+  .cardIndexValores{
+    width: 90%;
+  }
+
+  .solucaoCaixa{
+    height: 400px;
+    padding: 40px;
+    
+    .bars{
+      z-index: 1000;
+    }
+  
+    .col{
+      position: relative;
+      margin-top: 10%;
+      z-index: 100000;
+    }
+
+
+  }
+
+  .solucaoCaixa #notebook{
+    width: 40%;
+  }
+
+  .solucaoCaixa #celular{
+    width: 20%;
+  }
+
+}
+
+@media screen and (max-width: 992px){
+
+  .container-fluid{
+    padding: 0 40px;
+  }
+
+  .banner div{
+    width: 70vw;
+    font-size: 32px;
+    line-height: 45px;
+  }
+
+
+  .row.row-cols-2{
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+
+  .container-fluid.como-fazemos .row{
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .cardIndex3 img{
+    width: 60vw !important;
+    height: auto !important;
+  }
+
+  .row.row-cols-3{
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .cardIndexValores{
+    width: 80%;
+  }
+
+
+  .solucaoCaixa{
+    height: 250px;
+    .bars{
+      span{
+        width: 25px !important;
+      }
+    }
+    #notebook{
+      display: none;
+    }
+    
+    #celular{
+      display: none;
+    }
+  }
+
+  .solucaoCaixa .col{
+    margin: 25px auto !important;
+    text-align: center;
+
+    .botaoCadastroSolucao{
+      margin-top: 0 !important;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px){
+
+  .navbar-brand img{
+    height: 45px;
+  }
+
+  .banner{
+    height: 70vh;
+  }
+
+  .banner div{
+    width: 85vw;
+    font-size: 26px;
+    line-height: 38px;
+    margin-left: 20px;
+  }
+
+  .caixaTextoAzul{
+    font-size: 22px;
+  }
+
+  .cardIndex span{
+    font-size: 30px;
+  }
+
+  .cardIndexValores{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 20px;
+  }
+
+  .cardIndexValores img{
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .valores h2{
+    font-size: 32px;
+    margin-left: 20px;
+  }
+
+  .solucaoCaixa .col{
+    margin: 20px auto !important;
+    text-align: center;
+
+    .botaoCadastroSolucao{
+      margin-top: 0 !important;
+    }
+  }
+
+}
+
+@media screen and (max-width: 480px){
+
+  .container-fluid{
+    padding: 0 15px;
+  }
+
+  .banner div{
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .cardIndex span{
+    font-size: 24px;
+  }
+
+  .caixaTextoAzul{
+    font-size: 18px;
+  }
+
+  .cardIndex3 p{
+    font-size: 20px !important;
+  }
+
+  .valores h2{
+    font-size: 26px;
+  }
+
+  footer{
+    text-align: center;
+  }
+
 }
