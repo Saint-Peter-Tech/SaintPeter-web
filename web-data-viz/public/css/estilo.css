@@ -8,12 +8,14 @@
 
 html{
   width: 100% !important;
+  min-height: 100vh !important;
 }
 
 body {
   margin: 0;
   padding: 0;
   background-color: #f6f8ff;
+  min-height: 100vh !important;
 }
 
 
@@ -102,6 +104,9 @@ body {
 }
 /* Alinhamento dos itens dentro da navbar */
 .navbar-expand-lg .navbar-collapse {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 /* Banner */
@@ -459,29 +464,36 @@ body {
 /* LOGIN */
 
 .login {
-  height: var(--tamanho-login);
-  background-image: url('../assets/monitor_cadastro.jpg');
-  background-size: cover;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  
 }
 
 .login .container {
+  display: flex;
   justify-content: center;
   align-items: center;
+  width: 50vw !important;
   height: 100%;
+  margin: 0 !important;
+  background: #e9eff9;
+  backdrop-filter: blur(20px) !important;
 }
 
 .card {
   
-  width: 50%;
-  background-color: #e5e5e5;
-  border-radius: 10px;
+  width: 80%;
+  background-color: #e9eff9;
+  border: none !important;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: #2267F9;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
+  
 }
 
 .card h2 {
@@ -503,14 +515,12 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  border: 2px solid #32b9cd;
   background-color: white;
   color: gray;
   height: 36px;
@@ -528,13 +538,13 @@ body {
 
 .botao {
   cursor: pointer;
-  font-family: "Barlow", sans-serif;
+  font-family: "Poppins", sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 28px;
   color: #fff;
-  background-color: #ED145B;
+  background-color: #2267F9;
   width: 120px;
   height: 30px;
   align-self: center;
@@ -591,7 +601,6 @@ body {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
@@ -620,18 +629,6 @@ input {
 .loading-div img {
   height: 50px;
   width: 50px;
-}
-
-/* SIMULADOR */
-
-.simulador {
-  color: white;
-}
-
-.simulador .container {
-  flex-direction: column;
-  overflow: scroll; 
-  height: var(--tamanho-simulador);
 }
 
 /* ALERTA */
@@ -683,12 +680,21 @@ input {
 
 /* ---------------------- Aqui começam as alterações da tela de CADASTRO ---------------------- */
 
-.container .card-cadastr{
+.container .card-cadastro{
   display: flex;
   justify-content: left;
+  height: 70vh;
+    h2{
+      font-family: "Poppins" !important;
+      font-size: 50px !important;
+    }
 }
 
-/* Div msg_senha: */
+.container .card-login h2{
+  font-family: "Poppins" !important;
+  font-size: 50px !important;
+}
+
 .msg_senha {
   display: none;
   background-color: #fff;
@@ -704,6 +710,44 @@ input {
   z-index: 999;
 }
 
+.formulario .campo input{
+  border-radius: 0px;
+  border: 2px none;
+  height: 40px;
+  box-shadow: inset 4px 3px 15px -7px #00000069;
+  background: #1d4595;
+  color: #e9eff9 !important;
+  transition: .5s;
+}
+
+.formulario .campo input:hover{
+  scale: 1.02;
+  transition: .5s;
+}
+
+.formulario .campo input:hover::placeholder{
+  color: #ffd500;
+  transition: .5s;
+}
+
+.formulario .campo input::placeholder{
+  color: #e9eff9;
+}
+
+
+.formulario .campo input:focus{
+  border-radius: 0px;
+  border: 2px none;
+  height: 40px;
+  box-shadow: inset 4px 3px 15px -7px #000000;
+  background: #e9eff9;
+  color: #0D1F44 !important;
+  transition: .5s;
+}
+
+.formulario .campo input:focus::placeholder{
+color: #0D1F44;
+}
 .check {
   display: flex;
   flex-direction: row;
@@ -714,6 +758,142 @@ input {
     margin-right: 7px;
   }
 }
+
+.botao{
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 15px !important;
+  border: 2px none ;
+  box-shadow: 4px 3px 15px -7px #000000;
+  transition: .5s;
+}
+
+.botao:hover{
+  color: #ffd500;
+  box-shadow: inset 4px 3px 15px -7px #000000;
+  transition: .5s;
+}
+
+@media screen and (max-width: 1200px){
+
+  .login{
+    justify-content: center ;
+  }
+
+  .login .container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: none;
+  }
+
+  .card{
+    width:80%;
+    border: 45px solid #e9eff9;
+
+  }
+
+  .card.card-cadastro{
+    height: 80vh;
+    width: 80vw;
+    padding: 45px 25px 25px 25px !important;
+    
+  }
+
+
+  .cadastro_img img{
+    width:350px;
+    height:auto;
+  }
+
+}
+
+@media screen and (max-width: 992px){
+
+  .login{
+    padding-top:120px;
+  }
+
+  .login .container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+  }
+
+  .card{
+    width:80%;
+  }
+
+  
+}
+
+@media screen and (max-width: 768px){
+
+  .login{
+    padding-top:120px;
+    background-position:center;
+  }
+
+  .cadastro_img{
+    display:none;
+  }
+
+  .card{
+    width:85%;
+    padding:30px 10px;
+  }
+
+  .formulario{
+    width:90%;
+  }
+
+  .formulario input{
+    height:40px;
+    font-size:16px;
+  }
+
+  .botao{
+    width:150px;
+    height:40px;
+    font-size:16px;
+  }
+
+}
+
+@media screen and (max-width: 480px){
+
+  .card{
+    width:92%;
+    padding:25px 10px;
+  }
+
+  .card h2{
+    font-size:24px;
+  }
+
+  .formulario{
+    width:95%;
+  }
+
+  .formulario span{
+    font-size:14px;
+  }
+
+  .formulario input{
+    font-size:14px;
+    height:38px;
+  }
+
+  .botao{
+    width:140px;
+    height:38px;
+    font-size:14px;
+  }
+
+}
+
 /* ---------------------- Aqui terminam as alterações da tela de CADASTRO ---------------------- */
 
 /* Footer */
