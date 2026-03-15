@@ -477,14 +477,14 @@ body {
   width: 50vw !important;
   height: 100%;
   margin: 0 !important;
-  background: #e9eff9;
+  background: #f6f8ff;
   backdrop-filter: blur(20px) !important;
 }
 
 .card {
   
   width: 80%;
-  background-color: #e9eff9;
+  background-color: #f6f8ff;
   border: none !important;
   display: flex;
   align-items: center;
@@ -684,6 +684,7 @@ input {
   display: flex;
   justify-content: left;
   height: 70vh;
+  background: #f6f8ff;
     h2{
       font-family: "Poppins" !important;
       font-size: 50px !important;
@@ -716,7 +717,7 @@ input {
   height: 40px;
   box-shadow: inset 4px 3px 15px -7px #00000069;
   background: #1d4595;
-  color: #e9eff9 !important;
+  color: #f8f8f8 !important;
   transition: .5s;
 }
 
@@ -778,13 +779,14 @@ color: #0D1F44;
 
   .login{
     justify-content: center ;
+    
   }
 
   .login .container{
     display:flex;
     align-items:center;
     justify-content:center;
-    background: none;
+    background: #f6f8ff;
   }
 
   .card{
@@ -820,6 +822,7 @@ color: #0D1F44;
     align-items:center;
     justify-content:center;
     gap:40px;
+    background: #f6f8ff;
   }
 
   .card{
