@@ -35,7 +35,7 @@ telefone_hospital CHAR(11) NOT NULL UNIQUE
 );
 
 Create table unidades
-(id_unidade INT PRIMARY KEY AUTO_INCREMENT,
+(id_unidade INT AUTO_INCREMENT,
 fk_hospital INT NOT NULL,
 cep CHAR(8) NOT NULL,
 rua VARCHAR(50) NOT NULL,
@@ -46,8 +46,9 @@ telefone_responsavel CHAR(11),
 
 constraint fk_hospitalUnidade
 	foreign key(fk_hospital)
-		references hospitais(id_hospital)
-
+		references hospitais(id_hospital),
+        
+primary key (id_unidade, fk_hospital)
 );
 
 Create table componentes
@@ -60,6 +61,7 @@ unidade_medida VARCHAR(50) NOT NULL
 Create table monitores
 (id_monitor INT NOT NULL AUTO_INCREMENT,
 fk_unidade INT NOT NULL,
+fk_hospital INT NOT NULL,
 fk_empresa INT NOT NULL,
 status_monitor VARCHAR(50),
 
@@ -69,16 +71,21 @@ constraint chkStatusMonitor
 constraint fk_unidadeMonitor
 	foreign key(fk_unidade)
 		references unidades(id_unidade),
+        
+constraint fk_hospitalMonitor
+	foreign key(fk_hospital)
+		references hospitais(id_hospital),
 	
 constraint fk_empresaMonitor
 	foreign key(fk_empresa)
 		references empresas(id_empresa),
 
-PRIMARY KEY(id_monitor, fk_unidade,fk_empresa)
+PRIMARY KEY(id_monitor, fk_unidade,fk_empresa, fk_hospital)
 );
 
 Create table componente_monitor
 (fk_unidade INT,
+fk_hospital INT,
 fk_empresa INT,
 fk_monitor INT,
 id_componente INT,
@@ -91,6 +98,10 @@ constraint fk_unidadeComp
 	foreign key(fk_unidade)
 		references unidades(id_unidade),
         
+constraint fk_unidadeHosp
+	foreign key(fk_hospital)
+		references hospitais(id_hospital),
+        
 constraint fk_empresaComp
 	foreign key(fk_empresa)
 		references empresas(id_empresa),
@@ -99,7 +110,7 @@ constraint fk_monitorComp
 	foreign key(fk_monitor)
 		references monitores(id_monitor),
 
-PRIMARY KEY(fk_unidade, fk_empresa, fk_monitor, id_componente)
+PRIMARY KEY(fk_unidade, fk_empresa, fk_monitor, fk_hospital, id_componente)
 );
 
 INSERT INTO empresas VALUES
