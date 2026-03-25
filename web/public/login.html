@@ -51,18 +51,18 @@
                 <div class="formulario">
                     <div class="campo">
                         <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
+                        <input id="email_cpf_input" type="text" placeholder="Login">
                     </div>
                     <div class="campo">
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
+                    <button class="botao" onclick="verificartipo()">Entrar</button>
                 </div>
 
-                <div id="div_aguardar" class="loading-div">
+                <!-- <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
+                </div> -->
 
                 <div id="div_erros_login"></div>
             </div>
@@ -117,74 +117,240 @@
 </html>
 
 <script>
+  function verificartipo() {
+    // aguardar();
+
+    var email_cpf = email_cpf_input.value;
+    var quantLogin = Number(email_cpf.length);
+    var verificaTipo = 0; //poderia ser usado true ou false
+
+    if (email_cpf.includes("@") && email_cpf.includes(".")) {
+      verificaTipo = 1; 
+    } else if (somenteNumeros(email_cpf)) {
+      verificaTipo = 2;
+    }
 
 
-    function entrar() {
-        aguardar();
+    if (verificaTipo == 1) {
+      entrarEmail();
+    } else if (verificaTipo == 2) {
+      entrarCPF();
+    } else {
+      div_erros_login.innerHTML = "E-mail ou CPF ínvalido";
+      return false;
+    }
+  }
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+  function entrarCPF() {
+    var cpfVar = email_cpf_input.value;
+    var senhaVar = senha_input.value;
 
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Campos incorretos\n Verifique os campos e tente novamente)";
-            finalizarAguardar();
-            return false;
+    if (!verificarcpf(cpfVar, senhaVar)) {
+      div_erros_login.innerHTML = "CPF ou senha inválidos";
+      return false;
+    } else {
+      cpfVar = verificarSeNum(cpfVar);
+    }
+
+    if (!calculoCpf(cpfVar)) {
+      div_erros_login.innerHTML = "CPF incorreto";
+      return false;
+    }
+
+    console.log("FORM LOGIN: ", cpfVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticarcpf", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cpfServer: cpfVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.CPF_USUARIO = json.cpf;
+            sessionStorage.NOME_USUARIO = json.nome_usuario;
+            sessionStorage.ID_USUARIO = json.id_usuario;
+            sessionStorage.FK_ADM = json.fk_adm;
+            sessionStorage.FK_EMPRESA = json.fk_empresa;
+
+            setTimeout(function () {
+              window.location = "dashboard.html";
+            }, 1000); // apenas para exibir o loading
+          });
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+            finalizarAguardar(texto);
+          });
         }
-        else {
-            setInterval(sumirMensagem, 5000)
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+
+
+
+  function entrarEmail() {
+    var emailVar = email_cpf_input.value;
+    var senhaVar = senha_input.value;
+
+    if (emailVar.trim() == "" || senhaVar.trim() == "") {
+      div_erros_login.innerHTML = "Os campos não devem estar em branco";
+      return false;
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticaremail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.CPF_USUARIO = json.cpf;
+            sessionStorage.NOME_USUARIO = json.nome_usuario;
+            sessionStorage.ID_USUARIO = json.id_usuario;
+            sessionStorage.FK_ADM = json.fk_adm;
+            sessionStorage.FK_EMPRESA = json.fk_empresa;
+
+
+            setTimeout(function () {
+              window.location = "dashboard.html";
+            }, 1000); // apenas para exibir o loading
+          });
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+          });
         }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+    return false;
+  }
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+  
+  function verificarcpf(cpfVar, senhaVar) {
+    var cpfNum = verificarSeNum(cpfVar.trim());
 
-            if (resposta.ok) {
-                console.log(resposta);
+    if (cpfNum == "" || senhaVar.trim() == "") {
+      return false;
+    } else if (cpfNum.length != 11) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+  function verificarSeNum(cod) {
+    var cpf = cod.trim();
+    var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var cpfPuro = "";
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
+    // Dois fors que servem quase como um includes
+    for (let i = 0; i < cod.length; i++) {
+      for (let j = 0; j < nums.length; j++) {
+        if (nums[j] == cod[i]) {
+          cpfPuro += cod[i];
+        }
+      }
+    }
 
-                });
+    return cpfPuro;
+  }
 
-            } else {
+  function calculoCpf(cpf) {
+    var iguais = true;
 
-                console.log("Houve um erro ao tentar realizar o login!");
+    for (let i = 1; i < cpf.length; i++) {
+      if (cpf[i] != cpf[0]) {
+        iguais = false;
+        break;
+      }
+    }
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
+    if (iguais) {
+      return false;
+    }
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+    var soma = 0;
 
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf[i]) * (10 - i);
+    }
+
+    var resto = (soma * 10) % 11;
+
+    if (resto == 10) {
+      resto = 0; // se o resto for 10, considera ele como 0
+    }
+
+    if (resto != parseInt(cpf[9])) {
+      return false;
+    }
+
+    soma = 0; // zera a soma
+
+    for (let y = 0; y < 10; y++) {
+      soma += parseInt(cpf[y]) * (11 - y);
+    }
+
+    resto = (soma * 10) % 11;
+
+    if (resto == 10) {
+      resto = 0;
+    }
+
+    if (resto != parseInt(cpf[10])) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function somenteNumeros(texto) {
+    for (let i = 0; i < texto.length; i++) {
+      if (texto[i] < "0" || texto[i] > "9") {
         return false;
+      }
     }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
+    return true;
+  }
 </script>
