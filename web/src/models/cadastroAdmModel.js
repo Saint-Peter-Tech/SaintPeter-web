@@ -6,7 +6,7 @@ function cadastrarAdm(nomeAdm, emailAdm, cpfAdm, senhaAdm, idEmpresa) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-            INSERT INTO usuario(nome, email, senha, cpf, ativo, fk_empresa) VALUES 
+            INSERT INTO usuarios(nome, email, senha, cpf, ativo, fk_empresa) VALUES 
             ('${nomeAdm}', '${emailAdm}', '${senhaAdm}', '${cpfAdm}', 1, ${idEmpresa});
                     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
