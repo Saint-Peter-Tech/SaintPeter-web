@@ -1,132 +1,120 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SPT | Início</title>
+
+  <script src="./js/sessao.js"></script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="css/cadastro.css" />
-  <link rel="icon" href="./assets/imgs-logo-nobroke/noBroke-menor-sem-fundo.png" />
-  <title>Cadastro | noBroke</title>
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/LogoClara.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body>
-  <nav class="navbar navbar-dark fixed-top navbar-expand-md p-0 w-100 h-">
-    <div class="container-fluid" id="header">
-      <a href="index.html#inicio" class="navbar-brand ps-md-5 my-3">
-        <img src="./assets/imgs-logo-nobroke/noBroke-oficial-sem-fundo.png" width="90%" height="40px"
-          alt="Logo da noBroke" />
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-        aria-controls="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link link-light" href="index.html">Início</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="index.html#sobre-nos">Sobre</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="index.html#fale-conosco">Contato</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="login.html">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="cadastroEmpresa.html" style="font-weight: bolder;">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="background d-flex align-items-center justify-content-center flex-column meio">
-    <div class="container text-center">
-      <div class="campos">
-        <div class="col borda">
-          <div class="mb-3">
-            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
-              <h5>Cadastro de Empresa</h5>
-          </div>
-          <div class="mb-3">
-            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
-              <div class="passos">
-                <div class="bolinha ativa"></div>
-                <div class="linha"></div>
-                <div class="bolinha"></div>
-                <p class="texto-passo">Passo 1 de 2</p>
-              </div>
-          </div>
-          <div class="mb-3">
-            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
-              <h6>Nome da Empresa*</h6>
-            </label>
-            <input type="text" maxlength="80" class="form-control" id="nomeEmpresa_input" placeholder="Ex.: noBroke" />
-          </div>
-          <div class="mb-3">
-            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
-              <h6>CNPJ*</h6>
-            </label>
-            <input type="text" class="form-control" id="cnpjEmpresa_input" placeholder="Ex.: 12.345.678/0001-00" />
-          </div>
-          <div class="mb-3">
-            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput2" class="form-label">
-              <h6>Email*</h6>
-            </label>
-            <div class="input-group mb-3">
-              <input type="text" maxlength="60" class="form-control" id="emailEmpresa_input"
-                placeholder="Ex.: nobroke@gmail.com" aria-label="Recipient’s username"
-                aria-describedby="basic-addon2" />
-            </div>
-          </div>
-          <div class="d-grid justify-content-center mx-auto">
-            <button class="btn btn-light button-color botao" type="button" onclick="cadastrarEmpresa()">
-              CADASTRE-SE
-            </button>
-          </div>
-        </div>
-        <div class="col">
-          <a href="index.html"> </a>
+<body onload="listar()">
+  <div class="container-fluid" id="navegacao">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./index.html"><img src="./assets/LogoWrittenWhite.png" alt="" /></a>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </ul>
+          <a href="login.html"><span class="navbar-text"> Login </span></a>
         </div>
       </div>
+      <div class="container-fluid">
+
+      </div>
+    </nav>
+  </div>
+
+  <div class="login">
+
+    <div class="container">
+      <div class="card card-cadastro">
+        <h2>Bem-vindo!</h2>
+        <div class="formulario">
+          <!--
+                         Para inserir mais um campo, copie uma das inputs abaixo.
+                         Assim que inserir vá para o script abaixo.
+                     -->
+          <div class="campo">
+            <span>Nome:</span>
+            <input id="nomeEmpresa_input" type="text" placeholder="Nome da Empresa" />
+          </div>
+          <div class="campo">
+            <span>E-mail:</span>
+            <input id="emailEmpresa_input" type="text" placeholder="seuemail@provedor.com" />
+          </div>
+          <div class="campo">
+            <span>Cnpj:</span>
+            <input id="cnpjEmpresa_input" type="text">
+          </div>
+          <button class="botao" onclick="cadastrarEmpresa()">Cadastrar</button>
+        </div>
+        <br>
+        <div id="div_erros_login"></div>
+      </div>
+      <div class="cadastro_img"></div>
     </div>
   </div>
 
-  <section id="footer">
-    <div class="container py-3">
+  <footer class="bg-dark text-light pt-5 pb-4">
+    <div class="container">
       <div class="row">
-        <div class="col-md-6 d-flex flex-column align-items-center align-items-md-start">
-          <a href="#inicio" class="navbar-brand text-center text-md-start m-0">
-            <img src="./assets/imgs-logo-nobroke/noBroke-oficial-sem-fundo.png" width="90%" height="60px" alt="" />
-          </a>
-          <span class="text-center">Transformando dados em decisões inteligentes</span>
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Saint Peter Technology</h5>
+          <p class="text-secondary">
+            Monitoramento inteligente de hardware para monitores de sinais vitais,
+            garantindo segurança e eficiência para seus dispositivos.
+          </p>
         </div>
-        <div class="col-md-3 d-flex flex-column">
-          <span class="text-light text-center text-md-start fw-bold">CONTATOS</span>
-          <span class="text-center text-md-start">comercial@nobroke.com</span>
-          <span class="text-center text-md-start">Rua Haddock Lobo, 595</span>
-          <span class="text-center text-md-start">+55 (11)90000-0000</span>
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#home" class="text-secondary text-decoration-none">Home</a></li>
+            <li><a href="#sobreNos" class="text-secondary text-decoration-none">Quem somos</a></li>
+            <li><a href="#" class="text-secondary text-decoration-none">Serviços</a></li>
+            <li><a href="#" class="text-secondary text-decoration-none">Contato</a></li>
+          </ul>
         </div>
-        <div class="col-md-3 d-flex flex-column">
-          <span class="text-light text-center text-md-start fw-bold">REDES SOCIAIS</span>
-          <div class="mt-3 d-flex justify-content-center justify-content-md-start">
-            <img src="./assets/icon/icon-linkedin.png" class="img-redes me-2" alt="" />
-            <img src="./assets/icon/icon-instagram.png" class="img-redes me-2" alt="" />
-            <img src="./assets/icon/icon-facebook.png" class="img-redes me-2" alt="" />
-          </div>
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Contato</h5>
+          <p class="text-secondary mb-1">contato@saintpetertech.com</p>
+          <p class="text-secondary mb-1">(11) 4002-8922</p>
+          <p class="text-secondary">São Paulo - Brasil</p>
         </div>
+
       </div>
+
+      <hr class="border-secondary">
+
+      <div class="text-center text-secondary">
+        © 2026 Saint Peter Technology — Feito com esmero por Grupo 10
+      </div>
+
     </div>
-  </section>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+    crossorigin="anonymous"></script>
 </body>
 
+
+
 </html>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script>
