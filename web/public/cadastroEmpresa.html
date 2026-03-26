@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body onload="listar()">
+<body>
   <div class="container-fluid" id="navegacao">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -57,6 +57,10 @@
           <div class="campo">
             <span>Cnpj:</span>
             <input id="cnpjEmpresa_input" type="text">
+          </div>
+          <div class="campo">
+            <span>Telefone:</span>
+            <input id="telefoneEmpresa_input" type="text" placeholder="113839202" />
           </div>
           <button class="botao" onclick="cadastrarEmpresa()">Cadastrar</button>
         </div>
@@ -124,11 +128,12 @@
     var nomeEmpresaVar = nomeEmpresa_input.value.trim();
     var emailEmpresaVar = emailEmpresa_input.value.trim();
     var cnpjEmpresaVar = cnpjEmpresa_input.value.trim();
+    var telefoneEmpresaVar = telefoneEmpresa_input.value.trim();
 
     console.log(nomeEmpresaVar, emailEmpresaVar, cnpjEmpresaVar);
 
     // Verificando senha e email
-    if (nomeEmpresaVar == "" || emailEmpresaVar == "" || cnpjEmpresaVar == "") {
+    if (nomeEmpresaVar == "" || emailEmpresaVar == "" || cnpjEmpresaVar == "" || telefoneEmpresaVar == "") {
       alert("Mensagem de erro para todos os campos em branco");
       return false;
     } else {
@@ -154,6 +159,7 @@
         nomeEmpresaServer: nomeEmpresaVar,
         emailEmpresaServer: emailEmpresaVar,
         cnpjEmpresaServer: cnpjEmpresaVar,
+        telefoneEmpresaServer: telefoneEmpresaVar,
       }),
     })
       .then(function (resposta) {
