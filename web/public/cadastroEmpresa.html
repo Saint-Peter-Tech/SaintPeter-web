@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/cadastro.css" />
+  <link rel="icon" href="./assets/imgs-logo-nobroke/noBroke-menor-sem-fundo.png" />
+  <title>Cadastro | noBroke</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark fixed-top navbar-expand-md p-0 w-100 h-">
+    <div class="container-fluid" id="header">
+      <a href="index.html#inicio" class="navbar-brand ps-md-5 my-3">
+        <img src="./assets/imgs-logo-nobroke/noBroke-oficial-sem-fundo.png" width="90%" height="40px"
+          alt="Logo da noBroke" />
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+        aria-controls="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link link-light" href="index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-light" href="index.html#sobre-nos">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-light" href="index.html#fale-conosco">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-light" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-light" href="cadastroEmpresa.html" style="font-weight: bolder;">Cadastro</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="background d-flex align-items-center justify-content-center flex-column meio">
+    <div class="container text-center">
+      <div class="campos">
+        <div class="col borda">
+          <div class="mb-3">
+            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
+              <h5>Cadastro de Empresa</h5>
+          </div>
+          <div class="mb-3">
+            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
+              <div class="passos">
+                <div class="bolinha ativa"></div>
+                <div class="linha"></div>
+                <div class="bolinha"></div>
+                <p class="texto-passo">Passo 1 de 2</p>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
+              <h6>Nome da Empresa*</h6>
+            </label>
+            <input type="text" maxlength="80" class="form-control" id="nomeEmpresa_input" placeholder="Ex.: noBroke" />
+          </div>
+          <div class="mb-3">
+            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput" class="form-label">
+              <h6>CNPJ*</h6>
+            </label>
+            <input type="text" class="form-control" id="cnpjEmpresa_input" placeholder="Ex.: 12.345.678/0001-00" />
+          </div>
+          <div class="mb-3">
+            <label class="label-title d-flex justify-content-start" for="formGroupExampleInput2" class="form-label">
+              <h6>Email*</h6>
+            </label>
+            <div class="input-group mb-3">
+              <input type="text" maxlength="60" class="form-control" id="emailEmpresa_input"
+                placeholder="Ex.: nobroke@gmail.com" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" />
+            </div>
+          </div>
+          <div class="d-grid justify-content-center mx-auto">
+            <button class="btn btn-light button-color botao" type="button" onclick="cadastrarEmpresa()">
+              CADASTRE-SE
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <a href="index.html"> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="footer">
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-md-6 d-flex flex-column align-items-center align-items-md-start">
+          <a href="#inicio" class="navbar-brand text-center text-md-start m-0">
+            <img src="./assets/imgs-logo-nobroke/noBroke-oficial-sem-fundo.png" width="90%" height="60px" alt="" />
+          </a>
+          <span class="text-center">Transformando dados em decisões inteligentes</span>
+        </div>
+        <div class="col-md-3 d-flex flex-column">
+          <span class="text-light text-center text-md-start fw-bold">CONTATOS</span>
+          <span class="text-center text-md-start">comercial@nobroke.com</span>
+          <span class="text-center text-md-start">Rua Haddock Lobo, 595</span>
+          <span class="text-center text-md-start">+55 (11)90000-0000</span>
+        </div>
+        <div class="col-md-3 d-flex flex-column">
+          <span class="text-light text-center text-md-start fw-bold">REDES SOCIAIS</span>
+          <div class="mt-3 d-flex justify-content-center justify-content-md-start">
+            <img src="./assets/icon/icon-linkedin.png" class="img-redes me-2" alt="" />
+            <img src="./assets/icon/icon-instagram.png" class="img-redes me-2" alt="" />
+            <img src="./assets/icon/icon-facebook.png" class="img-redes me-2" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+  function cadastrarEmpresa() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeEmpresaVar = nomeEmpresa_input.value.trim();
+    var emailEmpresaVar = emailEmpresa_input.value.trim();
+    var cnpjEmpresaVar = cnpjEmpresa_input.value.trim();
+
+    console.log(nomeEmpresaVar, emailEmpresaVar, cnpjEmpresaVar);
+
+    // Verificando senha e email
+    if (nomeEmpresaVar == "" || emailEmpresaVar == "" || cnpjEmpresaVar == "") {
+      alert("Mensagem de erro para todos os campos em branco");
+      return false;
+    } else {
+      //tratativa de cnpj
+
+      if (!cnpjVerificar(cnpjEmpresaVar)) {
+        alert("CNPJ inválido");
+        return false;
+      } else {
+        cnpjEmpresaVar = cnpjPuro(cnpjEmpresaVar);
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/cadastroEmpresa/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeEmpresaServer: nomeEmpresaVar,
+        emailEmpresaServer: emailEmpresaVar,
+        cnpjEmpresaServer: cnpjEmpresaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        return resposta.json();
+      })
+
+      .then(function (resultado) {
+        if (resultado.id) {
+          console.log(
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...",
+          );
+
+          sessionStorage.setItem("id", resultado.id);
+
+          setTimeout(() => {
+            window.location = "cadastroAdm.html";
+          }, 2000);
+        } else {
+          console.log(nomeEmpresaVar, emailEmpresaVar, cnpjEmpresaVar);
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+  function cnpjPuro(cnpj) {
+    var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var cnpjPuro = "";
+
+    for (let i = 0; i < cnpj.length; i++) {
+      for (let g = 0; g < nums.length; g++) {
+        if (cnpj[i] == nums[g]) {
+          cnpjPuro += cnpj[i];
+        }
+      }
+    }
+
+    return cnpjPuro;
+  }
+
+  function cnpjVerificar(cnpj) {
+    cnpj = cnpjPuro(cnpj);
+
+    if (cnpj.length != 14) {
+      return false;
+    }
+
+    var first = cnpj[0]; //usei inglês mas é primeiro
+    var contIgual = 0;
+
+    for (let y = 1; y < cnpj.length; y++) {
+      if (first == cnpj[y]) {
+        contIgual += 1;
+      }
+    }
+
+    if (contIgual > 10) {
+      return false;
+    }
+
+    //inicio do calculo de digitos de verificação
+
+    var dozePrimeiros = [];
+    var pesosPrimeiro = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    for (let i = 0; i < 12; i++) {
+      dozePrimeiros[i] = Number(cnpj[i]);
+    }
+
+    //calculo dos pesos
+
+    var somaPrimeiro = 0;
+
+    for (let i = 0; i < 12; i++) {
+      somaPrimeiro += dozePrimeiros[i] * pesosPrimeiro[i];
+    }
+
+    var resto = somaPrimeiro % 11;
+    var primeiro;
+
+    if (resto < 2) {
+      primeiro = 0;
+    } else {
+      primeiro = 11 - resto;
+    }
+
+    if (primeiro != Number(cnpj[12])) {
+      return false;
+    }
+
+    var pesosSegundo = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    var treze = [];
+
+    for (let i = 0; i < 12; i++) {
+      treze[i] = Number(cnpj[i]);
+    }
+
+    treze[12] = primeiro;
+
+    var somaSegundo = 0;
+
+    for (let i = 0; i < 13; i++) {
+      somaSegundo += treze[i] * pesosSegundo[i];
+    }
+
+    var resto2 = somaSegundo % 11;
+    var segundo;
+
+    if (resto2 < 2) {
+      segundo = 0;
+    } else {
+      segundo = 11 - resto2;
+    }
+
+    if (segundo != Number(cnpj[13])) {
+      return false;
+    }
+
+    return true;
+  }
+</script>
