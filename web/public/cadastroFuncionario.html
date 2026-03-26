@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/cadastro.css" />
+  <link rel="stylesheet" href="css/estilo.css" />
+
+  <link rel="icon" href="./assets/imgs-logo-nobroke/noBroke-menor-sem-fundo.png" />
+
+  <title>Dashboard | Cadastro Funcionário</title>
+</head>
+
+<body>
+
+  <div class="container-fluid p-0">
+    <div class="row min-vh-100 g-0">
+      <div class="col-12 col-md-3 col-lg-2 sidebar">
+
+        <img class="logo-dash img-fluid" src="./assets/imgs-logo-nobroke/noBroke-menor-sem-fundo.png">
+
+        <div class="menu-centro">
+
+          <a style="color: white;" href="dashboard.html" id="dashMenu" class="btn-nobroke mt-4">Dashboard</a>
+          <a style="color: white; font-weight: bolder;" id="admMenu" class="btn-nobroke mt-3">
+            Cadastrar Funcionário
+          </a>
+
+        </div>
+
+        <div class="user-profile">
+          <img src="./assets/icon/user.png" class="profile-img">
+          <p class="username" id="usuario" style="color: white;"></p>
+          <button onclick="logout()" class="logout-btn">Sair</button>
+        </div>
+
+      </div>
+
+      <div class="col conteudo">
+
+        <div class="background d-flex align-items-center justify-content-center flex-column meio w-100">
+          <div class="text-center w-100">
+
+            <div class="campos">
+
+              <div class="col borda">
+
+                <div id="mensagem_erro"></div>
+
+                <div class="mb-3">
+                  <label class="label-title d-flex justify-content-start">
+                    <h6>Permissão*</h6>
+                  </label>
+
+                  <div class="selectGrande">
+                    <select id="permissao">
+                      <option value="1">Funcionario</option>
+                      <option value="2">Administrador</option>
+                      <option value="0" selected disabled>Selecione uma Opção</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label class="label-title d-flex justify-content-start">
+                    <h6>Nome do Funcionário*</h6>
+                  </label>
+
+                  <input type="text" maxlength="60" class="form-control" id="nome_input"
+                    placeholder="Ex.: José da Silva" />
+                </div>
+
+
+                <div class="mb-3">
+                  <label class="label-title d-flex justify-content-start">
+                    <h6>CPF do Funcionário*</h6>
+                  </label>
+
+                  <input type="text" maxlength="11" class="form-control" id="cpf_input"
+                    placeholder="Ex.: 123.456.789-00" />
+                </div>
+
+
+                <div class="mb-3">
+                  <label class="label-title d-flex justify-content-start">
+                    <h6>Email do Funcionário*</h6>
+                  </label>
+
+                  <div class="input-group mb-3">
+                    <input type="text" maxlength="60" class="form-control" id="email_input"
+                      placeholder="Ex.: funcionario@gmail.com">
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label class="label-title d-flex justify-content-start">
+                    <h6>Senha*</h6>
+                  </label>
+
+                  <div class="input-group mb-3">
+                    <input type="password" maxlength="45" class="form-control" id="senha_input" placeholder="********">
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label class="label-title d-flex justify-content-start">
+                    <h6>Confirmar Senha*</h6>
+                  </label>
+
+                  <input type="password" maxlength="45" class="form-control" id="confirmacao_senha_input"
+                    placeholder="******" />
+                </div>
+
+
+                <div class="d-grid justify-content-center mx-auto">
+                  <button class="btn btn-light button-color botao" type="button" onclick="cadastrar()">
+                    CADASTRE-SE
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    window.onload = function () {
+      const usuario = document.getElementById("usuario");
+      usuario.innerHTML = `Olá <b>${sessionStorage.NOME_USUARIO}</b>, boas vindas.`;
+    }
+
+    function logout() {
+      sessionStorage.clear()
+      window.location.href = "index.html"
+    }
+
+    function mostrarErro(texto) {
+      const mensagem = document.getElementById("mensagem_erro");
+
+      mensagem.innerHTML = `<div class="alert alert-dismissible fade show" role="alert">${texto}<button type="button" class="btnFechar"></button></div>
+  `;
+    }
+
+    function cadastrar() {
+      let idEmpresa = sessionStorage.FK_EMPRESA;
+      let idAdm = sessionStorage.ID_USUARIO;
+
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var selectValue = document.getElementById("permissao");
+      var nomeVar = nome_input.value.trim();
+      var cpfVar = cpf_input.value.trim();
+      var emailVar = email_input.value.trim();
+      var senhaVar = senha_input.value.trim();
+      var confirmacaoSenhaVar = confirmacao_senha_input.value.trim();
+
+      console.log(nomeVar, emailVar, senhaVar, confirmacaoSenhaVar, cpfVar);
+
+      // Verificando senha e email
+      if (
+        nomeVar == "" ||
+        emailVar == "" ||
+        senhaVar == "" ||
+        confirmacaoSenhaVar == "" ||
+        cpfVar == "" ||
+        selectValue.value == 0
+      ) {
+        alert("Mensagem de erro para todos os campos em branco");
+        return false;
+      } else {
+        // tratativa da senha
+        let numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let caractereEsperial = [
+          "!",
+          "@",
+          "#",
+          '"',
+          "$",
+          "%",
+          "¨",
+          "&",
+          "*",
+          "(",
+          ")",
+          "-",
+          "+",
+        ];
+        let contemNumeros = false;
+        let contemCaractereEspecial = false;
+
+        for (var i = 0; i < senhaVar.length; i++) {
+          if (senhaVar.includes(numeros[i])) {
+            contemNumeros = true;
+            break;
+          }
+        }
+
+        for (var j = 0; j < senhaVar.length; j++) {
+          if (senhaVar.includes(caractereEsperial[j])) {
+            contemCaractereEspecial = true;
+            break;
+          }
+        }
+
+        // tratativa do email
+
+        if (!emailVar.includes(".com")) {
+          emailVar += ".com";
+        }
+        console.log(emailVar);
+
+        possuiDominio = true;
+
+        if (!emailVar.includes("@")) {
+          possuiDominio = false;
+        }
+
+        // tratativa do cpf
+
+        let cpfValido = false;
+
+        if (!isNaN(cpfVar)) {
+          let resultado = "";
+
+          // descobrindo o D1
+          let cont1 = 10;
+          let somaD1 = 0;
+
+          for (var k = 0; k < 9; k++) {
+            let multiplicacaoD1 = cpfVar[k] * cont1;
+
+            somaD1 += multiplicacaoD1;
+
+            cont1 -= 1;
+          }
+
+          let restoD1 = somaD1 % 11;
+
+          if (restoD1 < 2) {
+            restoD1 = 0;
+            resultado += restoD1.toString();
+          } else {
+            restoD1 = 11 - restoD1;
+            resultado += restoD1.toString();
+          }
+
+          // descobrindo o D2
+          let cont2 = 11;
+
+          let somaD2 = 0;
+
+          for (var l = 0; l < 10; l++) {
+            let multiplicacaoD2 = cpfVar[l] * cont2;
+
+            somaD2 += multiplicacaoD2;
+
+            cont2 -= 1;
+          }
+
+          let restoD2 = somaD2 % 11;
+
+          if (restoD2 < 2) {
+            restoD2 = 0;
+            resultado += restoD2.toString();
+          } else {
+            restoD2 = 11 - restoD2;
+            resultado += restoD2.toString();
+          }
+
+          if (cpfVar[9] == resultado[0] && cpfVar[10] == resultado[1]) {
+            cpfValido = true;
+          } else {
+            cpfValido = false;
+          }
+
+          console.log(resultado + cpfVar[9] + cpfVar[10]);
+        }
+
+
+
+        if (
+          senhaVar.length < 8 ||
+          senhaVar != confirmacaoSenhaVar ||
+          !contemNumeros ||
+          !contemCaractereEspecial ||
+          cpfVar.length > 11 ||
+          !cpfValido ||
+          !possuiDominio
+        ) {
+          console.log(
+            "A senha deve ter mais que 8 caracteres. As senhas devem ser iguais. A senha deve conter caracteres especiais",
+          );
+          return false;
+        } else if (selectValue.value == 1) {
+          console.log("Cadastro ok");
+
+
+          // Enviando o valor da nova input
+          fetch("/cadastroFuncionario/cadastrar", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              // crie um atributo que recebe o valor recuperado aqui
+              // Agora vá para o arquivo routes/usuario.js
+              nomeServer: nomeVar,
+              emailServer: emailVar,
+              senhaServer: senhaVar,
+              cpfServer: cpfVar,
+              idAdmServer: idAdm,
+              empresaServer: idEmpresa,
+            }),
+          })
+            .then(function (resposta) {
+              console.log("resposta: ", resposta);
+
+              if (resposta.ok) {
+                mensagem_erro.innerHTML =
+                  "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                  window.location = "login.html";
+                }, "2000");
+              } else {
+                console.log(
+                  nomeServer,
+                  emailServer,
+                  senhaServer,
+                  cpfServer,
+                  idAdmServer,
+                  empresaServer,
+                );
+                throw "Houve um erro ao tentar realizar o cadastro!";
+              }
+            })
+            .catch(function (resposta) {
+              console.log(`#ERRO: ${resposta}`);
+            });
+
+          return false;
+        } else if (selectValue.value == 2) {
+
+          fetch("/cadastroAdm/cadastroAdm", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              // crie um atributo que recebe o valor recuperado aqui
+              // Agora vá para o arquivo routes/usuario.js
+              nomeAdmServer: nomeVar,
+              emailAdmServer: emailVar,
+              cpfAdmServer: cpfVar,
+              senhaAdmServer: senhaVar,
+              idEmpresaServer: idEmpresa,
+            }),
+          })
+            .then(function (resposta) {
+              console.log("resposta: ", resposta);
+
+              if (resposta.ok) {
+                sessionStorage.setItem("ID_USUARIO", json.id_usuario);
+                sessionStorage.setItem("FK_EMPRESA", json.fk_empresa);
+                mensagem_erro.innerHTML =
+                  "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                  window.location = "login.html";
+                }, "2000");
+              } else {
+                console.log(nomeAdmVar, emailAdmVar, cpfAdmVar, senhaAdmVar);
+                throw "Houve um erro ao tentar realizar o cadastro!";
+              }
+            })
+            .catch(function (resposta) {
+              console.log(`#ERRO: ${resposta}`);
+            });
+        }
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
