@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -121,214 +121,220 @@
 
 
 </html>
-<script>
-  function cadastrarAdm() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeAdmVar = nomeAdm_input.value.trim();
-    var emailAdmVar = emailAdm_input.value.trim();
-    var cpfAdmVar = cpfAdm_input.value.trim();
-    var senhaAdmVar = senhaAdm_input.value.trim();
-    var confirmacaoSenhaAdmVar = confirmacao_senhaAdm_input.value.trim();
+  <script>
+    function cadastrarAdm() {
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var nomeAdmVar = nomeAdm_input.value.trim();
+      var emailAdmVar = emailAdm_input.value.trim();
+      var cpfAdmVar = cpfAdm_input.value.trim();
+      var senhaAdmVar = senhaAdm_input.value.trim();
+      var confirmacaoSenhaAdmVar = confirmacao_senhaAdm_input.value.trim();
 
-    console.log(
-      nomeAdmVar,
-      emailAdmVar,
-      cpfAdmVar,
-      senhaAdmVar,
-      confirmacaoSenhaAdmVar,
-    );
+      console.log(
+        nomeAdmVar,
+        emailAdmVar,
+        cpfAdmVar,
+        senhaAdmVar,
+        confirmacaoSenhaAdmVar,
+      );
 
-    // Verificando senha e email
-    if (
-      nomeAdmVar == "" ||
-      emailAdmVar == "" ||
-      cpfAdmVar == "" ||
-      senhaAdmVar == "" ||
-      confirmacaoSenhaAdmVar == ""
-    ) {
-      alert("Mensagem de erro para todos os campos em branco");
-      return false;
-    } else {
-      //tratativa de cpf
-
-      if (!verificarcpf(cpfAdmVar, senhaAdmVar)) {
-        alert("CPF inválido ou senha vazia");
-        return false;
-      }
-
-      // tratativa da senha
-      let numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-      let caractereEsperial = [
-        "!",
-        "@",
-        "#",
-        '"',
-        "$",
-        "%",
-        "¨",
-        "&",
-        "*",
-        "(",
-        ")",
-        "-",
-        "+",
-      ];
-      //let contemNumeros = false;
-      let contemCaractereEspecial = false;
-
-      for (i = 0; i < senhaAdmVar.length; i++) {
-        if (senhaAdmVar.includes(numeros[i])) {
-          contemNumeros = true;
-          break;
-        }
-      }
-
-      for (i = 0; i < senhaAdmVar.length; i++) {
-        if (senhaAdmVar.includes(caractereEsperial[i])) {
-          contemCaractereEspecial = true;
-          break;
-        }
-      }
-
+      // Verificando senha e email
       if (
-        senhaAdmVar < 8 ||
-        senhaAdmVar != confirmacaoSenhaAdmVar
-        //!contemNumeros ||
-        //!contemCaractereEspecial
+        nomeAdmVar == "" ||
+        emailAdmVar == "" ||
+        cpfAdmVar == "" ||
+        senhaAdmVar == "" ||
+        confirmacaoSenhaAdmVar == ""
       ) {
-        console.log("Caiu na validação da senha!");
-        console.log(
-          "A senha deve ter mais que 8 caracteres. As senhas devem ser iguais. A senha deve conter caracteres especiais",
-        );
+        alert("Mensagem de erro para todos os campos em branco");
         return false;
       } else {
-        console.log("Cadastro ok");
-        setTimeout(() => {
-          window.location.href = "login.html";
-        }, "2000");
-      }
+        //tratativa de cpf
 
-      var idEmpresa = sessionStorage.getItem("id");
-      console.log("idEmpresa:", idEmpresa);
+        if (!verificarcpf(cpfAdmVar, senhaAdmVar)) {
+          alert("CPF inválido ou senha vazia");
+          return false;
+        }
 
-      // Enviando o valor da nova input
-      fetch("/cadastroAdm/cadastroAdm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          nomeAdmServer: nomeAdmVar,
-          emailAdmServer: emailAdmVar,
-          cpfAdmServer: cpfAdmVar,
-          senhaAdmServer: senhaAdmVar,
-          idEmpresaServer: idEmpresa,
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
+        // tratativa da senha
+        let numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let caractereEsperial = [
+          "!",
+          "@",
+          "#",
+          '"',
+          "$",
+          "%",
+          "¨",
+          "&",
+          "*",
+          "(",
+          ")",
+          "-",
+          "+",
+        ];
+        //let contemNumeros = false;
+        let contemCaractereEspecial = false;
 
-          if (resposta.ok) {
-            sessionStorage.setItem("ID_USUARIO", json.id_usuario);
-            sessionStorage.setItem("FK_EMPRESA", json.fk_empresa);
-            mensagem_erro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-            setTimeout(() => {
-              window.location.href = "login.html";
-            }, "2000");
-          } else {
-            console.log(nomeAdmVar, emailAdmVar, cpfAdmVar, senhaAdmVar);
-            throw "Houve um erro ao tentar realizar o cadastro!";
+        for (i = 0; i < senhaAdmVar.length; i++) {
+          if (senhaAdmVar.includes(numeros[i])) {
+            contemNumeros = true;
+            break;
           }
+        }
+
+        for (i = 0; i < senhaAdmVar.length; i++) {
+          if (senhaAdmVar.includes(caractereEsperial[i])) {
+            contemCaractereEspecial = true;
+            break;
+          }
+        }
+
+        if (
+          senhaAdmVar.length < 8 ||
+          senhaAdmVar != confirmacaoSenhaAdmVar
+          //!contemNumeros ||
+          //!contemCaractereEspecial
+        ) {
+          console.log("Caiu na validação da senha!");
+          console.log(
+            "A senha deve ter mais que 8 caracteres. As senhas devem ser iguais. A senha deve conter caracteres especiais",
+          );
+          return false;
+        } else {
+          console.log("Cadastro ok");
+        }
+
+        var idEmpresa = sessionStorage.getItem("id");
+        console.log("idEmpresa:", idEmpresa);
+        cpfAdmVar = verificarSeNum(cpfAdmVar);
+
+        // Enviando o valor da nova input
+        fetch("/cadastroAdm/cadastroAdm", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeAdmServer: nomeAdmVar,
+            emailAdmServer: emailAdmVar,
+            cpfAdmServer: cpfAdmVar,
+            senhaAdmServer: senhaAdmVar,
+            idEmpresaServer: idEmpresa,
+          }),
         })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
+          .then(function (resposta){
+            console.log("resposta: ", resposta);
+            return resposta.json();
+          })
 
-      return false;
+          .then(function (json) {
+
+
+            if (json.id_usuario) {
+              sessionStorage.setItem("ID_USUARIO", json.id_usuario);
+              sessionStorage.setItem("FK_EMPRESA", json.fk_empresa);
+              div_erros_login.innerHTML =
+                "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, "2000");
+              
+            } else {
+              console.log(nomeAdmVar, emailAdmVar, cpfAdmVar, senhaAdmVar);
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+            return false;
+          }
+        }
+
+    function verificarcpf(cpfVar, senhaVar) {
+      var cpfNum = verificarSeNum(cpfVar || "").trim();
+      var senhaLimpa = (senhaVar || "").trim();
+
+      if (cpfNum == "" || senhaLimpa == "") {
+        return false;
+      } else if (cpfNum.length != 11) {
+        return false;
+      } else {
+        return true;
+      }
     }
-  }
 
-  function verificarcpf(cpfVar, senhaVar) {
-    var cpfNum = verificarSeNum(cpfVar || "").trim();
-    var senhaLimpa = (senhaVar || "").trim();
+    function verificarSeNum(cod) {
+      var cpf = cod.trim();
+      var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var cpfPuro = "";
 
-    if (cpfNum == "" || senhaLimpa == "") {
-      return false;
-    } else if (cpfNum.length != 11) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  function verificarSeNum(cod) {
-    var cpf = cod.trim();
-    var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    var cpfPuro = "";
-
-    // Dois fors que servem quase como um includes
-    for (let i = 0; i < cod.length; i++) {
-      for (let j = 0; j < nums.length; j++) {
-        if (nums[j] == cod[i]) {
-          cpfPuro += cod[i];
+      // Dois fors que servem quase como um includes
+      for (let i = 0; i < cod.length; i++) {
+        for (let j = 0; j < nums.length; j++) {
+          if (nums[j] == cod[i]) {
+            cpfPuro += cod[i];
+          }
         }
       }
+
+      return cpfPuro;
     }
 
-    return cpfPuro;
-  }
+    function calculoCpf(cpf) {
+      var iguais = true;
 
-  function calculoCpf(cpf) {
-    var iguais = true;
-
-    for (let i = 1; i < cpf.length; i++) {
-      if (cpf[i] != cpf[0]) {
-        iguais = false;
-        break;
+      for (let i = 1; i < cpf.length; i++) {
+        if (cpf[i] != cpf[0]) {
+          iguais = false;
+          break;
+        }
       }
+
+      if (iguais) {
+        return false;
+      }
+
+      var soma = 0;
+
+      for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf[i]) * (10 - i);
+      }
+
+      var resto = (soma * 10) % 11;
+
+      if (resto == 10) {
+        resto = 0; // se o resto for 10, considera ele como 0
+      }
+
+      if (resto != parseInt(cpf[9])) {
+        return false;
+      }
+
+      soma = 0; // zera a soma
+
+      for (let y = 0; y < 10; y++) {
+        soma += parseInt(cpf[y]) * (11 - y);
+      }
+
+      resto = (soma * 10) % 11;
+
+      if (resto == 10) {
+        resto = 0;
+      }
+
+      if (resto != parseInt(cpf[10])) {
+        return false;
+
+      }
+
+      return true;
     }
-
-    if (iguais) {
-      return false;
-    }
-
-    var soma = 0;
-
-    for (let i = 0; i < 9; i++) {
-      soma += parseInt(cpf[i]) * (10 - i);
-    }
-
-    var resto = (soma * 10) % 11;
-
-    if (resto == 10) {
-      resto = 0; // se o resto for 10, considera ele como 0
-    }
-
-    if (resto != parseInt(cpf[9])) {
-      return false;
-    }
-
-    soma = 0; // zera a soma
-
-    for (let y = 0; y < 10; y++) {
-      soma += parseInt(cpf[y]) * (11 - y);
-    }
-
-    resto = (soma * 10) % 11;
-
-    if (resto == 10) {
-      resto = 0;
-    }
-
-    if (resto != parseInt(cpf[10])) {
-      return false;
-    }
-
-    return true;
-  }
 </script>

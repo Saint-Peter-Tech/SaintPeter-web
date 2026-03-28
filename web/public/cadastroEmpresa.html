@@ -142,9 +142,10 @@
       if (!cnpjVerificar(cnpjEmpresaVar)) {
         alert("CNPJ inválido");
         return false;
-      } else {
-        cnpjEmpresaVar = cnpjPuro(cnpjEmpresaVar);
       }
+      
+      cnpjEmpresaVar = cnpjPuro(cnpjEmpresaVar);
+      
     }
 
     // Enviando o valor da nova input
