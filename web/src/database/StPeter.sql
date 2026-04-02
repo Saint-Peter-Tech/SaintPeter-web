@@ -35,20 +35,14 @@ telefone_hospital CHAR(11) NOT NULL UNIQUE
 );
 
 Create table unidades
-(id_unidade INT AUTO_INCREMENT,
+(id_unidade INT PRIMARY KEY AUTO_INCREMENT,
 fk_hospital INT NOT NULL,
 cep CHAR(8) NOT NULL,
 rua VARCHAR(50) NOT NULL,
 numero VARCHAR(50) NOT NULL,
 cidade VARCHAR(50) NOT NULL,
 email_responsavel VARCHAR(50),
-telefone_responsavel CHAR(11),
-
-constraint fk_hospitalUnidade
-	foreign key(fk_hospital)
-		references hospitais(id_hospital),
-        
-primary key (id_unidade, fk_hospital)
+telefone_responsavel CHAR(11)
 );
 
 Create table componentes
@@ -59,9 +53,8 @@ unidade_medida VARCHAR(50) NOT NULL
 );
 
 Create table monitores
-(id_monitor INT NOT NULL AUTO_INCREMENT,
+(id_monitor INT PRIMARY KEY AUTO_INCREMENT,
 fk_unidade INT NOT NULL,
-fk_hospital INT NOT NULL,
 fk_empresa INT NOT NULL,
 status_monitor VARCHAR(50),
 
@@ -71,46 +64,29 @@ constraint chkStatusMonitor
 constraint fk_unidadeMonitor
 	foreign key(fk_unidade)
 		references unidades(id_unidade),
-        
-constraint fk_hospitalMonitor
-	foreign key(fk_hospital)
-		references hospitais(id_hospital),
 	
 constraint fk_empresaMonitor
 	foreign key(fk_empresa)
-		references empresas(id_empresa),
-
-PRIMARY KEY(id_monitor, fk_unidade,fk_empresa, fk_hospital)
+		references empresas(id_empresa)
 );
 
 Create table componente_monitor
-(fk_unidade INT,
-fk_hospital INT,
-fk_empresa INT,
+(fk_componente INT,
 fk_monitor INT,
-id_componente INT,
 limite DECIMAL(5,2),
 
 constraint limitePorcentagem
 	check (limite >= 0 AND limite <= 100),
-
-constraint fk_unidadeComp
-	foreign key(fk_unidade)
-		references unidades(id_unidade),
-        
-constraint fk_unidadeHosp
-	foreign key(fk_hospital)
-		references hospitais(id_hospital),
-        
-constraint fk_empresaComp
-	foreign key(fk_empresa)
-		references empresas(id_empresa),
         
 constraint fk_monitorComp
 	foreign key(fk_monitor)
 		references monitores(id_monitor),
 
-PRIMARY KEY(fk_unidade, fk_empresa, fk_monitor, fk_hospital, id_componente)
+constraint fk_componente
+	foreign key(fk_componente)
+		references componentes(id_componente),
+
+PRIMARY KEY(fk_componente, fk_monitor)
 );
 
 INSERT INTO empresas VALUES
