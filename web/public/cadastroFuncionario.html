@@ -319,23 +319,14 @@
           })
             .then(function (resposta) {
               console.log("resposta: ", resposta);
+              return resposta.json();
+            })
+            .then(function (json) {
+              if (json.insertId) {
 
-              if (resposta.ok) {
-               div_erros_login.innerHTML =
-                  "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                setTimeout(() => {
-                  window.location = "login.html";
-                }, "2000");
+               div_erros_login.innerHTML = "Cadastro realizado com sucesso!";
+               
               } else {
-                console.log(
-                  nomeServer,
-                  emailServer,
-                  senhaServer,
-                  cpfServer,
-                  idAdmServer,
-                  empresaServer,
-                );
                 throw "Houve um erro ao tentar realizar o cadastro!";
               }
             })
