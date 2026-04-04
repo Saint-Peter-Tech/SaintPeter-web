@@ -137,3 +137,86 @@ body {
 
 
 /* -------------------------- End CADASTRO --------------------------*/
+
+/* Novo estilo do index */
+
+.background-img-banner {
+  background-image:
+    linear-gradient(to top, transparent 10%, #4169e1 90%),
+    url("./vital-signs-in-the-operating-room - Editado.png");
+  background-size: cover;
+  padding-bottom: 48px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+
+}
+
+.body2 {
+  padding: 4.8%;
+}
+
+.botao {
+  border: none;
+  background-color: #DDF5F1;
+  border-radius: 10px;
+  font-weight: 550;
+}
+
+.titulo {
+  width: 100%;
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+  color: white;
+  font-size: 4vh;
+  font-weight: bold;
+}
+
+.texto-card {
+  font-size: 2.2vh;
+  color: #13347b;
+}
+
+.texto {
+  color: #13347b;
+}
+
+.secao {
+  position: relative;
+  padding: 70px 0;
+}
+
+.secao::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 90%;
+  background: linear-gradient(135Deg, #2f5bd3, #1e3c88);
+  /* clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);  */
+  z-index: 0;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.secao .container {
+  position: relative;
+  z-index: 1;
+}
+
+.texto-banner {
+  color: white;
+}
+
+.cardEspacamento {
+  padding: 3%;
+  gap: 2%;
+  justify-content: space-around;
+
+}
+
+/* aqui termina o novo estilo do index */
