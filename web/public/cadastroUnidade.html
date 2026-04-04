@@ -26,7 +26,7 @@
     </p>
 
     <p><span>CEP:</span>
-      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()">
+      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()" placeholder="Exemplo: 01414001 ou 01414-001">
     </p>
 
     <p><span>Rua:</span>
@@ -39,6 +39,10 @@
 
     <p><span>Número:</span>
       <input type="text" id="input_numero" maxlength="50">
+    </p>
+
+    <p><span>Descrição da Unidade:</span>
+    <input type="text" id="input_unidade" placeholder="Exemplo: Unidade Zona Sul">
     </p>
 
     <p><span>Email do Responsável:</span>
@@ -87,7 +91,7 @@
   function buscarcep() {
     var cep = input_cep.value;
 
-    if (cep.length == 9) {
+    if (cep.length == 8 || cep.length == 9) {
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then(function(resposta) {
                 return resposta.json();
@@ -99,6 +103,8 @@
                     div_erroCadastro.innerHTML = "";
                 } else {
                     div_erroCadastro.innerHTML = `CEP não encontrado.<br>`;
+                    input_rua.value = "";
+                    input_cidade.value = "";
                 }
             })
             .catch(function(erro) {
@@ -109,12 +115,39 @@
 
   function cadastrarUnidade() {
     var cep = input_cep.value;
-    var listaHospitais = select_hospital.value;   
+    var fkHospital = select_hospital.value;   
     var rua = input_rua.value;
     var numero = input_numero.value;
     var cidade = input_cidade.value;
+    var unidade = input_unidade.value;
     var emailResponsavel = input_emailResponsavel.value;
     var telefoneResponsavel = input_telefoneResponsavel.value;
+
+    if (fkHospital == "0") {
+        alert("Por favor, selecione um hospital.");
+        return;
+    }
+
+    fetch("/unidade/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cepServer: cep,
+        ruaServer: rua,
+        numeroServer: numero,
+        cidadeServer: cidade,
+        unidadeServer: unidade,
+        emailResponsavelServer: emailResponsavel,
+        telefoneResponsavelServer: telefoneResponsavel,
+        fkHospitalServer: fkHospital,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        return resposta.json();
+      })
   }
 
 </script>
