@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,82 +16,107 @@
   <link rel="icon" href="./assets/LogoClara.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
+
 <body>
-    <div>
-        <p><span>Selecione o hospital desejado:</span>
-        <select name="select_hospital" id="select_hospital">
-            <option value="0" selected disabled>Selecione um hospital</option>
-        </select>
-        </p>
+  <div>
+    <p><span>Selecione o hospital desejado:</span>
+      <select name="select_hospital" id="select_hospital">
+        <option value="0" selected disabled>Selecione um hospital</option>
+      </select>
+    </p>
 
-        <p><span>CEP:</span>
-        <input type="text" id="input_cep" maxlength="8">
-        </p>
+    <p><span>CEP:</span>
+      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()">
+    </p>
 
-        <p><span>Rua:</span>
-        <input type="text" id="input_rua" maxlength="50">
-        </p>
+    <p><span>Rua:</span>
+      <input type="text" id="input_rua" maxlength="50">
+    </p>
 
-        <p><span>Número:</span>
-        <input type="text" id="input_numero" maxlength="50">
-        </p>
+    <p><span>Cidade:</span>
+      <input type="text" id="input_cidade" maxlength="50">
+    </p>
 
-        <p><span>Cidade:</span>
-        <input type="text" id="input_cidade" maxlength="50">
-        </p>
+    <p><span>Número:</span>
+      <input type="text" id="input_numero" maxlength="50">
+    </p>
 
-        <p><span>Email do Responsável:</span>
-        <input type="text" id="input_emailResponsavel" maxlength="50">
-        </p>
+    <p><span>Email do Responsável:</span>
+      <input type="text" id="input_emailResponsavel" maxlength="50">
+    </p>
 
-        <p><span>Telefone do Responsável:</span>
-        <input type="text" id="input_telefoneResponsavel" maxlength="11">
-        </p>
+    <p><span>Telefone do Responsável:</span>
+      <input type="text" id="input_telefoneResponsavel" maxlength="11">
+    </p>
 
-        <p>
-          <button onclick="cadastrarUnidade()">Cadastrar Unidade</button>
-        </p>
-    </div>
+    <p>
+      <button onclick="cadastrarUnidade()">Cadastrar Unidade</button>
+    </p>
+    <div id="div_erroCadastro"></div>
+  </div>
 </body>
 
 <script>
-window.onload = listarHospitais
+  window.onload = listarHospitais
 
-function listarHospitais() {
-  
-  fetch("/hospital/buscarHospitais")
-    .then(function (resposta) {
-      return resposta.json();
-    })
-    .then(function (hospitais) {
+  function listarHospitais() {
 
-      const select = document.getElementById("select_hospital");
+    fetch("/hospital/buscarHospitais")
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (hospitais) {
 
-      hospitais.forEach(hospital => {
-        const option = document.createElement("option");
+        const select = document.getElementById("select_hospital");
 
-        option.value = hospital.id_hospital;
-        option.textContent = hospital.nome_hospital;
+        hospitais.forEach(hospital => {
+          const option = document.createElement("option");
 
-        select.appendChild(option);
+          option.value = hospital.id_hospital;
+          option.textContent = hospital.nome_hospital;
+
+          select.appendChild(option);
+        });
+
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar hospitais:", erro);
       });
+  }
 
-    })
-    .catch(function (erro) {
-      console.error("Erro ao buscar hospitais:", erro);
-    });
+  function buscarcep() {
+    var cep = input_cep.value;
+
+    if (cep.length == 9) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(function(resposta) {
+                return resposta.json();
+            })
+            .then(function(dados) {
+                if (!dados.erro) {
+                    input_rua.value = dados.logradouro;
+                    input_cidade.value = dados.localidade;
+                    div_erroCadastro.innerHTML = "";
+                } else {
+                    div_erroCadastro.innerHTML = `CEP não encontrado.<br>`;
+                }
+            })
+            .catch(function(erro) {
+                console.log("Erro na busca:", erro);
+            });
+    }
 }
 
-
-
-  function cadastrarUnidade(){
-  var listaHospitais = select_hospital.value;
-  var cep = input_cep.value;
-  var rua = input_rua.value;
-  var numero = input_numero.value;
-  var cidade = input_cidade.value;
-  var emailResponsavel = input_emailResponsavel.value;
-  var telefoneResponsavel = input_telefoneResponsavel.value;
+  function cadastrarUnidade() {
+    var cep = input_cep.value;
+    var listaHospitais = select_hospital.value;   
+    var rua = input_rua.value;
+    var numero = input_numero.value;
+    var cidade = input_cidade.value;
+    var emailResponsavel = input_emailResponsavel.value;
+    var telefoneResponsavel = input_telefoneResponsavel.value;
   }
+
 </script>
+
 </html>
