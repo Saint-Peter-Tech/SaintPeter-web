@@ -123,10 +123,33 @@
     var emailResponsavel = input_emailResponsavel.value;
     var telefoneResponsavel = input_telefoneResponsavel.value;
 
+    div_erroCadastro.innerHTML = "";
+    div_erroCadastro.style.color = "red";
+
+    var mensagemErro = "";
+
     if (fkHospital == "0") {
-        alert("Por favor, selecione um hospital.");
+        mensagemErro += "Selecione um hospital.<br>";
+    }
+    
+    if (unidade == "" || cep == "" || rua == "" || numero == "" || cidade == "") {
+        mensagemErro += "Preencha todos os campos de endereço (Unidade, CEP, Rua, Num e Cidade).<br>";
+    }
+
+    if (!emailResponsavel.includes("@") || emailResponsavel.length < 5 || !emailResponsavel.includes(".com")) {
+        mensagemErro += "Insira um e-mail válido para o responsável.<br>";
+    }
+
+    if (telefoneResponsavel.length < 10) {
+        mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
+    }
+
+    if (mensagemErro != "") {
+        div_erroCadastro.innerHTML = mensagemErro;
         return;
     }
+
+    div_erroCadastro.innerHTML = "";
 
     fetch("/unidade/cadastrar", {
       method: "POST",
@@ -147,6 +170,7 @@
       .then(function (resposta) {
         console.log("resposta: ", resposta);
         return resposta.json();
+        div_erroCadastro.innerHTML = "";
       })
   }
 
