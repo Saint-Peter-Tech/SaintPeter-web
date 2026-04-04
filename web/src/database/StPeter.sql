@@ -42,7 +42,11 @@ rua VARCHAR(50) NOT NULL,
 numero VARCHAR(50) NOT NULL,
 cidade VARCHAR(50) NOT NULL,
 email_responsavel VARCHAR(50),
-telefone_responsavel CHAR(11)
+telefone_responsavel CHAR(11),
+
+constraint fk_hospitalUnidade
+	foreign key(fk_hospital)
+		references hospitais(id_hospital)
 );
 
 Create table componentes
