@@ -9,9 +9,6 @@ razao_social VARCHAR(100) NOT NULL UNIQUE,
 email_empresa VARCHAR(45) NOT NULL UNIQUE
 )AUTO_INCREMENT = 2;
 
-select * from empresas;
-select * from usuarios;
-
 Create table usuarios
 (id_usuario INT PRIMARY KEY AUTO_INCREMENT,
 fk_adm int,
@@ -45,11 +42,7 @@ rua VARCHAR(50) NOT NULL,
 numero VARCHAR(50) NOT NULL,
 cidade VARCHAR(50) NOT NULL,
 email_responsavel VARCHAR(50),
-telefone_responsavel CHAR(11),
-
-constraint fk_hospitalUnidade
-	foreign key(fk_hospital)
-		references hospitais(id_hospital)
+telefone_responsavel CHAR(11)
 );
 
 Create table componentes
