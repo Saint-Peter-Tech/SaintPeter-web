@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.todo {
+    display: flex;
+    flex-direction: row;
+}
+
+.imagem {
+    display: flex;
+    background-image: url(../assets/tela_fundo_formulario.jpg);
+    width: 100vh;
+    height: 100vh;
+    padding-right: 650px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.parte-cima {
+    display: flex;
+    flex-direction: column;
+}
+
+.pai-titulo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.titulo {
+    font-size: 50px;
+    color: #1947A6;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.status {
+    justify-content: center;
+    display: flex;
+}
+
+.status img {
+    /* width: 250px; */
+    height: 40px;
+}
+
+.parte-baixo {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.campos {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: #1947A6;
+    gap: 3px;
+}
+
+.campos input {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    width: 550px;
+    height: 40px;
+    border: 2px solid #2260E1;
+    outline: none;
+    padding-left: 10px;
+}
+
+.campos input::placeholder {
+    font-size: 16px;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+}
+
+.botao button {
+    background-color: #2260E1;
+    font-family: 'Poppins', sans-serif;
+    width: 60%;
+    height: 60px;
+    color: white;
+    border-radius: 10px;
+    border: 0px;
+    font-size: 20px;
+}

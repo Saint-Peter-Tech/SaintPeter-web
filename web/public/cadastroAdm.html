@@ -10,114 +10,66 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="./css/formularios.css" />
   <link rel="icon" href="./assets/LogoClara.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
-  <div class="container-fluid" id="navegacao">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html"><img src="./assets/LogoWrittenWhite.png" alt="" /></a>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-          </ul>
-          <a href="login.html"><span class="navbar-text"> Login </span></a>
+    <div class="todo">
+      <div class="imagem"></div>
+      <div class="container">
+        <div class="parte-cima">
+          <div class="pai-titulo">
+            <div class="titulo">Criar conta</div>
+            <div class="status"><img src="./assets/status2.png" alt=""></div>
+          </div>
+        </div>
+        <div class="parte-baixo">
+          <div class="campos">
+            Nome
+            <input
+              type="text"
+              id="nomeAdm_input"
+              placeholder="Nome do administrador"
+            />
+
+            Email
+            <input
+              type="text"
+              id="emailAdm_input"
+              placeholder="emaildoadm@gmail.com"
+            />
+
+            CPF
+            <input
+              type="text"
+              id="cpfAdm_input"
+              placeholder="123.456.789-00"
+            />
+
+            Senha
+            <input
+              type="text"
+              id="senhaAdm_input"
+              placeholder="********"
+            />
+
+            Confirmar senha
+            <input
+              type="text"
+              id="confirmacao_senhaAdm_input"
+              placeholder="********"
+            />
+          </div>
+
+          <div class="botao">
+          <button onclick="cadastrarEmpresa">Cadastrar</button>
+          </div>
         </div>
       </div>
-      <div class="container-fluid">
-
-      </div>
-    </nav>
-  </div>
-
-  <div class="login">
-
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nomeAdm_input" type="text" placeholder="Nome Adm" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="emailAdm_input" type="text" placeholder="seuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Cpf:</span>
-            <input id="cpfAdm_input" type="text">
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senhaAdm_input" type="password" placeholder="****" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="confirmacao_senhaAdm_input" type="password" placeholder="****" />
-          </div>
-          <button class="botao" onclick="cadastrarAdm()">Cadastrar</button>
-        </div>
-        <br>
-        <div id="div_erros_login"></div>
-      </div>
-      <div class="cadastro_img"></div>
     </div>
-  </div>
-
-  <footer class="bg-dark text-light pt-5 pb-4">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold">Saint Peter Technology</h5>
-          <p class="text-secondary">
-            Monitoramento inteligente de hardware para monitores de sinais vitais,
-            garantindo segurança e eficiência para seus dispositivos.
-          </p>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold">Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#home" class="text-secondary text-decoration-none">Home</a></li>
-            <li><a href="#sobreNos" class="text-secondary text-decoration-none">Quem somos</a></li>
-            <li><a href="#" class="text-secondary text-decoration-none">Serviços</a></li>
-            <li><a href="#" class="text-secondary text-decoration-none">Contato</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold">Contato</h5>
-          <p class="text-secondary mb-1">contato@saintpetertech.com</p>
-          <p class="text-secondary mb-1">(11) 4002-8922</p>
-          <p class="text-secondary">São Paulo - Brasil</p>
-        </div>
-
-      </div>
-
-      <hr class="border-secondary">
-
-      <div class="text-center text-secondary">
-        © 2026 Saint Peter Technology — Feito com esmero por Grupo 10
-      </div>
-
-    </div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
-    crossorigin="anonymous"></script>
-</body>
+  </body>
 
 
 </html>
