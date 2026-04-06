@@ -29,9 +29,14 @@ constraint fk_empresaUser
 
 Create table hospitais
 (id_hospital INT PRIMARY KEY AUTO_INCREMENT,
+fk_empresa INT NOT NULL,
 nome_hospital VARCHAR(50) NOT NULL,
 cnpj_hospital CHAR(14) NOT NULL UNIQUE, 
-telefone_hospital CHAR(11) NOT NULL UNIQUE
+telefone_hospital CHAR(11) NOT NULL UNIQUE,
+
+constraint fk_hospitalEmpresa
+	foreign key(fk_empresa)
+		references empresas(id_empresa)
 );
 
 Create table unidades
@@ -41,7 +46,7 @@ cep CHAR(9) NOT NULL,
 rua VARCHAR(50) NOT NULL,
 numero VARCHAR(50) NOT NULL,
 cidade VARCHAR(50) NOT NULL,
-nome_unidade VARCHAR(50) NOT NULL,
+nome_unidade VARCHAR(100) NOT NULL,
 email_responsavel VARCHAR(50),
 telefone_responsavel CHAR(11),
 
@@ -116,3 +121,28 @@ INSERT INTO componentes (nome_componente, tipo, unidade_medida) VALUES
 ('Rede Recebida', 'Rede', 'Bytes'),
 ('Velocidade Envio', 'Rede', 'Bytes/s'),
 ('Velocidade Recebimento', 'Rede', 'Bytes/s');
+
+INSERT INTO empresas 
+(cnpj_empresa, telefone_empresa, razao_social, email_empresa)
+VALUES
+('00000000000002', 
+ '11999999999', 
+ 'MedCloud Serviços Hospitalares LTDA', 
+ 'contato@medcloud.com'),
+ ('00000000000003', 
+ '11888888888', 
+ 'HealthTech Monitoramento Hospitalar LTDA', 
+ 'contato@healthtech.com');
+
+INSERT INTO hospitais 
+(fk_empresa, nome_hospital, cnpj_hospital, telefone_hospital)
+VALUES
+(2, 'Hospital Nova Esperança', '20000000000001', '11444455551'),
+(2, 'Hospital Bem Estar', '20000000000002', '11444455552');
+
+INSERT INTO hospitais 
+(fk_empresa, nome_hospital, cnpj_hospital, telefone_hospital)
+VALUES
+(3, 'Hospital Santa Helena', '30000000000001', '11555566661'),
+(3, 'Hospital Central Brasil', '30000000000002', '11555566662');
+ 
