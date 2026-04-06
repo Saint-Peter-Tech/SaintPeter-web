@@ -18,7 +18,6 @@ function cadastrarHospital(req, res) {
   var fkEmpresa = req.body.fkEmpresaServer
 
 
-
   hospitalModel
     .cadastrarHospital(nomeHospital, cnpjHospital, telefoneHospital, fkEmpresa)
     .then(function (resultado) {

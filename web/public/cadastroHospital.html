@@ -79,13 +79,43 @@
     var telefoneHospital = input_telefoneHospital.value;
     var cnpjLimpo = cnpjOriginal.replace(/\D/g, ""); // D para aceitar apenas números e g para ser uma config global
 
+    var mensagemErro = "";
     div_erroCadastro.innerHTML = "";
     div_erroCadastro.style.color = "red";
 
     if (!cnpjVerificar(cnpjLimpo)) {
-      div_erroCadastro.innerHTML = "CNPJ inválido. Por favor, verifique os dígitos.";
+      mensagemErro += "CNPJ inválido. Por favor, verifique os dígitos.<br>";
+    }
+
+    if (fkEmpresa == "0" || fkEmpresa == "" || fkEmpresa == null) {
+      mensagemErro += "Selecione uma empresa.<br>";
+    }
+
+    if(nomeHospital == ""){
+      mensagemErro += "O nome do hospital é obrigatório. <br>"
+    }
+
+    if (telefoneHospital.length < 10) {
+      mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
+    }
+
+    var alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var temLetra = false;
+    for (var i = 0; i < alfabeto.length; i++) {
+      var letraAtual = alfabeto[i];
+      if (telefoneHospital.includes(letraAtual)) {
+        temLetra = true;
+      }
+    }
+    if (temLetra) {
+      mensagemErro += "O telefone não pode conter letras.<br>";
+    }
+
+    if (mensagemErro != "") {
+      div_erroCadastro.innerHTML = mensagemErro;
       return;
     }
+
 
     console.log("CNPJ Válido ... Inserindo no banco")
 
