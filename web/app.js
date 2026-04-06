@@ -21,11 +21,12 @@ var empresasRouter = require("./src/routes/empresas");
 var cadastroEmpresaRouter = require("./src/routes/cadastroEmpresa");
 var cadastroAdmRouter = require("./src/routes/cadastroAdm");
 var cadastroFuncionarioRouter = require("./src/routes/cadastroFuncionario");
+var hospitalRouter = require("./src/routes/hospital");
+var unidadeRouter = require("./src/routes/unidade")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(cors());
 
 app.use("/", indexRouter);
@@ -34,6 +35,8 @@ app.use("/empresas", empresasRouter);
 app.use("/cadastroEmpresa", cadastroEmpresaRouter);
 app.use("/cadastroAdm", cadastroAdmRouter);
 app.use("/cadastroFuncionario", cadastroFuncionarioRouter);
+app.use("/hospital", hospitalRouter)
+app.use("/unidade", unidadeRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SPT | Cadastro de Unidades</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/LogoClara.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+  <div>
+    <p><span>Selecione o hospital desejado:</span>
+      <select name="select_hospital" id="select_hospital">
+        <option value="0" selected disabled>Selecione um hospital</option>
+      </select>
+    </p>
+
+    <p><span>CEP:</span>
+      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()" placeholder="Exemplo: 01414001 ou 01414-001">
+    </p>
+
+    <p><span>Rua:</span>
+      <input type="text" id="input_rua" maxlength="50">
+    </p>
+
+    <p><span>Cidade:</span>
+      <input type="text" id="input_cidade" maxlength="50">
+    </p>
+
+    <p><span>Número:</span>
+      <input type="text" id="input_numero" maxlength="50">
+    </p>
+
+    <p><span>Descrição da Unidade:</span>
+    <input type="text" id="input_unidade" placeholder="Exemplo: Unidade Zona Sul">
+    </p>
+
+    <p><span>Email do Responsável:</span>
+      <input type="text" id="input_emailResponsavel" maxlength="50">
+    </p>
+
+    <p><span>Telefone do Responsável:</span>
+      <input type="text" id="input_telefoneResponsavel" maxlength="11">
+    </p>
+
+    <p>
+      <button onclick="cadastrarUnidade()">Cadastrar Unidade</button>
+    </p>
+    <div id="div_erroCadastro"></div>
+  </div>
+</body>
+
+<script>
+  window.onload = listarHospitais
+
+  function listarHospitais() {
+
+    fetch("/hospital/buscarHospitais")
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (hospitais) {
+
+        const select = document.getElementById("select_hospital");
+
+        hospitais.forEach(hospital => {
+          const option = document.createElement("option");
+
+          option.value = hospital.id_hospital;
+          option.textContent = hospital.nome_hospital;
+
+          select.appendChild(option);
+        });
+
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar hospitais:", erro);
+      });
+  }
+
+  function buscarcep() {
+    var cep = input_cep.value;
+
+    if (cep.length == 8 || cep.length == 9) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(function(resposta) {
+                return resposta.json();
+            })
+            .then(function(dados) {
+                if (!dados.erro) {
+                    input_rua.value = dados.logradouro;
+                    input_cidade.value = dados.localidade;
+                    div_erroCadastro.innerHTML = "";
+                } else {
+                    div_erroCadastro.innerHTML = `CEP não encontrado.<br>`;
+                    input_rua.value = "";
+                    input_cidade.value = "";
+                }
+            })
+            .catch(function(erro) {
+                console.log("Erro na busca:", erro);
+            });
+    }
+}
+
+  function cadastrarUnidade() {
+    var cep = input_cep.value;
+    var fkHospital = select_hospital.value;   
+    var rua = input_rua.value;
+    var numero = input_numero.value;
+    var cidade = input_cidade.value;
+    var unidade = input_unidade.value;
+    var emailResponsavel = input_emailResponsavel.value;
+    var telefoneResponsavel = input_telefoneResponsavel.value;
+
+    div_erroCadastro.innerHTML = "";
+    div_erroCadastro.style.color = "red";
+
+    var mensagemErro = "";
+
+    if (fkHospital == "0") {
+        mensagemErro += "Selecione um hospital.<br>";
+    }
+    
+    if (unidade == "" || cep == "" || rua == "" || numero == "" || cidade == "") {
+        mensagemErro += "Preencha todos os campos de endereço (Unidade, CEP, Rua, Num e Cidade).<br>";
+    }
+
+    if (!emailResponsavel.includes("@") || emailResponsavel.length < 5 || !emailResponsavel.includes(".com")) {
+        mensagemErro += "Insira um e-mail válido para o responsável.<br>";
+    }
+
+    if (telefoneResponsavel.length < 10) {
+        mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
+    }
+
+    if (mensagemErro != "") {
+        div_erroCadastro.innerHTML = mensagemErro;
+        return;
+    }
+
+    div_erroCadastro.innerHTML = "";
+
+    fetch("/unidade/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cepServer: cep,
+        ruaServer: rua,
+        numeroServer: numero,
+        cidadeServer: cidade,
+        unidadeServer: unidade,
+        emailResponsavelServer: emailResponsavel,
+        telefoneResponsavelServer: telefoneResponsavel,
+        fkHospitalServer: fkHospital,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        return resposta.json();
+        div_erroCadastro.innerHTML = "";
+      })
+  }
+
+</script>
+
+</html>

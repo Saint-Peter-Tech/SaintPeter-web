@@ -37,10 +37,11 @@ telefone_hospital CHAR(11) NOT NULL UNIQUE
 Create table unidades
 (id_unidade INT PRIMARY KEY AUTO_INCREMENT,
 fk_hospital INT NOT NULL,
-cep CHAR(8) NOT NULL,
+cep CHAR(9) NOT NULL,
 rua VARCHAR(50) NOT NULL,
 numero VARCHAR(50) NOT NULL,
 cidade VARCHAR(50) NOT NULL,
+nome_unidade VARCHAR(50) NOT NULL,
 email_responsavel VARCHAR(50),
 telefone_responsavel CHAR(11),
 
