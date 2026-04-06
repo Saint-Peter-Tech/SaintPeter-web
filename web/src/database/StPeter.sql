@@ -42,7 +42,7 @@ constraint fk_hospitalEmpresa
 Create table unidades
 (id_unidade INT PRIMARY KEY AUTO_INCREMENT,
 fk_hospital INT NOT NULL,
-cep CHAR(9) NOT NULL,
+cep CHAR(8) NOT NULL,
 rua VARCHAR(50) NOT NULL,
 numero VARCHAR(50) NOT NULL,
 cidade VARCHAR(50) NOT NULL,

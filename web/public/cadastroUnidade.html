@@ -89,7 +89,8 @@
   }
 
   function buscarcep() {
-    var cep = input_cep.value;
+    var cepOriginal = input_cep.value;
+    var cep = cepOriginal.replace(/\D/g, ""); // D ignora tudo que é não numérico e o g deixa válido para toda a input, não somente no primeiro cenário
 
     if (cep.length == 8 || cep.length == 9) {
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -114,7 +115,8 @@
 }
 
   function cadastrarUnidade() {
-    var cep = input_cep.value;
+    var cepOriginal = input_cep.value;
+    var cep = cepOriginal.replace(/\D/g, "");
     var fkHospital = select_hospital.value;   
     var rua = input_rua.value;
     var numero = input_numero.value;

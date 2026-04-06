@@ -11,6 +11,30 @@ function buscarHospitais(req, res) {
     });
 }
 
+function cadastrarHospital(req, res) {
+  var nomeHospital = req.body.nomeHospitalServer
+  var cnpjHospital = req.body.cnpjServer
+  var telefoneHospital = req.body.telefoneHospitalServer
+  var fkEmpresa = req.body.fkEmpresaServer
+
+
+
+  hospitalModel
+    .cadastrarHospital(nomeHospital, cnpjHospital, telefoneHospital, fkEmpresa)
+    .then(function (resultado) {
+      res.json({ id: resultado.insertId });
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "\nHouve um erro ao realizar o cadastro! Erro: ",
+        erro.sqlMessage,
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
-  buscarHospitais
+  buscarHospitais,
+  cadastrarHospital
 };
