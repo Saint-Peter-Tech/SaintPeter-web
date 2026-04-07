@@ -7,10 +7,17 @@ function cadastrarUnidade(fkHospital, cep, rua, numero, cidade, nome_unidade, em
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
+}
 
-    
+function buscarUnidades(idHospital) {
+    var instrucaoSql = `
+        SELECT id_unidade, nome_unidade FROM unidades WHERE fk_hospital = ${idHospital}; 
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 module.exports = {
-        cadastrarUnidade
-    }
+    cadastrarUnidade,
+    buscarUnidades
+}
