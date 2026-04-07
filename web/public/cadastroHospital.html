@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SPT | Cadastro de Unidades</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="icon" href="./assets/LogoClara.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+  <div>
+    <p><span>Selecione a empresa responsável por monitorar esse hospital:</span>
+      <select name="select_empresa" id="select_empresa">
+        <option value="0" selected disabled>Selecione uma empresa</option>
+      </select>
+    </p>
+
+    <p><span>Nome do Hospital:</span>
+      <input type="text" id="input_nomeHospital" placeholder="Exemplo: Hospital Albert Einstein" maxlength="50">
+    </p>
+
+    <p><span>CNPJ do Hospital:</span>
+      <input type="text" id="input_cnpjHospital" placeholder="12.345.678/0001-00" maxlength="18">
+    </p>
+
+    <p><span>Telefone do Hospital:</span>
+      <input type="text" id="input_telefoneHospital" maxlength="11">
+    </p>
+
+    <p>
+      <button onclick="cadastrarHospital()">Cadastrar Hospital</button>
+    </p>
+    <div id="div_erroCadastro"></div>
+  </div>
+</body>
+
+<script>
+  window.onload = listarEmpresas
+
+  function listarEmpresas() {
+    fetch("/empresas/listarEmpresas")
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (empresas) {
+        const select = document.getElementById("select_empresa");
+
+        empresas.forEach(empresa => {
+          if (empresa.id_empresa != 1) {
+            const option = document.createElement("option");
+            option.value = empresa.id_empresa;
+            option.textContent = empresa.razao_social;
+            select.appendChild(option);
+          } else {
+            console.log("Pulando a empresa SPT (ID 1)");
+          }
+        });
+
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar empresas:", erro);
+      });
+  }
+
+  function cadastrarHospital() {
+    var fkEmpresa = select_empresa.value;
+    var nomeHospital = input_nomeHospital.value;
+    var cnpjOriginal = input_cnpjHospital.value;
+    var telefoneHospital = input_telefoneHospital.value;
+    var cnpjLimpo = cnpjOriginal.replace(/\D/g, ""); // D para aceitar apenas números e g para ser uma config global
+
+    var mensagemErro = "";
+    div_erroCadastro.innerHTML = "";
+    div_erroCadastro.style.color = "red";
+
+    if (!cnpjVerificar(cnpjLimpo)) {
+      mensagemErro += "CNPJ inválido. Por favor, verifique os dígitos.<br>";
+    }
+
+    if (fkEmpresa == "0" || fkEmpresa == "" || fkEmpresa == null) {
+      mensagemErro += "Selecione uma empresa.<br>";
+    }
+
+    if(nomeHospital == ""){
+      mensagemErro += "O nome do hospital é obrigatório. <br>"
+    }
+
+    if (telefoneHospital.length < 10) {
+      mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
+    }
+
+    var alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var temLetra = false;
+    for (var i = 0; i < alfabeto.length; i++) {
+      var letraAtual = alfabeto[i];
+      if (telefoneHospital.includes(letraAtual)) {
+        temLetra = true;
+      }
+    }
+    if (temLetra) {
+      mensagemErro += "O telefone não pode conter letras.<br>";
+    }
+
+    if (mensagemErro != "") {
+      div_erroCadastro.innerHTML = mensagemErro;
+      return;
+    }
+
+
+    console.log("CNPJ Válido ... Inserindo no banco")
+
+    fetch("/hospital/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeHospitalServer: nomeHospital,
+        cnpjServer: cnpjLimpo,
+        telefoneHospitalServer: telefoneHospital,
+        fkEmpresaServer: fkEmpresa,
+      }),
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          div_erroCadastro.style.color = "green";
+          div_erroCadastro.innerHTML = "Cadastro realizado com sucesso!";
+          input_nomeHospital.value = "";
+          input_cnpjHospital.value = "";
+          input_telefoneHospital.value = "";
+          select_empresa.value = "0";
+        } else {
+          div_erroCadastro.innerHTML = "Erro ao tentar realizar o cadastro.";
+        }
+      })
+  }
+
+
+  function cnpjVerificar(cnpj) {
+    if (cnpj.length != 14) {
+      return false;
+    }
+
+    var first = cnpj[0]; //usei inglês mas é primeiro
+    var contIgual = 0;
+
+    for (let y = 1; y < cnpj.length; y++) {
+      if (first == cnpj[y]) {
+        contIgual += 1;
+      }
+    }
+
+    if (contIgual > 10) {
+      return false;
+    }
+
+    //inicio do calculo de digitos de verificação
+
+    var dozePrimeiros = [];
+    var pesosPrimeiro = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    for (let i = 0; i < 12; i++) {
+      dozePrimeiros[i] = Number(cnpj[i]);
+    }
+
+    //calculo dos pesos
+
+    var somaPrimeiro = 0;
+
+    for (let i = 0; i < 12; i++) {
+      somaPrimeiro += dozePrimeiros[i] * pesosPrimeiro[i];
+    }
+
+    var resto = somaPrimeiro % 11;
+    var primeiro;
+
+    if (resto < 2) {
+      primeiro = 0;
+    } else {
+      primeiro = 11 - resto;
+    }
+
+    if (primeiro != Number(cnpj[12])) {
+      return false;
+    }
+
+    var pesosSegundo = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    var treze = [];
+
+    for (let i = 0; i < 12; i++) {
+      treze[i] = Number(cnpj[i]);
+    }
+
+    treze[12] = primeiro;
+
+    var somaSegundo = 0;
+
+    for (let i = 0; i < 13; i++) {
+      somaSegundo += treze[i] * pesosSegundo[i];
+    }
+
+    var resto2 = somaSegundo % 11;
+    var segundo;
+
+    if (resto2 < 2) {
+      segundo = 0;
+    } else {
+      segundo = 11 - resto2;
+    }
+
+    if (segundo != Number(cnpj[13])) {
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+</html>
