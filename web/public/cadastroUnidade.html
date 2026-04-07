@@ -26,7 +26,8 @@
     </p>
 
     <p><span>CEP:</span>
-      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()" placeholder="Exemplo: 01414001 ou 01414-001">
+      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()"
+        placeholder="Exemplo: 01414001 ou 01414-001">
     </p>
 
     <p><span>Rua:</span>
@@ -42,7 +43,7 @@
     </p>
 
     <p><span>Descrição da Unidade:</span>
-    <input type="text" id="input_unidade" placeholder="Exemplo: Unidade Zona Sul">
+      <input type="text" id="input_unidade" placeholder="Exemplo: Unidade Zona Sul">
     </p>
 
     <p><span>Email do Responsável:</span>
@@ -93,31 +94,31 @@
     var cep = cepOriginal.replace(/\D/g, ""); // D ignora tudo que é não numérico e o g deixa válido para toda a input, não somente no primeiro cenário
 
     if (cep.length == 8 || cep.length == 9) {
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(function(resposta) {
-                return resposta.json();
-            })
-            .then(function(dados) {
-                if (!dados.erro) {
-                    input_rua.value = dados.logradouro;
-                    input_cidade.value = dados.localidade;
-                    div_erroCadastro.innerHTML = "";
-                } else {
-                    div_erroCadastro.innerHTML = `CEP não encontrado.<br>`;
-                    input_rua.value = "";
-                    input_cidade.value = "";
-                }
-            })
-            .catch(function(erro) {
-                console.log("Erro na busca:", erro);
-            });
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(function (resposta) {
+          return resposta.json();
+        })
+        .then(function (dados) {
+          if (!dados.erro) {
+            input_rua.value = dados.logradouro;
+            input_cidade.value = dados.localidade;
+            div_erroCadastro.innerHTML = "";
+          } else {
+            div_erroCadastro.innerHTML = `CEP não encontrado.<br>`;
+            input_rua.value = "";
+            input_cidade.value = "";
+          }
+        })
+        .catch(function (erro) {
+          console.log("Erro na busca:", erro);
+        });
     }
-}
+  }
 
   function cadastrarUnidade() {
     var cepOriginal = input_cep.value;
     var cep = cepOriginal.replace(/\D/g, "");
-    var fkHospital = select_hospital.value;   
+    var fkHospital = select_hospital.value;
     var rua = input_rua.value;
     var numero = input_numero.value;
     var cidade = input_cidade.value;
@@ -131,24 +132,24 @@
     var mensagemErro = "";
 
     if (fkHospital == "0") {
-        mensagemErro += "Selecione um hospital.<br>";
+      mensagemErro += "Selecione um hospital.<br>";
     }
-    
+
     if (unidade == "" || cep == "" || rua == "" || numero == "" || cidade == "") {
-        mensagemErro += "Preencha todos os campos de endereço (Unidade, CEP, Rua, Num e Cidade).<br>";
+      mensagemErro += "Preencha todos os campos de endereço (Unidade, CEP, Rua, Num e Cidade).<br>";
     }
 
     if (!emailResponsavel.includes("@") || emailResponsavel.length < 5 || !emailResponsavel.includes(".com")) {
-        mensagemErro += "Insira um e-mail válido para o responsável.<br>";
+      mensagemErro += "Insira um e-mail válido para o responsável.<br>";
     }
 
     if (telefoneResponsavel.length < 10) {
-        mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
+      mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
     }
 
     if (mensagemErro != "") {
-        div_erroCadastro.innerHTML = mensagemErro;
-        return;
+      div_erroCadastro.innerHTML = mensagemErro;
+      return;
     }
 
     div_erroCadastro.innerHTML = "";
@@ -171,8 +172,19 @@
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
+        div_erroCadastro.style.color = "green";
+        div_erroCadastro.innerHTML = "Cadastro de Unidade realizado com sucesso!";
+
+        input_cep.value = "";
+        select_hospital.value = "0";
+        input_rua.value = "";
+        input_numero.value = "";
+        input_cidade.value = "";
+        input_unidade.value = "";
+        input_emailResponsavel.value = "";
+        input_telefoneResponsavel.value = "";
+        
         return resposta.json();
-        div_erroCadastro.innerHTML = "";
       })
   }
 
