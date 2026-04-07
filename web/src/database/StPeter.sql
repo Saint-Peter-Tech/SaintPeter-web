@@ -115,12 +115,9 @@ INSERT INTO usuarios (fk_adm, fk_empresa, nome_usuario, email, senha, cpf) VALUE
             
 INSERT INTO componentes (nome_componente, tipo, unidade_medida) VALUES
 ('CPU', 'Hardware', '%'),
-('RAM', 'Hardware', 'Bytes'),
-('Disco', 'Hardware', 'Bytes'),
-('Rede Enviada', 'Rede', 'Bytes'),
-('Rede Recebida', 'Rede', 'Bytes'),
-('Velocidade Envio', 'Rede', 'Bytes/s'),
-('Velocidade Recebimento', 'Rede', 'Bytes/s');
+('RAM', 'Hardware', '%'),
+('Disco', 'Hardware', '%'),
+('Rede', 'Rede', 'Megabit');
 
 INSERT INTO empresas 
 (cnpj_empresa, telefone_empresa, razao_social, email_empresa)
