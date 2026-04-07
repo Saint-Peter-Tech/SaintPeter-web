@@ -98,6 +98,13 @@
       cnpjEmpresaVar = cnpjPuro(cnpjEmpresaVar);
     }
 
+    //Verificar telefone
+
+    if (!verificarTelefone(telefoneEmpresaVar)){
+      alert("Telefone inválido");
+      return false;
+    }
+
     // Enviando o valor da nova input
     fetch("/cadastroEmpresa/cadastrar", {
       method: "POST",
@@ -236,5 +243,21 @@
     }
 
     return true;
+  }
+
+  function verificarTelefone(num){
+
+    num = cnpjPuro(num);
+
+    if (num.length == 13){
+      num = num.slice(2);
+    }
+
+    if(num.length != 11){
+      return false;
+    } else {
+      return true;
+    }
+
   }
 </script>
