@@ -64,8 +64,8 @@
   window.onload = listarHospitais
 
   function listarHospitais() {
-
-    fetch("/hospital/buscarHospitais")
+    var idEmpresa = sessionStorage.FK_EMPRESA
+    fetch(`/hospital/buscarHospitais?idEmpresa=${idEmpresa}`)
       .then(function (resposta) {
         return resposta.json();
       })

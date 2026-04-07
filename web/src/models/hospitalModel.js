@@ -1,8 +1,9 @@
 var database = require("../database/config");
 
-function buscarHospitais() {
+function buscarHospitais(idEmpresa) {
     var instrucaoSql =
-        `SELECT id_hospital, nome_hospital FROM hospitais`;
+        `SELECT id_hospital, nome_hospital FROM hospitais
+        WHERE fk_empresa = ${idEmpresa}`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

@@ -1,7 +1,9 @@
 var hospitalModel = require("../models/hospitalModel");
 
 function buscarHospitais(req, res) {
-  hospitalModel.buscarHospitais()
+  var idEmpresa = req.query.idEmpresa;
+
+  hospitalModel.buscarHospitais(idEmpresa)
     .then(function (resultado) {
       res.json(resultado);
     })
