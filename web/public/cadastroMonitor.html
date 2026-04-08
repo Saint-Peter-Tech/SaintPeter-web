@@ -67,7 +67,7 @@
                 <input type="checkbox" id="check_rede" onchange="verificarCheckboxes()">
                 <span>Rede</span>
                 <div id="div_limite_rede" style="display: none;">
-                    <span>Velocidade da Rede (Mbps):</span>
+                    <span>Velocidade de upload e download (Mbps):</span>
                     <input type="number" id="input_limite_rede">
                 </div>
             </div>
@@ -181,30 +181,66 @@
         var idEmpresa = sessionStorage.FK_EMPRESA;
         var statusMonitor = "Ativo";
         var listaComponentes = [];
+        var mensagemErro = "";
+        var limiteCPU = input_limite_cpu.value;
+        var limiteRAM = input_limite_ram.value;
+        var limiteDisco = input_limite_disco.value;
+        var limiteRede = input_limite_rede.value;
+        div_erroCadastro.innerHTML = "";
+
 
         if (check_cpu.checked) {
-            listaComponentes.push({
-                id: 1,
-                limite: document.getElementById("input_limite_cpu").value
-            });
+            if (limiteCPU == "" || limiteCPU <= 0 || limiteCPU > 100) {
+                mensagemErro += "O limite da <b>CPU</b> não pode estar vazio, ou menor que 0 e nem maior que 100%.<br>";
+            } else {
+                listaComponentes.push({
+                    id: 1,
+                    limite: document.getElementById("input_limite_cpu").value
+                });
+            }
+
         }
         if (check_ram.checked) {
-            listaComponentes.push({
-                id: 2,
-                limite: document.getElementById("input_limite_ram").value
-            });
+            if (limiteRAM == "" || limiteRAM <= 0 || limiteRAM > 100) {
+                mensagemErro += "O limite da <b>RAM</b> não pode estar vazio, ou menor que 0 e nem maior que 100%.<br>";
+            } else {
+                listaComponentes.push({
+                    id: 2,
+                    limite: document.getElementById("input_limite_ram").value
+                });
+            }
         }
+
         if (check_disco.checked) {
-            listaComponentes.push({
+            if(limiteDisco == "" || limiteDisco <= 0 || limiteDisco > 100){
+                mensagemErro += "O limite do <b>disco</b> não pode estar vazio, ou menor que 0 e nem maior que 100%.<br>";
+            }else{
+                listaComponentes.push({
                 id: 3,
                 limite: document.getElementById("input_limite_disco").value
             });
+            }
         }
+
         if (check_rede.checked) {
+            if(limiteRede <= 0 || limiteRede == null){
+                mensagemErro += "O limite da <b>rede</b> não pode estar vazio, ou menor que 0Mbps.<br>";
+            }
             listaComponentes.push({
                 id: 4,
                 limite: document.getElementById("input_limite_rede").value
             });
+        }
+
+
+        if (listaComponentes.length == 0) {
+            mensagemErro += "Selecione ao menos um componente para monitorar.<br>";
+        }
+
+        if (mensagemErro != "") {
+            div_erroCadastro.style.color = "red";
+            div_erroCadastro.innerHTML = mensagemErro;
+            return;
         }
 
         fetch("/monitor/cadastrarMonitor", {
@@ -221,10 +257,12 @@
         }).then(function (resposta) {
             if (resposta.ok) {
                 console.log("Monitor cadastrado com sucesso!");
-                setTimeout(() => {
-                }, 2000);
+                div_erroCadastro.style.color = "green"
+                div_erroCadastro.innerHTML = "Monitor cadastrado com sucesso!"
             } else {
                 console.log("Monitor cadastrado com sucesso!");
+                div_erroCadastro.style.color = "red"
+                div_erroCadastro.innerHTML = "Erro ao realizar o cadastro de monitor, tente novamente"
             }
         }).catch(function (erro) {
             console.log(`#ERRO: ${erro}`);
@@ -253,5 +291,4 @@
     }
 
 </script>
-
 </html>
