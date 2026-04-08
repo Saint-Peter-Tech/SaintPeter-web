@@ -23,6 +23,7 @@ var cadastroAdmRouter = require("./src/routes/cadastroAdm");
 var cadastroFuncionarioRouter = require("./src/routes/cadastroFuncionario");
 var hospitalRouter = require("./src/routes/hospital");
 var unidadeRouter = require("./src/routes/unidade")
+var monitorRouter = require("./src/routes/monitor")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,6 +38,7 @@ app.use("/cadastroAdm", cadastroAdmRouter);
 app.use("/cadastroFuncionario", cadastroFuncionarioRouter);
 app.use("/hospital", hospitalRouter)
 app.use("/unidade", unidadeRouter)
+app.use("/monitor", monitorRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`

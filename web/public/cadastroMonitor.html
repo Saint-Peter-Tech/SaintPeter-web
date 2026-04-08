@@ -151,29 +151,105 @@
 
     function verificarCheckboxes() {
 
-        if (check_cpu.checked){ 
-            div_limite_cpu.style.display = "block";
-        } else{ 
-            div_limite_cpu.style.display = "none";
+        if (check_cpu.checked) {
+            div_limite_cpu.style.display = "block"
+        } else {
+            div_limite_cpu.style.display = "none"
         }
 
-        if (check_ram.checked){ 
-            div_limite_ram.style.display = "block";
-        } else{ 
-            div_limite_ram.style.display = "none";
+        if (check_ram.checked) {
+            div_limite_ram.style.display = "block"
+        } else {
+            div_limite_ram.style.display = "none"
         }
 
-        if (check_disco.checked){ 
-            div_limite_disco.style.display = "block";
-        } else{ 
-            div_limite_disco.style.display = "none;" 
+        if (check_disco.checked) {
+            div_limite_disco.style.display = "block"
+        } else {
+            div_limite_disco.style.display = "none"
         }
 
-        if (check_rede.checked){ 
-            div_limite_rede.style.display = "block";
-        } else{ 
+        if (check_rede.checked) {
+            div_limite_rede.style.display = "block"
+        } else {
             div_limite_rede.style.display = "none"
         }
+    }
+
+    function cadastrarMonitor() {
+        var idUnidade = select_unidade.value;
+        var idEmpresa = sessionStorage.FK_EMPRESA;
+        var statusMonitor = "Ativo";
+        var listaComponentes = [];
+
+        if (check_cpu.checked) {
+            listaComponentes.push({
+                id: 1,
+                limite: document.getElementById("input_limite_cpu").value
+            });
+        }
+        if (check_ram.checked) {
+            listaComponentes.push({
+                id: 2,
+                limite: document.getElementById("input_limite_ram").value
+            });
+        }
+        if (check_disco.checked) {
+            listaComponentes.push({
+                id: 3,
+                limite: document.getElementById("input_limite_disco").value
+            });
+        }
+        if (check_rede.checked) {
+            listaComponentes.push({
+                id: 4,
+                limite: document.getElementById("input_limite_rede").value
+            });
+        }
+
+        fetch("/monitor/cadastrarMonitor", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                unidadeServer: idUnidade,
+                empresaServer: idEmpresa,
+                statusServer: statusMonitor,
+                componentesServer: listaComponentes
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log("Monitor cadastrado com sucesso!");
+                setTimeout(() => {
+                }, 2000);
+            } else {
+                console.log("Monitor cadastrado com sucesso!");
+            }
+        }).catch(function (erro) {
+            console.log(`#ERRO: ${erro}`);
+        });
+
+        /*
+        AVISO PARA OS COLEGAS DE GRUPO:
+        O JSON FICARÁ ASSIM: 
+        CADA MONITOR COM SUA CHAVE-VALOR
+        
+        {
+      "unidadeServer": "2",
+      "empresaServer": "1",
+      "statusServer": "Ativo",
+      "componentesServer": [
+        {
+          "id": 1,
+          "limite": "80"
+        },
+        {
+          "id": 2,
+          "limite": "70"
+        }
+      ]
+    }*/
     }
 
 </script>
