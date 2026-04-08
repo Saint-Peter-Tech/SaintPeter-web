@@ -8,4 +8,8 @@ router.post("/cadastrar", function (req, res) {
     unidadeController.cadastrarUnidade(req, res);
 })
 
+router.get("/listarPorHospital", function (req, res) {
+    unidadeController.buscarUnidades(req, res);
+})
+
 module.exports = router;
