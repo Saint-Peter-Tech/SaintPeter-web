@@ -316,3 +316,71 @@ main {
   border: 0;
   padding: 2%;
 }
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  padding-top: 20px;
+  background-color: #F5F5F5;
+  transition: width 0.3s;
+}
+
+.sidebar .nav-link{
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  padding: 5%;
+  color: #13347b;
+}
+
+.sidebar .description{
+  font-size: 14px;
+
+}
+
+.sidebar .nav-link:hover {
+  background-color: #4169E1;
+  color: white;
+
+}
+
+.sidebar .sub-menu {
+  background-color: #13347b;
+  padding-left: 5%;
+  color: white;
+}
+
+
+.main-content {
+  height: 100%;
+  margin-left: 20%;
+  padding: 8%;
+}
+
+.usuario{
+  position: fixed;
+  margin-left: 1%;
+  bottom: 5%;
+
+}
+
+@media (max-width: 480px){
+  .sidebar{
+    width: 60px;
+  }
+
+  .sidebar .description{
+    display: none;
+  }
+
+  .sidebar .nav-link{
+    justify-content: center;
+  }
+
+  .main-content{
+    margin-left: 60px;
+  }
+}
