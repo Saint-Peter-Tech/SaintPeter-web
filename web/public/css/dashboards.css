@@ -299,23 +299,7 @@ main {
 
 /* aqui começa o novo estilo da dashboard */
 
-.kpi_normal {
-  background-color: #F5F5F5;
-  border-radius: 10px;
-  width: 25vh;
-  height: 25vh;
-  padding: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: #13347b;
-}
-
-.menu-dropdown {
-  border: 0;
-  padding: 2%;
-}
+/* NAVBAR */
 
 .sidebar{
   position: fixed;
@@ -356,8 +340,8 @@ main {
 
 .main-content {
   height: 100%;
-  margin-left: 20%;
-  padding: 8%;
+  margin-left: 10%;
+  padding: 2%;
 }
 
 .usuario{
@@ -367,11 +351,9 @@ main {
 
 }
 
-
-
 @media (max-width: 480px){
   .sidebar{
-    width: 60px;
+    width: 15%;
   }
 
   .sidebar .description{
@@ -385,4 +367,77 @@ main {
   .main-content{
     margin-left: 60px;
   }
+}
+
+/* KPIS */
+
+.container-kpis{
+  display: flex;
+  justify-content: space-around;
+}
+
+.kpi_amarelo {
+  background-color: #FFED28;
+  border-left: 6px solid #D4C11C;
+  border-radius: 10px;
+  width: 25vh;
+  height: 13.5vh;
+  padding: 2%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  text-align: start;
+  color: black;
+  font-size: 3.8vh;
+  font-weight: bolder;
+  transition: transform 0.3s ease;
+}
+
+.kpi_amarelo:hover {
+  transform: scale(1.08);
+}
+
+.kpi_vermelho {
+  background-color: #FF4B4B;
+  border-left: 6px solid #991616;
+  border-radius: 10px;
+  width: 25vh;
+  height: 13.5vh;
+  padding: 2%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  text-align: start;
+  color: black;
+  font-size: 3.8vh;
+  font-weight: bolder;
+  transition: transform 0.3s ease;
+}
+
+.kpi_vermelho:hover {
+  transform: scale(1.08);
+}
+
+.kpi_normal {
+  background-color: #F5F5F5;
+  border-left: 6px solid #163599;
+  border-radius: 10px;
+  width: 25vh;
+  height: 13.5vh;
+  padding: 2%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  text-align: start;
+  color: #163599;
+  font-size: 3.8vh;
+  font-weight: bolder;
+  transition: transform 0.3s ease;
+}
+
+.kpi_normal:hover {
+  transform: scale(1.08);
 }
