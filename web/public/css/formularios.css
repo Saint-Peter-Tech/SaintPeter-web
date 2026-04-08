@@ -8,12 +8,13 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  height: auto;
 }
 
 .todo {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    height: 100vh;
 }
 
 .imagem {
@@ -142,21 +143,44 @@ body {
 }
 
 @media only screen and (max-width: 598px) {
+    .imagem {
+        display: none;
+    }
 
+    .titulo {
+        font-size: 25px;
+    }
+
+    .status img {
+        width: 150px;
+        height: 25px;
+    }
+
+    .campos {
+        width: 250px;
+        font-size: 15px;
+    }
+
+    .campos input {
+        width: 250px;
+        height: 30px;
+    }
+
+    .campos input::placeholder {
+        font-size: 13px;
+    }
+
+    .botao button {
+        font-size: 13px;
+    }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1265px) {
     .imagem {
         display: none;
     }
 
     .container {
-        margin-top: 50px;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .imagem {
-        display: block;
+        margin-top: 40px;
     }
 }
