@@ -34,13 +34,51 @@
         </div>
 
         <div id="container_componentes" style="display: none;">
-            <p><span>Selecione os componentes para monitorar:</span></p>
-            <div id="div_checkboxes">
+            <p>Selecione os componentes a serem monitorados nesse monitor:</p>
+
+            <div>
+                <input type="checkbox" id="check_cpu" onchange="verificarCheckboxes()">
+                <span>Processador (CPU)</span>
+                <div id="div_limite_cpu" style="display: none;">
+                    <span>Limite máximo para alerta (%):</span>
+                    <input type="number" id="input_limite_cpu">
+                </div>
             </div>
 
-            <p>
-            <div id="div_erroCadastro"></div>
+            <div>
+                <input type="checkbox" id="check_ram" onchange="verificarCheckboxes()">
+                <span>Memória RAM</span>
+                <div id="div_limite_ram" style="display: none;">
+                    <span>Limite máximo para alerta (%):</span>
+                    <input type="number" id="input_limite_ram">
+                </div>
+            </div>
+
+            <div>
+                <input type="checkbox" id="check_disco" onchange="verificarCheckboxes()">
+                <span>Disco</span>
+                <div id="div_limite_disco" style="display: none;">
+                    <span>Limite máximo para alerta (%):</span>
+                    <input type="number" id="input_limite_disco">
+                </div>
+            </div>
+
+            <div>
+                <input type="checkbox" id="check_rede" onchange="verificarCheckboxes()">
+                <span>Rede</span>
+                <div id="div_limite_rede" style="display: none;">
+                    <span>Velocidade da Rede (Mbps):</span>
+                    <input type="number" id="input_limite_rede">
+                </div>
+            </div>
+
+            <br>
+            <button onclick="cadastrarMonitor()">Cadastrar Monitor</button>
         </div>
+
+        <div id="div_erroCadastro"></div>
+
+    </div>
 </body>
 <script>
     window.onload = listarHospitais
@@ -104,39 +142,40 @@
     }
 
     function listarComponentes() {
-        var idUnidade = select_unidade.value;
-        var containerComp = document.getElementById("container_componentes");
-        var divCheckboxes = document.getElementById("div_checkboxes");
+        if (select_unidade.value != 0) {
+            container_componentes.style.display = "block"
+        } else {
+            container_componentes.style.display = "none"
+        }
+    }
 
-        if (idUnidade == "0" || idUnidade == null) {
-            containerComp.style.display = "none";
-            return;
+    function verificarCheckboxes() {
+
+        if (check_cpu.checked){ 
+            div_limite_cpu.style.display = "block";
+        } else{ 
+            div_limite_cpu.style.display = "none";
         }
 
-        fetch("/componente/buscarComponentes")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    return resposta.json();
-                } else {
-                    throw ("Erro na rede");
-                }
-            })
-            .then(function (componentes) {
-                divCheckboxes.innerHTML = "";
+        if (check_ram.checked){ 
+            div_limite_ram.style.display = "block";
+        } else{ 
+            div_limite_ram.style.display = "none";
+        }
 
-                componentes.forEach(componente => {
-                    divCheckboxes.innerHTML += `
-                <div class="checkbox-componente">
-                    <input type="checkbox" name="componente" value="${componente.id_componente}" id="comp_${componente.id_componente}">
-                    <label for="comp_${componente.id_componente}">${componente.nome_componente}</label>
-                </div>`;
-                });
-                containerComp.style.display = "block";
-            })
-            .catch(function (erro) {
-                console.error("Erro ao buscar componentes:", erro);
-            });
+        if (check_disco.checked){ 
+            div_limite_disco.style.display = "block";
+        } else{ 
+            div_limite_disco.style.display = "none;" 
+        }
+
+        if (check_rede.checked){ 
+            div_limite_rede.style.display = "block";
+        } else{ 
+            div_limite_rede.style.display = "none"
+        }
     }
+
 </script>
 
 </html>
