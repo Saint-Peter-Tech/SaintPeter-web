@@ -33,6 +33,11 @@
             </p>
         </div>
 
+        <div id="container_componentes2" style="display: none;">
+        <p><span>Digite a quantidade de Monitores para serem cadastrados</span></p>
+        <input id="input_qtde_monitores" placeholder="100" type="number" min="1" max="100">
+    </div>
+
         <div id="container_componentes" style="display: none;">
             <p>Selecione os componentes a serem monitorados nesse monitor:</p>
 
@@ -135,6 +140,7 @@
                 });
                 container.style.display = "block";
                 container_componentes.style.display = "none";
+                container_componentes2.style.display = "none"
             })
             .catch(function (erro) {
                 console.error("Erro ao buscar unidades:", erro);
@@ -144,8 +150,10 @@
     function listarComponentes() {
         if (select_unidade.value != 0) {
             container_componentes.style.display = "block"
+            container_componentes2.style.display = "block"
         } else {
             container_componentes.style.display = "none"
+            container_componentes2.style.display = "none"
         }
     }
 
@@ -243,6 +251,12 @@
             return;
         }
 
+        var quantidade = Number(input_qtde_monitores.value);
+
+        var monitores = [];
+
+        for(let i = 0; i < quantidade; i++) {
+
         fetch("/monitor/cadastrarMonitor", {
             method: "POST",
             headers: {
@@ -267,6 +281,8 @@
         }).catch(function (erro) {
             console.log(`#ERRO: ${erro}`);
         });
+
+        }
 
         /*
         AVISO PARA OS COLEGAS DE GRUPO:
