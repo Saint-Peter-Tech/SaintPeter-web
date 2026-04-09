@@ -207,5 +207,28 @@ footerColor {
   object-fit: cover;
 }
 
+.div_duvidas {
+  padding: 5%;
+  min-width: 90%none;
+}
+
+.btn-duvida{
+  color: #2260E1;
+  text-decoration: none;
+  border: none;
+  background: none;
+}
+
+.btn-duvida:hover {
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.btn{
+  display: flex;
+  justify-content: end;
+  margin-left: 70%;
+}
 /* aqui termina o novo estilo do index */
+
 
