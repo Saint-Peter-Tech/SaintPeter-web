@@ -202,5 +202,10 @@ footerColor {
   color: inherit!important;
 }
 
+.carousel-item img {
+  height: 700px;
+  object-fit: cover;
+}
+
 /* aqui termina o novo estilo do index */
 
