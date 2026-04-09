@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPT |  Index</title>
+    <title>SPT | Index</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
@@ -45,7 +45,8 @@
             <nav class="navbar navbar-expand-lg border-bottom border-body ">
                 <div class="container-fluid col-12">
                     <!-- <a class="navbar "><img width="15%" src="./Identidade Visual/LogoWrittenWhite.png" alt=""></a> -->
-                    <a class="navbar"><img width="128px" src="./assets/LogoWrittenWhite.png" alt=""></a>
+                    <a class="navbar"><img width="128px" src="./assets/LogoWrittenWhite.png" id="logo_header"
+                            alt=""></a>
 
                     <div class="align-items-left">
                         <button class="navbar-toggler" style="background-color: #DDF5F1;" type="button"
@@ -64,12 +65,12 @@
                                     </li>
                                     <li class="nav-item">
                                         <button type="button" class="btn" data-bs-toggle="button">
-                                            <a class="nav-link" style="color: white;" href="#div_sobre_nos">Sobre nós</a>
+                                            <a class="nav-link botao_nav" href="#div_sobre_nos">Sobre nós</a>
                                         </button>
                                     </li>
                                     <li class="nav-item">
                                         <button type="button" class="btn" data-bs-toggle="button">
-                                            <a class="nav-link" style="color: white;" href="#div_solucao">Nossa solução</a>
+                                            <a class="nav-link botao_nav" href="#div_solucao">Nossa solução</a>
                                         </button>
                                     </li>
                                 </ul>
@@ -83,7 +84,7 @@
             <div class="col align-self-center" style="height: 40vh;"></div>
             <div class="d-flex flex-row-reverse">
                 <div class="">
-                    <div class="titulo">
+                    <div class="titulo animacao">
                         Monitoramos para você focar no que importa.
                     </div>
                 </div>
@@ -92,6 +93,8 @@
         </div>
     </div>
 
+
+    <!-- SOBRE O NEGÓCIO DA EMPRESA -->
     <div class="body2">
         <div class="row align-items-start" style="gap: 2%;">
 
@@ -115,12 +118,13 @@
         </div>
     </div>
 
+
     <div class="secao">
         <div class="container text-center d-flex ">
-            <div class="row align-items-center">
+            <div class="row align-items-center ">
 
-                <div class="col-md-6">
-                    <img width="490vh" class="img-fluid" style="margin-bottom: 5%;"
+                <div class="col-md-6 imgDesenho">
+                    <img width="490px" class="img-fluid imgDesenho" style="margin-bottom: 5%; margin-top: 10%;"
                         src="./assets/pessoas-analisando-sem-fundo.png" alt="">
                 </div>
 
@@ -141,16 +145,17 @@
     </div>
 
 
+    <!-- VALORES -->
     <div class="container px-4 py-5" id="featured-3">
         <h2 class="pb-2 border-bottom" style="color: #13347b;">Nossos valores</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
 
-            <div class="feature cardEspacamento">
+            <div class="feature cardEspacamento imgDesenho">
                 <div class="feature-icon">
-                    <img height="110px" src="./assets/ServirIcon.svg" alt="">
+                    <img class="" height="110px" src="./assets/ServirIcon.svg" alt="">
                 </div>
                 <br>
-                <div class="cardEspacamento">
+                <div class="cardEspacamento ">
                     <h2 class="texto">Ética e Transparência</h2>
                     <p class="texto">Integridade e honestidade orientam relações e processos, garantindo transparência,
                         coerência nas
@@ -164,7 +169,7 @@
                     </a>
                 </div>
             </div>
-            <div class="feature cardEspacamento">
+            <div class="feature cardEspacamento imgDesenho">
                 <div class="feature-icon">
                     <img height="110px" src="./assets/AcordoIcon.svg" alt="">
                 </div>
@@ -183,7 +188,7 @@
                     </a>
                 </div>
             </div>
-            <div class="feature cardEspacamento">
+            <div class="feature cardEspacamento imgDesenho">
                 <div class="feature-icon">
                     <img height="110px" src="./assets/ValorIcon.svg" alt="">
                 </div>
@@ -205,6 +210,7 @@
         </div>
     </div>
 
+    <!-- CARROSEL -->
     <div style="margin-top: -5%;" id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -250,13 +256,19 @@
         </button>
     </div>
 
+    <!-- FOOTER -->
     <footer style="background-color: #13347b!important; margin-top: 5%;" class="bg-dark text-light pt-5 pb-4">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-4 mb-4">
-                    <h5 class="fw-bold">Saint Peter Technology</h5>
-                    <p style="color: #FFFF!important;" class="text-secondary">
+                    <h5 class="fw-bold nomeFooter footerAnimacao">
+                        <a href="#logo_header">
+                            <img width="40%" src="./assets/Identidade Visual/LogoWrittenWhite.png" alt="">
+
+                        </a>
+                    </h5>
+                    <p style="color: #FFFF!important;" class="text-secondary footerAnimacao">
                         Monitoramento inteligente de hardware para monitores de sinais vitais,
                         garantindo segurança e eficiência para seus dispositivos.
                     </p>
@@ -265,9 +277,9 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Links</h5>
                     <ul class="list-unstyled">
-                        <li><a style="color: #FFFF!important;" href="#home"
+                        <li><a style="color: #FFFF!important;" href="#logo_header"
                                 class="text-secondary text-decoration-none">Home</a></li>
-                        <li><a style="color: #FFFF!important;" href="#sobreNos"
+                        <li><a style="color: #FFFF!important;" href="#div_sobre_nos"
                                 class="text-secondary text-decoration-none">Quem somos</a></li>
                         <li><a style="color: #FFFF!important;" href="#"
                                 class="text-secondary text-decoration-none">Serviços</a></li>
@@ -278,9 +290,9 @@
 
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Contato</h5>
-                    <p style="color: #FFFF!important;" class="text-secondary mb-1">contato@saintpetertech.com</p>
-                    <p style="color: #FFFF!important;" class="text-secondary mb-1">(11) 4002-8922</p>
-                    <p style="color: #FFFF!important;" class="text-secondary">São Paulo - Brasil</p>
+                    <p style="color: #FFFF!important" class="text-secondary mb-1 footerAnimacao">contato@saintpetertech.com</p>
+                    <p style="color: #FFFF!important;" class="text-secondary mb-1 footerAnimacao">(11) 4002-8922</p>
+                    <p style="color: #FFFF!important;" class="text-secondary footerAnimacao">São Paulo - Brasil</p>
                 </div>
 
             </div>

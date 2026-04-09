@@ -95,6 +95,20 @@ body {
   background-color: #DDF5F1;
   border-radius: 10px;
   font-weight: 550;
+  transition: transform 0.3s ease;
+}
+
+.botao:hover{
+  background-color: #D4C11C;
+  transform: scale(1.03);
+}
+
+.botao_nav {
+  color:#DDF5F1
+}
+
+.botao_nav:hover {
+  color: #13347b;
 }
 
 .titulo {
@@ -105,6 +119,12 @@ body {
   color: white;
   font-size: 4vh;
   font-weight: bold;
+  transition: transform 0.3s ease;
+  cursos: pointer;
+}
+
+ .animacao:hover{
+  transform: scale(1.03);
 }
 
 .texto-card {
@@ -131,6 +151,14 @@ body {
   z-index: 0;
 }
 
+.imgDesenho {
+  transition: transform 0.3sec ease;
+}
+
+.imgDesenho:hover {
+  transform: scale(1.03);
+}
+
 .container {
   max-width: 1200px;
 }
@@ -144,11 +172,34 @@ body {
   color: white;
 }
 
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
 .cardEspacamento {
   padding: 3%;
   gap: 2%;
   justify-content: space-around;
 
+}
+.footerAnimacao{
+  cursor: pointer;
+}
+
+.footerAnimacao:hover {
+  color: #D4C11C;
+}
+
+footerColor {
+  color: #ffffff!important;
+}
+.nomeFooter{
+  text-decoration: none;
+  color: inherit!important;
 }
 
 /* aqui termina o novo estilo do index */
