@@ -504,3 +504,23 @@ main {
   display: flex;
   gap: 10%;
 }
+
+/* Conteúdo dash */
+
+.div_monitores {
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  min-height: 500px;
+  transition: transform 0.3s ease;
+}
+
+.div_monitores:hover {
+  transform: scale(1.03);
+}
+
+.container_monitor{
+  background-color: #d7d7d7;
+  border-radius: 10px;
+  min-height: 40px;
+  width: 40%;
+}
