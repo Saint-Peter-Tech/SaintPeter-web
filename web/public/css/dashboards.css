@@ -362,11 +362,9 @@ h5 {
 .faixa1 {
   background-color: #ffeeee;
   color: #ff4b4b;
-  border-color: solid 3px black;
   padding: 2%;
   width: 770px;
   border-radius: 10px 10px 0 0;
-  border-bottom: solid 2px #ff4b4b;
   margin-bottom: 12px;
 }
 
@@ -374,12 +372,10 @@ h5 {
   background-color: #ffff;
   border-radius: 0 0 10px 10px;
   padding: 2.5%;
-  display: flex;
   gap: 2%;
   color: #13347b;
   width: 770px;
   margin-top: -32px;
-  border-top: solid 2px #ff4b4b;
   margin-bottom: 5%;
 }
 
@@ -394,12 +390,36 @@ h5 {
   border-radius: 5px;
   font-weight: 500;
 }
-
-.valorKpi{
-  color: #991616;
+.spanFaixa {
   display: flex;
-  justify-content: end;
-  align-items: start;
+  margin-bottom: 5%;
+  border-bottom: solid 1px #13347b;
+  flex-direction: column;
+}
+
+.valorKpi {
+  color: #991616;
+  margin-left: 448px;
+}
+
+.containerProgress {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.progress-bar {
+  background-color: #f5f5f5;
+  width: 600px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.progress-bar div {
+  height: 10px;
+  border-radius: 5px;
+  width: 53%;
+  background-color: #991616;
+  padding: 5%;
 }
 
 /* Dashboard monitores */
@@ -565,16 +585,26 @@ h5 {
   }
 
   /* kpis em faixas */
+
   .faixa1 {
     width: 100%;
   }
 
   .kpiMonitoresMaisDe5 {
     width: 100%;
+    min-height: 100px;
   }
 
   .juntandoFaixas {
     display: flex;
     flex-direction: column;
+  }
+
+  /* barra progresso */
+  .progress-bar {
+    background-color: #f5f5f5;
+    width: 90%;
+    height: 10px;
+    border-radius: 5px;
   }
 }
