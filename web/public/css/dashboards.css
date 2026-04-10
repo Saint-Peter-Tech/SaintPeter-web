@@ -3,299 +3,6 @@
 * {
   font-family: "Poppins";
 }
-
-/*
-html {
-  width: 100% !important;
-  min-height: 100vh !important;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #f6f8ff;
-  min-height: 100vh !important;
-}
-
-.dash_body {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 0;
-  min-height: 100vh;
-  background-color: #bbecf6;
-}
-aside {
-  position: fixed;
-  background-color: #063396;
-  color: #bbecf6;
-  display: flex;
-  flex-direction: column;
-  width: 15vw;
-  margin: 0;
-  height: 100vh;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
-
-}
-
-aside h2 {
-  color: #bbecf6;
-  font-size: 1.2;
-  margin-left: 25px;
-  font-weight: 300;
-}
-
-aside a {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  font-weight: 300;
-}
-
-aside img {
-  width: 20vw;
-  margin-top: 100px;
-  justify-self: center;
-  align-self: center;
-  transition: 200ms;
-}
-aside img:hover {
-  scale: 1.06;
-  transition: 150ms;
-}
-
-aside li {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-aside li ul {
-  list-style: none;
-  margin: 0;
-  padding: 20px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.1vw;
-  transition: 0.2s;
-  
-}
-
-.aside_buttons {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #bbecf6;
-  font-weight: 500;
-  text-decoration: none;
-  p{
-    margin: 0 !important;
-  }
-}
-
-aside li ul:hover {
-  background-color: #2260e1;
-  z-index: 10000;
-  scale: 1.05;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-
-}
-
-aside li ul:hover .aside_buttons {
-  color: #bbecf6;
-}
-
-aside li ul:hover .aside_buttons#atualPagina{
-  color: #063396 !important;
-}
-
-aside li ul .aside_buttons#atualPagina{
-  color: #063396 !important;
-}
-.bt_vermelho:hover {
-  color: crimson !important;
-  background-color: rgb(67, 10, 10);
-  font-weight: 600;
-  transition: 200ms;
-}
-
-main {
-  width: 100%;
-  justify-content: center;
-  align-content: center;
-  display: flex;
-  flex-direction: column;
-  margin-left: 15vw;
-  background-color: #9cb8f9;
-}
-
-.titulo_dash {
-  text-align: center;
-  margin-bottom: 1.3vw;
-  margin-bottom: 100px;
-}
-
-.pai_dash {
-  display: flex;
-  justify-content: center;
-  height: 90%;
-  margin: 0 3vw;
-  height: fit-content;
-}
-
-.cardsD {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 1.7vw 0;
-  
-}
-
-.cardD {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 180px;
-}
-
-.cardD h2 {
-  margin: 0;
-  font-size: 24px;
-  color: #333333;
-}
-
-.cardD p {
-  font-size: 16px;
-  font-weight: 600 !important;
-  color: #777;
-}
-
-.graficos {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
-  margin-top: 20px;
-  
-}
-
-.chart:last-child {
-  grid-column: 1 / -1;
-}
-
-.chart {
-  background: white;
-  width: 40%;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.button-dash {
-  width: 40%;
-  cursor: pointer;
-  height: 40px;
-  display: flex;
-  align-self: center;
-  justify-self: center;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 20px;
-  background-color: #09879a;
-  color: antiquewhite;
-  font-weight: bolder;
-  margin: 1vw 0 2vw 0;
-  padding: 0;
-  transition: all 0.3s ease;
-  font-size: 1.1vw;
-}
-
-.componentes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-#componentesp {
-  display: none;
-  justify-self: center;
-  align-self: center;
-  height: fit-content;
-  width: 400px;
-  position: fixed;
-  margin: auto;
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  justify-content: flex-end;
-}
-
-#alerta_popup{
-    display:none;
-    position:fixed;
-    top:120px;
-    left:350px;
-    height: 150px;
-    background-color:#b00000;
-    color:white;
-    padding:35px 40px;
-    border-radius:18px;
-    text-align:center;
-    z-index:999;
-    box-shadow:0 10px 25px rgba(0,0,0,0.4);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-}
-
-#alerta_popup h3{
-    margin:0;
-    font-size:24px;
-    font-weight:700;
-}
-
-#alerta_popup p{
-    margin:0;
-    font-size:15px;
-    padding: 7px !important;
-}
-
-#btCloseCanvas2{
-    position:absolute;
-    top:8px;
-    right:10px;
-    background:transparent;
-    border:none;
-    cursor:pointer;
-}
-
-.layout img {
-  margin: 0;
-  width: 100%;
-  height: 27vh;
-  border-radius: 10px 10px 0 0;
-  object-fit: cover;
-}
-
-#areaGraficos {
-  display: none;
-  margin-top: 30px;
-}
-*/
-
 /* aqui começa o novo estilo da dashboard */
 
 /* NAVBAR */
@@ -354,7 +61,7 @@ main {
 }
 
 #logo_navbar2 {
-    display: none;
+  display: none;
 }
 
 /* KPIS */
@@ -559,15 +266,48 @@ h5 {
   font-weight: 550;
 }
 
+/* Dash analista */
+
+.div_escolha_unidade {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  min-height: 200px;
+  padding: 2%;
+  margin-bottom: 2%;
+  color: #13347b;
+}
+
+.opcaoDashboard {
+  color: #13347b;
+  border: none;
+  width: 30%;
+  height: 32px;
+  border-radius: 10px;
+}
+
+.buttonDashboard{
+  color: #13347b;
+  border: none;
+  background-color: #ddf5f1;
+  width: 15%;
+  height: 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.buttonDashboard:hover{
+  transform: scale(1.01);
+}
 /* Dashboard monitores */
 
-.button_filtro{
+.button_filtro {
   background-color: #f5f5f5;
   color: #13347b;
   border: none;
 }
 
-.div_monitores_especifico{
+.div_monitores_especifico {
   background-color: #f5f5f5;
   border-radius: 10px;
   min-height: 500px;
@@ -678,12 +418,12 @@ h5 {
 
   /* Dashboard monitores */
 
-  .div_monitores_especifico{
+  .div_monitores_especifico {
     padding: 5%;
     margin-top: 150px;
   }
 
-  #logo_navbar{
+  #logo_navbar {
     display: none;
   }
 
