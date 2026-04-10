@@ -77,6 +77,16 @@
                 </div>
             </div>
 
+            <div>
+                <span>Data de Fabricação</span>
+                <input type="date" id="date_fabricacao" onchange="verificarCheckboxes()">
+            </div>
+
+            <div>
+                <span>Data de Manutenção</span>
+                <input type="date" id="date_manutencao" onchange="verificarCheckboxes()">
+            </div>
+
             <br>
             <button onclick="cadastrarMonitor()">Cadastrar Monitor</button>
         </div>
@@ -194,6 +204,8 @@
         var limiteRAM = input_limite_ram.value;
         var limiteDisco = input_limite_disco.value;
         var limiteRede = input_limite_rede.value;
+        var dtFabricacao = date_fabricacao.value;
+        var dtManutencao = date_manutencao.value;
         div_erroCadastro.innerHTML = "";
 
 
@@ -266,7 +278,9 @@
                 unidadeServer: idUnidade,
                 empresaServer: idEmpresa,
                 statusServer: statusMonitor,
-                componentesServer: listaComponentes
+                componentesServer: listaComponentes,
+                dtFabricacaoServer: dtFabricacao,
+                dtManutencaoServer: dtManutencao
             })
         }).then(function (resposta) {
             if (resposta.ok) {

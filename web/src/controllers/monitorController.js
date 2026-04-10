@@ -5,8 +5,10 @@ function cadastrarMonitor(req, res) {
     var fkEmpresa = req.body.empresaServer;
     var componentes = req.body.componentesServer; 
     var statusMonitor = req.body.statusServer;
+    var dtFabricacao = req.body.dtFabricacaoServer;
+    var dtManutencao = req.body.dtManutencaoServer;
 
-    monitorModel.cadastrarMonitor(fkUnidade, fkEmpresa, statusMonitor)
+    monitorModel.cadastrarMonitor(fkUnidade, fkEmpresa, statusMonitor, dtFabricacao, dtManutencao)
         .then(function (resultado) {
             var idMonitorCriado = resultado.insertId;
             for (var i = 0; i < componentes.length; i++) {

@@ -56,6 +56,9 @@
         <input type="text" id="input_telefoneResponsavel" maxlength="11">
       </p>
 
+      <p><span>Total de Internet:</span>
+        <input type="number" id="input_redeTotal" placeholder="150.00 Mb/s">
+      </p>
       <p>
         <button onclick="cadastrarUnidade()">Cadastrar Unidade</button>
       </p>
@@ -127,6 +130,7 @@
     var unidade = input_unidade.value;
     var emailResponsavel = input_emailResponsavel.value;
     var telefoneResponsavel = input_telefoneResponsavel.value;
+    var redeTotal = input_redeTotal.value;
 
     div_erroCadastro.innerHTML = "";
     div_erroCadastro.style.color = "red";
@@ -170,6 +174,7 @@
         emailResponsavelServer: emailResponsavel,
         telefoneResponsavelServer: telefoneResponsavel,
         fkHospitalServer: fkHospital,
+        redeTotalServer: redeTotal
       }),
     })
       .then(function (resposta) {
@@ -185,6 +190,7 @@
         input_unidade.value = "";
         input_emailResponsavel.value = "";
         input_telefoneResponsavel.value = "";
+        input_redeTotal.value = "";
 
         return resposta.json();
       })

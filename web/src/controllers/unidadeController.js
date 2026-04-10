@@ -9,10 +9,11 @@ function cadastrarUnidade(req, res) {
     var unidade = req.body.unidadeServer
     var emailResponsavel = req.body.emailResponsavelServer
     var telefoneResponsavel = req.body.telefoneResponsavelServer
+    var redeTotal = req.body.redeTotalServer
 
 
     unidadeModel
-        .cadastrarUnidade(fkHospital, cep, rua, numero, cidade, unidade, emailResponsavel, telefoneResponsavel)
+        .cadastrarUnidade(fkHospital, cep, rua, numero, cidade, unidade, emailResponsavel, telefoneResponsavel, redeTotal)
         .then(function (resultado) {
             res.json({ id: resultado.insertId });
         })
