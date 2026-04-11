@@ -390,6 +390,7 @@ h5 {
   border-radius: 5px;
   font-weight: 500;
 }
+
 .spanFaixa {
   display: flex;
   margin-bottom: 5%;
@@ -422,6 +423,7 @@ h5 {
   padding: 5%;
 }
 
+
 /* Dashboard monitores */
 
 .button_filtro {
@@ -452,7 +454,7 @@ h5 {
   }
 
   .main-content {
-    margin-left: 60px;
+    margin-left: 22%;
   }
 
   .tituloDash {
@@ -588,11 +590,12 @@ h5 {
 
   .faixa1 {
     width: 100%;
+    margin-bottom: 9%;
   }
 
   .kpiMonitoresMaisDe5 {
     width: 100%;
-    min-height: 100px;
+    padding: 5%;
   }
 
   .juntandoFaixas {
