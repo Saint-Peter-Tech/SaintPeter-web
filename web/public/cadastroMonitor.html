@@ -13,12 +13,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/estilo.css" />
+    <link rel="stylesheet" href="./css/cadastros.css" />
     <link rel="icon" href="./assets/LogoClara.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
-    <div>
+    <div class="container-cadastro">
+        <h1>Cadastro de Monitores:</h1>
+
         <p><span>Selecione o hospital desejado:</span>
             <select name="select_hospital" id="select_hospital" onchange="listarUnidades()">
                 <option value="0" selected disabled>Selecione um hospital</option>
@@ -34,16 +37,19 @@
         </div>
 
         <div id="container_componentes2" style="display: none;">
-        <p><span>Digite a quantidade de Monitores para serem cadastrados</span></p>
-        <input id="input_qtde_monitores" placeholder="100" type="number" min="1" max="100">
-    </div>
+            <p><span>Digite a quantidade de Monitores para serem cadastrados:</span></p>
+            <input id="input_qtde_monitores" placeholder="100" type="number" min="1" max="100">
+        </div>
 
         <div id="container_componentes" style="display: none;">
             <p>Selecione os componentes a serem monitorados nesse monitor:</p>
 
             <div>
-                <input type="checkbox" id="check_cpu" onchange="verificarCheckboxes()">
-                <span>Processador (CPU)</span>
+                <label class="checkboxes">
+                    <input type="checkbox" id="check_cpu" onchange="verificarCheckboxes()">
+                    <span>Processador (CPU)</span>
+                </label>
+
                 <div id="div_limite_cpu" style="display: none;">
                     <span>Limite máximo para alerta (%):</span>
                     <input type="number" id="input_limite_cpu">
@@ -51,8 +57,11 @@
             </div>
 
             <div>
-                <input type="checkbox" id="check_ram" onchange="verificarCheckboxes()">
-                <span>Memória RAM</span>
+                <label class="checkboxes">
+                    <input type="checkbox" id="check_ram" onchange="verificarCheckboxes()">
+                    <span>Memória RAM</span>
+                </label>
+
                 <div id="div_limite_ram" style="display: none;">
                     <span>Limite máximo para alerta (%):</span>
                     <input type="number" id="input_limite_ram">
@@ -60,8 +69,11 @@
             </div>
 
             <div>
-                <input type="checkbox" id="check_disco" onchange="verificarCheckboxes()">
-                <span>Disco</span>
+                <label class="checkboxes">
+                    <input type="checkbox" id="check_disco" onchange="verificarCheckboxes()">
+                    <span>Disco</span>
+                </label>
+
                 <div id="div_limite_disco" style="display: none;">
                     <span>Limite máximo para alerta (%):</span>
                     <input type="number" id="input_limite_disco">
@@ -69,8 +81,11 @@
             </div>
 
             <div>
-                <input type="checkbox" id="check_rede" onchange="verificarCheckboxes()">
-                <span>Rede</span>
+                <label class="checkboxes">
+                    <input type="checkbox" id="check_rede" onchange="verificarCheckboxes()">
+                    <span>Rede</span>
+                </label>
+
                 <div id="div_limite_rede" style="display: none;">
                     <span>Velocidade de upload e download (Mbps):</span>
                     <input type="number" id="input_limite_rede">
@@ -92,7 +107,6 @@
         </div>
 
         <div id="div_erroCadastro"></div>
-
     </div>
 </body>
 <script>
@@ -232,18 +246,18 @@
         }
 
         if (check_disco.checked) {
-            if(limiteDisco == "" || limiteDisco <= 0 || limiteDisco > 100){
+            if (limiteDisco == "" || limiteDisco <= 0 || limiteDisco > 100) {
                 mensagemErro += "O limite do <b>disco</b> não pode estar vazio, ou menor que 0 e nem maior que 100%.<br>";
-            }else{
+            } else {
                 listaComponentes.push({
-                id: 3,
-                limite: document.getElementById("input_limite_disco").value
-            });
+                    id: 3,
+                    limite: document.getElementById("input_limite_disco").value
+                });
             }
         }
 
         if (check_rede.checked) {
-            if(limiteRede <= 0 || limiteRede == null){
+            if (limiteRede <= 0 || limiteRede == null) {
                 mensagemErro += "O limite da <b>rede</b> não pode estar vazio, ou menor que 0Mbps.<br>";
             }
             listaComponentes.push({
@@ -267,34 +281,34 @@
 
         var monitores = [];
 
-        for(let i = 0; i < quantidade; i++) {
+        for (let i = 0; i < quantidade; i++) {
 
-        fetch("/monitor/cadastrarMonitor", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                unidadeServer: idUnidade,
-                empresaServer: idEmpresa,
-                statusServer: statusMonitor,
-                componentesServer: listaComponentes,
-                dtFabricacaoServer: dtFabricacao,
-                dtManutencaoServer: dtManutencao
-            })
-        }).then(function (resposta) {
-            if (resposta.ok) {
-                console.log("Monitor cadastrado com sucesso!");
-                div_erroCadastro.style.color = "green"
-                div_erroCadastro.innerHTML = "Monitor cadastrado com sucesso!"
-            } else {
-                console.log("Monitor cadastrado com sucesso!");
-                div_erroCadastro.style.color = "red"
-                div_erroCadastro.innerHTML = "Erro ao realizar o cadastro de monitor, tente novamente"
-            }
-        }).catch(function (erro) {
-            console.log(`#ERRO: ${erro}`);
-        });
+            fetch("/monitor/cadastrarMonitor", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    unidadeServer: idUnidade,
+                    empresaServer: idEmpresa,
+                    statusServer: statusMonitor,
+                    componentesServer: listaComponentes,
+                    dtFabricacaoServer: dtFabricacao,
+                    dtManutencaoServer: dtManutencao
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    console.log("Monitor cadastrado com sucesso!");
+                    div_erroCadastro.style.color = "green"
+                    div_erroCadastro.innerHTML = "Monitor cadastrado com sucesso!"
+                } else {
+                    console.log("Monitor cadastrado com sucesso!");
+                    div_erroCadastro.style.color = "red"
+                    div_erroCadastro.innerHTML = "Erro ao realizar o cadastro de monitor, tente novamente"
+                }
+            }).catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
 
         }
 
@@ -321,4 +335,5 @@
     }
 
 </script>
+
 </html>

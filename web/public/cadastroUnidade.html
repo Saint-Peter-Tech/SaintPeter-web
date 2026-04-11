@@ -13,6 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="./css/cadastros.css" />
   <link rel="icon" href="./assets/LogoClara.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 
@@ -20,50 +21,53 @@
 </head>
 
 <body>
-    <div>
-      <p><span>Selecione o hospital desejado:</span>
-        <select name="select_hospital" id="select_hospital">
-          <option value="0" selected disabled>Selecione um hospital</option>
-        </select>
-      </p>
+  <div class="container-cadastro">
+    <h1>Cadastro de Unidades</h1>
 
-      <p><span>CEP:</span>
-        <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()"
-          placeholder="Exemplo: 01414001 ou 01414-001">
-      </p>
+    <p><span>Selecione o hospital desejado:</span>
+      <select name="select_hospital" id="select_hospital">
+        <option value="0" selected disabled>Selecione um hospital</option>
+      </select>
+    </p>
 
-      <p><span>Rua:</span>
-        <input type="text" id="input_rua" maxlength="50">
-      </p>
+    <p><span>CEP:</span>
+      <input type="text" id="input_cep" maxlength="9" oninput="buscarcep()"
+        placeholder="Exemplo: 01414001 ou 01414-001">
+    </p>
 
-      <p><span>Cidade:</span>
-        <input type="text" id="input_cidade" maxlength="50">
-      </p>
+    <p><span>Rua:</span>
+      <input type="text" id="input_rua" maxlength="50">
+    </p>
 
-      <p><span>Número:</span>
-        <input type="text" id="input_numero" maxlength="50">
-      </p>
+    <p><span>Cidade:</span>
+      <input type="text" id="input_cidade" maxlength="50">
+    </p>
 
-      <p><span>Descrição da Unidade:</span>
-        <input type="text" id="input_unidade" placeholder="Exemplo: Unidade Zona Sul">
-      </p>
+    <p><span>Número:</span>
+      <input type="text" id="input_numero" maxlength="50">
+    </p>
 
-      <p><span>Email do Responsável:</span>
-        <input type="text" id="input_emailResponsavel" maxlength="50">
-      </p>
+    <p><span>Descrição da Unidade:</span>
+      <input type="text" id="input_unidade" placeholder="Exemplo: Unidade Zona Sul">
+    </p>
 
-      <p><span>Telefone do Responsável:</span>
-        <input type="text" id="input_telefoneResponsavel" maxlength="11">
-      </p>
+    <p><span>Email do Responsável:</span>
+      <input type="text" id="input_emailResponsavel" maxlength="50">
+    </p>
 
-      <p><span>Total de Internet:</span>
-        <input type="number" id="input_redeTotal" placeholder="150.00 Mb/s">
-      </p>
-      <p>
-        <button onclick="cadastrarUnidade()">Cadastrar Unidade</button>
-      </p>
-      <div id="div_erroCadastro"></div>
-    </div>
+    <p><span>Telefone do Responsável:</span>
+      <input type="text" id="input_telefoneResponsavel" maxlength="11">
+    </p>
+
+    <p><span>Total de Internet:</span>
+      <input type="text" id="input_redeTotal" placeholder="150.00 Mb/s">
+    </p>
+
+    <p>
+      <button onclick="cadastrarUnidade()">Cadastrar Unidade</button>
+    </p>
+    <div id="div_erroCadastro"></div>
+  </div>
 </body>
 
 <script>
@@ -130,7 +134,7 @@
     var unidade = input_unidade.value;
     var emailResponsavel = input_emailResponsavel.value;
     var telefoneResponsavel = input_telefoneResponsavel.value;
-    var redeTotal = input_redeTotal.value;
+    var redeTotal = Number(input_redeTotal.value);
 
     div_erroCadastro.innerHTML = "";
     div_erroCadastro.style.color = "red";
@@ -151,6 +155,10 @@
 
     if (telefoneResponsavel.length < 10) {
       mensagemErro += "O telefone deve conter pelo menos 10 dígitos (DDD + número).<br>";
+    }
+
+    if (isNaN(redeTotal)) {
+      mensagemErro += "Apenas valores numéricos são aceitos no campo de rede.<br>";
     }
 
     if (mensagemErro != "") {
