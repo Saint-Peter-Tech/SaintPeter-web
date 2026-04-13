@@ -20,7 +20,14 @@
         rel="stylesheet">
 
     <!-- icones font awesome -->
-    <script src="https://kit.fontawesome.com/seu-codigo-pessoal.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- link css tabela do bootstrap -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.bootstrap5.css">
+
+    <!-- link do dataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css">
+
 </head>
 </head>
 
@@ -115,8 +122,6 @@
 
     <div class="container-fluid" style="width: 60%">
         <form class="d-flex" role="search">
-
-
             <input class="form-control me-2" type="search" placeholder="Buscar monitor..." aria-label="Search" />
 
             <select class="opcaoMonitores" name="" id="select1">
@@ -126,13 +131,451 @@
 
             <select class="opcaoMonitores" name="" id="select2">
                 <option value="#" disabled selected>
-                    Todas unidades</option>
+                    +</option>
             </select>
 
             <button class="botaoPesquisar" type="submit">PESQUISAR</button>
+            <button class="botaoPesquisar2" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </form>
+
+        <div class="botaoAdicionarMonitor">
+            <a style="color: white; text-decoration: none;" href="../cadastroMonitor.html">
+                <i class="fa-solid fa-plus"></i>
+                Adicionar Monitor
+            </a>
+        </div>
     </div>
 
+    <div class="container pt-5 w-30">
+        <table id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Unidade</th>
+                    <th>Rede</th>
+                    <th>CPU (%)</th>
+                    <th>RAM (%)</th>
+                    <th>Disco (%)</th>
+                    <th>Data e Hora</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Monitor UTI-001</td>
+                    <td>UTI Geral</td>
+                    <td>Online</td>
+                    <td>65</td>
+                    <td>72</td>
+                    <td>80</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Monitor UTI-002</td>
+                    <td>UTI Geral</td>
+                    <td>Online</td>
+                    <td>58</td>
+                    <td>64</td>
+                    <td>70</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Monitor CC-015</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Online</td>
+                    <td>75</td>
+                    <td>81</td>
+                    <td>68</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Monitor PS-008</td>
+                    <td>Pronto Socorro</td>
+                    <td>Instável</td>
+                    <td>82</td>
+                    <td>77</td>
+                    <td>85</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Monitor ENF-022</td>
+                    <td>Enfermaria 2</td>
+                    <td>Online</td>
+                    <td>49</td>
+                    <td>55</td>
+                    <td>60</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Monitor UTI-003</td>
+                    <td>UTI Neonatal</td>
+                    <td>Online</td>
+                    <td>67</td>
+                    <td>73</td>
+                    <td>78</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Monitor CC-016</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Offline</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Monitor PS-009</td>
+                    <td>Pronto Socorro</td>
+                    <td>Online</td>
+                    <td>71</td>
+                    <td>69</td>
+                    <td>74</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td>Monitor UTI-004</td>
+                    <td>UTI Geral</td>
+                    <td>Online</td>
+                    <td>62</td>
+                    <td>68</td>
+                    <td>75</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Monitor UTI-005</td>
+                    <td>UTI Geral</td>
+                    <td>Online</td>
+                    <td>70</td>
+                    <td>74</td>
+                    <td>82</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Monitor UTI-006</td>
+                    <td>UTI Geral</td>
+                    <td>Instável</td>
+                    <td>85</td>
+                    <td>79</td>
+                    <td>88</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Monitor CC-017</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Online</td>
+                    <td>55</td>
+                    <td>60</td>
+                    <td>65</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Monitor CC-018</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Online</td>
+                    <td>68</td>
+                    <td>72</td>
+                    <td>70</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Monitor CC-019</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Offline</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Monitor PS-010</td>
+                    <td>Pronto Socorro</td>
+                    <td>Online</td>
+                    <td>73</td>
+                    <td>77</td>
+                    <td>80</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Monitor PS-011</td>
+                    <td>Pronto Socorro</td>
+                    <td>Instável</td>
+                    <td>88</td>
+                    <td>85</td>
+                    <td>90</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Monitor PS-012</td>
+                    <td>Pronto Socorro</td>
+                    <td>Online</td>
+                    <td>60</td>
+                    <td>66</td>
+                    <td>72</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Monitor ENF-023</td>
+                    <td>Enfermaria 2</td>
+                    <td>Online</td>
+                    <td>52</td>
+                    <td>57</td>
+                    <td>63</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Monitor ENF-024</td>
+                    <td>Enfermaria 2</td>
+                    <td>Online</td>
+                    <td>48</td>
+                    <td>53</td>
+                    <td>58</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Monitor ENF-025</td>
+                    <td>Enfermaria 2</td>
+                    <td>Instável</td>
+                    <td>79</td>
+                    <td>75</td>
+                    <td>82</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Monitor UTI-007</td>
+                    <td>UTI Neonatal</td>
+                    <td>Online</td>
+                    <td>66</td>
+                    <td>70</td>
+                    <td>76</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Monitor UTI-008</td>
+                    <td>UTI Neonatal</td>
+                    <td>Online</td>
+                    <td>63</td>
+                    <td>69</td>
+                    <td>74</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>Monitor UTI-009</td>
+                    <td>UTI Neonatal</td>
+                    <td>Offline</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>Monitor CC-020</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Online</td>
+                    <td>58</td>
+                    <td>64</td>
+                    <td>69</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>Monitor CC-021</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Instável</td>
+                    <td>84</td>
+                    <td>80</td>
+                    <td>87</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>Monitor CC-022</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Online</td>
+                    <td>61</td>
+                    <td>67</td>
+                    <td>73</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>Monitor PS-013</td>
+                    <td>Pronto Socorro</td>
+                    <td>Online</td>
+                    <td>69</td>
+                    <td>72</td>
+                    <td>78</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>Monitor PS-014</td>
+                    <td>Pronto Socorro</td>
+                    <td>Offline</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>Monitor PS-015</td>
+                    <td>Pronto Socorro</td>
+                    <td>Online</td>
+                    <td>74</td>
+                    <td>78</td>
+                    <td>83</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>Monitor ENF-026</td>
+                    <td>Enfermaria 2</td>
+                    <td>Online</td>
+                    <td>50</td>
+                    <td>55</td>
+                    <td>60</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>Monitor ENF-027</td>
+                    <td>Enfermaria 2</td>
+                    <td>Online</td>
+                    <td>47</td>
+                    <td>52</td>
+                    <td>57</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>Monitor ENF-028</td>
+                    <td>Enfermaria 2</td>
+                    <td>Instável</td>
+                    <td>81</td>
+                    <td>77</td>
+                    <td>84</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>33</td>
+                    <td>Monitor UTI-010</td>
+                    <td>UTI Geral</td>
+                    <td>Online</td>
+                    <td>64</td>
+                    <td>71</td>
+                    <td>79</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>34</td>
+                    <td>Monitor UTI-011</td>
+                    <td>UTI Neonatal</td>
+                    <td>Online</td>
+                    <td>67</td>
+                    <td>73</td>
+                    <td>80</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>35</td>
+                    <td>Monitor CC-023</td>
+                    <td>Centro Cirúrgico</td>
+                    <td>Online</td>
+                    <td>59</td>
+                    <td>63</td>
+                    <td>68</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>36</td>
+                    <td>Monitor PS-016</td>
+                    <td>Pronto Socorro</td>
+                    <td>Online</td>
+                    <td>72</td>
+                    <td>76</td>
+                    <td>81</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>37</td>
+                    <td>Monitor ENF-029</td>
+                    <td>Enfermaria 2</td>
+                    <td>Online</td>
+                    <td>53</td>
+                    <td>58</td>
+                    <td>64</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+                <tr>
+                    <td>38</td>
+                    <td>Monitor ENF-030</td>
+                    <td>Enfermaria 2</td>
+                    <td>Offline</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2026-04-13 14:32</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Unidade</th>
+                    <th>Rede</th>
+                    <th>CPU (%)</th>
+                    <th>RAM (%)</th>
+                    <th>Disco (%)</th>
+                    <th>Data e Hora</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- links javascript boostrap tabela -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+       $(document).ready(function() {
+            $('#example').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

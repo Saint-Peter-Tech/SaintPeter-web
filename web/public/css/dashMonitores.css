@@ -14,19 +14,12 @@
 .botaoPesquisar {
   border: none;
   color: #13347b;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #ddf5f1;
   transition: transform ease 0.3s;
   font-weight: 500;
   width: 30%;
-}
-
-#select1 {
   display: block;
-}
-
-#select2 {
-  display: none;
 }
 
 .botaoPesquisar:hover {
@@ -37,9 +30,46 @@
   font-weight: 500;
 }
 
+.botaoPesquisar2 {
+  display: none;
+}
+
+#select1 {
+  display: block;
+}
+
+#select2 {
+  display: none;
+}
+
+.botaoAdicionarMonitor{
+    text-decoration: none;
+    background-color: #4169e1;
+    color: #ddf5f1;
+    border-radius: 10px;
+    width: 200px;
+    height: 32px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    transition: transform 0.3s ease;
+}
+
+.botaoAdicionarMonitor:hover{
+    transform: scale(1.03);
+}
+
 @media (max-width: 480px) {
+  .container-fluid {
+    margin-left: 15%;
+    width: 80% !important;
+    padding: 0 10px;
+  }
+
   .barraPesquisa {
-    width: 300px;
+    min-width: 300px;
   }
 
   #select1 {
@@ -47,6 +77,30 @@
   }
 
   #select2 {
-  display: block;
-}
+    display: block;
+    font-weight: 500;
+    width: 40px;
+  }
+
+  .botaoPesquisar {
+    display: none;
+  }
+
+  .botaoPesquisar2 {
+    display: block;
+    border: none;
+    color: #13347b;
+    background-color: #ddf5f1;
+    cursor: pointer;
+    border-radius: 10px;
+    min-width: 20%;
+  }
+
+  .botaoPesquisar2:hover {
+    background-color: #4169e1;
+    border: none;
+    color: #ddf5f1;
+    transform: scale(1.03);
+    font-weight: 500;
+  }
 }
