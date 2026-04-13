@@ -350,18 +350,28 @@ h5 {
 /* kpi monitores com mais de 5 anos */
 .juntandoFaixas {
   display: flex;
-  gap: 2%;
   flex-direction: row;
+  gap: 2%;
 }
 
 .juntandoFaixasColunas {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .faixa1 {
   background-color: #ffeeee;
   color: #ff4b4b;
+  padding: 2%;
+  width: 770px;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 12px;
+}
+
+.faixa2 {
+  background-color: #fffdeb;
+  color: #ffed28;
   padding: 2%;
   width: 770px;
   border-radius: 10px 10px 0 0;
@@ -374,14 +384,38 @@ h5 {
   padding: 2.5%;
   gap: 2%;
   color: #13347b;
-  width: 770px;
+  width: 100%;
   margin-top: -32px;
   margin-bottom: 5%;
 }
 
-.blocoStatus {
+.blocoStatus_critico {
   color: #991616;
   background-color: #ffeeee;
+  font-size: 12px;
+  width: 50px;
+  min-height: 20px;
+  display: inline-block;
+  padding: 2%;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.blocoStatus_alerta {
+  color: #d4c11c;
+  background-color: #fffdeb;
+  font-size: 12px;
+  width: 50px;
+  min-height: 20px;
+  display: inline-block;
+  padding: 2%;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.blocoStatus_normal {
+  color: #13347b;
+  background-color: #ddf5f1;
   font-size: 12px;
   width: 50px;
   min-height: 20px;
@@ -398,31 +432,172 @@ h5 {
   flex-direction: column;
 }
 
-.valorKpi {
+.valorKpi_critico {
   color: #991616;
   margin-left: 448px;
 }
 
-.containerProgress {
-  margin-top: 2%;
-  margin-bottom: 2%;
+.valorKpi_medio {
+  color: #d4c11c;
+  margin-left: 448px;
 }
 
-.progress-bar {
-  background-color: #f5f5f5;
-  width: 600px;
-  height: 10px;
-  border-radius: 5px;
+.valorKpi_normal {
+  color: #163599;
+  margin-left: 448px;
 }
 
-.progress-bar div {
+/* teste novo */
+.skill {
+  width: 500px;
+  padding: 2%;
+  color: white;
+}
+
+.sidebar li {
+  margin: 20px 0;
+  padding: 2%;
+}
+
+.bar {
+  background: #f5f5f5;
+  display: block;
   height: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progVermelho {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, #991616) 0%,
+    #13347b 100%;
+}
+
+.progAmarelo {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, #d4c11c) 0%,
+    #13347b 100%;
+}
+
+.progNormal {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, #13347b) 0%,
+    #13347b 100%;
+}
+
+.progVermelhoCali {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, #991616) 0%,
+    #13347b 100%;
+}
+
+.progAmareloCali {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, #d4c11c) 0%,
+    #13347b 100%;
+}
+
+.progNormalCali {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, #13347b) 0%,
+    #13347b 100%;
+}
+
+.progressoVermelho {
+  width: 67%;
+  animation: progressoVermelho 3s;
+}
+
+.progressoAmarelo {
   width: 53%;
-  background-color: #991616;
-  padding: 5%;
+  animation: progressoAmarelo 3s;
 }
 
+.progressoNormal {
+  width: 17%;
+  animation: progressoNormal 3s;
+}
+
+.progressoVermelhoCali {
+  width: 63%;
+  animation: progressoVermelhoCali 3s;
+}
+
+.progressoAmareloCali {
+  width: 50%;
+  animation: progressoAmareloCali 3s;
+}
+
+.progressoNormalCali {
+  width: 25%;
+  animation: progressoNormalCali 3s;
+}
+
+@keyframes progressoVermelho {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 67%;
+  }
+}
+
+@keyframes progressoAmarelo {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 53%;
+  }
+}
+
+@keyframes progressoNormal {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 17%;
+  }
+}
+
+@keyframes progressoVermelhoCali {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 63%;
+  }
+}
+
+@keyframes progressoAmareloCali {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes progressoNormalCali {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 25%;
+  }
+}
 
 /* Dashboard monitores */
 
@@ -578,17 +753,14 @@ h5 {
     border-radius: 10px;
   }
 
-  .KpisCalibracao {
-    padding: 5%;
-    gap: 20px;
-    min-height: 150px;
-    width: 100%;
-    border-radius: 10px;
-  }
-
   /* kpis em faixas */
 
   .faixa1 {
+    width: 100%;
+    margin-bottom: 9%;
+  }
+
+  .faixa2 {
     width: 100%;
     margin-bottom: 9%;
   }
@@ -604,10 +776,7 @@ h5 {
   }
 
   /* barra progresso */
-  .progress-bar {
-    background-color: #f5f5f5;
-    width: 90%;
-    height: 10px;
-    border-radius: 5px;
+  .skill {
+    width: 200px;
   }
 }

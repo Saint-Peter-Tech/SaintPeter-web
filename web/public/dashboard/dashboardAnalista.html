@@ -43,7 +43,7 @@
         </svg>
         <span class="description">Visão Geral</span>
       </a>
-      <a class="nav-link">
+      <a class="nav-link" href="./dashboardMonitores.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-display"
           viewBox="0 0 16 16">
           <path
@@ -189,8 +189,9 @@
         <br>
 
         <div class="juntandoFaixas">
-
           <!-- kpis em faixas obsolescencia  -->
+
+
           <div class="juntandoFaixasColunas">
             <div class="linhaMonitores1">
               <div class="faixa1">
@@ -211,407 +212,187 @@
               </div>
             </div>
 
-            
             <div class="linhaMonitores1">
               <div class="kpiMonitoresMaisDe5">
                 <div>
                   <span class="spanFaixa">
                     <div class="linhaMonitores1">
                       <div class="faixa">
-                        <h6>Pronto Socorro <span class="blocoStatus">Crítico</span></h6>
-                        8 de 15 monitores (53%)
+                        <h6>Pronto Socorro <span class="blocoStatus_critico">Crítico</span></h6>
+                        4 de 6 monitores (67%)
                       </div>
-                      <div class="valorKpi">
-                        <h1>8</h1>
+                      <div class="valorKpi_critico">
+                        <h1>4</h1>
                       </div>
                     </div>
 
                     <div class="containerProgress">
-                      <div class="skills">
-                        <div class="progress-bar">
-                          <div class="progresso">
-                          </div>
-                        </div>
+                      <div class="skill">
+                        <li>
+                          <span class="bar">
+                            <span class="progressoVermelho progVermelho"></span>
+                          </span>
+                        </li>
                       </div>
                     </div>
 
                   </span>
-                </div>
 
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>Pronto Socorro <span class="blocoStatus_alerta">Médio</span></h6>
+                          8 de 15 monitores (53%)
+                        </div>
+                        <div class="valorKpi_medio">
+                          <h1>8</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoAmarelo progAmarelo"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
+                          2 de 12 monitores (17%)
+                        </div>
+                        <div class="valorKpi_normal">
+                          <h1>2</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoNormal progNormal"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- kpis em faixas da calibração -->
+
+          <div class="juntandoFaixasColunas">
+            <div class="linhaMonitores1">
+              <div class="faixa2">
+                <div>
+                  <h5 style="color: #d4c11c;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-calendar2-x" viewBox="0 0 16 16">
+                      <path
+                        d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708" />
+                      <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                      <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                    Calibração desatualizada (> 1 ano)
+                  </h5>
+                </div>
+                <span>Equipamentos que necessitam calibração urgente</span>
+              </div>
+            </div>
+
+            <div class="linhaMonitores1">
+              <div class="kpiMonitoresMaisDe5">
                 <div>
                   <span class="spanFaixa">
                     <div class="linhaMonitores1">
                       <div class="faixa">
-                        <h6>Pronto Socorro <span class="blocoStatus">Crítico</span></h6>
-                        8 de 15 monitores (53%)
+                        <h6>Centro Cirúrgico <span class="blocoStatus_critico">Crítico</span></h6>
+                        5 de 8 monitores (63%)
                       </div>
-                      <div class="valorKpi">
-                        <h1>8</h1>
+                      <div class="valorKpi_critico">
+                        <h1>5</h1>
                       </div>
                     </div>
 
                     <div class="containerProgress">
-                      <div class="skills">
-                        <div class="progress-bar">
-                          <div class="progresso">
-                          </div>
-                        </div>
+                      <div class="skill">
+                        <li>
+                          <span class="bar">
+                            <span class="progressoVermelhoCali progVermelhoCali"></span>
+                          </span>
+                        </li>
                       </div>
                     </div>
 
                   </span>
+
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>Enfermaria 2 <span class="blocoStatus_alerta">Médio</span></h6>
+                          3 de 6 monitores (50%)
+                        </div>
+                        <div class="valorKpi_medio">
+                          <h1>3</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoAmareloCali progAmareloCali"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
+                          2 de 8 monitores (25%)
+                        </div>
+                        <div class="valorKpi_normal">
+                          <h1>2</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoNormalCali progNormalCali"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
                 </div>
-
               </div>
-
-
-              <div class="kpiCalibracaoDesatualizada">
-
-              </div>
-            </div>
-
-          </div>
-          <!-- kpis em faixas calibração -->
-          <div class="linhaMonitores1">
-            <div class="faixa1">
-              <div>
-                <h5 style="color: #991616;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-clock-history" viewBox="0 0 16 16">
-                    <path
-                      d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z" />
-                    <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z" />
-                    <path
-                      d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
-                  </svg>
-                  Monitores com mais de 5 anos
-                </h5>
-              </div>
-              <span>Equipamentos com maior risco de obsolescência</span>
-            </div>
-          </div>
-
-        </div>
-
-
-        <div class="div_monitores">
-          <p class="span_filtro"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-filter" viewBox="0 0 16 16">
-              <path
-                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
-            </svg>
-            <button class="button_filtro">Filtro</button>
-          </p>
-
-          <h5 style="color: #13347b;">Hospital:</h5>
-          <h5 style="color: #13347b;">Filial:</h5>
-          <div class="linhaMonitores1">
-            <div class="container_monitor_vermelho">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 1
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-            <div class="container_monitor_vermelho">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 2
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-            <div class="container_monitor_amarelo">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 3
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 4
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 5
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 6
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-          </div>
-
-
-          <div class="linhaMonitores2">
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 1
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 2
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 3
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 4
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 5
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 6
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-          </div>
-
-          <div class="linhaMonitores3">
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 1
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 2
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 3
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 4
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 5
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
-            </div>
-
-            <div class="container_monitor">
-              <span>
-                <h5> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-display" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-                  </svg>
-                  Monitor 6
-                </h5>
-              </span>
-
-              <p>Hospital:
-                <br>
-                Filial:
-              </p>
             </div>
           </div>
         </div>
+
+        <!-- Outra kpi -->
+
 
   </main>
 
