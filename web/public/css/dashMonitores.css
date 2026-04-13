@@ -61,6 +61,29 @@
     transform: scale(1.03);
 }
 
+.page-item.active{
+    border: none!important;
+    border-radius: 10px;
+    transition: ease 0.3s;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.page-item.active:hover{
+    border: none!important;
+    background-color: transparent!important;
+    outline: none !important;
+    box-shadow: none !important;
+
+}
+.dt-paging-button{
+    border: none!important;
+}
+.dt-paging-button:hover{
+    background: none!important;
+
+}
+
 @media (max-width: 480px) {
   .container-fluid {
     margin-left: 15%;
@@ -102,5 +125,10 @@
     color: #ddf5f1;
     transform: scale(1.03);
     font-weight: 500;
+  }
+
+  .container{
+    width: 100px;
+    height: 20px;
   }
 }
