@@ -17,7 +17,16 @@ function buscarUnidades(idHospital) {
     return database.executar(instrucaoSql);
 }
 
+function unidadesPorEmpresa(fk_Empresa) {
+    var instrucaoSql = `
+        SELECT id_unidade, nome_unidade FROM unidades JOIN hospitais h ON fk_hospital = id_hospital WHERE h.fk_empresa = '${fk_Empresa}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarUnidade,
-    buscarUnidades
+    buscarUnidades,
+    unidadesPorEmpresa
 }

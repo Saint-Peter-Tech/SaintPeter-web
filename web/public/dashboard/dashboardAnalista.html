@@ -52,7 +52,7 @@
         <span class="description">Monitores</span>
       </a>
 
-      <a class="nav-link">
+      <a class="nav-link" href="./dashboardUnidades.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital"
           viewBox="0 0 16 16">
           <path
@@ -130,8 +130,8 @@
           </p>
 
           Unidade Hospitalar <br>
-          <select class="opcaoDashboard" name="" id="">
-            <option value="#" disabled selected>Selecione uma opção</option>
+          <select class="opcaoDashboard" id="select_unidade"> 
+            <option value="0" selected disabled>Selecione uma empresa</option>
           </select>
           <button class="buttonDashboard">Visualisar Dashboard ></button>
         </div>
@@ -402,6 +402,32 @@
 
 
 <script>
+  window.onload = listarUnidades()
+
+  function listarUnidades() {
+        var fk_Empresa = sessionStorage.FK_EMPRESA;
+        var selectUnidade = document.getElementById("select_unidade");
+
+fetch(`/unidade/unidadesPorEmpresa?fk_Empresa=${fk_Empresa}`)
+.then(function (resposta) {
+    if (resposta.ok) {
+      return resposta.json();
+        }
+          })
+.then(function (unidades) {
+unidades.forEach(unidade => {
+  const option = document.createElement("option");
+    option.value = unidade.id_unidade;
+       option.textContent = unidade.nome_unidade;
+        selectUnidade.appendChild(option);
+          });
+            })
+            .catch(function (erro) {
+                console.error("Erro ao buscar unidades:", erro);
+            });
+    }
+
+
   //b_usuario.innerHTML = "Fernando";
 
   const dias = [

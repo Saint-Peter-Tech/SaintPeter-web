@@ -116,11 +116,11 @@
 
     <div class="container-fluid" style="width: 60%; margin-left: 260px;">
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar monitor..." aria-label="Search" />
+            <input class="form-control me-2" type="search" placeholder="Buscar unidade..." aria-label="Search" />
 
-            <select class="opcaoMonitores" name="" id="select1">
+            <select class="opcaoMonitores" name="" id="select_hospital">
                 <option value="#" disabled selected>
-                    Todas unidades</option>
+                    Todos os Hospitais</option>
             </select>
 
             <select class="opcaoMonitores" name="" id="select2">
@@ -551,3 +551,32 @@
 </body>
 
 </html>
+
+<script>
+    window.onload = listarHospitais()
+
+  function listarHospitais() {
+    var idEmpresa = sessionStorage.FK_EMPRESA
+    fetch(`/hospital/buscarHospitais?idEmpresa=${idEmpresa}`)
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (hospitais) {
+
+        const select = document.getElementById("select_hospital");
+
+        hospitais.forEach(hospital => {
+          const option = document.createElement("option");
+
+          option.value = hospital.id_hospital;
+          option.textContent = hospital.nome_hospital;
+
+          select.appendChild(option);
+        });
+
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar hospitais:", erro);
+      });
+  }
+</script>

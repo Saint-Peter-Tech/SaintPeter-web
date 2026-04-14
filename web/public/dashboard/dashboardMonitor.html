@@ -271,6 +271,32 @@
 
 
 <script>
+  window.onload = listarHospitais
+
+    function listarHospitais() {
+        var idEmpresa = sessionStorage.FK_EMPRESA
+        fetch(`/hospital/buscarHospitais?idEmpresa=${idEmpresa}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (hospitais) {
+
+                const select = document.getElementById("select_hospital");
+
+                hospitais.forEach(hospital => {
+                    const option = document.createElement("option");
+
+                    option.value = hospital.id_hospital;
+                    option.textContent = hospital.nome_hospital;
+
+                    select.appendChild(option);
+                });
+
+            })
+            .catch(function (erro) {
+                console.error("Erro ao buscar hospitais:", erro);
+            });
+    }
   //b_usuario.innerHTML = "Fernando";
 
   const dias = [

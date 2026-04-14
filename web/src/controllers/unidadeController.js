@@ -40,8 +40,22 @@ function buscarUnidades(req, res) {
     });
 }
 
+function unidadesPorEmpresa(req, res) {
+    var fk_Empresa = req.query.fk_Empresa;
+
+    unidadeModel.unidadesPorEmpresa(fk_Empresa)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     cadastrarUnidade,
-    buscarUnidades
+    buscarUnidades,
+    unidadesPorEmpresa
 };

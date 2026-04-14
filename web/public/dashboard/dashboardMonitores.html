@@ -127,7 +127,7 @@
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Buscar monitor..." aria-label="Search" />
 
-            <select class="opcaoMonitores" name="" id="select1">
+            <select class="opcaoMonitores" name="" id="select_unidade">
                 <option value="#" disabled selected>
                     Todas unidades</option>
             </select>
@@ -571,6 +571,31 @@
     <script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.js"></script>
 
     <script>
+        window.onload = listarUnidades()
+
+  function listarUnidades() {
+        var fk_Empresa = sessionStorage.FK_EMPRESA;
+        var selectUnidade = document.getElementById("select_unidade");
+
+fetch(`/unidade/unidadesPorEmpresa?fk_Empresa=${fk_Empresa}`)
+.then(function (resposta) {
+    if (resposta.ok) {
+      return resposta.json();
+        }
+          })
+.then(function (unidades) {
+unidades.forEach(unidade => {
+  const option = document.createElement("option");
+    option.value = unidade.id_unidade;
+       option.textContent = unidade.nome_unidade;
+        selectUnidade.appendChild(option);
+          });
+            })
+            .catch(function (erro) {
+                console.error("Erro ao buscar unidades:", erro);
+            });
+    }
+
         $(document).ready(function () {
             $('#example').DataTable({
                 language: {
