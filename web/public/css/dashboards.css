@@ -192,6 +192,19 @@ body {
 }
 
 /* Conteúdo dash */
+.botaoEscolhaSessao{
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: #13347b;
+  transition: transform 0.3s ease;
+  width: 150px;
+  height: 32px;
+  font-weight: bold;
+}
+.botaoEscolhaSessao:hover{
+  transform: scale(1.03);
+}
 
 .span_filtro {
   color: #13347b;
