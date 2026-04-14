@@ -1,13 +1,12 @@
 
 .kpiQtdMonitor {
   background-color: white;
-  width: 60%;
+  width: 26%;
   min-height: 200px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 2%;
-  gap: 60%;
 }
 
 .kpiQtdMonitor:hover {
