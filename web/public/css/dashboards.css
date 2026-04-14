@@ -192,7 +192,7 @@ body {
 }
 
 /* Conteúdo dash */
-.botaoEscolhaSessao{
+.botaoEscolhaSessao {
   border: none;
   border-radius: 10px;
   background-color: white;
@@ -202,7 +202,7 @@ body {
   height: 32px;
   font-weight: bold;
 }
-.botaoEscolhaSessao:hover{
+.botaoEscolhaSessao:hover {
   transform: scale(1.03);
 }
 
@@ -329,6 +329,52 @@ h5 {
 }
 
 /* kpis de monitores antigos, calibração e unidades em situação críticas */
+.containeiBotaoCali {
+  display: flex;
+  align-items: center;
+  border: #d4c11c 1px solid;
+  border-radius: 10px;
+  padding: 1%;
+  height: 40px;
+  transition: transform 0.3s ease;
+
+}
+
+.containeiBotaoCali:hover{
+  transform: scale(1.03);
+}
+
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: rgba(126, 126, 126, 0.3);
+  color: white;
+  padding: 10%;
+  border-radius: 5px;
+  position: absolute;
+  margin-bottom: 125%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px!important;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+}
+
+.botaoAlterarCalibracao {
+  font-size: 24px;
+  color: #d4c11c !important;
+  transition: transform 0.3s ease;
+}
+
+.botaoAlterarCalibracao:hover {
+  transform: scale(1.03);
+}
+
 .KpisMonitoresAntigos {
   color: #13347b;
   background-color: #ffff;

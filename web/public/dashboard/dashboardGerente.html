@@ -19,6 +19,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
+
+  <!-- icones font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -108,7 +111,7 @@
   </div>
 
   <!-- Conteúdo da dash ANALISTA -->
-  <main class="main-content">
+  <main class="main-content" >
     <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
     <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
     <br><br>
@@ -299,20 +302,28 @@
             <div class="juntandoFaixasColunas">
               <div class="linhaMonitores1">
                 <div class="faixa2">
-                  <div>
-                    <h5 style="color: #d4c11c;">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-calendar2-x" viewBox="0 0 16 16">
-                        <path
-                          d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708" />
-                        <path
-                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
-                        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
-                      </svg>
-                      Calibração desatualizada (> 1 ano)
-                    </h5>
+                  <div style="display: flex; gap: 40%;">
+                    <div>
+                      <h5 style="color: #d4c11c;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-calendar2-x" viewBox="0 0 16 16">
+                          <path
+                            d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708" />
+                          <path
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                          <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                        Calibração desatualizada (> 1 ano)
+                      </h5>
+                      <span>Equipamentos que necessitam calibração urgente</span>
+                    </div>
+
+                    <div class="containeiBotaoCali tooltip-container">
+                      <a class="botaoAlterarCalibracao" href="../dashboard/dashboardUnidades.html"><i class="fa-solid fa-wrench"></i></a>
+                      <span class="tooltip-text">Alterar calibração dos monitores desta unidade</span>
+                    </div>
                   </div>
-                  <span>Equipamentos que necessitam calibração urgente</span>
+
                 </div>
               </div>
 
@@ -397,7 +408,7 @@
 
         </span>
 
-        <span id="funcionario">
+        <span id="funcionario" style="display: none;">
           <main class="main-content">
             <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
             <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
