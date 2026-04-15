@@ -52,3 +52,7 @@
     transform: scale(1.01);
     font-weight: 600;
 }
+
+.dt-paging-button{
+    display: none;
+}
