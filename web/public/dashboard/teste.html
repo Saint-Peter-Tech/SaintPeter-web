@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <main class="main-content">
+        <div class="grafico">
+            <h4>Uso da rede durante 6 meses</h4>
+
+
+
+            <div class="graficoLinhaRede">
+                <canvas id="canvasLinhaRede"></canvas>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    new Chart(ctx, config);
+
+    const ctx2 = document.getElementById('canvasLinhaRede');
+
+    const labels = Utils.months({ count: 7 });
+    const data2 = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    const config2 = {
+        type: 'line',
+        data: data2,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 0.5,
+        }
+    };
+
+    new Chart(ctx2, config2);
+
+    const ctx = document.getElementById('canvasLinhaRede');
+
+    new Chart(ctx, {
+        type: 'bar',
+       labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+        },
+    );
+</script>

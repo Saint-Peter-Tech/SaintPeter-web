@@ -102,97 +102,98 @@
   </div>
 
 
-  <main class="main-content" >
+  <main class="main-content">
 
-      <h4 class="tituloDash">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
-          viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-          <path
-            d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
-        </svg>
-        Bem vindo de volta, Usuário!
-      </h4>
-      <!-- Monitores -->
-      <div>
-        <span>
+    <h4 class="tituloDash">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
+        viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+        <path
+          d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
+      </svg>
+      Bem vindo de volta, Usuário!
+    </h4>
+    <!-- Monitores -->
+    <div>
+      <span>
 
-          <!-- Escolher unidade -->
-          <div class="div_escolha_unidade">
-            <h5>Selecionar Unidade para Dashboard</h5>
-            <p>
-              Escolha uma unidade hospitalar para visualizar informações detalhadas de monitoramento
-            </p>
+        <!-- Escolher unidade -->
+        <div class="div_escolha_unidade">
+          <h5>Selecionar Unidade para Dashboard</h5>
+          <p>
+            Escolha uma unidade hospitalar para visualizar informações detalhadas de monitoramento
+          </p>
 
-            Unidade Hospitalar <br>
-            <select class="opcaoDashboard" id="select_unidade">
-              <option value="0" selected disabled>Selecione uma empresa</option>
-            </select>
-            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;" href="./dashGraficosFuncionario.html">Visualisar Dashboard ></a></button>
+          Unidade Hospitalar <br>
+          <select class="opcaoDashboard" id="select_unidade">
+            <option value="0" selected disabled>Selecione uma empresa</option>
+          </select>
+          <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
+              href="./dashGraficosFuncionario.html">Visualisar Dashboard ></a></button>
+        </div>
+
+        <!-- KPIs -->
+        <div class="linhaMonitores1">
+          <div class="KpisMonitoresAntigos">
+            <div class="containerKpiMA">
+              <div class="tituloKpi">
+                Total unidades
+                <br>
+                <h1 style="color: #ff4b4b;">10</h1>
+              </div>
+              <div class="imgKpiContainer">
+                <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-acima-icone.png" alt="">
+              </div>
+            </div>
+            Unidades com uso de rede acima do recomendado
           </div>
 
-          <!-- KPIs -->
-          <div class="linhaMonitores1">
-            <div class="KpisMonitoresAntigos">
-              <div class="containerKpiMA">
-                <div class="tituloKpi">
-                  Total monitores antigos
-                  <br>
-                  <h1 style="color: #ff4b4b;">72</h1>
-                </div>
-                <div class="imgKpiContainer">
-                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/clock-icone.png" alt="">
-                </div>
+          <div class="KpisMonitoresAntigos">
+            <div class="containerKpiMA">
+              <div class="tituloKpi">
+                Monitores ativos
+                <br>
+                <h1 style="color: #d4c11c;">10</h1>
               </div>
-              Fabricação > 5 anos
-            </div>
-
-            <div class="KpisMonitoresAntigos">
-              <div class="containerKpiMA">
-                <div class="tituloKpi">
-                  Calibração Desatualizada
-                  <br>
-                  <h1 style="color: #d4c11c;">18</h1>
-                </div>
-                <div class="imgKpiContainer">
-                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/calendario-icone.png" alt="">
-                </div>
+              <div class="imgKpiContainer">
+                <img class="imgKpis" width="50%" src="../assets/icones-alerta/monitor-icone.png" alt="">
               </div>
-              Vencimento > 1 ano
             </div>
-
-            <div class="KpisMonitoresAntigos">
-              <div class="containerKpiMA">
-                <div class="tituloKpi">
-                  Unidades Críticas
-                  <br>
-                  <h1 style="color: #ff4b4b;">3</h1>
-                </div>
-                <div class="imgKpiContainer">
-                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
-                </div>
-              </div>
-              Requerem atenção
-            </div>
+            10 de 12
           </div>
 
-          <div style="color: #13347b;">
-            <h5>Situações Críticas por Unidade</h5>
-
-            Análise de risco operacional baseada em antiguidade e calibração dos equipamentos
+          <div class="KpisMonitoresAntigos">
+            <div class="containerKpiMA">
+              <div class="tituloKpi">
+                Unidades Críticas
+                <br>
+                <h1 style="color: #ff4b4b;">3</h1>
+              </div>
+              <div class="imgKpiContainer">
+                <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+              </div>
+            </div>
+            Requerem atenção
           </div>
-          <br>
+        </div>
 
-          <div class="juntandoFaixas">
-            <!-- kpis em faixas obsolescencia  -->
+        <div style="color: #13347b;">
+          <h5>Situações Críticas por Unidade</h5>
+
+          Análise de risco operacional baseada em antiguidade e calibração dos equipamentos
+        </div>
+        <br>
+
+        <div class="juntandoFaixas">
+          <!-- kpis em faixas obsolescencia  -->
 
 
-            <div class="juntandoFaixasColunas">
-              <div class="linhaMonitores1">
-                <div class="faixa1">
-                  <div>
-                    <h5 style="color: #991616;">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          <div class="juntandoFaixasColunas">
+            <div class="linhaMonitores1">
+              <div class="faixa1">
+                <div>
+                  <h5 style="color: #991616;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-clock-history" viewBox="0 0 16 16">
                         <path
                           d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z" />
@@ -200,132 +201,48 @@
                         <path
                           d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
                       </svg>
-                      Monitores com mais de 5 anos
+                    Monitores com mais de 5 anos
                     </h5>
                   </div>
                   <span>Equipamentos com maior risco de obsolescência</span>
-                </div>
-              </div>
-
-              <div class="linhaMonitores1">
-                <div class="kpiMonitoresMaisDe5">
-                  <div>
-                    <span class="spanFaixa">
-                      <div class="linhaMonitores1">
-                        <div class="faixa">
-                          <h6>Pronto Socorro <span class="blocoStatus_critico">Crítico</span></h6>
-                          4 de 6 monitores (67%)
-                        </div>
-                        <div class="valorKpi_critico">
-                          <h1>4</h1>
-                        </div>
-                      </div>
-
-                      <div class="containerProgress">
-                        <div class="skill">
-                          <li>
-                            <span class="bar">
-                              <span class="progressoVermelho progVermelho"></span>
-                            </span>
-                          </li>
-                        </div>
-                      </div>
-
-                    </span>
-
-                    <div>
-                      <span class="spanFaixa">
-                        <div class="linhaMonitores1">
-                          <div class="faixa">
-                            <h6>Pronto Socorro <span class="blocoStatus_alerta">Médio</span></h6>
-                            8 de 15 monitores (53%)
-                          </div>
-                          <div class="valorKpi_medio">
-                            <h1>8</h1>
-                          </div>
-                        </div>
-
-                        <div class="containerProgress">
-                          <div class="skill">
-                            <li>
-                              <span class="bar">
-                                <span class="progressoAmarelo progAmarelo"></span>
-                              </span>
-                            </li>
-                          </div>
-                        </div>
-                      </span>
-                    </div>
-
-                    <div>
-                      <span class="spanFaixa">
-                        <div class="linhaMonitores1">
-                          <div class="faixa">
-                            <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
-                            2 de 12 monitores (17%)
-                          </div>
-                          <div class="valorKpi_normal">
-                            <h1>2</h1>
-                          </div>
-                        </div>
-
-                        <div class="containerProgress">
-                          <div class="skill">
-                            <li>
-                              <span class="bar">
-                                <span class="progressoNormal progNormal"></span>
-                              </span>
-                            </li>
-                          </div>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
-            <!-- kpis em faixas da calibração -->
-
-            <div class="juntandoFaixasColunas">
-              <div class="linhaMonitores1">
-                <div class="faixa2">
-                  <div style="display: flex; gap: 40%;">
-                    <div>
-                      <h5 style="color: #d4c11c;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="bi bi-calendar2-x" viewBox="0 0 16 16">
-                          <path
-                            d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708" />
-                          <path
-                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
-                          <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
-                        </svg>
-                        Calibração desatualizada (> 1 ano)
-                      </h5>
-                      <span>Equipamentos que necessitam calibração urgente</span>
+            <div class="linhaMonitores1">
+              <div class="kpiMonitoresMaisDe5">
+                <div>
+                  <span class="spanFaixa">
+                    <div class="linhaMonitores1">
+                      <div class="faixa">
+                        <h6>Pronto Socorro <span class="blocoStatus_critico">Crítico</span></h6>
+                        4 de 6 monitores (67%)
+                      </div>
+                      <div class="valorKpi_critico">
+                        <h1>4</h1>
+                      </div>
                     </div>
 
-                    <div class="containeiBotaoCali tooltip-container">
-                      <a class="botaoAlterarCalibracao" href="../dashboard/dashboardUnidades.html"><i class="fa-solid fa-wrench"></i></a>
-                      <span class="tooltip-text">Alterar calibração dos monitores desta unidade</span>
+                    <div class="containerProgress">
+                      <div class="skill">
+                        <li>
+                          <span class="bar">
+                            <span class="progressoVermelho progVermelho"></span>
+                          </span>
+                        </li>
+                      </div>
                     </div>
-                  </div>
 
-                </div>
-              </div>
+                  </span>
 
-              <div class="linhaMonitores1">
-                <div class="kpiMonitoresMaisDe5">
                   <div>
                     <span class="spanFaixa">
                       <div class="linhaMonitores1">
                         <div class="faixa">
-                          <h6>Centro Cirúrgico <span class="blocoStatus_critico">Crítico</span></h6>
-                          5 de 8 monitores (63%)
+                          <h6>Pronto Socorro <span class="blocoStatus_alerta">Médio</span></h6>
+                          8 de 15 monitores (53%)
                         </div>
-                        <div class="valorKpi_critico">
-                          <h1>5</h1>
+                        <div class="valorKpi_medio">
+                          <h1>8</h1>
                         </div>
                       </div>
 
@@ -333,66 +250,151 @@
                         <div class="skill">
                           <li>
                             <span class="bar">
-                              <span class="progressoVermelhoCali progVermelhoCali"></span>
+                              <span class="progressoAmarelo progAmarelo"></span>
                             </span>
                           </li>
                         </div>
                       </div>
-
                     </span>
+                  </div>
 
-                    <div>
-                      <span class="spanFaixa">
-                        <div class="linhaMonitores1">
-                          <div class="faixa">
-                            <h6>Enfermaria 2 <span class="blocoStatus_alerta">Médio</span></h6>
-                            3 de 6 monitores (50%)
-                          </div>
-                          <div class="valorKpi_medio">
-                            <h1>3</h1>
-                          </div>
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
+                          2 de 12 monitores (17%)
                         </div>
+                        <div class="valorKpi_normal">
+                          <h1>2</h1>
+                        </div>
+                      </div>
 
-                        <div class="containerProgress">
-                          <div class="skill">
-                            <li>
-                              <span class="bar">
-                                <span class="progressoAmareloCali progAmareloCali"></span>
-                              </span>
-                            </li>
-                          </div>
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoNormal progNormal"></span>
+                            </span>
+                          </li>
                         </div>
-                      </span>
-                    </div>
-
-                    <div>
-                      <span class="spanFaixa">
-                        <div class="linhaMonitores1">
-                          <div class="faixa">
-                            <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
-                            2 de 8 monitores (25%)
-                          </div>
-                          <div class="valorKpi_normal">
-                            <h1>2</h1>
-                          </div>
-                        </div>
-
-                        <div class="containerProgress">
-                          <div class="skill">
-                            <li>
-                              <span class="bar">
-                                <span class="progressoNormalCali progNormalCali"></span>
-                              </span>
-                            </li>
-                          </div>
-                        </div>
-                      </span>
-                    </div>
+                      </div>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- kpis em faixas da calibração -->
+
+          <div class="juntandoFaixasColunas">
+            <div class="linhaMonitores1">
+              <div class="faixa2">
+                <div style="display: flex; gap: 40%;">
+                  <div>
+                    <h5 style="color: #d4c11c;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-calendar2-x" viewBox="0 0 16 16">
+                        <path
+                          d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708" />
+                        <path
+                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
+                      </svg>
+                      Calibração desatualizada (> 1 ano)
+                    </h5>
+                    <span>Equipamentos que necessitam calibração urgente</span>
+                  </div>
+
+                  <div class="containeiBotaoCali tooltip-container">
+                    <a class="botaoAlterarCalibracao" href="../dashboard/dashboardUnidades.html"><i
+                        class="fa-solid fa-wrench"></i></a>
+                    <span class="tooltip-text">Alterar calibração dos monitores desta unidade</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="linhaMonitores1">
+              <div class="kpiMonitoresMaisDe5">
+                <div>
+                  <span class="spanFaixa">
+                    <div class="linhaMonitores1">
+                      <div class="faixa">
+                        <h6>Centro Cirúrgico <span class="blocoStatus_critico">Crítico</span></h6>
+                        5 de 8 monitores (63%)
+                      </div>
+                      <div class="valorKpi_critico">
+                        <h1>5</h1>
+                      </div>
+                    </div>
+
+                    <div class="containerProgress">
+                      <div class="skill">
+                        <li>
+                          <span class="bar">
+                            <span class="progressoVermelhoCali progVermelhoCali"></span>
+                          </span>
+                        </li>
+                      </div>
+                    </div>
+
+                  </span>
+
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>Enfermaria 2 <span class="blocoStatus_alerta">Médio</span></h6>
+                          3 de 6 monitores (50%)
+                        </div>
+                        <div class="valorKpi_medio">
+                          <h1>3</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoAmareloCali progAmareloCali"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
+                          2 de 8 monitores (25%)
+                        </div>
+                        <div class="valorKpi_normal">
+                          <h1>2</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoNormalCali progNormalCali"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
   </main>
 
