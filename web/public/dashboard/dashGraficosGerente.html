@@ -132,7 +132,7 @@
 
             <span style="display: flex; justify-content: center; gap: 2%;">
                 <div class="grafico" style="width: 60%;">
-                    <h4>Módulos ativos no monitor</h4>
+                    <h4>Componentes do monitor</h4>
                     <canvas id="meuGrafico"></canvas>
                 </div>
 
@@ -261,9 +261,9 @@
     new Chart(ctxG, {
         type: 'boxplot',
         data: {
-            labels: ['BPM', 'SpO2', 'ECG', 'PNI/NIBP', 'RESP', 'TEMP'],
+            labels: ['CPU', 'RAM', 'DISCO'],
             datasets: [{
-                label: 'Módulos ativos',
+                label: 'Componentes do monitor',
                 outlierColor: '#999999',
                 padding: 0,
                 itemRadius: 0,
