@@ -9,10 +9,11 @@ function cadastrarUnidade(req, res) {
     var unidade = req.body.unidadeServer
     var emailResponsavel = req.body.emailResponsavelServer
     var telefoneResponsavel = req.body.telefoneResponsavelServer
+    var redeTotal = req.body.redeTotalServer
 
 
     unidadeModel
-        .cadastrarUnidade(fkHospital, cep, rua, numero, cidade, unidade, emailResponsavel, telefoneResponsavel)
+        .cadastrarUnidade(fkHospital, cep, rua, numero, cidade, unidade, emailResponsavel, telefoneResponsavel, redeTotal)
         .then(function (resultado) {
             res.json({ id: resultado.insertId });
         })
@@ -39,8 +40,22 @@ function buscarUnidades(req, res) {
     });
 }
 
+function unidadesPorEmpresa(req, res) {
+    var fk_Empresa = req.query.fk_Empresa;
+
+    unidadeModel.unidadesPorEmpresa(fk_Empresa)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     cadastrarUnidade,
-    buscarUnidades
+    buscarUnidades,
+    unidadesPorEmpresa
 };

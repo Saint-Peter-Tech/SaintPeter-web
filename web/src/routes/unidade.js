@@ -12,4 +12,8 @@ router.get("/listarPorHospital", function (req, res) {
     unidadeController.buscarUnidades(req, res);
 })
 
+router.get("/unidadesPorEmpresa", function(req, res) {
+    unidadeController.unidadesPorEmpresa(req, res);
+})
+
 module.exports = router;

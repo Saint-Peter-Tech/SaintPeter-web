@@ -49,6 +49,7 @@ cidade VARCHAR(50) NOT NULL,
 nome_unidade VARCHAR(100) NOT NULL,
 email_responsavel VARCHAR(50),
 telefone_responsavel CHAR(11),
+rede_total DOUBLE,
 
 constraint fk_hospitalUnidade
 	foreign key(fk_hospital)
@@ -66,6 +67,8 @@ Create table monitores
 (id_monitor INT PRIMARY KEY AUTO_INCREMENT,
 fk_unidade INT NOT NULL,
 fk_empresa INT NOT NULL,
+dtFabricacao DATE,
+dtManutencao DATE,
 status_monitor VARCHAR(50),
 
 constraint chkStatusMonitor
@@ -142,4 +145,3 @@ INSERT INTO hospitais
 VALUES
 (3, 'Hospital Santa Helena', '30000000000001', '11555566661'),
 (3, 'Hospital Central Brasil', '30000000000002', '11555566662');
- 

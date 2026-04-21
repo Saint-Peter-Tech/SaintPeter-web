@@ -1,0 +1,101 @@
+
+.kpiQtdMonitor {
+  background-color: white;
+  width: 26%;
+  min-height: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.kpiQtdMonitor:hover {
+  transform: scale(1.03);
+}
+
+.qtdMonitores {
+  display: flex;
+  flex-direction: row;
+  gap: 60%;
+}
+
+.titulos {
+  display: flex;
+  gap: 20%;
+  height: 10px;
+}
+
+.qtd {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.kpiQtdMonitor img {
+  border-radius: 10px;
+}
+
+.kpiQtdMonitor h4 {
+  color: #13347b;
+}
+
+.kpiQtdMonitor span {
+  margin-top: -5px;
+  color: #717171;
+  font-size: 12px;
+}
+
+.nomeLocalizacao {
+  margin-top: 5%;
+}
+
+.linha {
+  margin-top: 2%;
+  border-top: 1px solid #13347b;
+}
+.skillVerde {
+  width: 90%;
+  padding: 2%;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.skillVerde:hover {
+  transform: scale(1.03);
+}
+
+.progVerde {
+  height: 20px;
+  float: left;
+  background:
+    linear-gradient(135deg, green) 0%,
+    green 100%;
+}
+
+.progressoVerde {
+  width: 90%;
+  animation: progressoVerde 3s;
+}
+
+@keyframes progressoVerde {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+.monitoresAtivos {
+  color: #13347b;
+  display: flex;
+  gap: 77%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.colunasKpis {
+  gap: 2%;
+  display: flex;
+  width: 100000px;
+  margin-top: 5%;
+}
