@@ -9,45 +9,77 @@
   <title>SPT | Início</title>
 
   <script src="./js/sessao.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
   <link rel="stylesheet" href="./css/formularios.css" />
   <link rel="icon" href="./assets/LogoClara.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
 </head>
 
 <body>
 
-    <div class="todo">
-      <div class="imagem"></div>
-      <div class="container">
-        <div class="parte-cima">
-          <div class="pai-titulo">
-            <div class="titulo"><b>Seja bem-vindo <br> novamente</b></div>
-          </div>
-        </div>
-        <div class="parte-baixo">
-          <div class="campos">
-            Email
-            <input          
-              type="text"
-              id="email_cpf_input"
-              placeholder="email@gmail.com"
-            />
+  <nav class="navbar navbar-expand-lg border-bottom border-body ">
+    <div class="container-fluid col-12">
+      <!-- <a class="navbar "><img width="15%" src="./Identidade Visual/LogoWrittenWhite.png" alt=""></a> -->
+      <a class="navbar"><img width="128px" src="./assets/LogoWrittenWhite.png" alt=""></a>
 
-            Senha
-            <input
-              type="password"
-              id="senha_input"
-              placeholder="********"
-            />
-          </div>
-
-          <div class="botao">
-          <button onclick="verificartipo()">Entrar</button>
-          </div>
+      <div class="align-items-left">
+        <button class="navbar-toggler" style="background-color: #DDF5F1;" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <button type="button" id="botao" class="botao_nav ">
+                  <a class="nav-link_active" style="color: blue;" aria-current="page" href="./index.html">Início</a>
+                </button>
+              </li>
+            </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+  </nav>
+
+
+  <div class="todo">
+    <div class="imagem"></div>
+    <div class="container">
+      <div class="parte-cima">
+        <div class="pai-titulo">
+          <div class="titulo"><b>Seja bem-vindo <br> novamente</b></div>
+        </div>
+      </div>
+      <div class="parte-baixo">
+        <div class="campos">
+          Email
+          <input type="text" id="email_cpf_input" placeholder="email@gmail.com" />
+
+          Senha
+          <input type="password" id="senha_input" placeholder="********" />
+        </div>
+
+        <div class="botao">
+          <button onclick="verificartipo()">Entrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
@@ -61,7 +93,7 @@
     var verificaTipo = 0; //poderia ser usado true ou false
 
     if (email_cpf.includes("@") && email_cpf.includes(".")) {
-      verificaTipo = 1; 
+      verificaTipo = 1;
     } else if (somenteNumeros(email_cpf)) {
       verificaTipo = 2;
     }
@@ -202,7 +234,7 @@
     return false;
   }
 
-  
+
   function verificarcpf(cpfVar, senhaVar) {
     var cpfNum = verificarSeNum(cpfVar.trim());
 

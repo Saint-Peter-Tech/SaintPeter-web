@@ -10,6 +10,119 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.navbar {  
+  width: 100%;
+}
+
+.container-fluid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100vw !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: min-content;
+  font-size: 20px;
+  z-index: 100000;
+  padding: 0 105px;
+  background-color: #2260e1;
+  box-shadow: inset 0 0 17px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+
+
+.navbar-brand img {
+  height: 60px;
+  margin: 8px 0 8px 25px;
+}
+
+#navbarText ul li a{
+  color: #f6f8ff !important;
+  margin-left: 40px;
+  z-index: 10000000;
+  border: 2px !important;
+  padding: 4px 6px !important;
+  border-radius: 10px;
+}
+
+#navbarText ul li a:hover{
+  color: #2260e1 !important;
+  border: 2px solid !important;
+  padding: 4px 6px !important;
+  background-color: #ffd500 !important;
+  animation: hoverCima .5s;
+  border-radius: 10px;
+}
+
+
+.container-fluid .navbar-text{
+  margin-right: 25px;
+  padding: 3px 10px  !important;
+  color: #ffd500 !important;
+  border: 2px solid #ffd500 !important;
+  border-radius: 10px;
+}
+
+.container-fluid .navbar-text:hover{
+  background-color: #ffd500 !important;
+  color: #2260e1 !important;
+  font-weight: 500;
+  border: 2px solid !important;
+  animation: hoverCima .5s;
+}
+
+@keyframes hoverCima {
+        0% {
+            transform: translateY(0px);
+        }
+    
+        50% {
+            transform: translateY(-3px);
+        }
+    
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+/* Estilização dos itens interagiveis dentro da navbar */
+.container-fluid a {
+  color: #2260e1 !important;
+  font-weight: 400;
+}
+/* Alinhamento dos itens dentro da navbar */
+.navbar-expand-lg .navbar-collapse {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.botao_nav {
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 28px;
+  color: ##2267F9;
+  background-color: #fff;
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
+  margin-bottom: 20px
+}
+
+.botao_nav .nav-link_active{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
 .todo {
     display: flex;
     flex-direction: row;
