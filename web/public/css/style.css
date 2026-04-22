@@ -227,4 +227,33 @@ footerColor {
 
 /* aqui termina o novo estilo do index */
 
+/* estilo do cadastroFuncionario */
+.login{
+  color: #13347b;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+ .login .container{
+  display: flex;
+  justify-content: center;
+  padding: 5%;
+}
+
+.cardFormulario{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  padding: 5%;
+}
+
+.inputCadastro{
+  border-radius: 10px;
+  border: 1px solid #828282;
+ 
+  
+}

@@ -12,34 +12,76 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/dashboards.css">
   <link rel="icon" href="./assets/LogoClara.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
-  <div class="container-fluid" id="navegacao">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html"><img src="./assets/LogoWrittenWhite.png" alt="" /></a>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-          </ul>
-          <a href="login.html"><span class="navbar-text"> Login </span></a>
-        </div>
-      </div>
-      <div class="container-fluid">
+  <div class="sidebar">
+        <nav class="nav flex-column">
 
-      </div>
-    </nav>
-  </div>
+            <a href="../public/index.html"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+                style="display: block;">
+                <img width="100%" src="../public/assets/Identidade Visual/LogoWritten.png" id="logo_navbar" alt="">
+            </a>
 
-  <div class="login">
+            <a href="../index.html"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+                style="display: none;">
+                <img width="100%" src="../assets/Identidade Visual/LogoEscura.png" id="logo_navbar2" alt="">
+            </a>
+
+            <a class="nav-link" href="dashboardAnalista.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+                </svg>
+                <span class="description">Início</span>
+            </a>
+
+            <div class="dropdown usuario">
+                <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" width="32"
+                        height="32" class="rounded-circle me-2">
+                    <span class="description" style="color: #13347b;" id="b_usuario">Usuário</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu text-small menu-dropdown" aria-labelledby="dropdownUser1">
+                    <li>
+                        <a class="nav-link">
+                            <span class="icon">
+                                <i class="bi bi-file-earmark-check"></i>
+                            </span>
+                            <span class="description" style="color: #13347b;">Configurações</span>
+                        </a>
+                        <a class="dropdown-item"></a>
+                    </li>
+                    <li>
+                        <a class="nav-link">
+                            <span class="icon">
+                                <i class="bi bi-file-earmark-check"></i>
+                            </span>
+                            <span class="description" style="color: #13347b;">Meu perfil</span>
+                        </a>
+                        <a class="dropdown-item"></a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" style="color: #13347b;" style="color: #13347b;">Sair</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+<main class="main-content">
+  <div class="login ">
 
     <div class="container">
-      <div class="card card-cadastro">
+      <div class="cardFormulario">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
           <!--
@@ -48,23 +90,23 @@
                      -->
           <div class="campo">
             <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Nome Adm" />
+            <input class="inputCadastro" id="nome_input" type="text" placeholder="Nome Adm" />
           </div>
           <div class="campo">
             <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="seuemail@provedor.com" />
+            <input class="inputCadastro" id="email_input" type="text" placeholder="seuemail@provedor.com" />
           </div>
           <div class="campo">
             <span>Cpf:</span>
-            <input id="cpf_input" type="text">
+            <input class="inputCadastro" id="cpf_input" placeholder="XXX-XXX-XXX-YY" type="text">
           </div>
           <div class="campo">
             <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="****" />
+            <input class="inputCadastro" id="senha_input" type="password" placeholder="********" />
           </div>
           <div class="campo">
             <span>Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="****" />
+            <input class="inputCadastro" id="confirmacao_senha_input" type="password" placeholder="********" />
           </div>
           <div class="campo">
             <span>Permissão:</span>
@@ -82,46 +124,8 @@
       <div class="cadastro_img"></div>
     </div>
   </div>
+</main>
 
-  <footer class="bg-dark text-light pt-5 pb-4">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold">Saint Peter Technology</h5>
-          <p class="text-secondary">
-            Monitoramento inteligente de hardware para monitores de sinais vitais,
-            garantindo segurança e eficiência para seus dispositivos.
-          </p>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold">Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#home" class="text-secondary text-decoration-none">Home</a></li>
-            <li><a href="#sobreNos" class="text-secondary text-decoration-none">Quem somos</a></li>
-            <li><a href="#" class="text-secondary text-decoration-none">Serviços</a></li>
-            <li><a href="#" class="text-secondary text-decoration-none">Contato</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <h5 class="fw-bold">Contato</h5>
-          <p class="text-secondary mb-1">contato@saintpetertech.com</p>
-          <p class="text-secondary mb-1">(11) 4002-8922</p>
-          <p class="text-secondary">São Paulo - Brasil</p>
-        </div>
-
-      </div>
-
-      <hr class="border-secondary">
-
-      <div class="text-center text-secondary">
-        © 2026 Saint Peter Technology — Feito com esmero por Grupo 10
-      </div>
-
-    </div>
-  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
     integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
     crossorigin="anonymous"></script>
@@ -132,268 +136,268 @@
 <script>
 
 
-    function logout() {
-      sessionStorage.clear()
-      window.location.href = "index.html"
-    }
+  function logout() {
+    sessionStorage.clear()
+    window.location.href = "index.html"
+  }
 
-    function mostrarErro(texto) {
-      const mensagem = document.getElementById("mensagem_erro");
+  function mostrarErro(texto) {
+    const mensagem = document.getElementById("mensagem_erro");
 
-      mensagem.innerHTML = `<div class="alert alert-dismissible fade show" role="alert">${texto}<button type="button" class="btnFechar"></button></div>
+    mensagem.innerHTML = `<div class="alert alert-dismissible fade show" role="alert">${texto}<button type="button" class="btnFechar"></button></div>
   `;
-    }
+  }
 
-    function cadastrar() {
-      let idEmpresa = sessionStorage.FK_EMPRESA;
-      let idAdm = sessionStorage.ID_USUARIO;
+  function cadastrar() {
+    let idEmpresa = sessionStorage.FK_EMPRESA;
+    let idAdm = sessionStorage.ID_USUARIO;
 
-      //Recupere o valor da nova input pelo nome do id
-      // Agora vá para o método fetch logo abaixo
-      var selectValue = document.getElementById("permissao");
-      var nomeVar = nome_input.value.trim();
-      var cpfVar = cpf_input.value.trim();
-      var emailVar = email_input.value.trim();
-      var senhaVar = senha_input.value.trim();
-      var confirmacaoSenhaVar = confirmacao_senha_input.value.trim();
-      
-      cpfVar = verificarSeNum(cpfVar);
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var selectValue = document.getElementById("permissao");
+    var nomeVar = nome_input.value.trim();
+    var cpfVar = cpf_input.value.trim();
+    var emailVar = email_input.value.trim();
+    var senhaVar = senha_input.value.trim();
+    var confirmacaoSenhaVar = confirmacao_senha_input.value.trim();
 
-      console.log(nomeVar, emailVar, senhaVar, confirmacaoSenhaVar, cpfVar);
+    cpfVar = verificarSeNum(cpfVar);
 
-      // Verificando senha e email
+    console.log(nomeVar, emailVar, senhaVar, confirmacaoSenhaVar, cpfVar);
+
+    // Verificando senha e email
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      cpfVar == "" ||
+      selectValue.value == 0
+    ) {
+      alert("Mensagem de erro para todos os campos em branco");
+      return false;
+    } else {
+      // tratativa da senha
+      let numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let caractereEsperial = [
+        "!",
+        "@",
+        "#",
+        '"',
+        "$",
+        "%",
+        "¨",
+        "&",
+        "*",
+        "(",
+        ")",
+        "-",
+        "+",
+      ];
+      let contemNumeros = false;
+      let contemCaractereEspecial = false;
+
+      for (var i = 0; i < senhaVar.length; i++) {
+        if (senhaVar.includes(numeros[i])) {
+          contemNumeros = true;
+          break;
+        }
+      }
+
+      for (var j = 0; j < senhaVar.length; j++) {
+        if (senhaVar.includes(caractereEsperial[j])) {
+          contemCaractereEspecial = true;
+          break;
+        }
+      }
+
+      // tratativa do email
+
+      if (!emailVar.includes(".com")) {
+        emailVar += ".com";
+      }
+      console.log(emailVar);
+
+      possuiDominio = true;
+
+      if (!emailVar.includes("@")) {
+        possuiDominio = false;
+      }
+
+      // tratativa do cpf
+
+      let cpfValido = false;
+
+      if (!isNaN(cpfVar)) {
+        let resultado = "";
+
+        // descobrindo o D1
+        let cont1 = 10;
+        let somaD1 = 0;
+
+        for (var k = 0; k < 9; k++) {
+          let multiplicacaoD1 = cpfVar[k] * cont1;
+
+          somaD1 += multiplicacaoD1;
+
+          cont1 -= 1;
+        }
+
+        let restoD1 = somaD1 % 11;
+
+        if (restoD1 < 2) {
+          restoD1 = 0;
+          resultado += restoD1.toString();
+        } else {
+          restoD1 = 11 - restoD1;
+          resultado += restoD1.toString();
+        }
+
+        // descobrindo o D2
+        let cont2 = 11;
+
+        let somaD2 = 0;
+
+        for (var l = 0; l < 10; l++) {
+          let multiplicacaoD2 = cpfVar[l] * cont2;
+
+          somaD2 += multiplicacaoD2;
+
+          cont2 -= 1;
+        }
+
+        let restoD2 = somaD2 % 11;
+
+        if (restoD2 < 2) {
+          restoD2 = 0;
+          resultado += restoD2.toString();
+        } else {
+          restoD2 = 11 - restoD2;
+          resultado += restoD2.toString();
+        }
+
+        if (cpfVar[9] == resultado[0] && cpfVar[10] == resultado[1]) {
+          cpfValido = true;
+        } else {
+          cpfValido = false;
+        }
+
+        console.log(resultado + cpfVar[9] + cpfVar[10]);
+      }
+
+
+
       if (
-        nomeVar == "" ||
-        emailVar == "" ||
-        senhaVar == "" ||
-        confirmacaoSenhaVar == "" ||
-        cpfVar == "" ||
-        selectValue.value == 0
+        senhaVar.length < 8 ||
+        senhaVar != confirmacaoSenhaVar ||
+        !contemNumeros ||
+        !contemCaractereEspecial ||
+        cpfVar.length > 11 ||
+        !cpfValido ||
+        !possuiDominio
       ) {
-        alert("Mensagem de erro para todos os campos em branco");
+        console.log(
+          "A senha deve ter mais que 8 caracteres. As senhas devem ser iguais. A senha deve conter caracteres especiais",
+        );
         return false;
-      } else {
-        // tratativa da senha
-        let numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-        let caractereEsperial = [
-          "!",
-          "@",
-          "#",
-          '"',
-          "$",
-          "%",
-          "¨",
-          "&",
-          "*",
-          "(",
-          ")",
-          "-",
-          "+",
-        ];
-        let contemNumeros = false;
-        let contemCaractereEspecial = false;
-
-        for (var i = 0; i < senhaVar.length; i++) {
-          if (senhaVar.includes(numeros[i])) {
-            contemNumeros = true;
-            break;
-          }
-        }
-
-        for (var j = 0; j < senhaVar.length; j++) {
-          if (senhaVar.includes(caractereEsperial[j])) {
-            contemCaractereEspecial = true;
-            break;
-          }
-        }
-
-        // tratativa do email
-
-        if (!emailVar.includes(".com")) {
-          emailVar += ".com";
-        }
-        console.log(emailVar);
-
-        possuiDominio = true;
-
-        if (!emailVar.includes("@")) {
-          possuiDominio = false;
-        }
-
-        // tratativa do cpf
-
-        let cpfValido = false;
-
-        if (!isNaN(cpfVar)) {
-          let resultado = "";
-
-          // descobrindo o D1
-          let cont1 = 10;
-          let somaD1 = 0;
-
-          for (var k = 0; k < 9; k++) {
-            let multiplicacaoD1 = cpfVar[k] * cont1;
-
-            somaD1 += multiplicacaoD1;
-
-            cont1 -= 1;
-          }
-
-          let restoD1 = somaD1 % 11;
-
-          if (restoD1 < 2) {
-            restoD1 = 0;
-            resultado += restoD1.toString();
-          } else {
-            restoD1 = 11 - restoD1;
-            resultado += restoD1.toString();
-          }
-
-          // descobrindo o D2
-          let cont2 = 11;
-
-          let somaD2 = 0;
-
-          for (var l = 0; l < 10; l++) {
-            let multiplicacaoD2 = cpfVar[l] * cont2;
-
-            somaD2 += multiplicacaoD2;
-
-            cont2 -= 1;
-          }
-
-          let restoD2 = somaD2 % 11;
-
-          if (restoD2 < 2) {
-            restoD2 = 0;
-            resultado += restoD2.toString();
-          } else {
-            restoD2 = 11 - restoD2;
-            resultado += restoD2.toString();
-          }
-
-          if (cpfVar[9] == resultado[0] && cpfVar[10] == resultado[1]) {
-            cpfValido = true;
-          } else {
-            cpfValido = false;
-          }
-
-          console.log(resultado + cpfVar[9] + cpfVar[10]);
-        }
+      } else if (selectValue.value == 1) {
+        console.log("Cadastro ok");
 
 
-        
-        if (
-          senhaVar.length < 8 ||
-          senhaVar != confirmacaoSenhaVar ||
-          !contemNumeros ||
-          !contemCaractereEspecial ||
-          cpfVar.length > 11 ||
-          !cpfValido ||
-          !possuiDominio
-        ) {
-          console.log(
-            "A senha deve ter mais que 8 caracteres. As senhas devem ser iguais. A senha deve conter caracteres especiais",
-          );
-          return false;
-        } else if (selectValue.value == 1) {
-          console.log("Cadastro ok");
-
-
-          // Enviando o valor da nova input
-          fetch("/cadastroFuncionario/cadastrar", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
-              nomeServer: nomeVar,
-              emailServer: emailVar,
-              senhaServer: senhaVar,
-              cpfServer: cpfVar,
-              idAdmServer: idAdm,
-              empresaServer: idEmpresa,
-            }),
+        // Enviando o valor da nova input
+        fetch("/cadastroFuncionario/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+            cpfServer: cpfVar,
+            idAdmServer: idAdm,
+            empresaServer: idEmpresa,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            return resposta.json();
           })
-            .then(function (resposta) {
-              console.log("resposta: ", resposta);
-              return resposta.json();
-            })
-            .then(function (json) {
-              if (json.insertId) {
+          .then(function (json) {
+            if (json.insertId) {
 
-               div_erros_login.innerHTML = "Cadastro realizado com sucesso!";
-               
-              } else {
-                throw "Houve um erro ao tentar realizar o cadastro!";
-              }
-            })
-            .catch(function (resposta) {
-              console.log(`#ERRO: ${resposta}`);
-            });
+              div_erros_login.innerHTML = "Cadastro realizado com sucesso!";
 
-          return false;
-        } else if (selectValue.value == 2) {
-
-          fetch("/cadastroAdm/cadastroAdm", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
-              nomeAdmServer: nomeVar,
-              emailAdmServer: emailVar,
-              cpfAdmServer: cpfVar,
-              senhaAdmServer: senhaVar,
-              idEmpresaServer: idEmpresa,
-            }),
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
           })
-            .then(function (resposta) {
-              console.log("resposta: ", resposta);
-              return resposta.json();
-            })
-            .then(function (json) {
-              if (json.id_usuario) {
-                sessionStorage.setItem("ID_USUARIO", json.id_usuario);
-                sessionStorage.setItem("FK_EMPRESA", json.fk_empresa);
-                div_erros_login.innerHTML =
-                  "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
 
-                setTimeout(() => {
-                  window.location = "login.html";
-                }, "2000");
-              } else {
-                console.log(nomeAdmVar, emailAdmVar, cpfAdmVar, senhaAdmVar);
-                throw "Houve um erro ao tentar realizar o cadastro!";
-              }
-            })
-            .catch(function (resposta) {
-              console.log(`#ERRO: ${resposta}`);
-            });
-        }
+        return false;
+      } else if (selectValue.value == 2) {
+
+        fetch("/cadastroAdm/cadastroAdm", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeAdmServer: nomeVar,
+            emailAdmServer: emailVar,
+            cpfAdmServer: cpfVar,
+            senhaAdmServer: senhaVar,
+            idEmpresaServer: idEmpresa,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            return resposta.json();
+          })
+          .then(function (json) {
+            if (json.id_usuario) {
+              sessionStorage.setItem("ID_USUARIO", json.id_usuario);
+              sessionStorage.setItem("FK_EMPRESA", json.fk_empresa);
+              div_erros_login.innerHTML =
+                "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+              setTimeout(() => {
+                window.location = "login.html";
+              }, "2000");
+            } else {
+              console.log(nomeAdmVar, emailAdmVar, cpfAdmVar, senhaAdmVar);
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
       }
-
     }
 
-    function verificarSeNum(cod) {
-      var cpf = cod.trim();
-      var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-      var cpfPuro = "";
+  }
 
-      // Dois fors que servem quase como um includes
-      for (let i = 0; i < cod.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
-          if (nums[j] == cod[i]) {
-            cpfPuro += cod[i];
-          }
+  function verificarSeNum(cod) {
+    var cpf = cod.trim();
+    var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var cpfPuro = "";
+
+    // Dois fors que servem quase como um includes
+    for (let i = 0; i < cod.length; i++) {
+      for (let j = 0; j < nums.length; j++) {
+        if (nums[j] == cod[i]) {
+          cpfPuro += cod[i];
         }
       }
-
-      return cpfPuro;
     }
 
-  </script>
+    return cpfPuro;
+  }
+
+</script>
