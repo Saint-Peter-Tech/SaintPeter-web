@@ -251,9 +251,40 @@ footerColor {
   padding: 5%;
 }
 
+.campo{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 .inputCadastro{
   border-radius: 10px;
   border: 1px solid #828282;
- 
-  
+  width: 60%; 
+  padding: 0.8%;
+}
+
+.selectCadastro{
+  border: none;
+  border-radius: 10px;
+  width: 60%;
+  height: 32px;
+  color: #13347b;
+
+
+}
+
+.botaoCadastrar{
+  border-radius: 10px;
+  border:#13347b 2px solid;
+  background-color: transparent;
+  width: 30%;
+  height: 32px;
+  color: #13347b;
+  transition: transform 0.3s ease;
+}
+
+.botaoCadastrar:hover{
+  transform: scale(1.03);
+  color: #D4C11C;
+  border: #D4C11C 2px solid;
 }
