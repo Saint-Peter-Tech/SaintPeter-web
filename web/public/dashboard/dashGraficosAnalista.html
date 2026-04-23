@@ -105,18 +105,15 @@
 
     <!-- Conteúdo da dash -->
     <main class="main-content">
-
-        <div class="tituloUnidade">
-            <div>
-                <h5>Dashboard da Unidade: Pronto Socorro</h5>
-                <span>Visualizando dados específicos desta unidade hospitalar</span>
-            </div>
-
-            <div>
-                <button class="buttonTrocarUnidade"><a href="./dashboardFuncionarioComum.html"
-                        style="text-decoration: none;">
-                        < Trocar Unidade</a></button>
-            </div>
+        <div class="div_escolha_unidade">
+            <h5>Dashboard da Unidade: Pronto Socorro</h5>
+           
+            Unidade Hospitalar <br>
+            <select class="opcaoDashboard" id="select_unidade">
+                <option value="0" selected disabled>Selecione uma unidade</option>
+            </select>
+            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
+                    href="./dashGraficosGerente.html"> < Trocar Unidade </a></button>
         </div>
 
         <!-- kpis -->
@@ -168,7 +165,7 @@
         <div class="grafico">
             <h4><i class="fa-solid fa-chart-line"></i>
                 Monitoramento da rede diário</h4>
-            <p>Uso de rede vs Monitores ativos - Últimas 24 horas</p>
+            <p>Porcentagem de uso de rede vs Porcentagem de monitores ativos na unidade - Últimas 24 horas</p>
             <div class="graficoLinhaRede">
                 <canvas id="canvasLinhaRede"></canvas>
             </div>
@@ -241,63 +238,48 @@
 
     const ctxLinha = document.getElementById('canvasLinhaRede');
 
-    const dataLinha = {
-        labels: ['01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
-        datasets: [{
-            label: 'Unidade 1',
-            data: [120, 190, 300, 250, 220, 310],
-            borderColor: '#659FF0',
-            backgroundColor: '#659FF0',
+    const usoRede = [22, 18, 15, 14, 16, 20, 28, 35, 42, 48, 55, 60, 67, 72, 75, 78, 74, 68, 61, 54, 46, 38, 30, 25];
 
-        }], datasets: [{
-            label: 'Unidade 2',
-            data: [10, 123, 130, 205, 342, 310],
-            borderColor: '#659AA0',
-            backgroundColor: '#659AA0',
+    const monitoresAtivos = [20, 18, 15, 15, 17, 22, 30, 38, 45, 50, 58, 63, 70, 74, 78, 80, 76, 69, 62, 55, 48, 40, 32, 26];
 
-        }]
-    };
-
-    
-
-    const configLinha = {
+    new Chart(ctxLinha, {
         type: 'line',
-        data: dataLinha,
+        data: {
+            labels: xValues = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            datasets: [{
+                label: 'Uso da Rede',
+                data: usoRede,
+                fill: false,
+                borderColor: '#4169E0',
+                backgroundColor: '#A1B5DF'
+            }, {
+                label: 'Monitores Ativos',
+                data: monitoresAtivos,
+                fill: false,
+                borderColor: '#9BE041',
+                backgroundColor: '#C8DEA0'
+            }]
+        },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            stacked: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Chart.js Line Chart - Multi Axis'
-                }
-            },
             scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Horas'
+                    }
+                },
                 y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-
-                    // grid line settings
-                    grid: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
-                    },
-                },
+                    title: {
+                        display: true,
+                        text: 'Porcentagem (%)'
+                    }
+                }
             }
-        },
-    };
+        }
+    });
 
-    new Chart(ctxLinha, configLinha);
+
 
 
 </script>

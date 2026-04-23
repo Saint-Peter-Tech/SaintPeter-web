@@ -1,6 +1,5 @@
 .grafico {
   background-color: white;
-  justify-content: start;
   padding: 2%;
   color: #13347b;
   margin-bottom: 2%;
@@ -8,12 +7,15 @@
   border-radius: 10px;
 }
 
-.grafico:hover {
-    transform: scale(1.02);
+.graficoLinhaRede{
+    height: 780px;
+    justify-content: start;
+    display: flex;
+    width: 1800px;
 }
 
-.graficoLinhaRede{
-    height: 600px;
+#canvasLinhaRede{
+    width: 1800px;
 }
 
 #graficoDonut {

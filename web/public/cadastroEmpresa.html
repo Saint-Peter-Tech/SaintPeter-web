@@ -1,72 +1,56 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SPT | Início</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="./js/sessao.js"></script>
-    <link rel="stylesheet" href="./css/formularios.css" />
-    <link rel="icon" href="./assets/LogoClara.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-  </head>
+  <title>SPT | Início</title>
 
-  <body>
-    <div class="todo">
-      <div class="imagem"></div>
-      <div class="container">
-        <div class="parte-cima">
-          <div class="pai-titulo">
-            <div class="titulo">Criar conta</div>
-            <div class="status"> <img src="./assets/status1.png" alt=""></div>  
-          </div>
+  <script src="./js/sessao.js"></script>
+  <link rel="stylesheet" href="./css/formularios.css" />
+  <link rel="icon" href="./assets/LogoClara.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+
+  <div class="todo">
+    <div class="imagem"></div>
+    <div class="container">
+      <div class="parte-cima">
+        <div class="pai-titulo">
+          <div class="titulo">Criar conta</div>
+          <div class="status"> <img src="./assets/status1.png" alt=""></div>
         </div>
-        <div class="parte-baixo">
-          <div class="campos">
-            Nome
-            <input
-              type="text"
-              id="nomeEmpresa_input"
-              placeholder="Nome da empresa"
-            />
+      </div>
+      <div class="parte-baixo">
+        <div class="campos">
+          Nome
+          <input type="text" id="nomeEmpresa_input" placeholder="Nome da empresa" />
 
-            Email
-            <input
-              type="text"
-              id="emailEmpresa_input"
-              placeholder="emaildaempresa@gmail.com"
-            />
+          Email
+          <input type="text" id="emailEmpresa_input" placeholder="emaildaempresa@gmail.com" />
 
-            Telefone
-            <input
-              type="text"
-              id="telefoneEmpresa_input"
-              placeholder="119XXXXXXXX"
-              max="11">
-            CNPJ
-            <input
-              type="text"
-              id="cnpjEmpresa_input"
-              placeholder="12.345.678/0001-00"
-            />
-          </div>
+          Telefone
+          <input type="text" id="telefoneEmpresa_input" placeholder="119XXXXXXXX" max="11">
+          CNPJ
+          <input type="text" id="cnpjEmpresa_input" placeholder="12.345.678/0001-00" />
+        </div>
 
-          <div class="botao">
+        <div class="botao">
           <button onclick="cadastrarEmpresa()">Cadastrar Empresa</button>
-          </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-  crossorigin="anonymous"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script>
   function cadastrarEmpresa() {
     //Recupere o valor da nova input pelo nome do id
@@ -100,7 +84,7 @@
 
     //Verificar telefone
 
-    if (!verificarTelefone(telefoneEmpresaVar)){
+    if (!verificarTelefone(telefoneEmpresaVar)) {
       alert("Telefone inválido");
       return false;
     }
@@ -245,15 +229,15 @@
     return true;
   }
 
-  function verificarTelefone(num){
+  function verificarTelefone(num) {
 
     num = cnpjPuro(num);
 
-    if (num.length == 13){
+    if (num.length == 13) {
       num = num.slice(2);
     }
 
-    if(num.length != 11){
+    if (num.length != 11) {
       return false;
     } else {
       return true;
