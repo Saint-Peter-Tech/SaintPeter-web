@@ -1,16 +1,14 @@
-@import url('https://fonts.cdnfonts.com/css/centrale-sans-regular');
-
+@import url("https://fonts.cdnfonts.com/css/centrale-sans-regular");
 
 body {
-  font-family: 'Centrale Sans Regular', sans-serif;
+  font-family: "Centrale Sans Regular", sans-serif;
 }
-
 
 /* -------------------------- Start FOOTER --------------------------*/
 .footer {
   width: 100%;
   height: 16rem;
-  background: #2260E1;
+  background: #2260e1;
   color: #ffffff;
   display: flex;
   font-size: 0.95rem;
@@ -53,7 +51,6 @@ body {
 
 .footer .dados {
   margin: 2rem 5rem 0 2rem;
-
 }
 
 .footer_linha {
@@ -67,7 +64,6 @@ body {
 /* --------------------------- End FOOTER ---------------------------*/
 
 /* ------------------------- Start CADASTRO -------------------------*/
-
 
 /* -------------------------- End CADASTRO --------------------------*/
 
@@ -83,7 +79,6 @@ body {
 
 body {
   font-family: "Poppins", sans-serif;
-
 }
 
 .body2 {
@@ -92,19 +87,19 @@ body {
 
 .botao {
   border: none;
-  background-color: #DDF5F1;
+  background-color: #ddf5f1;
   border-radius: 10px;
   font-weight: 550;
   transition: transform 0.3s ease;
 }
 
-.botao:hover{
-  background-color: #D4C11C;
+.botao:hover {
+  background-color: #d4c11c;
   transform: scale(1.03);
 }
 
 .botao_nav {
-  color:#DDF5F1
+  color: #ddf5f1;
 }
 
 .botao_nav:hover {
@@ -123,7 +118,7 @@ body {
   cursos: pointer;
 }
 
- .animacao:hover{
+.animacao:hover {
   transform: scale(1.03);
 }
 
@@ -147,7 +142,7 @@ body {
 
   width: 100%;
   height: 90%;
-  background: linear-gradient(135Deg, #2f5bd3, #1e3c88);
+  background: linear-gradient(135deg, #2f5bd3, #1e3c88);
   z-index: 0;
 }
 
@@ -184,22 +179,21 @@ body {
   padding: 3%;
   gap: 2%;
   justify-content: space-around;
-
 }
-.footerAnimacao{
+.footerAnimacao {
   cursor: pointer;
 }
 
 .footerAnimacao:hover {
-  color: #D4C11C;
+  color: #d4c11c;
 }
 
 footerColor {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
-.nomeFooter{
+.nomeFooter {
   text-decoration: none;
-  color: inherit!important;
+  color: inherit !important;
 }
 
 .carousel-item img {
@@ -212,8 +206,8 @@ footerColor {
   min-width: 90%none;
 }
 
-.btn-duvida{
-  color: #2260E1;
+.btn-duvida {
+  color: #2260e1;
   text-decoration: none;
   border: none;
   background: none;
@@ -224,11 +218,10 @@ footerColor {
   font-weight: bold;
 }
 
-
 /* aqui termina o novo estilo do index */
 
 /* estilo do cadastroFuncionario */
-.login{
+.login {
   color: #13347b;
   padding: 2%;
   display: flex;
@@ -236,13 +229,13 @@ footerColor {
   align-items: center;
 }
 
- .login .container{
+.login .container {
   display: flex;
   justify-content: center;
   padding: 5%;
 }
 
-.cardFormulario{
+.cardFormulario {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -251,31 +244,29 @@ footerColor {
   padding: 5%;
 }
 
-.campo{
+.campo {
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
-.inputCadastro{
+.inputCadastro {
   border-radius: 10px;
   border: 1px solid #828282;
-  width: 60%; 
+  width: 60%;
   padding: 0.8%;
 }
 
-.selectCadastro{
+.selectCadastro {
   border: none;
   border-radius: 10px;
   width: 60%;
   height: 32px;
   color: #13347b;
-
-
 }
 
-.botaoCadastrar{
+.botaoCadastrar {
   border-radius: 10px;
-  border:#13347b 2px solid;
+  border: #13347b 2px solid;
   background-color: transparent;
   width: 30%;
   height: 32px;
@@ -283,8 +274,18 @@ footerColor {
   transition: transform 0.3s ease;
 }
 
-.botaoCadastrar:hover{
+.botaoCadastrar:hover {
   transform: scale(1.03);
-  color: #D4C11C;
-  border: #D4C11C 2px solid;
+  color: #d4c11c;
+  border: #d4c11c 2px solid;
+}
+
+.checkboxCadastro {
+  display: flex;
+  gap: 2%;
+  margin-bottom: 2%;
+}
+
+.checkboxes{
+  width: 110px;
 }
