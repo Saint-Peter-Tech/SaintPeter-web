@@ -154,43 +154,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* TAGS */
-.container-tags {
-  display: flex;
-  flex-direction: column;
-  align-content: start;
-  gap: 10px;
-}
-
-.tag1 {
-  background-color: #ffed28;
-  border-left: solid 5px #d4c11c;
-  border-radius: 10px;
-  min-width: 40px;
-  height: 20px;
-}
-
-.tag2 {
-  background-color: #ff4b4b;
-  border-left: solid 5px #991616;
-  border-radius: 10px;
-  min-width: 40px;
-  height: 20px;
-}
-
-.tag3 {
-  background-color: #ddf5f1;
-  border-left: solid 5px #163599;
-  border-radius: 10px;
-  min-width: 40px;
-  height: 20px;
-}
-
-.span-tag {
-  display: flex;
-  gap: 10%;
-}
-
 /* Conteúdo dash */
 .botaoEscolhaSessao {
   border: none;
