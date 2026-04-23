@@ -822,3 +822,60 @@ h5 {
 .tuplaMonitor{
   cursor: pointer;
 }
+
+/* dashboard monitor especifico */
+
+.div_escolha_monitor{
+  background-color: white;
+  color: #13347b;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+.KpisMonitoresEspecificosNormal{
+  background-color: white;
+  color: #13347b;
+  padding: 2%;
+  border-radius: 10px;
+  gap: 2%;
+  width: 23%;
+  transition: transform 0.3s ease;
+  border-bottom: #13347b 4px solid;
+}
+
+
+.KpisMonitoresEspecificosCritico{
+  background-color: white;
+  color: #ff4b4b;
+  padding: 2%;
+  border-radius: 10px;
+  gap: 2%;
+  width: 23%;
+  transition: transform 0.3s ease;
+  border-bottom: #ff4b4b 4px solid;
+}
+
+.KpisMonitoresEspecificosAlerta{
+  background-color: white;
+  color: #d4c11c;
+  padding: 2%;
+  border-radius: 10px;
+  gap: 2%;
+  width: 23%;
+  transition: transform 0.3s ease;
+  border-bottom: #d4c11c 4px solid;
+}
+
+.KpisMonitoresEspecificosNormal:hover,
+.KpisMonitoresEspecificosCritico:hover,
+.KpisMonitoresEspecificosAlerta:hover{
+  transform: scale(1.03);
+}
+
+.statusMonitor{
+  background-color: white;
+  border-radius: 10px;
+  padding: 2%;
+  color: #13347b;
+  margin-top: 2%;
+}
