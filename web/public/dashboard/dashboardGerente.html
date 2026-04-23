@@ -111,12 +111,12 @@
   </div>
 
   <!-- Conteúdo da dash -->
-  <main class="main-content" >
+  <main class="main-content">
     <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
-    <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
+    <button class="botaoEscolhaSessao" onclick="selecionarA()">Analista ></button>
     <br><br>
-    
-    <span id="gerente">
+
+    <div id="div_gerente" style="display: block;">
       <h4 class="tituloDash">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
           viewBox="0 0 16 16">
@@ -129,7 +129,6 @@
       <!-- Monitores -->
       <div>
         <span>
-
           <!-- Escolher unidade -->
           <div class="div_escolha_unidade">
             <h5>Selecionar Unidade para Dashboard</h5>
@@ -141,7 +140,8 @@
             <select class="opcaoDashboard" id="select_unidade">
               <option value="0" selected disabled>Selecione uma unidade</option>
             </select>
-            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;" href="./dashGraficosGerente.html">Visualisar Dashboard ></a></button>
+            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
+                href="./dashGraficosGerente.html">Visualisar Dashboard ></a></button>
           </div>
 
           <!-- KPIs -->
@@ -320,7 +320,8 @@
                     </div>
 
                     <div class="containeiBotaoCali tooltip-container">
-                      <a class="botaoAlterarCalibracao" href="../dashboard/dashboardUnidades.html"><i class="fa-solid fa-wrench"></i></a>
+                      <a class="botaoAlterarCalibracao" href="../dashboard/dashboardUnidades.html"><i
+                          class="fa-solid fa-wrench"></i></a>
                       <span class="tooltip-text">Alterar calibração dos monitores desta unidade</span>
                     </div>
                   </div>
@@ -408,15 +409,292 @@
           </div>
 
         </span>
+      </div>
+    </div>
 
-        <span id="funcionario" style="display: none;">
-          <main class="main-content">
-            <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
-            <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
-          </main>
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Dash de analista -->
+
+    <div id="div_analista" style="display: none;">
+      <!-- Monitores -->
+      <div>
+        <span>
+          <!-- Escolher unidade -->
+          <div class="div_escolha_unidade">
+            <h5>Selecionar Unidade para Dashboard</h5>
+            <p>
+              Escolha uma unidade hospitalar para visualizar informações detalhadas de monitoramento
+            </p>
+
+            Unidade Hospitalar <br>
+            <select class="opcaoDashboard" id="select_unidade">
+              <option value="0" selected disabled>Selecione uma unidade</option>
+            </select>
+            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
+                href="./dashGraficosAnalista.html">Visualisar Dashboard ></a></button>
+          </div>
+
+          <!-- KPIs -->
+          <div class="linhaMonitores1">
+            <div class="KpisMonitoresAntigos">
+              <div class="containerKpiMA">
+                <div class="tituloKpi">
+                  Total unidades
+                  <br>
+                  <h1 style="color: #ff4b4b;">12</h1>
+                </div>
+                <div class="imgKpiContainer">
+                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-acima-icone.png" alt="">
+                </div>
+              </div>
+              Unidades com uso de rede acima do recomendado
+            </div>
+
+            <div class="KpisMonitoresAntigos">
+              <div class="containerKpiMA">
+                <div class="tituloKpi">
+                  Monitores ativos
+                  <br>
+                  <h1 style="color: #ff4b4b;">10</h1>
+                </div>
+                <div class="imgKpiContainer">
+                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/monitor-vermelho-icone-.png" alt="">
+                </div>
+              </div>
+              Unidas com mais de 80% dos monitores ativos
+            </div>
+
+            <div class="KpisMonitoresAntigos">
+              <div class="containerKpiMA">
+                <div class="tituloKpi">
+                  Unidades Críticas
+                  <br>
+                  <h1 style="color: #ff4b4b;">3</h1>
+                </div>
+                <div class="imgKpiContainer">
+                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+                </div>
+              </div>
+              Requerem atenção
+            </div>
+          </div>
+
+          <div style="color: #13347b;">
+            <h5>Situações Críticas por Unidade</h5>
+
+            Análise de risco operacional baseada em antiguidade e calibração dos equipamentos
+          </div>
+          <br>
+
+          <div class="juntandoFaixas">
+            <!-- kpis em faixas obsolescencia  -->
+
+
+            <div class="juntandoFaixasColunas">
+              <div class="linhaMonitores1">
+                <div class="faixa1">
+                  <div>
+                    <h5 style="color: #991616;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-wifi" viewBox="0 0 16 16">
+                        <path
+                          d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049" />
+                        <path
+                          d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />
+                      </svg>
+                      Porcentagem de uso da rede por unidade
+                    </h5>
+                  </div>
+                  <span>Lista de unidades com maior porcentagem de uso de rede</span>
+                </div>
+              </div>
+
+              <div class="linhaMonitores1">
+                <div class="kpiMonitoresMaisDe5">
+                  <div>
+                    <span class="spanFaixa">
+                      <div class="linhaMonitores1">
+                        <div class="faixa">
+                          <h6>Pronto Socorro <span class="blocoStatus_critico">Crítico</span></h6>
+                          Uso da rede (67%)
+                        </div>
+                        <div class="valorKpi_critico">
+                          <h1>4</h1>
+                        </div>
+                      </div>
+
+                      <div class="containerProgress">
+                        <div class="skill">
+                          <li>
+                            <span class="bar">
+                              <span class="progressoVermelho progVermelho"></span>
+                            </span>
+                          </li>
+                        </div>
+                      </div>
+
+                    </span>
+
+                    <div>
+                      <span class="spanFaixa">
+                        <div class="linhaMonitores1">
+                          <div class="faixa">
+                            <h6>Pronto Socorro <span class="blocoStatus_alerta">Médio</span></h6>
+                            Uso da rede (53%)
+                          </div>
+                          <div class="valorKpi_medio">
+                            <h1>8</h1>
+                          </div>
+                        </div>
+
+                        <div class="containerProgress">
+                          <div class="skill">
+                            <li>
+                              <span class="bar">
+                                <span class="progressoAmarelo progAmarelo"></span>
+                              </span>
+                            </li>
+                          </div>
+                        </div>
+                      </span>
+                    </div>
+
+                    <div>
+                      <span class="spanFaixa">
+                        <div class="linhaMonitores1">
+                          <div class="faixa">
+                            <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
+                            Uso da rede (17%)
+                          </div>
+                          <div class="valorKpi_normal">
+                            <h1>2</h1>
+                          </div>
+                        </div>
+
+                        <div class="containerProgress">
+                          <div class="skill">
+                            <li>
+                              <span class="bar">
+                                <span class="progressoNormal progNormal"></span>
+                              </span>
+                            </li>
+                          </div>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- kpis em faixas da calibração -->
+
+            <div class="juntandoFaixasColunas">
+              <div>
+                <div class="faixa2">
+                  <div style="display: flex; gap: 40%;">
+                    <div>
+                      <h5 style="color: #d4c11c;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-display" viewBox="0 0 16 16">
+                          <path
+                            d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
+                        </svg>
+                        Quantidade de monitores em manutenção
+                      </h5>
+                      <span>Lista de unidades com mais monitores em manutenção</span>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="linhaMonitores1">
+                  <div class="kpiMonitoresMaisDe5">
+                    <div>
+                      <span class="spanFaixa">
+                        <div class="linhaMonitores1">
+                          <div class="faixa">
+                            <h6>Centro Cirúrgico <span class="blocoStatus_critico">Crítico</span></h6>
+                            5 de 8 monitores (63%)
+                          </div>
+                          <div class="valorKpi_critico">
+                            <h1>5</h1>
+                          </div>
+                        </div>
+
+                        <div class="containerProgress">
+                          <div class="skill">
+                            <li>
+                              <span class="bar">
+                                <span class="progressoVermelhoCali progVermelhoCali"></span>
+                              </span>
+                            </li>
+                          </div>
+                        </div>
+
+                      </span>
+
+                      <div>
+                        <span class="spanFaixa">
+                          <div class="linhaMonitores1">
+                            <div class="faixa">
+                              <h6>Enfermaria 2 <span class="blocoStatus_alerta">Médio</span></h6>
+                              3 de 6 monitores (50%)
+                            </div>
+                            <div class="valorKpi_medio">
+                              <h1>3</h1>
+                            </div>
+                          </div>
+
+                          <div class="containerProgress">
+                            <div class="skill">
+                              <li>
+                                <span class="bar">
+                                  <span class="progressoAmareloCali progAmareloCali"></span>
+                                </span>
+                              </li>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+
+                      <div>
+                        <span class="spanFaixa">
+                          <div class="linhaMonitores1">
+                            <div class="faixa">
+                              <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
+                              2 de 8 monitores (25%)
+                            </div>
+                            <div class="valorKpi_normal">
+                              <h1>2</h1>
+                            </div>
+                          </div>
+
+                          <div class="containerProgress">
+                            <div class="skill">
+                              <li>
+                                <span class="bar">
+                                  <span class="progressoNormalCali progNormalCali"></span>
+                                </span>
+                              </li>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </span>
-
+      </div>
+    </div>
   </main>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -427,14 +705,14 @@
 <script>
 
   function selecionarG() {
-    document.getElementById('gerente').style.display = "block";
-    document.getElementById('funcionario').style.display = "none";
+    document.getElementById('div_gerente').style.display = "block";
+    document.getElementById('div_analista').style.display = "none";
 
   }
 
-  function selecionarF() {
-    document.getElementById('funcionario').style.display = "block";
-    document.getElementById('gerente').style.display = "none";
+  function selecionarA() {
+    document.getElementById('div_analista').style.display = "block";
+    document.getElementById('div_gerente').style.display = "none";
   }
 
   window.onload = listarUnidades()
