@@ -187,7 +187,6 @@
                 <div class="graficoDonut">
                     <canvas id="canvaDonut"></canvas>
                 </div>
-
                 <div class="container-tags">
                     <span class="span-tag">
                         <div class="labelDonutA"></div>
@@ -202,24 +201,23 @@
                         <p>SEGURO</p>
                     </span>
                 </div>
-
             </div>
 
             <div>
                 <div class="juntandoFaixasColunas">
                     <div>
                         <div class="faixa2">
-                            <div style="display: flex; gap: 40%;">
+                            <div style="display: flex; gap: 40%; padding: 2%;">
                                 <div>
                                     <h5 style="color: #d4c11c;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-display" viewBox="0 0 16 16">
+                                            fill="currentColor" class="bi bi-wrench" viewBox="0 0 16 16">
                                             <path
-                                                d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
+                                                d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
                                         </svg>
-                                        Quantidade de monitores em manutenção
+                                        Monitores em Manutenção
                                     </h5>
-                                    <span>Lista de unidades com mais monitores em manutenção</span>
+                                    <span>Quantidade de monitores em manutenção </span>
                                 </div>
                             </div>
                         </div>
@@ -233,46 +231,32 @@
                                     <span class="spanFaixa">
                                         <div class="linhaMonitores1">
                                             <div class="faixa">
-                                                <h6>Centro Cirúrgico <span class="blocoStatus_critico">Crítico</span>
-                                                </h6>
-                                                5 de 8 monitores (63%)
+                                                <span style="display: flex">
+                                                    <h4>Monitor UTI-002</h4>
+                                                    <span class="blocoStatus_criticoDash">Aguardando peça</span>
+                                                </span>
+                                                <p>Substituição de sensor de pressão</p>
                                             </div>
-                                            <div class="valorKpi_critico">
-                                                <h1>5</h1>
+
+                                            <div>
+                                                <a class="botaoDetalhes" href="">Ver Detalhes</a>
                                             </div>
                                         </div>
-
-                                        <div class="containerProgress">
-                                            <div class="skill">
-                                                <li>
-                                                    <span class="bar">
-                                                        <span class="progressoVermelhoCali progVermelhoCali"></span>
-                                                    </span>
-                                                </li>
-                                            </div>
-                                        </div>
-
                                     </span>
 
                                     <div>
                                         <span class="spanFaixa">
                                             <div class="linhaMonitores1">
                                                 <div class="faixa">
-                                                    <h6>Enfermaria 2 <span class="blocoStatus_alerta">Médio</span></h6>
-                                                    3 de 6 monitores (50%)
-                                                </div>
-                                                <div class="valorKpi_medio">
-                                                    <h1>3</h1>
-                                                </div>
-                                            </div>
+                                                    <span style="display: flex">
+                                                        <h4>Monitor UTI-007</h4>
+                                                        <span class="blocoStatus_alertaDash">Em análise</span>
+                                                    </span>
+                                                    <p>Substituição de sensor de pressão</p>
 
-                                            <div class="containerProgress">
-                                                <div class="skill">
-                                                    <li>
-                                                        <span class="bar">
-                                                            <span class="progressoAmareloCali progAmareloCali"></span>
-                                                        </span>
-                                                    </li>
+                                                </div>
+                                                <div>
+                                                    <a class="botaoDetalhes" href="">Ver Detalhes</a>
                                                 </div>
                                             </div>
                                         </span>
@@ -282,21 +266,14 @@
                                         <span class="spanFaixa">
                                             <div class="linhaMonitores1">
                                                 <div class="faixa">
-                                                    <h6>UTI Geral <span class="blocoStatus_normal">Normal</span></h6>
-                                                    2 de 8 monitores (25%)
+                                                    <span style="display: flex">
+                                                        <h4>Monitor UTI-010</h4>
+                                                        <span class="blocoStatus_normalDash">Em andamento</span>
+                                                    </span>
+                                                    <p>Substituição de sensor de pressão</p>
                                                 </div>
-                                                <div class="valorKpi_normal">
-                                                    <h1>2</h1>
-                                                </div>
-                                            </div>
-
-                                            <div class="containerProgress">
-                                                <div class="skill">
-                                                    <li>
-                                                        <span class="bar">
-                                                            <span class="progressoNormalCali progNormalCali"></span>
-                                                        </span>
-                                                    </li>
+                                                <div>
+                                                    <a class="botaoDetalhes" href="">Ver Detalhes</a>
                                                 </div>
                                             </div>
                                         </span>

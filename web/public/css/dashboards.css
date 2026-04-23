@@ -421,6 +421,7 @@ h5 {
   padding: 2%;
   border-radius: 5px;
   font-weight: 500;
+  transition: transform 0.3s ease;
 }
 
 .blocoStatus_alerta {
@@ -433,6 +434,7 @@ h5 {
   padding: 2%;
   border-radius: 5px;
   font-weight: 500;
+  transition: transform 0.3s ease;
 }
 
 .blocoStatus_normal {
@@ -445,8 +447,20 @@ h5 {
   padding: 2%;
   border-radius: 5px;
   font-weight: 500;
+  transition: transform 0.3s ease;
 }
 
+.blocoStatus_critico:hover{
+  transform: scale(1.03);
+}
+
+.blocoStatus_alerta:hover{
+  transform: scale(1.03);
+}
+
+.blocoStatus_normal:hover{
+  transform: scale(1.03);
+}
 .spanFaixa {
   display: flex;
   margin-bottom: 5%;
