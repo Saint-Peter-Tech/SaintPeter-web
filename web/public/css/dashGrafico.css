@@ -132,6 +132,7 @@
   margin-left: 10px;
   text-align: center;
   transition: transform 0.3s ease;
+  margin-bottom: 5%;
 }
 
 .blocoStatus_alertaDash {
@@ -147,6 +148,7 @@
   margin-left: 10px;
   text-align: center;
   transition: transform 0.3s ease;
+  margin-bottom: 5%;
 }
 
 .blocoStatus_normalDash {
@@ -162,16 +164,11 @@
   margin-left: 10px;
   text-align: center;
   transition: transform 0.3s ease;
+  margin-bottom: 5%;
 }
 
-.blocoStatus_criticoDash:hover{
-    transform: scale(1.03);
-}
-
-.blocoStatus_alertaDash:hover{
-    transform: scale(1.03);
-}
-
+.blocoStatus_criticoDash:hover,
+.blocoStatus_alertaDash:hover,
 .blocoStatus_normalDash:hover{
     transform: scale(1.03);
 }
