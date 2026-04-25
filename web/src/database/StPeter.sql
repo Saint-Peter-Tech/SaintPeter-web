@@ -72,7 +72,7 @@ dtManutencao DATE,
 status_monitor VARCHAR(50),
 
 constraint chkStatusMonitor
-	check (status_monitor IN ('Ativo', 'Inativo')),
+	check (status_monitor IN ('Ativo', 'Inativo', 'Manutenção')),
 
 constraint fk_unidadeMonitor
 	foreign key(fk_unidade)
