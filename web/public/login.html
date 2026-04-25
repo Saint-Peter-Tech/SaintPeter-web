@@ -155,8 +155,14 @@
             sessionStorage.FK_EMPRESA = json.fk_empresa;
 
             setTimeout(function () {
-              window.location = "../dashboard/dashboard.html";
-            }, 1000); // apenas para exibir o loading
+              if (json.fk_empresa == 1) {
+                window.location = "../dashboard/dashboardSuporte.html";
+              } else if (json.fk_adm == null) {
+                window.location = "../dashboard/dashboardGerente.html";
+              } else {
+                window.location = "../dashboard/dashboardAnalista.html";
+              }
+            }, 1000);
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
@@ -214,10 +220,15 @@
             sessionStorage.FK_ADM = json.fk_adm;
             sessionStorage.FK_EMPRESA = json.fk_empresa;
 
-
             setTimeout(function () {
-              window.location = "../dashboard/dashboardAnalista.html";
-            }, 1000); // apenas para exibir o loading
+              if (json.fk_empresa == 1) {
+                window.location = "../dashboard/dashboardSuporte.html";
+              } else if (json.fk_adm == null) {
+                window.location = "../dashboard/dashboardGerente.html";
+              } else {
+                window.location = "../dashboard/dashboardAnalista.html";
+              }
+            }, 1000);
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
