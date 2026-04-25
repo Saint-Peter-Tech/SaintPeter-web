@@ -353,8 +353,8 @@
           })
           .then(function (json) {
             if (json.insertId) {
-
-              div_erros_login.innerHTML = "Cadastro realizado com sucesso!";
+              div_erros_login.style.color = "green"
+              div_erros_login.innerHTML = "Cadastro de analista realizado com sucesso!";
 
             } else {
               throw "Houve um erro ao tentar realizar o cadastro!";
@@ -390,12 +390,9 @@
             if (json.id_usuario) {
               sessionStorage.setItem("ID_USUARIO", json.id_usuario);
               sessionStorage.setItem("FK_EMPRESA", json.fk_empresa);
+              div_erros_login.style.color = "green"
               div_erros_login.innerHTML =
-                "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-              setTimeout(() => {
-                window.location = "login.html";
-              }, "2000");
+                "Cadastro de administrador realizado com sucesso!";
             } else {
               console.log(nomeAdmVar, emailAdmVar, cpfAdmVar, senhaAdmVar);
               throw "Houve um erro ao tentar realizar o cadastro!";
