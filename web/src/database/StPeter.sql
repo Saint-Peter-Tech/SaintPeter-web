@@ -145,3 +145,33 @@ INSERT INTO hospitais
 VALUES
 (3, 'Hospital Santa Helena', '30000000000001', '11555566661'),
 (3, 'Hospital Central Brasil', '30000000000002', '11555566662');
+
+INSERT INTO unidades 
+(fk_hospital, cep, rua, numero, cidade, nome_unidade, email_responsavel, telefone_responsavel, rede_total)
+VALUES
+(1, '01001000', 'Rua A', '100', 'São Paulo', 'Unidade SP - Empresa 2', 'resp2@empresa.com', '11911111111', 1000);
+
+INSERT INTO unidades 
+(fk_hospital, cep, rua, numero, cidade, nome_unidade, email_responsavel, telefone_responsavel, rede_total)
+VALUES
+(3, '02002000', 'Rua B', '200', 'São Paulo', 'Unidade SP - Empresa 3', 'resp3@empresa.com', '11922222222', 1000);
+
+INSERT INTO monitores 
+(fk_unidade, fk_empresa, dtFabricacao, dtManutencao, status_monitor)
+VALUES
+(1, 2, '2024-01-01', '2025-01-01', 'Ativo'),
+(1, 2, '2024-02-01', '2025-02-01', 'Ativo'),
+(1, 2, '2024-03-01', '2025-03-01', 'Ativo'),
+
+(2, 3, '2024-01-01', '2025-01-01', 'Ativo'),
+(2, 3, '2024-02-01', '2025-02-01', 'Ativo'),
+(2, 3, '2024-03-01', '2025-03-01', 'Ativo');
+
+INSERT INTO componente_monitor (fk_componente, fk_monitor, limite)
+VALUES
+(1,1,70),(2,1,85),(3,1,50),(4,1,5),
+(1,2,70),(2,2,85),(3,2,50),(4,2,5),
+(1,3,70),(2,3,85),(3,3,50),(4,3,5),
+(1,4,80),(2,4,75),(3,4,70),(4,4,10),
+(1,5,80),(2,5,75),(3,5,70),(4,5,10),
+(1,6,80),(2,6,75),(3,6,70),(4,6,10);
