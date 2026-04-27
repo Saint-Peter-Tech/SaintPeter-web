@@ -132,3 +132,24 @@
     height: 20px;
   }
 }
+
+/* Dash de monitor específico */
+
+.statusMonitorAtivo{
+  color: #006300;
+  background-color: #B4FABB;
+  border-radius: 10px;
+  padding: 2%;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.statusMonitorInativo{
+  color: #991616;
+  background-color: #F5DDDD;
+  border-radius: 10px;
+  padding: 2%;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
