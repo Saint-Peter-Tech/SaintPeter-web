@@ -136,52 +136,7 @@
                     <canvas id="meuGrafico"></canvas>
                 </div>
 
-                <div class="grafico" style="width: 60%;">
-                    <h4>Lista de módulos ativos</h4>
 
-                    <div class="container pt-5 w-30">
-                        <table id="example" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Módulo</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>BPM</td>
-                                    <td>Ativo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>SpO2</td>
-                                    <td>Ativo</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>ECG</td>
-                                    <td>Ativo</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>PNI/NIBP</td>
-                                    <td>Ativo</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>RESP</td>
-                                    <td>Ativo</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>TEMP</td>
-                                    <td>Ativo</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
             </span>
 
 
@@ -245,12 +200,6 @@
     <script type="text/javascript"
         src="https://unpkg.com/@sgratzl/chartjs-chart-boxplot@3.6.0/build/index.umd.min.js"></script>
 
-    <!-- links javascript boostrap tabela -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.js"></script>
-
 
 </body>
 
@@ -299,17 +248,6 @@
         return Array.from({ length: count }).map(() => Math.random() * delta + min);
     }
 
-
-    // função para iniciar a tabela
-    $(document).ready(function () {
-        $('#example').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
-            },
-
-            pagingType: "simple"
-        });
-    });
     // Gráficos de funionário
     const ctx = document.getElementById('canvaPizza');
 
