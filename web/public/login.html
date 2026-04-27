@@ -29,34 +29,6 @@
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg border-bottom border-body ">
-    <div class="container-fluid col-12">
-      <!-- <a class="navbar "><img width="15%" src="./Identidade Visual/LogoWrittenWhite.png" alt=""></a> -->
-      <a class="navbar"><img width="128px" src="./assets/LogoWrittenWhite.png" alt=""></a>
-
-      <div class="align-items-left">
-        <button class="navbar-toggler" style="background-color: #DDF5F1;" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <button type="button" id="botao" class="botao_nav ">
-                  <a class="nav-link_active" style="color: blue;" aria-current="page" href="./index.html">Início</a>
-                </button>
-              </li>
-            </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-
   <div class="todo">
     <div class="imagem"></div>
     <div class="container">
@@ -66,9 +38,17 @@
         </div>
       </div>
       <div class="parte-baixo">
+        <div class="voltarTelaInciail">
+          <a href="./index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-arrow-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+            </svg><img width="50px" src="./assets/Identidade Visual/logo-escura-cortada.png" alt=""></a>
+        </div>
         <div class="campos">
-          Email
-          <input type="text" id="email_cpf_input" placeholder="email@gmail.com" />
+          Email ou CPF
+          <input type="text" id="email_cpf_input" placeholder="email@gmail.com / 354.354.245-55" />
 
           Senha
           <input type="password" id="senha_input" placeholder="********" />

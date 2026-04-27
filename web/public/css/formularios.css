@@ -221,6 +221,21 @@ body {
     font-size: 20px;
 }
 
+.voltarTelaInciail{
+    text-decoration: none;
+    border: #2260E1 2px solid;
+    border-radius: 10px;
+    height: 60px;
+    width: 84px;
+    padding: 1%;
+    transition: 0.3s ease transform;
+}
+
+.voltarTelaInciail:hover{
+    border: #6e95ea 2px solid;
+    transform: scale(1.03);
+}
+
 
 @media only screen and (max-width: 500px) {
     .imagem {
