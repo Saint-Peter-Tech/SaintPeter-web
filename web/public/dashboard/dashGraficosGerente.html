@@ -117,7 +117,7 @@
             <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
             <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
             <br><br>
-            <div class="tituloUnidade">
+            <!-- <div class="tituloUnidade">
                 <div>
                     <h5>Dashboard da Unidade: Pronto Socorro</h5>
                     <span>Visualizando dados específicos desta unidade hospitalar</span>
@@ -128,10 +128,24 @@
                             style="text-decoration: none;">
                             < Trocar Unidade</a></button>
                 </div>
-            </div>
+            </div> -->
+
+            <div class="div_escolha_unidade">
+          <h5>Selecionar Unidade para Dashboard</h5>
+          <p>
+            Escolha uma unidade hospitalar para visualizar informações detalhadas de monitoramento
+          </p>
+
+          Unidade Hospitalar <br>
+          <select class="opcaoDashboard" id="select_unidade">
+            <option value="0" selected disabled>Selecione uma unidade</option>
+          </select>
+          <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
+              href="./dashGraficosAnalista.html">Visualisar Dashboard ></a></button>
+        </div>
 
             <span style="display: flex; justify-content: center; gap: 2%;">
-                <div class="grafico" style="width: 60%;">
+                <div class="grafico" style="width: 1000px; height: 550px;">
                     <h4>Utilização de rede e monitores ativos</h4>
                     <canvas id="redeMonitores"></canvas>
                 </div>
@@ -140,18 +154,13 @@
             </span>
 
             <span style="display: flex; justify-content: center; gap: 2%;">
-                <div class="grafico" style="width: 60%;">
-                    <h4>Monitores disponíveis e em manutenção</h4>
-                    <canvas id="disponibilidadeMonitores"></canvas>
-                </div>
-
-
-            </span>
-
-            <span style="display: flex; justify-content: center; gap: 2%;">
-                <div class="grafico" style="width: 60%;">
+                <div class="grafico" style="width: 1200px; height: 600px;">
                     <h4>Quantidade de monitores em manutenção por idade</h4>
                     <canvas id="qtdManutencaoidade"></canvas>
+                </div>
+                <div class="grafico" style="width: 600px; height: 600px;">
+                    <h4>Monitores disponíveis e em manutenção</h4>
+                    <canvas id="disponibilidadeMonitores"></canvas>
                 </div>
 
 
@@ -225,7 +234,7 @@
     const ctxG1 = document.getElementById('redeMonitores');
 
     new Chart(ctxG1, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
             datasets: [{
@@ -245,7 +254,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    8,3,5,7,6,8,2
+                    6,1,3,5,3,6,1
                 ],
                 backgroundColor: '#FFDE21',
                 borderColor: '#BA8E23',
@@ -275,7 +284,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    200,30
+                    200,14
                 ],
                 backgroundColor: [
                     '#6F98D5',
@@ -287,12 +296,7 @@
                 ]
             }]
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
+        options: { 
             legend: {
                 display: false
             }
@@ -306,22 +310,33 @@
         data: {
             labels: ['Menos de 2 anos', 'Entre 2 e 5 anos', 'Mais que 5 anos'],
             datasets: [{
-                label: ['Quantidade'],
+                label: ['Em manutenção'],
                 padding: 0,
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    8,3,5
+                    1,3,7
                 ],
                 backgroundColor: [
-                    '#6F98D5',
-                    '#FFDE21',
-                    '#000080'
+                    '#FFDE21'
                 ],
                 borderColor: [
-                    '#3B5FCD',
-                    '#BA8E23',
-                    '#111184'
+                    '#BA8E23'
+                ],
+                borderWidth: 1
+            }, {
+                label: ['Totais'],
+                padding: 0,
+                itemRadius: 0,
+                //data: [12, 19, 3, 5, 2, 3],
+                data: [
+                    5,7,10
+                ],
+                backgroundColor: [
+                    '#6F98D5'
+                ],
+                borderColor: [
+                    '#3B5FCD'
                 ],
                 borderWidth: 1
             }]
