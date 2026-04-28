@@ -230,6 +230,11 @@
 
     <span style="display: flex; gap: 2%">
       <div class="grafico" style="width: 60%;">
+        <h4>Monitoramento da rede</h4>
+        <canvas id="meuGrafico"></canvas>
+      </div>
+
+      <div class="grafico" style="width: 60%;">
         <h4>Lista de módulos ativos</h4>
 
         <div class="container pt-5 w-30">
@@ -276,11 +281,6 @@
           </table>
         </div>
       </div>
-
-      <div class="grafico" style="width: 60%;">
-        <h4>Monitoramento da rede</h4>
-        <canvas id="meuGrafico"></canvas>
-      </div>
     </span>
   </main>
 
@@ -307,12 +307,12 @@
   });
 
   // gráfico de linha
-  const labels = ["01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"];
+  const labels = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00"];
   const data = {
     labels: labels,
     datasets: [{
       label: 'Uso percentual da rede',
-      data: [65, 59, 80, 81, 56, 55, 40,44,65, 59, 80, 81, 56, 55, 40,50,65, 59, 80, 81, 56, 55, 40,30,],
+      data: [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80, 81, 56, 55, 40, 50, 65, 59, 80, 81, 56, 55, 40, 30,],
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.1
