@@ -132,14 +132,30 @@
 
             <span style="display: flex; justify-content: center; gap: 2%;">
                 <div class="grafico" style="width: 60%;">
-                    <h4>Componentes do monitor</h4>
-                    <canvas id="meuGrafico"></canvas>
+                    <h4>Utilização de rede e monitores ativos</h4>
+                    <canvas id="redeMonitores"></canvas>
                 </div>
 
 
             </span>
 
+            <span style="display: flex; justify-content: center; gap: 2%;">
+                <div class="grafico" style="width: 60%;">
+                    <h4>Monitores disponíveis e em manutenção</h4>
+                    <canvas id="disponibilidadeMonitores"></canvas>
+                </div>
 
+
+            </span>
+
+            <span style="display: flex; justify-content: center; gap: 2%;">
+                <div class="grafico" style="width: 60%;">
+                    <h4>Quantidade de monitores em manutenção por idade</h4>
+                    <canvas id="qtdManutencaoidade"></canvas>
+                </div>
+
+
+            </span>
 
         </main>
     </span>
@@ -205,29 +221,108 @@
 
 <script>
     // Gráficos de Gerente
-    const ctxG = document.getElementById('meuGrafico');
 
-    new Chart(ctxG, {
-        type: 'boxplot',
+    const ctxG1 = document.getElementById('redeMonitores');
+
+    new Chart(ctxG1, {
+        type: 'bar',
         data: {
-            labels: ['CPU', 'RAM', 'DISCO'],
+            labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
             datasets: [{
-                label: 'Componentes do monitor',
-                outlierColor: '#999999',
+                label: 'Utilização de rede',
                 padding: 0,
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    randomValue(100, 0, 100), // min Wisker
-                    randomValue(100, 0, 20), // Lower Quartile
-                    randomValue(100, 20, 70), // Mediana
-                    randomValue(100, 60, 100), // Inter Quartile Range (IQR)
-                    randomValue(40, 50, 100), // Mean
-                    randomValue(100, 60, 120), // Upper Lower Quartile
-                    randomValue(100, 80, 100), // max Wisker
+                    8,3,5,7,6,8,2
                 ],
                 backgroundColor: '#6F98D5',
                 borderColor: '#3B5FCD',
+                borderWidth: 1
+            },{
+                label: 'Monitores ativos',
+                padding: 0,
+                itemRadius: 0,
+                //data: [12, 19, 3, 5, 2, 3],
+                data: [
+                    8,3,5,7,6,8,2
+                ],
+                backgroundColor: '#FFDE21',
+                borderColor: '#BA8E23',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+    const ctxG2 = document.getElementById('disponibilidadeMonitores');
+
+    new Chart(ctxG2, {
+        type: 'pie',
+        data: {
+            labels: ['Disponíveis', 'Em manutenção'],
+            datasets: [{
+                padding: 0,
+                itemRadius: 0,
+                //data: [12, 19, 3, 5, 2, 3],
+                data: [
+                    200,30
+                ],
+                backgroundColor: [
+                    '#6F98D5',
+                    '#FFDE21'
+                ],
+                borderColor: [
+                    '#3B5FCD',
+                    '#BA8E23'
+                ]
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+    const ctxG3 = document.getElementById('qtdManutencaoidade');
+
+    new Chart(ctxG3, {
+        type: 'bar',
+        data: {
+            labels: ['Menos de 2 anos', 'Entre 2 e 5 anos', 'Mais que 5 anos'],
+            datasets: [{
+                label: ['Quantidade'],
+                padding: 0,
+                itemRadius: 0,
+                //data: [12, 19, 3, 5, 2, 3],
+                data: [
+                    8,3,5
+                ],
+                backgroundColor: [
+                    '#6F98D5',
+                    '#FFDE21',
+                    '#000080'
+                ],
+                borderColor: [
+                    '#3B5FCD',
+                    '#BA8E23',
+                    '#111184'
+                ],
                 borderWidth: 1
             }]
         },
