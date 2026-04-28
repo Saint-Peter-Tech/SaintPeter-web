@@ -115,59 +115,7 @@
   background-color: #c2c2c2;
 }
 
-.blocoStatus_criticoDash {
-  color: #991616;
-  background-color: #ffeeee;
-  font-size: 12px;
-  width: 140px;
-  height: 32px;
-  display: inline-block;
-  padding: 2%;
-  border-radius: 5px;
-  font-weight: 500;
-  margin-left: 10px;
-  text-align: center;
-  transition: transform 0.3s ease;
-  margin-bottom: 5%;
-}
 
-.blocoStatus_alertaDash {
-  color: #d4c11c;
-  background-color: #fffdeb;
-  font-size: 12px;
-  width: 140px;
-  height: 32px;
-  display: inline-block;
-  padding: 2%;
-  border-radius: 5px;
-  font-weight: 500;
-  margin-left: 10px;
-  text-align: center;
-  transition: transform 0.3s ease;
-  margin-bottom: 5%;
-}
-
-.blocoStatus_normalDash {
-  color: #13347b;
-  background-color: #ddf5f1;
-  font-size: 12px;
-  width: 140px;
-  height: 32px;
-  display: inline-block;
-  padding: 2%;
-  border-radius: 5px;
-  font-weight: 500;
-  margin-left: 10px;
-  text-align: center;
-  transition: transform 0.3s ease;
-  margin-bottom: 5%;
-}
-
-.blocoStatus_criticoDash:hover,
-.blocoStatus_alertaDash:hover,
-.blocoStatus_normalDash:hover{
-    transform: scale(1.03);
-}
 
 .botaoDetalhes{
     text-decoration: none;

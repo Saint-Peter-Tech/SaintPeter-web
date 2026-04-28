@@ -349,7 +349,20 @@ h5 {
   border-radius: 10px;
 }
 
-.KpisMonitoresAntigos:hover {
+.KpisMonitores{
+    color: #13347b;
+  background-color: #ffff;
+  width: 32%;
+  min-height: 150px;
+  padding: 2%;
+  margin-bottom: 2%;
+  transform: transform 0.3s ease;
+  border-radius: 10px;
+  margin-right: 1%;
+}
+
+.KpisMonitoresAntigos:hover,
+.KpisMonitores:hover{
   transform: scale(1.03);
 }
 
