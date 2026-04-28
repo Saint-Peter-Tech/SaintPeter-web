@@ -12,6 +12,7 @@
     <!-- css -->
     <link rel="stylesheet" href="../css/dashboards.css">
     <link rel="stylesheet" href="../css/dashMonitores.css">
+    <link rel="stylesheet" href="../css/dashGrafico.css">
 
     <!-- fontes -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -213,10 +214,111 @@
                     <path
                         d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
                 </svg>
-                 Aguardando peça
+                Aguardando peça
             </span>
             <br>
-            
         </div>
+
+        <br>
+        <span style="display: flex; gap: 2%">
+            <div class="grafico" style="width: 60%;">
+                <h4>Monitoramento da rede</h4>
+                <canvas id="meuGrafico"></canvas>
+            </div>
+
+            <div class="grafico" style="width: 60%;">
+                <h4>Lista de módulos ativos</h4>
+
+                <div class="container pt-5 w-30">
+                    <table id="example" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Módulo</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>BPM</td>
+                                <td><span class="statusMonitorAtivo">Ativo</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>SpO2</td>
+                                <td><span class="statusMonitorAtivo">Ativo</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>ECG</td>
+                                <td><span class="statusMonitorAtivo">Ativo</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>PNI/NIBP</td>
+                                <td><span class="statusMonitorAtivo">Ativo</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>RESP</td>
+                                <td><span class="statusMonitorInativo">Inativo</span></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>TEMP</td>
+                                <td><span class="statusMonitorInativo">Inativo</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </span>
     </main>
 </body>
+<!-- links javascript boostrap tabela -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+<script>
+    // função para iniciar a tabela
+    $(document).ready(function () {
+        $('#example').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
+            },
+
+            pagingType: "simple"
+        });
+    });
+
+    // gráfico de linha
+    const labels = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00"];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Uso percentual da rede',
+            data: [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80, 81, 56, 55, 40, 50, 65, 59, 80, 81, 56, 55, 40, 30,],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1,
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+    };
+
+    const ctx = document.getElementById('meuGrafico');
+
+    new Chart(ctx, config);
+
+</script>
