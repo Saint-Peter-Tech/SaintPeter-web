@@ -219,6 +219,13 @@ body {
     border-radius: 10px;
     border: 0px;
     font-size: 20px;
+    transition: 0.3s ease;
+}
+
+.botao button:hover{
+    background-color: #6e95ea;
+    color: #111270;
+    font-weight: 500;
 }
 
 .voltarTelaInciail{
