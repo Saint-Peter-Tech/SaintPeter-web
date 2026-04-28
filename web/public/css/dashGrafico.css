@@ -11,11 +11,7 @@
   height: 880px;
   justify-content: start;
   display: flex;
-  width: 1800px;
-}
-
-#canvasLinhaRede {
-  width: 1800px;
+  width: 100%;
 }
 
 #graficoDonut {
