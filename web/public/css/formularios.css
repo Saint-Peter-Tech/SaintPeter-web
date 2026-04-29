@@ -106,13 +106,13 @@ body {
   border-radius: 5px;
   font-weight: 600;
   font-size: 28px;
-  color: ##2267F9;
+  color: #2267F9;
   background-color: #fff;
   width: 120px;
   height: 30px;
   align-self: center;
   margin-top: 20px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
 .botao_nav .nav-link_active{

@@ -5,10 +5,10 @@
   margin-bottom: 2%;
   transition: transform 0.3s ease;
   border-radius: 10px;
+  width: 100%;
 }
 
 .graficoLinhaRede {
-  height: 880px;
   justify-content: start;
   display: flex;
   width: 100%;

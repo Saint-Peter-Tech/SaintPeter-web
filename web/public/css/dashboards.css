@@ -848,12 +848,14 @@ h5 {
 .KpisMonitoresEspecificosNormal{
   background-color: white;
   color: #13347b;
-  padding: 2%;
+  padding: 5%;
   border-radius: 10px;
   gap: 2%;
-  width: 23%;
+  width: 600px;
   transition: transform 0.3s ease;
   border-bottom: #13347b 4px solid;
+  margin-left: 5%;
+  margin-bottom: 2%;
 }
 
 
@@ -893,6 +895,7 @@ h5 {
   padding: 2%;
   color: #13347b;
   margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .infoMonitorCritico{
