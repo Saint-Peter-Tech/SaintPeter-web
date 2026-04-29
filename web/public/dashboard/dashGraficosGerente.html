@@ -129,64 +129,64 @@
                             < Trocar Unidade</a></button>
                 </div>
             </div> -->
-        
+
             <div class="div_escolha_unidade">
-          <h5>Selecionar Unidade para Dashboard</h5>
-          <p>
-            Escolha uma unidade hospitalar para visualizar informações detalhadas de monitoramento
-          </p>
+                <h5>Selecionar Unidade para Dashboard</h5>
+                <p>
+                    Escolha uma unidade hospitalar para visualizar informações detalhadas de monitoramento
+                </p>
 
-          Unidade Hospitalar <br>
-          <select class="opcaoDashboard" id="select_unidade">
-            <option value="0" selected disabled>Selecione uma unidade</option>
-          </select>
-          <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
-              href="./dashGraficosAnalista.html">Visualisar Dashboard ></a></button>
-        </div>
-
-        <div class="linhaMonitores1">
-        <div class="KpisMonitoresAntigos">
-              <div class="containerKpiMA">
-                <div class="tituloKpi">
-                  Quantidade de monitores com chance de obsolescência
-                  <br>
-                  <h1 style="color: #ff4b4b;">62</h1>
-                </div>
-                <div class="imgKpiContainer">
-                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
-                </div>
-              </div>
-              Fabricação > 5 anos
+                Unidade Hospitalar <br>
+                <select class="opcaoDashboard" id="select_unidade">
+                    <option value="0" selected disabled>Selecione uma unidade</option>
+                </select>
+                <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
+                        href="./dashGraficosAnalista.html">Visualizar Dashboard ></a></button>
             </div>
 
-            <div class="KpisMonitoresAntigos">
-              <div class="containerKpiMA">
-                <div class="tituloKpi">
-                  Tempo desde a última calibração
-                  <br>
-                  <h1 style="color: #ff4b4b;">48</h1>
+            <div class="linhaMonitores1">
+                <div class="KpisMonitoresAntigos">
+                    <div class="containerKpiMA">
+                        <div class="tituloKpi">
+                            Quantidade de monitores com chance de obsolescência
+                            <br>
+                            <h1 style="color: #ff4b4b;">62</h1>
+                        </div>
+                        <div class="imgKpiContainer">
+                            <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+                        </div>
+                    </div>
+                    Fabricação > 5 anos
                 </div>
-                <div class="imgKpiContainer">
-                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/clock-icone.png" alt="">
-                </div>
-              </div>
-              Últ. Calibração: 10/04/2025
-            </div>
 
-            <div class="KpisMonitoresAntigos">
-              <div class="containerKpiMA">
-                <div class="tituloKpi">
-                  Porcentagem de monitores disponíveis
-                  <br>
-                  <h1 style="color: #ff4b4b;">85%</h1>
+                <div class="KpisMonitoresAntigos">
+                    <div class="containerKpiMA">
+                        <div class="tituloKpi">
+                            Tempo desde a última calibração
+                            <br>
+                            <h1 style="color: #ff4b4b;">48</h1>
+                        </div>
+                        <div class="imgKpiContainer">
+                            <img class="imgKpis" width="50%" src="../assets/icones-alerta/clock-icone.png" alt="">
+                        </div>
+                    </div>
+                    Últ. Calibração: 10/04/2025
                 </div>
-                <div class="imgKpiContainer">
-                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+
+                <div class="KpisMonitoresAntigos">
+                    <div class="containerKpiMA">
+                        <div class="tituloKpi">
+                            Porcentagem de monitores disponíveis
+                            <br>
+                            <h1 style="color: #ff4b4b;">85%</h1>
+                        </div>
+                        <div class="imgKpiContainer">
+                            <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+                        </div>
+                    </div>
+                    17 de 20 monitores
                 </div>
-              </div>
-              17 de 20 monitores
             </div>
-        </div>
 
             <span style="display: flex; justify-content: center; gap: 2%;">
                 <div class="grafico" style="width: 1250px; height: 600px;">
@@ -210,52 +210,186 @@
 
             </span>
 
-            
+
 
         </main>
     </span>
     <!-- Conteúdo da dash -->
     <span id="funcionario" style="display: none;">
         <main class="main-content">
-            <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
-            <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
-            <br><br>
+            <div class="div_escolha_unidade">
+                <h5>Dashboard da Unidade: Pronto Socorro</h5>
 
+                Unidade Hospitalar <br>
+                <select class="opcaoDashboard" id="select_unidade">
+                    <option value="0" selected disabled>Selecione uma unidade</option>
+                </select>
+                <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;">
+                        < Trocar Unidade </a></button>
+            </div>
 
-            <div class="tituloUnidade">
-                <div>
-                    <h5>Dashboard da Unidade: Pronto Socorro</h5>
-                    <span>Visualizando dados específicos desta unidade hospitalar</span>
+            <!-- kpis -->
+            <div class="linhaMonitores1">
+                <div class="KpisMonitores">
+                    <div class="containerKpiMA">
+                        <div class="tituloKpi">
+                            Unidades com uso de rede acima do recomendado
+                            <br>
+                            <h1 style="color: #ff4b4b;">12</h1>
+                        </div>
+                        <div class="imgKpiContainer">
+                            <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-acima-icone.png" alt="">
+                        </div>
+                    </div>
+                    Total unidades
+                </div>
+
+                <div class="KpisMonitores">
+                    <div class="containerKpiMA">
+                        <div class="tituloKpi">
+                            Quantidade de vezes em que a rede caiu
+                            <br>
+                            <h1 style="color: #13347b;">2</h1>
+                        </div>
+                        <div class="imgKpiContainer">
+                            <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-caiu-azul.png" alt="">
+                        </div>
+                    </div>
+                    Total unidades
+                </div>
+
+                <div class="KpisMonitores">
+                    <div class="containerKpiMA">
+                        <div class="tituloKpi">
+                            Quantidade de monitores em manutenção
+                            <br>
+                            <h1 style="color: #d4c11c;">5</h1>
+                        </div>
+                        <div class="imgKpiContainer">
+                            <img class="imgKpis" width="50%" src="../assets/icones-alerta/monitor-icone.png" alt="">
+                        </div>
+                    </div>
+                    Total unidades
                 </div>
             </div>
 
-            <div class="grafico">
-                <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-wifi" viewBox="0 0 16 16">
-                        <path
-                            d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049" />
-                        <path
-                            d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />
-                    </svg>
-                    Uso da rede no mês</h4>
-                <div class="graficoLinhaRede">
-                    <canvas id="canvasLinhaRede"></canvas>
+            <!-- gráficos -->
+            <div style="display: flex; gap: 2%;">
+                <div class="grafico">
+                    <h4><i class="fa-solid fa-chart-line"></i>
+                        Monitoramento da rede diário</h4>
+                    <p>Porcentagem de uso de rede vs Porcentagem de monitores ativos na unidade - Últimas 24 horas</p>
+                    <div class="graficoLinhaRede">
+                        <canvas id="canvasLinhaRede"></canvas>
+                    </div>
+                </div>
+
+                <div class="containerGraficoDonut">
+                    <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-wifi" viewBox="0 0 16 16">
+                            <path
+                                d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049" />
+                            <path
+                                d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />
+                        </svg>
+                        Status dos Monitores</h4>
+                    <p>Distribuição atual</p>
+
+                    <div class="graficoDonut">
+                        <canvas id="canvaDonut"></canvas>
+                    </div>
+
+                    <div class="container-tags">
+                        <span class="span-tag">
+                            <div class="labelDonutA"></div>
+                            <p>Ativos</p>
+                        </span>
+                        <span class="span-tag">
+                            <div class="labelDonutM"></div>
+                            <p>Em manutenção</p>
+                        </span>
+                        <span class="span-tag">
+                            <div class="labelDonutI"></div>
+                            <p>Inativos</p>
+                        </span>
+                    </div>
                 </div>
             </div>
 
-            <div class="grafico">
-                <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-wifi" viewBox="0 0 16 16">
-                        <path
-                            d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049" />
-                        <path
-                            d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />
-                    </svg>
-                    Uso da rede durante 6 meses</h4>
+            <div>
+                <div class="juntandoFaixasColunas">
+                    <div>
+                        <div class="faixa2" style=" width: 100%!important; padding: 0%;">
+                            <div style="display: flex; gap: 40%; padding: 2%;">
+                                <div>
+                                    <h5 style="color: #d4c11c;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-wrench" viewBox="0 0 16 16">
+                                            <path
+                                                d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
+                                        </svg>
+                                        Monitores em Manutenção
+                                    </h5>
+                                    <span>Quantidade de monitores em manutenção </span>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="linhaMonitores1">
+                            <div class="kpiMonitoresMaisDe5">
+                                <div>
+                                    <span class="spanFaixa">
+                                        <div class="linhaMonitores1">
+                                            <div class="faixa">
+                                                <span style="display: flex">
+                                                    <h4>Monitor UTI-002</h4>
+                                                </span>
+                                            </div>
 
-                <div class="graficoDonut">
-                    <canvas id="canvaPizza"></canvas>
+                                            <div>
+                                                <a class="botaoDetalhes"
+                                                    href="./dashboardMonitorEspecificoAnalista.html">Ver Detalhes</a>
+                                            </div>
+                                        </div>
+                                    </span>
+
+                                    <div>
+                                        <span class="spanFaixa">
+                                            <div class="linhaMonitores1">
+                                                <div class="faixa">
+                                                    <span style="display: flex">
+                                                        <h4>Monitor UTI-007</h4>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <a class="botaoDetalhes"
+                                                        href="./dashboardMonitorEspecificoAnalista.html">Ver
+                                                        Detalhes</a>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <span class="spanFaixa">
+                                            <div class="linhaMonitores1">
+                                                <div class="faixa">
+                                                    <span style="display: flex">
+                                                        <h4>Monitor UTI-010</h4>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <a class="botaoDetalhes"
+                                                        href="./dashboardMonitorEspecificoAnalista.html">Ver
+                                                        Detalhes</a>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -289,18 +423,18 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    80,30,50,70,60,80,20
+                    80, 30, 50, 70, 60, 80, 20
                 ],
                 backgroundColor: '#6F98D5',
                 borderColor: '#3B5FCD',
                 borderWidth: 1
-            },{
+            }, {
                 label: 'Monitores ativos',
                 padding: 0,
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    60,10,30,50,30,60,10
+                    60, 10, 30, 50, 30, 60, 10
                 ],
                 backgroundColor: '#FFDE21',
                 borderColor: '#BA8E23',
@@ -331,7 +465,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    200,14
+                    200, 14
                 ],
                 backgroundColor: [
                     '#6F98D5',
@@ -343,7 +477,7 @@
                 ]
             }]
         },
-        options: { 
+        options: {
             legend: {
                 display: false
             }
@@ -362,7 +496,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    1,3,7
+                    1, 3, 7
                 ],
                 backgroundColor: [
                     '#FFDE21'
@@ -377,7 +511,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    5,7,10
+                    5, 7, 10
                 ],
                 backgroundColor: [
                     '#6F98D5'
@@ -406,27 +540,23 @@
     }
 
     // Gráficos de funionário
-    const ctx = document.getElementById('canvaPizza');
+       const ctx = document.getElementById('canvaDonut');
 
-    const data = {
+    Chart.register(ChartDataLabels);
+
+    const dataDonut = {
         labels: [
-            'Novembro',
-            'Dezembro',
-            'Janeiro',
-            'Fevereiro',
-            'Março',
-            'Abril'
+            'Ativos',
+            'Em Manutenção',
+            'Inativos'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [300, 50, 100, 150, 20, 200],
+            data: [78, 20, 2],
             backgroundColor: [
-                '#636870',
-                '#9B758C',
-                '#659FF0',
-                '#70F065',
-                '#F065BB',
-                '#F0C165',
+                '#9BE041',
+                '#FFED28',
+                '#969696',
             ],
             hoverOffset: 4
         }]
@@ -434,40 +564,85 @@
 
     const config = {
         type: 'doughnut',
-        data: data,
+        data: dataDonut,
         options: {
             responsive: true,
             maintainAspectRatio: false,
             aspectRatio: 0.5,
-            cutout: '0%'
-        }
+            cutout: '80%',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    color: (context) => {
+                        return context.dataset.backgroundColor[context.dataIndex];
+                    },
+                    formatter: (value) => value + '%',
+                    anchor: 'end',
+                    align: 'end',
+                    offset: 12,
+                    clamp: true,
+                    font: {
+                        size: 16
+                    },
+
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
     };
 
     new Chart(ctx, config);
 
     const ctxLinha = document.getElementById('canvasLinhaRede');
 
-    const dataLinha = {
-        labels: ['Novembro', 'Dezembro', 'Janeiro', 'Fevereiro', 'Março', 'Abril'],
-        datasets: [{
-            label: 'Uso da rede',
-            data: [120, 190, 300, 250, 220, 310],
-            borderColor: '#659FF0',
-            backgroundColor: '#659FF0',
+    const usoRede = [22, 18, 15, 14, 16, 20, 28, 35, 42, 48, 55, 60, 67, 72, 75, 78, 74, 68, 61, 54, 46, 38, 30, 25];
 
-        }]
-    };
+    const monitoresAtivos = [20, 18, 15, 15, 17, 22, 30, 38, 45, 50, 58, 63, 70, 74, 78, 80, 76, 69, 62, 55, 48, 40, 32, 26];
 
-    const configLinha = {
+    new Chart(ctxLinha, {
         type: 'line',
-        data: dataLinha,
+        data: {
+            labels: xValues = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            datasets: [{
+                label: 'Uso da Rede',
+                data: usoRede,
+                fill: false,
+                borderColor: '#4169E0',
+                backgroundColor: '#A1B5DF'
+            }, {
+                label: 'Monitores Ativos',
+                data: monitoresAtivos,
+                fill: false,
+                borderColor: '#9BE041',
+                backgroundColor: '#C8DEA0'
+            }]
+        },
         options: {
             responsive: true,
-            maintainAspectRatio: false
-        }
-    };
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Horas'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Porcentagem (%)'
+                    }
+                }
+            },
+            plugins: {
+                datalabels: {
+                    display: false
+                }
+            },
+        },
 
-    new Chart(ctxLinha, configLinha);
+    });
 
     function selecionarG() {
         document.getElementById('gerente').style.display = "block";
