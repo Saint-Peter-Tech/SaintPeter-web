@@ -112,8 +112,7 @@
             <select class="opcaoDashboard" id="select_unidade">
                 <option value="0" selected disabled>Selecione uma unidade</option>
             </select>
-            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
-                    >
+            <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;">
                     < Trocar Unidade </a></button>
         </div>
 
@@ -122,7 +121,7 @@
             <div class="KpisMonitores">
                 <div class="containerKpiMA">
                     <div class="tituloKpi">
-                         Unidades com uso de rede acima do recomendado
+                        Unidades com uso de rede acima do recomendado
                         <br>
                         <h1 style="color: #ff4b4b;">12</h1>
                     </div>
@@ -163,16 +162,16 @@
         </div>
 
         <!-- gráficos -->
-        <div class="grafico">
-            <h4><i class="fa-solid fa-chart-line"></i>
-                Monitoramento da rede diário</h4>
-            <p>Porcentagem de uso de rede vs Porcentagem de monitores ativos na unidade - Últimas 24 horas</p>
-            <div class="graficoLinhaRede">
-                <canvas id="canvasLinhaRede"></canvas>
-            </div>
-        </div>
-
         <div style="display: flex; gap: 2%;">
+            <div class="grafico">
+                <h4><i class="fa-solid fa-chart-line"></i>
+                    Monitoramento da rede diário</h4>
+                <p>Porcentagem de uso de rede vs Porcentagem de monitores ativos na unidade - Últimas 24 horas</p>
+                <div class="graficoLinhaRede">
+                    <canvas id="canvasLinhaRede"></canvas>
+                </div>
+            </div>
+
             <div class="containerGraficoDonut">
                 <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-wifi" viewBox="0 0 16 16">
@@ -187,6 +186,7 @@
                 <div class="graficoDonut">
                     <canvas id="canvaDonut"></canvas>
                 </div>
+
                 <div class="container-tags">
                     <span class="span-tag">
                         <div class="labelDonutA"></div>
@@ -202,72 +202,77 @@
                     </span>
                 </div>
             </div>
+        </div>
 
-            <div>
-                <div class="juntandoFaixasColunas">
-                    <div>
-                        <div class="faixa2">
-                            <div style="display: flex; gap: 40%; padding: 2%;">
-                                <div>
-                                    <h5 style="color: #d4c11c;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-wrench" viewBox="0 0 16 16">
-                                            <path
-                                                d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
-                                        </svg>
-                                        Monitores em Manutenção
-                                    </h5>
-                                    <span>Quantidade de monitores em manutenção </span>
-                                </div>
+        <div>
+            <div class="juntandoFaixasColunas">
+                <div>
+                    <div class="faixa2" style=" width: 100%!important; padding: 0%;">
+                        <div style="display: flex; gap: 40%; padding: 2%;">
+                            <div>
+                                <h5 style="color: #d4c11c;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-wrench" viewBox="0 0 16 16">
+                                        <path
+                                            d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
+                                    </svg>
+                                    Monitores em Manutenção
+                                </h5>
+                                <span>Quantidade de monitores em manutenção </span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="linhaMonitores1">
-                            <div class="kpiMonitoresMaisDe5">
+                    <div class="linhaMonitores1">
+                        <div class="kpiMonitoresMaisDe5">
+                            <div>
+                                <span class="spanFaixa">
+                                    <div class="linhaMonitores1">
+                                        <div class="faixa">
+                                            <span style="display: flex">
+                                                <h4>Monitor UTI-002</h4>
+                                            </span>
+                                        </div>
+
+                                        <div>
+                                            <a class="botaoDetalhes"
+                                                href="./dashboardMonitorEspecificoAnalista.html">Ver Detalhes</a>
+                                        </div>
+                                    </div>
+                                </span>
+
                                 <div>
                                     <span class="spanFaixa">
                                         <div class="linhaMonitores1">
                                             <div class="faixa">
                                                 <span style="display: flex">
-                                                    <h4>Monitor UTI-002</h4>
+                                                    <h4>Monitor UTI-007</h4>
                                                 </span>
                                             </div>
-
                                             <div>
-                                                <a class="botaoDetalhes" href="./dashboardMonitorEspecificoAnalista.html">Ver Detalhes</a>
+                                                <a class="botaoDetalhes"
+                                                    href="./dashboardMonitorEspecificoAnalista.html">Ver
+                                                    Detalhes</a>
                                             </div>
                                         </div>
                                     </span>
+                                </div>
 
-                                    <div>
-                                        <span class="spanFaixa">
-                                            <div class="linhaMonitores1">
-                                                <div class="faixa">
-                                                    <span style="display: flex">
-                                                        <h4>Monitor UTI-007</h4>
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <a class="botaoDetalhes" href="./dashboardMonitorEspecificoAnalista.html">Ver Detalhes</a>
-                                                </div>
+                                <div>
+                                    <span class="spanFaixa">
+                                        <div class="linhaMonitores1">
+                                            <div class="faixa">
+                                                <span style="display: flex">
+                                                    <h4>Monitor UTI-010</h4>
+                                                </span>
                                             </div>
-                                        </span>
-                                    </div>
-
-                                    <div>
-                                        <span class="spanFaixa">
-                                            <div class="linhaMonitores1">
-                                                <div class="faixa">
-                                                    <span style="display: flex">
-                                                        <h4>Monitor UTI-010</h4>
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <a class="botaoDetalhes" href="./dashboardMonitorEspecificoAnalista.html">Ver Detalhes</a>
-                                                </div>
+                                            <div>
+                                                <a class="botaoDetalhes"
+                                                    href="./dashboardMonitorEspecificoAnalista.html">Ver
+                                                    Detalhes</a>
                                             </div>
-                                        </span>
-                                    </div>
+                                        </div>
+                                    </span>
                                 </div>
                             </div>
                         </div>
