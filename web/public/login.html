@@ -57,6 +57,7 @@
         <div class="botao">
           <button onclick="verificartipo()">Entrar</button>
         </div>
+        <div id="div_erros_login"></div>
       </div>
     </div>
   </div>
@@ -136,7 +137,7 @@
 
             setTimeout(function () {
               if (json.fk_empresa == 1) {
-                window.location = "../dashboard/dashboardSuporte.html";
+                window.location = "../dashboard/dashboardSuporteHospital.html";
               } else if (json.fk_adm == null) {
                 window.location = "../dashboard/dashboardGerente.html";
               } else {
@@ -202,7 +203,7 @@
 
             setTimeout(function () {
               if (json.fk_empresa == 1) {
-                window.location = "../dashboard/dashboardSuporte.html";
+                window.location = "../dashboard/dashboardSuporteHospital.html";
               } else if (json.fk_adm == null) {
                 window.location = "../dashboard/dashboardGerente.html";
               } else {
