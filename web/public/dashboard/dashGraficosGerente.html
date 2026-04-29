@@ -217,7 +217,11 @@
     <!-- Conteúdo da dash -->
     <span id="funcionario" style="display: none;">
         <main class="main-content">
-            <div class="div_escolha_unidade">
+
+            <button class="botaoEscolhaSessao" onclick="selecionarG()">Gerente ></button>
+            <button class="botaoEscolhaSessao" onclick="selecionarF()">Funcionário ></button>
+
+            <div style="margin-top: 2%;" class="div_escolha_unidade">
                 <h5>Dashboard da Unidade: Pronto Socorro</h5>
 
                 Unidade Hospitalar <br>
@@ -540,7 +544,7 @@
     }
 
     // Gráficos de funionário
-       const ctx = document.getElementById('canvaDonut');
+    const ctx = document.getElementById('canvaDonut');
 
     Chart.register(ChartDataLabels);
 
