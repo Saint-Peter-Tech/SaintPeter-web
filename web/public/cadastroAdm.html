@@ -13,11 +13,18 @@
   <link rel="stylesheet" href="./css/formularios.css" />
   <link rel="icon" href="./assets/LogoClara.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/dashboards.css">
+
+  <link rel="icon" href="./assets/LogoClara.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
   
-    <div class="todo">
+    <!-- <div class="todo">
       <div class="imagem"></div>
       <div class="container">
         <div class="parte-cima">
@@ -70,8 +77,127 @@
         </div>
       </div>
     </div>
-  </body>
+  </body> -->
 
+  <div class="sidebar">
+    <nav class="nav flex-column">
+
+      <a href="../public/index.html"
+        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        style="display: block;">
+        <img width="100%" src="../public/assets/Identidade Visual/LogoWritten.png" id="logo_navbar" alt="">
+      </a>
+
+      <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        style="display: none;">
+        <img width="100%" src="../assets/Identidade Visual/LogoEscura.png" id="logo_navbar2" alt="">
+      </a>
+
+      <a class="nav-link" href="./dashboard/dashboardSuporteHospital.html">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-hospital"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z"
+            />
+            <path
+              d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1zm2 14h2v-3H7zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zm0-14H6v1h4zm2 7v7h3V8zm-8 7V8H1v7z"
+            />
+          </svg>
+          <span class="description">Hospitais</span>
+        </a>
+
+        <a class="nav-link" href="./dashboardSuporteEmpresa.html">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-buildings"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z"
+            />
+            <path
+              d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z"
+            />
+          </svg>
+          <span class="description">Empresas</span>
+        </a>
+
+      <div class="dropdown usuario">
+        <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" width="32" height="32"
+            class="rounded-circle me-2">
+          <span class="description" style="color: #13347b;" id="b_usuario">Usuário</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu text-small menu-dropdown" aria-labelledby="dropdownUser1">
+          <li>
+            <a class="nav-link">
+              <span class="icon">
+                <i class="bi bi-file-earmark-check"></i>
+              </span>
+              <span class="description" style="color: #13347b;">Configurações</span>
+            </a>
+            <a class="dropdown-item"></a>
+          </li>
+          <li>
+            <a class="nav-link">
+              <span class="icon">
+                <i class="bi bi-file-earmark-check"></i>
+              </span>
+              <span class="description" style="color: #13347b;">Meu perfil</span>
+            </a>
+            <a class="dropdown-item"></a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" style="color: #13347b;" style="color: #13347b;">Sair</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <main class="main-content">
+    <div class="container" style="color: #13347b;">
+      <div class="cardFormulario">
+        <h2>Cadastro de Administrador</h2>
+
+        <p><span>Nome do administrador:</span> <br>
+          <input class="inputCadastro" type="text" id="nomeAdm_input" placeholder="Exemplo: João da Silva" maxlength="50">
+        </p>
+
+        <p><span>E-mail do administrador:</span> <br>
+          <input class="inputCadastro" type="text" id="emailAdm_input" placeholder="adm@email.com" maxlength="18">
+        </p>
+
+        <p><span>CPF do administrador:</span> <br>
+          <input class="inputCadastro" type="text" id="cpfAdm_input" placeholder="123.456.789-00" maxlength="18">
+        </p>
+
+        <p><span>Senha:</span> <br>
+          <input class="inputCadastro" type="text" id="senhaAdm_input" placeholder="********" maxlength="18">
+        </p>
+
+        <p><span>Confirmação de senha:</span> <br>
+          <input class="inputCadastro" type="text" id="confirmacao_senhaAdm_input" placeholder="********" maxlength="11">
+        </p>
+
+        <p>
+          <button class="botaoCadastrar" onclick="cadastrarAdm()">Cadastrar Administrador</button>
+        </p>
+        <div id="div_erroCadastro"></div>
+      </div>
+    </div>
+  </main>
 
 </html>
   <script>
