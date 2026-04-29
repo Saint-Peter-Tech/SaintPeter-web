@@ -129,7 +129,7 @@
                             < Trocar Unidade</a></button>
                 </div>
             </div> -->
-
+        
             <div class="div_escolha_unidade">
           <h5>Selecionar Unidade para Dashboard</h5>
           <p>
@@ -144,17 +144,52 @@
               href="./dashGraficosAnalista.html">Visualisar Dashboard ></a></button>
         </div>
 
-            <span style="display: flex; justify-content: center; gap: 2%;">
-                <div class="grafico" style="width: 1000px; height: 550px;">
-                    <h4>Utilização de rede e monitores ativos</h4>
-                    <canvas id="redeMonitores"></canvas>
+        <div class="linhaMonitores1">
+        <div class="KpisMonitoresAntigos">
+              <div class="containerKpiMA">
+                <div class="tituloKpi">
+                  Quantidade de monitores com chance de obsolescência
+                  <br>
+                  <h1 style="color: #ff4b4b;">62</h1>
                 </div>
+                <div class="imgKpiContainer">
+                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+                </div>
+              </div>
+              Fabricação > 5 anos
+            </div>
 
+            <div class="KpisMonitoresAntigos">
+              <div class="containerKpiMA">
+                <div class="tituloKpi">
+                  Tempo desde a última calibração
+                  <br>
+                  <h1 style="color: #ff4b4b;">48</h1>
+                </div>
+                <div class="imgKpiContainer">
+                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/clock-icone.png" alt="">
+                </div>
+              </div>
+              Últ. Calibração: 10/04/2025
+            </div>
 
-            </span>
+            <div class="KpisMonitoresAntigos">
+              <div class="containerKpiMA">
+                <div class="tituloKpi">
+                  Porcentagem de monitores disponíveis
+                  <br>
+                  <h1 style="color: #ff4b4b;">85%</h1>
+                </div>
+                <div class="imgKpiContainer">
+                  <img class="imgKpis" width="50%" src="../assets/icones-alerta/alerta-icone.png" alt="">
+                </div>
+              </div>
+              17 de 20 monitores
+            </div>
+        </div>
 
             <span style="display: flex; justify-content: center; gap: 2%;">
-                <div class="grafico" style="width: 1200px; height: 600px;">
+                <div class="grafico" style="width: 1250px; height: 600px;">
                     <h4>Quantidade de monitores em manutenção por idade</h4>
                     <canvas id="qtdManutencaoidade"></canvas>
                 </div>
@@ -165,6 +200,17 @@
 
 
             </span>
+
+            <span style="display: flex; justify-content: center; gap: 2%;">
+                <div class="grafico" style="width: 1650px; height: 900px;">
+                    <h4>Utilização de rede e monitores ativos (%)</h4>
+                    <canvas id="redeMonitores"></canvas>
+                </div>
+
+
+            </span>
+
+            
 
         </main>
     </span>
@@ -243,7 +289,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    8,3,5,7,6,8,2
+                    80,30,50,70,60,80,20
                 ],
                 backgroundColor: '#6F98D5',
                 borderColor: '#3B5FCD',
@@ -254,7 +300,7 @@
                 itemRadius: 0,
                 //data: [12, 19, 3, 5, 2, 3],
                 data: [
-                    6,1,3,5,3,6,1
+                    60,10,30,50,30,60,10
                 ],
                 backgroundColor: '#FFDE21',
                 borderColor: '#BA8E23',
@@ -264,8 +310,9 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
-                }
+                    min: 0,
+                    max: 100,
+                },
             },
             legend: {
                 display: false
@@ -276,7 +323,7 @@
     const ctxG2 = document.getElementById('disponibilidadeMonitores');
 
     new Chart(ctxG2, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: ['Disponíveis', 'Em manutenção'],
             datasets: [{
