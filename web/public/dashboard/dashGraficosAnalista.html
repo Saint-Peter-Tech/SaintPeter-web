@@ -118,19 +118,6 @@
 
         <!-- kpis -->
         <div class="linhaMonitores1">
-            <div class="KpisMonitores">
-                <div class="containerKpiMA">
-                    <div class="tituloKpi">
-                        Unidades com uso de rede acima do recomendado
-                        <br>
-                        <h1 style="color: #ff4b4b;">12</h1>
-                    </div>
-                    <div class="imgKpiContainer">
-                        <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-acima-icone.png" alt="">
-                    </div>
-                </div>
-                Total unidades
-            </div>
 
             <div class="KpisMonitores">
                 <div class="containerKpiMA">
@@ -143,7 +130,7 @@
                         <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-caiu-azul.png" alt="">
                     </div>
                 </div>
-                Total unidades
+                Total da unidade
             </div>
 
             <div class="KpisMonitores">
@@ -157,17 +144,34 @@
                         <img class="imgKpis" width="50%" src="../assets/icones-alerta/monitor-icone.png" alt="">
                     </div>
                 </div>
-                Total unidades
+                Total da unidade
+            </div>
+
+
+            <div class="KpisMonitores">
+                <div class="containerKpiMA">
+                    <div class="tituloKpi">
+                        Monitores com rede acima do limite
+                        <br>
+                        <h1 style="color: #ff4b4b;">12</h1>
+                    </div>
+                    <div class="imgKpiContainer">
+                        <img class="imgKpis" width="50%" src="../assets/icones-alerta/rede-acima-icone.png" alt="">
+                    </div>
+                </div>
+                Total da unidade
             </div>
         </div>
-
         <!-- gráficos -->
         <div style="display: flex; gap: 2%;">
-            <div class="grafico">
+            <div class="grafico" >
                 <h4><i class="fa-solid fa-chart-line"></i>
                     Monitoramento da rede diário</h4>
-                <p>Porcentagem de uso de rede vs Porcentagem de monitores ativos na unidade - Últimas 24 horas</p>
-                <div class="graficoLinhaRede">
+                    <br>
+                <p>Porcentagem de uso de rede vs Porcentagem de monitores ativos na unidade 
+                    <br> <i>Últimas 24 horas</i></p>
+                    <br><br>
+                <div class="graficoLinhaRede" style="width: 97%!important;">
                     <canvas id="canvasLinhaRede"></canvas>
                 </div>
             </div>
