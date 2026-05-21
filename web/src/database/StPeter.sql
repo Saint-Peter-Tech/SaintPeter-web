@@ -66,10 +66,15 @@ comando_psutil VARCHAR(100)
 
 CREATE TABLE IF NOT EXISTS modelos(
 	id_modelo INT PRIMARY KEY AUTO_INCREMENT,
+	fk_empresa INT NOT NULL,
     nome VARCHAR(50),
     dtLancamento DATE,
-    marca VARCHAR(50),
-    descricao VARCHAR(1000)
+    descricao VARCHAR(1000),
+
+	constraint fk_modeloEmpresa
+		foreign key (fk_empresa)
+			references empresas(id_empresa)
+
 );
 
 CREATE TABLE IF NOT EXISTS monitores
@@ -80,9 +85,13 @@ fk_modelo INT NOT NULL,
 dtFabricacao DATE,
 dtManutencao DATE,
 status_monitor VARCHAR(50),
+descricao_manutencao VARCHAR(20),
 
 constraint chkStatusMonitor
 	check (status_monitor IN ('Ativo', 'Inativo', 'Manutenção')),
+
+constraint chkDescricao
+	check (descricao_manutencao IN ('Inicializada', 'Em Andamento', 'Finalizada', 'Pendente')),
 
 constraint fk_unidadeMonitor
 	foreign key(fk_unidade)
@@ -179,13 +188,13 @@ INSERT IGNORE INTO usuarios (fk_adm, fk_empresa, nome_usuario, email, senha, cpf
 	'72776014830'
 );
 
-INSERT INTO modelos (nome, dtLancamento, marca, descricao) VALUES
-	("IntelliVue MX400", "2021-06-07", "Philips", "O IntelliVue MX400 oferece um grande poder de monitoramento em uma unidade altamente compacta e portátil. Capaz de fornecer grande quantidade de informações do paciente em uma rápida olhada, o IntelliVue pode fazer uma diferença real quando diversos pacientes e diferentes prioridades exigem atenção."),
-    ("IntelliVue MX450", "2021-06-09", "Philips", "O IntelliVue MX450 combina poderoso monitoramento com portabilidade flexível em uma unidade compacta. Fornecendo abrangente informação do paciente à primeira vista, pode fazer uma real diferença quando vários pacientes e prioridades exigem atenção."),
-    ("IntelliVue MX500", "2022-06-06", "Philips", "O IntelliVue MX500 combina poderoso monitoramento com portabilidade flexível em uma unidade compacta. Fornecendo abrangente informação do paciente à primeira vista, pode fazer uma real diferença quando vários pacientes e prioridades exigem atenção."),
-    ("IntelliVue MX550", "2022-07-07", "Philips", "O IntelliVue MX550 reúne um monitoramento poderoso ao leito com a garantia de um backup de bateria. Capaz de absorver uma grande quantidade de informações do paciente em um piscar de olhos, ele pode fazer uma enorme diferença quando diversos pacientes e prioridades precisam de atenção."),
-    ("IntelliVue MX750", "2024-12-25", "Philips", "O monitor de pacientes à beira do leito IntelliVue MX750 da Philips aborda diretamente as necessidades de segurança em constante evolução do cenário de TI em saúde e conta com uma série de recursos que facilitam suas estratégias de segurança cibernética.¹ Além disso, esse monitor excepcional oferece uma funcionalidade avançada e uma ampla gama de medições."),
-    ("IntelliVue MX850", "2025-12-24", "Philips", "O monitor de pacientes à beira do leito IntelliVue MX850 da Philips aborda diretamente as necessidades de segurança em constante evolução do cenário de TI em saúde e conta com uma série de recursos que facilitam suas estratégias de segurança cibernética. Além disso, esse excepcional monitor de qualidade premium oferece uma funcionalidade avançada, opções flexíveis de configuração e uma ampla gama de medições. O monitor se adapta facilmente às demandas de ambientes de terapia intensiva para pacientes em estado grave.");
+INSERT INTO modelos (nome, dtLancamento, fk_empresa, descricao) VALUES
+	("IntelliVue MX400", "2021-06-07", 1, "O IntelliVue MX400 oferece um grande poder de monitoramento em uma unidade altamente compacta e portátil. Capaz de fornecer grande quantidade de informações do paciente em uma rápida olhada, o IntelliVue pode fazer uma diferença real quando diversos pacientes e diferentes prioridades exigem atenção."),
+    ("IntelliVue MX450", "2021-06-09", 1, "O IntelliVue MX450 combina poderoso monitoramento com portabilidade flexível em uma unidade compacta. Fornecendo abrangente informação do paciente à primeira vista, pode fazer uma real diferença quando vários pacientes e prioridades exigem atenção."),
+    ("IntelliVue MX500", "2022-06-06", 1, "O IntelliVue MX500 combina poderoso monitoramento com portabilidade flexível em uma unidade compacta. Fornecendo abrangente informação do paciente à primeira vista, pode fazer uma real diferença quando vários pacientes e prioridades exigem atenção."),
+    ("IntelliVue MX550", "2022-07-07", 1, "O IntelliVue MX550 reúne um monitoramento poderoso ao leito com a garantia de um backup de bateria. Capaz de absorver uma grande quantidade de informações do paciente em um piscar de olhos, ele pode fazer uma enorme diferença quando diversos pacientes e prioridades precisam de atenção."),
+    ("IntelliVue MX750", "2024-12-25", 1, "O monitor de pacientes à beira do leito IntelliVue MX750 da Philips aborda diretamente as necessidades de segurança em constante evolução do cenário de TI em saúde e conta com uma série de recursos que facilitam suas estratégias de segurança cibernética.¹ Além disso, esse monitor excepcional oferece uma funcionalidade avançada e uma ampla gama de medições."),
+    ("IntelliVue MX850", "2025-12-24", 1, "O monitor de pacientes à beira do leito IntelliVue MX850 da Philips aborda diretamente as necessidades de segurança em constante evolução do cenário de TI em saúde e conta com uma série de recursos que facilitam suas estratégias de segurança cibernética. Além disso, esse excepcional monitor de qualidade premium oferece uma funcionalidade avançada, opções flexíveis de configuração e uma ampla gama de medições. O monitor se adapta facilmente às demandas de ambientes de terapia intensiva para pacientes em estado grave.");
     
     
 INSERT IGNORE INTO monitores 
