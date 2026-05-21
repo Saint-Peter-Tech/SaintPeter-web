@@ -36,15 +36,19 @@
           <path
             d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
         </svg>
-        Bem vindo de volta, <span id="be_usuario"></span>
+        Bem vindo de volta, <span id="be_usuario" style="font-weight: bolder;"></span>
         <hr class="solid">
-        <p style="margin-top: 25px;"><span>Selecione o Modelo desejado:</span> <br> </p>
+        <p style="margin-top: 25px; font-weight: bolder;"><span>Selecione o Modelo desejado:</span> <br> </p>
         <select style="font-size: 20px; width: 300px;" class="selectCadastro" id="selectModelo" onchange="atualizar()">
-                        <option value="0" selected disabled>Selecione uma opção</option>
-                    </select>
-                    <hr class="rounded">
+                <option value="0" selected disabled>Selecione uma opção</option>
+            </select>
+        </p>
+            <p class="infoCaptura">
+            Dados coletados dos últimos <span id="diasCapturaKPI">7 dias</span>,
+            com capturas a cada 20 minutos</span>.
+            </p>
+        <hr class="rounded">
     </h4>
-    
      <div class="sidebar">
         <nav class="nav flex-column">
             <a href="../index.html"
@@ -202,21 +206,40 @@
                     </svg>
                 </div>
               </div>
-              Você está á: <span id="metasKPI" style="font-weight: bolder; color: red">40% de alcançar sua meta</span>
+              Você está á: <span id="metasKPI" style="font-weight: bolder; color: red">40%</span> de alcançar a meta | Meta: <span id="metasKPI2" style="font-weight: bolder; color: green">80%</span>
             </div>
         </div>
           <main class="dashboard-grid">
 
         <div class="card large">
-            <div class="card-header" style="background-color: white;">
-                <h2>Criticidade por Módulo</h2>
-            </div>
+<div class="card-header tabelaHeader" style="background-color: white;">
+    
+    <h2>Criticidade por Módulo</h2>
+
+    <div class="legendaCriticidade" style="font-style: italic; font-weight: bold;">
+        <div class="legendaItem">
+            <span class="status ok"></span>
+            Ok &lt; Limite
+        </div>
+
+        <div class="legendaItem">
+            <span class="status alerta"></span>
+            Alerta ≥ 10% do Limite
+        </div>
+
+        <div class="legendaItem">
+            <span class="status critico"></span>
+            Crítico ≥ Limite
+        </div>
+    </div>
+
+</div>
             <div class="table-scroll">
             <table class="criticidade-table">
                 <thead>
                 <tr>
                     <th>Módulo</th>
-                    <th>OK</th>
+                    <th>Ok</th>
                     <th>Alerta</th>
                     <th>Crítico</th>
                 </tr>
@@ -286,7 +309,7 @@
             <div class="card-header" style="background-color: white;"> 
                 <h2>Instabilidade por Módulos</h2>
             </div>
-            <div style="padding-top: 40px;" class="chart-container">
+            <div style="padding-top: 10px;" class="chart-container">
             <canvas id="impactChart"></canvas>
             </div>
         </div>
@@ -295,7 +318,7 @@
             <div class="card-header" style="background-color: white;">
                 <h2>Uso dos Módulos</h2>
             </div>
-            <div class="chart-container">
+            <div class="chart-container" style="padding-top: 10px;">
             <canvas id="trendChart"></canvas>
             </div>
         </div>
@@ -304,7 +327,7 @@
             <div class="card-header" style="background-color: white;">
                 <h2>Radar de Estabilidade Módular</h2>
             </div>
-            <div class="chart-container">
+            <div class="chart-container" style="padding-top: 10px;">
             <canvas id="radarChart"></canvas>
             </div>
         </div>
@@ -315,6 +338,8 @@
 <script>
         Chart.register(window['chartjs-plugin-annotation']);
         
+        const kpi0 = document.getElementById("diasCapturaKPI");
+
         const kpi1 = document.getElementById("moduloutilizadoKPI");
         const metakpi1 = document.getElementById("frequenciaKPI");
 
@@ -322,7 +347,8 @@
         const metakpi2 = document.getElementById("ocorrenciasKPI");
 
         const kpi3 = document.getElementById("estabilidadeKPI");
-
+        const metakpi30 = document.getElementById("metasKPI");
+        const metakpi31 = document.getElementById("metasKPI2");
 
         window.onload = function () {
             validarSessao();
@@ -362,7 +388,7 @@ const modulos = ['BPM', 'PA', 'SPO2', 'RESP', 'TEMP', 'PIC', 'PVC', 'ECG', 'ETCO
 
 const impactCtx = document.getElementById('impactChart');
 
-const LimiteBar = 60
+const LimiteBar = 75
 
 new Chart(impactCtx, { 
     type: 'bar', 
@@ -372,7 +398,9 @@ new Chart(impactCtx, {
             data: [40, 65, 50, 80, 80, 30, 45, 70, 50], 
             backgroundColor: (context) => { 
                 const value = context.raw;
-                return value > LimiteBar ? 'red' : '#13347b'; 
+                if (value >= 80) return '#E7000B';
+                if (value >= 60) return '#ff9800';
+                return '#13347b';
             }
         }] 
     }, 
@@ -407,7 +435,14 @@ new Chart(impactCtx, {
             },
             legend: {
             display: false
-        } 
+        } ,
+        tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}% de Instabilidade`;
+                        }
+                    }
+                }
     }
         
     }
@@ -417,16 +452,26 @@ new Chart(impactCtx, {
 const trendCtx = document.getElementById('trendChart');
 
 new Chart(trendCtx, {
-    type: 'bar',
+    type: 'polarArea',
     data: {
-        labels: modulos,
+          labels: modulos,
+
         datasets: [{
-            label: 'Uso dos módulos(%)',
+            label: 'Uso (%)',
+
             data: [90, 70, 85, 50, 90, 35, 60, 95, 75],
-            borderColor: 'white',
-            backgroundColor: '#13347b',
-            tension: 0.4,
-            fill: true
+
+            backgroundColor: [
+                '#13347b',
+                '#1f4aa8',
+                '#295bcc',
+                '#3c73ff',
+                '#4f83ff',
+                '#6896ff',
+                '#82a8ff',
+                '#9bb9ff',
+                '#b5cbff'
+            ]
         }]
     },
     options: {
@@ -435,9 +480,21 @@ new Chart(trendCtx, {
         scales: { 
             x: { title: { display: true, text: 'Módulos' } }, 
             y: { title: { display: true, text: 'Uso(%)' }, max: 100, min: 0 } 
-        }, 
-    }
-});
+        },   
+        plugins: {
+            legend: {
+                position: 'right'
+            },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}% de uso`;
+                        }
+                    }
+                }
+            }
+        }
+    });
 
 const radarCtx = document.getElementById('radarChart');
 
@@ -469,7 +526,14 @@ new Chart(radarCtx, {
                         borderDash: [5, 5]
                     }
                 }
-            }
+            },
+            tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}% de estabilidade`;
+                        }
+                    }
+                }
         }
     }
 });
