@@ -65,8 +65,39 @@ function listarParametros(req, res){
     })
 }
 
+function statusMonitor(req, res){
+  var idMonitor = req.query.id_monitor;
+  var fkEmpresa = req.query.fk_empresa;
+
+  monitorModel
+  .statusMonitor(idMonitor, fkEmpresa)
+  .then(function (resultado){
+    res.json(resultado);
+  })
+  .catch(function (erro){
+    console.log(erro)
+    res.status(500).json(erro.sqlMessage);
+  })
+}
+
+function modeloMonitor(req, res){
+  var idMonitor = req.query.id_monitor;
+
+  monitorModel
+  .modeloMonitor(idMonitor)
+  .then(function (resultado){
+    res.json(resultado)
+  })
+  .catch(function (erro){
+    console.log(erro)
+    res.status(500).json(erro.sqlMessage)
+  })
+}
+
 module.exports = {
   cadastrarMonitor,
   listarNomesMonitores,
-  listarParametros
+  listarParametros,
+  statusMonitor,
+  modeloMonitor
 };

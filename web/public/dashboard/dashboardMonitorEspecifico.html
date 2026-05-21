@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="../css/dashboards.css">
   <link rel="stylesheet" href="../css/dashMonitores.css">
   <link rel="stylesheet" href="../css/dashGrafico.css">
-  <link rel="stylesheet" href="dashMonitores.css">
 
   <!-- fontes -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -157,16 +156,16 @@
             <div>
               <br>
               <!-- Status do monitor -->
-              <div class="infoMonitorCritico" style="width: 300px!important;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wrench"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
-                </svg>
-                <span id="divStatus">
-                  <b>Em manutenção</b>
-                </span>
-              </div>
+              <span id="divStatus">
+                <div class="infoMonitorInativo" style="width: 300px!important;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-wrench" viewBox="0 0 16 16">
+                    <path
+                      d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
+                  </svg>
+                  <b> </b>
+                </div>
+              </span>
               <p>• Em andamento</p>
               <span id="divModelo">
                 <p><b>Modelo:</b> </p>
@@ -200,7 +199,8 @@
 
           <div class="" style="margin-top: 0.5%;">
             <span>
-              <select class="selectComp" onchange="listarParametros()" name="" id="selectParametro">
+              <select class="selectComp" onchange="listarParametros(), atualizarLinhaLimite()" name=""
+                id="selectParametro">
                 <option value="#" selected disabled>Seleciona uma opção</option>
                 <option value="5">Rede</option>
                 <option value="2">Ram</option>
@@ -403,8 +403,6 @@
           </div>
         </span>
       </div>
-
-
     </div>
     <!-- graficos de cpu e ram -->
     <div>
@@ -487,6 +485,9 @@
   window.onload = function () {
     validarSessao();
     listarNomesMonitores();
+    listarParametros();
+    statusMonitor();
+    modeloMonitor();
   }
 
   // função para iniciar a tabela
@@ -501,9 +502,9 @@
   });
 
   // função para select de parametros
-  var limiteRam = 0;
-  var limiteCPU = 0;
-  var limiteRede = 0;
+  const limiteRamConst = null;
+  const limiteCPUConst = null;
+  const limiteRedeConst = null;
 
   function listarParametros() {
     const idMonitor = sessionStorage.ID_MONITOR;
@@ -525,7 +526,7 @@
                         d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049" />
                       <path
                         d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />
-                    </svg> Cadastro:</b></div>
+                    </svg> Limite:</b></div>
                 <i>Máximo</i>
                 <b>${parametros[0].limite}</b>
               </div>
@@ -542,22 +543,23 @@
               </div>
 
       `
+        console.log('parametros: ', parametros)
 
-        if (selectValue == "5") {
-          limiteRede = Number(parametros[0].limite)
-          console.log('valor da variavel global ', limiteRede)
-        } else if (selectValue == "2") {
-          limiteRam = Number(parametros[0].limite)
-          console.log('valor da variavel global ', limiteRam)
-        } else if (selectValue == "1") {
-          limiteCPU = Number(parametros[0].limite)
-          console.log('valor da variavel global ', limiteCpu)
+        if (selectValue != '#') {
+          if (selectValue == "5") {
+            limiteRedeConst = Number(parametros[0].limite)
+
+          } else if (selectValue == "2") {
+            limiteRamConst = Number(parametros[0].limite)
+
+          } else if (selectValue == "1") {
+            limiteCPUConst = Number(parametros[0].limite)
+
+          }
         }
 
       })
   }
-
-
 
   // gráfico de linha de rede
   const labels = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00"];
@@ -574,7 +576,7 @@
     },
     {
       label: 'Limite',
-      data: Array(24).fill(limiteRede),
+      data: Array(24).fill(),
       borderColor: 'red',
       borderWidth: 2,
       backgroundColor: 'transparent',
@@ -591,8 +593,7 @@
   };
 
   const ctx = document.getElementById('meuGrafico');
-
-  new Chart(ctx, config);
+  const chartRede = new Chart(ctx, config);
 
   // grafico de cpu
 
@@ -610,7 +611,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(limiteCPU),
+        data: Array(10).fill(),
         borderDash: [5, 5],
         borderColor: 'red',
         borderWidth: 2,
@@ -650,7 +651,7 @@
 
   const ctxCpu = document.getElementById('meuGraficoCpu');
 
-  new Chart(ctxCpu, configCpu);
+  const chartCpu = new Chart(ctxCpu, configCpu);
 
   // grafico de ram
 
@@ -709,8 +710,28 @@
 
   const ctxRam = document.getElementById('meuGraficoRam');
 
-  new Chart(ctxRam, configRam);
+  const chartRam = new Chart(ctxRam, configRam);
 
+  function atualizarLinhaLimite() {
+    var selectValue = selectParametro.value
+    if (selectValue == '5') {
+      console.log('dentro do update chart rede')
+      chartRede.data.datasets[1].data = Array(labels.length).fill(limiteRedeConst);;
+      chartRede.update();
+    }
+
+    if (selectValue == '1') {
+      console.log('dentro do update chart cpu')
+      chartCpu.data.datasets[1].data = Array(labels.length).fill(limiteCPUConst);
+      chartCpu.update;
+    }
+
+    if (selectValue == '2') {
+      console.log('dentro do update chart ram')
+      chartRam.data.datasets[1].data = Array(labels.length).fill(limiteRamConst);
+      chartRam.update;
+    }
+  }
   // função para select de monitores
   function listarNomesMonitores() {
     const fk_unidade = sessionStorage.ID_UNIDADE
@@ -747,19 +768,77 @@
       })
   }
 
+  const statusMonitorConst = null;
 
   function statusMonitor() {
     const idMonitor = sessionStorage.ID_MONITOR;
     const fkEmpresa = sessionStorage.FK_EMPRESA;
 
-    fetch(`/monitor/statusMonitor?fk_empresa = ${fkEmpresa}&id_monitor = ${idMonitor}`)
+    fetch(`/monitor/statusMonitor?fk_empresa=${fkEmpresa}&id_monitor=${idMonitor}`)
       .then(function (resposta) {
         return resposta.json();
       })
       .then(function (status) {
+        console.log('Status: ', status)
 
-        divStatus.innerHTML = "";
+        var statusMonitor = status[0].status_monitor
+        statusMonitorConst = statusMonitor;
+
+        if (statusMonitor == "Inativo") {
+          divStatus.innerHTML = `
+                <div class="infoMonitorInativo" style="width: 300px!important;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-wrench" viewBox="0 0 16 16">
+                    <path
+                      d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
+                  </svg>
+                    <b>${statusMonitor}</b>
+                </div>`;
+        } else if (statusMonitor == "Ativo") {
+          divStatus.innerHTML = `
+                <div class="infoMonitorAtivo" style="width: 300px!important;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-wrench" viewBox="0 0 16 16">
+                    <path
+                      d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
+                  </svg>
+                    <b>${statusMonitor}</b>
+                </div>`;
+
+        } else if (statusMonitor == "Manutenção") {
+          divStatus.innerHTML = `
+                <div class="infoMonitorManutencao" style="width: 300px!important;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-wrench" viewBox="0 0 16 16">
+                    <path
+                      d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z" />
+                  </svg>
+                    <b>${statusMonitor}</b>
+                </div>`;
+
+        } else {
+          console.log('Status inválido')
+        }
       })
+  }
+
+  function modeloMonitor() {
+    const idMonitor = sessionStorage.ID_MONITOR;
+
+    fetch(`/monitor/modeloMonitor?id_monitor=${idMonitor}`)
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (modelo) {
+        console.log('Modelo: ', modelo)
+        divModelo.innerHTML = `<b>Modelo:</b> ${modelo[0].nome}`;
+      })
+  }
+
+  function descricaoManutencao() {
+    if(statusMonitor == "Manutenção"){
+      
+    }
   }
   /*
   function kpiPicoRede(){
