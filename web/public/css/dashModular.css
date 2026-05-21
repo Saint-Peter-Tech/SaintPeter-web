@@ -5,77 +5,24 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-.boxesModular {
-    display: flex;
-    justify-content: space-between;
-}
-
 body{
     background:#f4f4f5;
     padding:24px;
     color:#1f2937;
 }
 
-hr.solid {
-  border-top: 2px solid #13347b;
-}
-
-hr.rounded {
-  border-top: 6px solid #13347b;
-  border-radius: 5px;
-}
-
-.topbar h1{
-    font-size:28px;
-}
-
-.topbar p{
-    color:#6b7280;
-    margin-top:4px;
-}
-
-.status-monitor{
-    background:#fff;
-    padding:16px 24px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+.boxesModular{
     display:flex;
-    flex-direction:column;
-    align-items:center;
+    justify-content:space-between;
 }
 
-.status-monitor strong{
-    color:#ef4444;
-    margin-top:4px;
+hr.solid{
+    border-top:2px solid #13347b;
 }
 
-.kpis{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    margin-bottom:24px;
-}
-
-.kpi-card{
-    background:white;
-    border-radius:14px;
-    padding:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.06);
-}
-
-.kpi-card p{
-    color:#6b7280;
-    margin-bottom:8px;
-}
-
-.kpi-card h2{
-    font-size:32px;
-    margin-bottom:10px;
-}
-
-.kpi-card span{
-    font-size:14px;
-    font-weight:bold;
+hr.rounded{
+    border-top:6px solid #13347b;
+    border-radius:5px;
 }
 
 .dashboard-grid{
@@ -99,79 +46,136 @@ hr.rounded {
     font-size:24px;
 }
 
-.criticidade-table td{
-    padding: 14px;
-    text-align: center;
-    font-weight: bolder;
+.chart-container{
+    position:relative;
+    height:450px;
+    width:100%;
 }
 
-.criticidade-table th{
-    padding: 14px;
-    text-align: center;
-    font-weight: bolder;
-}
-
-.ok-bg{
-    background-color: #dcfce7;
-    color: #166534;
-    border-radius: 10px;
-}
-
-.warning-bg{
-    background-color: #fef3c7;
-    color: #92400e;
-    border-radius: 10px;
-}
-
-.critical-bg{
-    background-color: #fee2e2;
-    color: #991b1b;
-    border-radius: 10px;
-}
-
-.table-scroll {
-    max-height: 400px;
-    overflow-y: auto;
-    margin-top: 15px;
-    padding-right: 8px;
-}
-
-.criticidade-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 12px;
-}
-
-.criticidade-table thead th {
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 100;
-    padding: 14px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-}
-
-.criticidade-table tbody td {
-    padding: 12px;
-    text-align: center;
+.table-scroll{
+    max-height:400px;
+    overflow-y:auto;
+    margin-top:15px;
+    padding-right:8px;
 }
 
 .table-scroll::-webkit-scrollbar{
-    width: 8px;
+    width:8px;
 }
 
 .table-scroll::-webkit-scrollbar-thumb{
-    background: #c7cedb;
-    border-radius: 10px;
+    background:#c7cedb;
+    border-radius:10px;
 }
 
 .table-scroll::-webkit-scrollbar-track{
-    background: transparent;
+    background:transparent;
 }
 
-.chart-container {
-    position: relative;
-    width: 100%;
-    height: 350px;
+.criticidade-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 12px;
+}
+
+.criticidade-table th,
+.criticidade-table td{
+    padding:14px;
+    text-align:center;
+    font-weight:bolder;
+}
+
+.criticidade-table thead th{
+    position:sticky;
+    top:0;
+    background:white;
+    z-index:100;
+    box-shadow:0 2px 4px rgba(0,0,0,0.08);
+}
+
+.criticidade-table tbody td{
+    padding:12px;
+}
+
+.ok-bg{
+    background-color:#dcfce7;
+    color:#166534;
+    border-radius:10px;
+}
+
+.warning-bg{
+    background-color:#fef3c7;
+    color:#92400e;
+    border-radius:10px;
+}
+
+.critical-bg{
+    background-color:#fee2e2;
+    color:#991b1b;
+    border-radius:10px;
+}
+
+.tabelaHeader{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+
+    padding:24px 24px 10px 24px;
+    background:white;
+}
+
+.tabelaHeader h2{
+    margin:0;
+}
+
+.legendaCriticidade{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+
+    font-size:15px;
+    color:#555;
+}
+
+.legendaItem{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.status{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.status.ok{
+    background-color:#16a34a;
+}
+
+.status.alerta{
+    background-color:#f59e0b;
+}
+
+.status.critico{
+    background-color:#dc2626;
+}
+
+h2 {
+    font-weight: bolder;
+}
+
+.infoCaptura {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6b7280;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.infoCaptura span {
+    color: #13347b;
+    font-weight: 700;
 }
