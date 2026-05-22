@@ -153,6 +153,95 @@
         <h1 style="color: #13347b;">Dashboard - Modelos</h1>
       </div>
 
+      <div class="container-graficoInicial">
+        <div class="lista-modelos">
+          <div class="pt-4 ps-4">
+            <h3 style="color: #13347b;">Lista de Modelos</h3>
+          </div>
+
+          <div class="table-scroll">
+            <table class="modelo-table">
+              <thead>
+                <tr>
+                  <th>Modelo</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>IntelliVue MX400</td>
+                  <td>91</td>
+                  <td class="critical-bg">Crítico</td>
+                </tr>
+                <tr>
+                  <td>IntelliVue MX450</td>
+                  <td>87</td>
+                  <td class="critical-bg">Crítico</td>
+                </tr>
+                <tr>
+                  <td>IntelliVue MX500</td>
+                  <td>68</td>
+                  <td class="warning-bg">Atenção</td>
+                </tr>
+                <tr>
+                  <td>IntelliVue MX550</td>
+                  <td>22</td>
+                  <td class="ok-bg">Estável</td>
+                </tr>
+                <tr>
+                  <td>IntelliVue MX750</td>
+                  <td>11</td>
+                  <td class="ok-bg">Estável</td>
+                </tr>
+                <tr>
+                  <td>IntelliVue MX850</td>
+                  <td>10</td>
+                  <td class="ok-bg">Estável</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column gap-4">
+          <div class="kpiModelo">
+            <div class="displayFlex" style="gap: 65%;">
+              <h5>MONITORES</h5>
+              <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
+            </div>
+
+            <span style="display: flex; gap: 20%;">
+              <div>
+                <h4><b>156</b></h4>
+                <p><i>Quantidade total de monitores do modelo</i></p>
+              </div>
+              <div style="align-self: flex-end; text-align: end;">
+                <p><i>Última atualização: 13/05/2026</i></p>
+              </div>
+            </span>
+          </div>
+
+          <div class="kpiModelo">
+            <div class="displayFlex" style="gap: 55%;">
+              <h5>MODELOS INSTÁVEIS</h5>
+              <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
+            </div>
+
+            <span style="display: flex; gap: 20%;">
+              <div>
+                <h4><b>2</b></h4>
+                <p><i>Quantidade total de modelos instáveis</i></p>
+              </div>
+              <div style="align-self: flex-end; text-align: end;">
+                <p><i>Última atualização: 13/05/2026</i></p>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
 
       <!-- Escolher Modelo -->
       <div class="div_escolha_unidade">
@@ -166,7 +255,6 @@
         <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
             href="./dashGraficosGerente.html">Visualizar Dashboard ></a></button>
       </div>
-
 
 
       <!-- KPIs -->
@@ -190,13 +278,13 @@
 
         <div class="kpiModelo" style="color: #00A63E; border-bottom: 4px solid #00A63E; margin-bottom: 2%;">
           <div class="displayFlex" style="gap: 55%;">
-            <h5>DISPONIBILIDADE</h5>
+            <h5 style="color: #13347b;">DISPONIBILIDADE</h5>
             <img src="../assets/dash-modelo/icon-uptime.png" alt="" class="kpiImg">
           </div>
 
-          <span style="display: flex; gap: 20%;">
+          <span style="display: flex; gap: 25%; color: #13347b;">
             <div>
-              <h4><b>98.5%</b></h4>
+              <h4 style="color: #00A63E;"><b>98.5%</b></h4>
               <p><i>Uptime do Modelo</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
@@ -205,15 +293,15 @@
           </span>
         </div>
 
-        <div class="kpiModelo" style="color: #991616; border-bottom: 4px solid #991616; margin-bottom: 2%;">
+        <div class="kpiModelo" style="color: #e41033; border-bottom: 4px solid #e41033; margin-bottom: 2%;">
           <div class="displayFlex" style="gap: 67%;">
-            <h5>Criticidade</h5>
+            <h5 style="color: #13347b;">INSTABILIDADE</h5>
             <img src="../assets/dash-modelo/icon-criticidade.png" alt="" class="kpiImg">
           </div>
 
-          <span style="display: flex; gap: 25%;">
+          <span style="display: flex; gap: 25%; color: #13347b;">
             <div>
-              <h4><b>87</b></h4>
+              <h4 style="color: #e41033;"><b>87</b></h4>
               <p><i>Score de risco operacional</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
@@ -389,7 +477,7 @@
       datasets: [{
         label: 'Captações por Porcentagem',
         data: [1680, 4120, 450],
-        backgroundColor: '#3B82F6',
+        backgroundColor: '#57D6E2',
         borderRadius: 8
       }]
     },
@@ -426,7 +514,7 @@
       datasets: [{
         label: 'Captações por Porcentagem',
         data: [1450, 4320, 680],
-        backgroundColor: '#8B5CF6',
+        backgroundColor: '#1268B8',
         borderRadius: 8
       }]
     },
@@ -466,18 +554,18 @@
         {
           label: 'P50',
           data: [45, 52, 48, 56, 51, 38, 35],
-          borderColor: "#06B6D4"
+          borderColor: "#CAD1DA"
         },
         {
           label: 'P95',
           data: [78, 85, 82, 89, 87, 65, 62],
-          borderColor: "#EF4444"
+          borderColor: "#3790BB"
         },
         {
           label: 'Limite',
           data: Array(7).fill(80),
           borderDash: [5, 5],
-          borderColor: '#FBBF24',
+          borderColor: '#FFE821',
           borderWidth: 2,
           backgroundColor: 'transparent',
           pointRadius: 0,
@@ -518,7 +606,7 @@
       {
         label: 'Dataset 1',
         data: [35, 48, 17],
-        backgroundColor: ["#3B82F6", "#8B5CF6", "#06B6D4"]
+        backgroundColor: ["#57D6E2", "#1268B8", "#3790BB"]
       }
     ]
   };

@@ -1,3 +1,78 @@
+.container-graficoInicial{
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    gap: 2%;
+    margin-bottom: 24px;
+}
+
+.lista-modelos{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.table-scroll{
+    max-height:350px;
+    overflow-y:auto;
+    margin-top:15px;
+    padding-right:8px;
+}
+
+.table-scroll::-webkit-scrollbar{
+    width:8px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+    background:#c7cedb;
+    border-radius:10px;
+}
+
+.table-scroll::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.modelo-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 12px;
+}
+
+.modelo-table th,
+.modelo-table td{
+    padding:14px;
+    text-align:center;
+    font-weight:bolder;
+}
+
+.modelo-table thead th{
+    position:sticky;
+    top:0;
+    background:white;
+    z-index:100;
+    box-shadow:0 2px 4px rgba(0,0,0,0.08);
+}
+
+.modelo-table tbody td{
+    padding:12px;
+}
+
+.ok-bg{
+    background-color:#dcfce7;
+    color:#166534;
+    border-radius:10px;
+}
+
+.warning-bg{
+    background-color:#fef3c7;
+    color:#92400e;
+    border-radius:10px;
+}
+
+.critical-bg{
+    background-color:#fee2e2;
+    color:#991b1b;
+    border-radius:10px;
+}
+
 .kpiImg {
     width: 40px;
     height: 40px;
