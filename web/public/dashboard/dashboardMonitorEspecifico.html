@@ -156,7 +156,7 @@
             <div>
               <br>
               <!-- Status do monitor -->
-              <span id="divStatus">
+              <span id="divStatus" style="display: block;">
                 <div class="infoMonitorInativo" style="width: 300px!important;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-wrench" viewBox="0 0 16 16">
@@ -502,9 +502,9 @@
   });
 
   // função para select de parametros
-  const limiteRamConst = null;
-  const limiteCPUConst = null;
-  const limiteRedeConst = null;
+ var limiteRamConst = null;
+ var limiteCPUConst = null;
+ var limiteRedeConst = null;
 
   function listarParametros() {
     const idMonitor = sessionStorage.ID_MONITOR;
@@ -611,7 +611,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(),
+        data: Array(10).fill(limiteCPUConst),
         borderDash: [5, 5],
         borderColor: 'red',
         borderWidth: 2,
@@ -670,7 +670,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(limiteRam),
+        data: Array(10).fill(limiteRamConst),
         borderDash: [5, 5],
         borderColor: 'red',
         backgroundColor: 'transparent',
@@ -732,6 +732,7 @@
       chartRam.update;
     }
   }
+  
   // função para select de monitores
   function listarNomesMonitores() {
     const fk_unidade = sessionStorage.ID_UNIDADE
@@ -768,7 +769,7 @@
       })
   }
 
-  const statusMonitorConst = null;
+  var statusMonitorConst
 
   function statusMonitor() {
     const idMonitor = sessionStorage.ID_MONITOR;
