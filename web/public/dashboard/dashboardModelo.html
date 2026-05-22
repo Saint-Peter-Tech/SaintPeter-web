@@ -160,7 +160,6 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Data de Lançamento</th>
-                    <th>Marca</th>
                     <th>Descrição</th>
                 </tr>
             </thead>
@@ -186,8 +185,8 @@
 
         function listarModelos() {
             var corpoTabela = document.getElementById("corpoTabela");
-
-            fetch('/modelo/listarModelos')
+            var fkEmpresa = sessionStorage.FK_EMPRESA
+            fetch(`/modelo/listarModelos?fkEmpresa=${fkEmpresa}`)
                 .then(function (resposta) {
                     return resposta.json();
                 })
@@ -200,7 +199,6 @@
                                 <td>${modelos[i].id_modelo}</td>
                                 <td>${modelos[i].nome}</td>
                                 <td>${modelos[i].dtLancamento}</td>
-                                <td>${modelos[i].marca}</td>
                                 <td>${modelos[i].descricao}</td>
                             </tr>
                         `;

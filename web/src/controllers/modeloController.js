@@ -3,11 +3,11 @@ var modeloModel = require("../models/modeloModel");
 function cadastrarModelo(req, res) {
     var nomeModelo = req.body.modeloServer
     var dataLancamento = req.body.dataServer
-    var marca = req.body.marcaServer
     var descricao = req.body.descricaoServer
+    var fkEmpresa = req.body.fkEmpresaServer
 
     modeloModel
-        .cadastrarModelo(nomeModelo, dataLancamento, marca, descricao)
+        .cadastrarModelo(nomeModelo, dataLancamento, descricao, fkEmpresa)
         .then(function (resultado) {
             res.json({ id: resultado.insertId });
         })
@@ -22,7 +22,8 @@ function cadastrarModelo(req, res) {
 }
 
 function buscarModelos(req, res) {
-  modeloModel.buscarModelos()
+  var fkEmpresa = req.query.fkEmpresa
+  modeloModel.buscarModelos(fkEmpresa)
     .then(function (resultado) {
       res.json(resultado);
     })
@@ -33,7 +34,8 @@ function buscarModelos(req, res) {
 }
 
 function buscarModelosPorNome(req, res) {
-  modeloModel.buscarModelos()
+  var fkEmpresa = req.query.fkEmpresa
+  modeloModel.buscarModelos(fkEmpresa)
     .then(function (resultado) {
       res.json(resultado);
     })
