@@ -181,7 +181,7 @@
           </div>
           <div class="parte-baixo-kpi d-flex justify-content-between">
             <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
-            <p><i>Saiba mais</i></p>
+            <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
             </span>
           </div>
         </div>
@@ -198,7 +198,7 @@
           <div class="parte-baixo-kpi d-flex justify-content-between">
             <p><i>14 Quedas</i></p>
             <div style="align-self: flex-end; text-align: end">
-              <p><i>Saiba mais</i></p>
+              <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
             </div>
             </span>
           </div>
@@ -219,7 +219,7 @@
                   <p><i>HOJE 6 - ONTEM 1</i></p>
                 <!-- </div> -->
                 <div style="align-self: flex-end; text-align: end">
-                  <p><i>Saiba mais</i></p>
+                  <p><i><a href="./dashboardAlertasHospital.html" style="color: inherit;">Saiba mais</a></i></p>
                 </div>
               </span>
             </div>
@@ -232,7 +232,7 @@
 
         <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody style="max-height: 180px; max-width: 500px;" class="list-group overflow-scroll">
+            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
               <tr>
                 <td>MON-UTI-007</td>
               </tr>
@@ -255,7 +255,7 @@
 
         <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody style="max-height: 180px; max-width: 500px;" class="list-group overflow-scroll">
+            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
               <tr>
                 <td>MON-UTI-007</td>
               </tr>
@@ -274,13 +274,13 @@
       </div>
 
   <div class="grafico modulosAtivos">
-        <div style="font-size: large;"><h5>HOSPITAIS COM MAIS DE 5 ALERTAS</h5></div>
+        <div style="font-size: large;"><h5>HOSPITAIS COM MAIS DE 5 ALERTAS / 24H</h5></div>
 
         <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody style="max-height: 180px; max-width: 500px;" class="list-group overflow-scroll">
-              <tr>
-                <td>MON-UTI-007</td>
+            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
+              <tr class="bg-white">
+                <td class="bg-white">MON-UTI-007</td>
               </tr>
               <tr>
                 <td>MON-UTI-008</td>
@@ -316,7 +316,7 @@
     <!-- graficos de cpu e ram -->
     <div class="pai-graficos">
       <div class="displayFlex">
-        <div class="grafico" style="width: 820px">
+        <div class="grafico" style="width: 820px; height: 550px;">
           <h4>Quedas por Dia e Turno</h4>
           <div id="quedasDia"></div>
         </div>
@@ -402,32 +402,7 @@ var testeGraf = {
   },
   series: [
     {
-      name: "Manhã",
-      data: [{
-        x: 'W1',
-            y: 23
-          }, {
-            x: 'W2',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }]
-    },
-    {
-      name: "Tarde",
+      name: "Madrugada",
       data: [{
         x: 'W1',
             y: 23
@@ -453,6 +428,31 @@ var testeGraf = {
     },
     {
       name: "Noite",
+      data: [{
+        x: 'W1',
+            y: 23
+          }, {
+            x: 'W2',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }]
+    },
+    {
+      name: "Tarde",
         data: [{
           x: 'W1',
             y: 23
@@ -477,7 +477,7 @@ var testeGraf = {
           }]
       },
       {
-        name: "Madrugada",
+        name: "Manhã",
           data: [{
             x: 'W1',
             y: 23
