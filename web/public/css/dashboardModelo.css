@@ -1,0 +1,60 @@
+.kpiImg {
+    width: 40px;
+    height: 40px;
+}
+
+.kpiModelo{
+  color: #13347b;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2%;
+  border-bottom: #13347b solid 4px;
+  transition: transform ease 0.3s;
+  width: 600px;
+  height: 200px;
+  gap: 2%;
+}
+
+.kpiModelo:hover {
+  transform: scale(1.03);
+}
+
+.displayFlex {
+  display: flex;
+  gap: 2%;
+}
+
+.container-graficos1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2%;
+}
+
+.container-graficos2 {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 2%;
+}
+
+.modeloGrafico {
+  background-color: white;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+#containerGraficoPizza {
+    display: grid;
+    grid-template-rows: 1fr 7fr 1fr;
+    gap: 4%;
+}
+
+.imgGrafico {
+    width: 50px;
+    height: 50px;
+}
+
+.tituloGrafico {
+    color: #13347b;
+    margin: 0; 
+    align-self: center;
+}
