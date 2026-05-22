@@ -292,3 +292,12 @@
   height: 200px;
   gap: 2%;
 }
+
+.divInfoMonitor{
+  background-color: white;
+  color: #13347b;
+  border-radius: 10px;
+  padding: 1%;
+  margin-top: -1%;
+  margin-bottom: 1%;
+}

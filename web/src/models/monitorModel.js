@@ -42,9 +42,34 @@ function listarParametros(idComponente, fkMonitor) {
   return database.executar(instrucaoSql)
 }
 
+function statusMonitor(idMonitor, fkEmpresa){
+  instrucaoSql = `
+    select status_monitor from monitores where id_monitor = '${idMonitor}' and fk_empresa = '${fkEmpresa}';
+  `
+
+  console.log("Executando a instrução SQL: \n " + instrucaoSql);
+  return database.executar(instrucaoSql)
+}
+
+
+function modeloMonitor(idMonitor){
+  instrucaoSql = `
+    select modelos.nome
+		  from monitores
+		  join modelos 
+		  on id_modelo =  fk_modelo
+		  where id_monitor = ${idMonitor};
+  `
+
+  console.log("Executando a instrução SQL: \n " + instrucaoSql);
+  return database.executar(instrucaoSql)
+}
+
 module.exports = {
   cadastrarMonitor,
   vincularComponente,
   listarNomesMonitores,
   listarParametros,
+  statusMonitor,
+  modeloMonitor
 };

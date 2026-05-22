@@ -888,7 +888,9 @@ h5 {
 .KpisMonitoresEspecificosCritico:hover,
 .KpisMonitoresEspecificosAlerta:hover,
 .statusMonitor:hover,
-.infoMonitorCritico:hover{
+.infoMonitorManutencao:hover,
+.infoMonitorInativo:hover,
+.infoMonitorAtivo:hover{
   transform: scale(1.01);
 }
 
@@ -901,13 +903,28 @@ h5 {
   margin-bottom: 2%;
 }
 
-.infoMonitorCritico{
+.infoMonitorManutencao{
   background-color: #ffeeee;
   color: #991616;
   border-radius: 10px;
   padding: 1%;
   transition: transform 0.3s ease;
+}
 
+.infoMonitorInativo{
+  background-color: #e6e6e6;
+  color: #424242;
+  border-radius: 10px;
+  padding: 1%;
+  transition: transform 0.3s ease;
+}
+
+.infoMonitorAtivo{
+  background-color: #cdefce;
+  color: #3fb945;
+  border-radius: 10px;
+  padding: 1%;
+  transition: transform 0.3s ease;
 }
 
 .infoMonitorAlerta{

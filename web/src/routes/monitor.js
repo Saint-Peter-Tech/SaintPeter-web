@@ -16,4 +16,13 @@ router.get("/listarNomesMonitores", function(req, res){
 router.get("/listarParametros", function(req, res){
     monitorController.listarParametros(req,res)
 })
+
+router.get("/statusMonitor", function(req, res){
+    monitorController.statusMonitor(req, res)
+})
+
+router.get("/modeloMonitor", function(req, res){
+    monitorController.modeloMonitor(req, res)
+})
+
 module.exports = router; 
