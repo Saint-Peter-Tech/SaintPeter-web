@@ -141,11 +141,6 @@
                     <input style="color: #13347b!important;" class="inputCadastro" type="date" id="data_lancamento">
                 </p>
 
-                <p><span>Marca:</span> <br>
-                    <input class="inputCadastro" type="text" id="input_marca" maxlength="50"
-                        placeholder="Exemplo: Philips">
-                </p>
-
                 <p><span>Descrição:</span> <br>
                     <input class="inputCadastro" type="text" id="input_descricao" maxlength="1000">
                 </p>
@@ -168,15 +163,15 @@
     function cadastrarModelo() {
         var nomeModelo = input_nomeModelo.value;
         var dataLancamento = data_lancamento.value;
-        var marca = input_marca.value;
         var descricao = input_descricao.value;
         var mensagemErro = "";
+        var fkEmpresa = sessionStorage.FK_EMPRESA
 
 
         div_erroCadastro.innerHTML = "";
         div_erroCadastro.style.color = "red";
 
-        if (nomeModelo === "" || dataLancamento === "" || marca === "" || descricao === "") {
+        if (nomeModelo === "" || dataLancamento === "" || descricao === "") {
             mensagemErro += "Todos os campos devem ser preenchidos!<br>";
         }
 
@@ -199,8 +194,8 @@
             body: JSON.stringify({
                 modeloServer: nomeModelo,
                 dataServer: dataLancamento,
-                marcaServer: marca,
                 descricaoServer: descricao,
+                fkEmpresaServer: fkEmpresa
             }),
         })
             .then(function (resposta) {
@@ -210,7 +205,6 @@
 
                 input_nomeModelo.value = "";
                 data_lancamento.value = "0";
-                input_marca.value = "";
                 input_descricao.value = "";
                 return resposta.json();
             })
