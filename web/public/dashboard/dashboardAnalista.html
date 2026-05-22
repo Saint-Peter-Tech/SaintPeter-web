@@ -317,12 +317,12 @@
     <div class="pai-graficos">
       <div class="displayFlex">
         <div class="grafico" style="width: 820px; height: 550px;">
-          <h4>Quedas por Dia e Turno</h4>
+          <h4><img src="../assets/dash-modelo/icon-rede.png" alt=""> Quedas por Dia e Turno</h4>
           <div id="quedasDia"></div>
         </div>
 
         <div class="grafico" style="width: 820px">
-          <h4>Alertas por Semana do Mês</h4>
+          <h4><img src="../assets/dash-modelo/icon-alerta.png" alt=""> Alertas por Semana do Mês</h4>
           <canvas id="alertaSemana"></canvas>
         </div>
       </div>
@@ -519,17 +519,16 @@ teste.render();
   data: {
     labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
     datasets: [{
-      data: [10,20,30,40],
-      backgroundColor: ['blue', 'yellow', 'orange', 'red']
+      label: 'Alertas',
+      data: [10, 20, 30, 40], // ✅ array com os 4 valores
+      backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2']
     }]
   },
   options: {
     scales: {
-      y: {
-        beginAtZero: true
-      }
+      y: { beginAtZero: true }
     }
-  },
+  }
 };
 
 const alertaSemana = new Chart(ctx, config);
