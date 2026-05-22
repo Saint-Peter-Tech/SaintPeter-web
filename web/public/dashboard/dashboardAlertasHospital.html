@@ -318,22 +318,7 @@
             }
         });
 
-        const bucket = "https://NOMEBUCKET.s3.amazonaws.com";
-
-        function buscarDadosAws(ARQUIVO) {
-            fetch(`${BUCKET_URL}/client/${ARQUIVO}.json`)
-                .then(response => {
-                    if (!response.ok) throw new Error('Arquivo não encontrado no S3');
-                    return response.json();
-                })
-                .then(dados => {
-                    console.log("Dados recebidos da AWS:", dados);
-                    plotarGraficos(dados); 
-                })
-                .catch(erro => console.error("Erro ao buscar JSON:", erro));
-        }
-
-        carregarDadosDashboard('ARQUIVO');
+        
     </script>
 </body>
 

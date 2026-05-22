@@ -22,6 +22,7 @@ var cadastroEmpresaRouter = require("./src/routes/cadastroEmpresa");
 var cadastroAdmRouter = require("./src/routes/cadastroAdm");
 var cadastroFuncionarioRouter = require("./src/routes/cadastroFuncionario");
 var hospitalRouter = require("./src/routes/hospital");
+var hospitalS3Router = require("./src/routes/hospitalS3");
 var unidadeRouter = require("./src/routes/unidade")
 var monitorRouter = require("./src/routes/monitor")
 var modeloRouter = require("./src/routes/modelo")
@@ -37,6 +38,7 @@ app.use("/empresas", empresasRouter);
 app.use("/cadastroEmpresa", cadastroEmpresaRouter);
 app.use("/cadastroAdm", cadastroAdmRouter);
 app.use("/cadastroFuncionario", cadastroFuncionarioRouter);
+app.use("/hospitalS3", hospitalS3Router);
 app.use("/hospital", hospitalRouter)
 app.use("/unidade", unidadeRouter)
 app.use("/monitor", monitorRouter)
