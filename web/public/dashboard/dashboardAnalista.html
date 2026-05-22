@@ -165,7 +165,8 @@
       </div>
 
       <!-- kpis cpu, ram e disco rígido -->
-      <div class="displayFlex">
+  <div class="pai-todos d-flex flex-column gap-4">
+      <div class="displayFlex d-flex flex-row gap-4">
         <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
           <div class="parte-cima-kpi d-flex justify-content-between">
             <div class="displayFlex" style="gap: 80%">
@@ -180,7 +181,7 @@
           </div>
           <div class="parte-baixo-kpi d-flex justify-content-between">
             <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
-            <p><i>Saiba mais</i></p>
+            <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
             </span>
           </div>
         </div>
@@ -191,13 +192,13 @@
               <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
             </div>
 
-            <span style="display: flex; gap: 10%">
-              <h4><b>HOSPITAL SÃO LUCAS</b></h4>
+            <span class="text-end" style="display: flex; gap: 10%">
+              <h4><b>EINSTEIN - ALPHAVILLE</b></h4>
           </div>
           <div class="parte-baixo-kpi d-flex justify-content-between">
             <p><i>14 Quedas</i></p>
             <div style="align-self: flex-end; text-align: end">
-              <p><i>Saiba mais</i></p>
+              <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
             </div>
             </span>
           </div>
@@ -218,20 +219,20 @@
                   <p><i>HOJE 6 - ONTEM 1</i></p>
                 <!-- </div> -->
                 <div style="align-self: flex-end; text-align: end">
-                  <p><i>Saiba mais</i></p>
+                  <p><i><a href="./dashboardAlertasHospital.html" style="color: inherit;">Saiba mais</a></i></p>
                 </div>
               </span>
             </div>
         </div>
     </div>
 
-    <div class="paiListas d-flex">
+    <div class="paiListas d-flex gap-4">
       <div class="grafico modulosAtivos">
-        <span style="font-size: large;">LISTA DE MONITORES INDISPONÍVEIS</span>
+        <span style="font-size: large;"><h5>LISTA DE MONITORES INDISPONÍVEIS</h5></span>
 
-        <div class="container pt-5 w-30">
+        <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody>
+            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
               <tr>
                 <td>MON-UTI-007</td>
               </tr>
@@ -250,11 +251,11 @@
       </div>
 
       <div class="grafico modulosAtivos">
-        <span style="font-size: large;">RANKING DE UNIDADES COM QUEDAS</span>
+        <span style="font-size: large;"><h5>RANKING DE UNIDADES COM QUEDAS</h5></span>
 
-        <div class="container pt-5 w-30">
+        <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody>
+            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
               <tr>
                 <td>MON-UTI-007</td>
               </tr>
@@ -272,14 +273,14 @@
         </div>
       </div>
 
-      <div class="grafico modulosAtivos">
-        <span style="font-size: large;">HOSPITAIS COM MAIS DE 5 ALERTAS</span>
+  <div class="grafico modulosAtivos">
+        <div style="font-size: large;"><h5>HOSPITAIS COM MAIS DE 5 ALERTAS / 24H</h5></div>
 
-        <div class="container pt-5 w-30">
+        <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody>
-              <tr>
-                <td>MON-UTI-007</td>
+            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
+              <tr class="bg-white">
+                <td class="bg-white">MON-UTI-007</td>
               </tr>
               <tr>
                 <td>MON-UTI-008</td>
@@ -290,18 +291,34 @@
               <tr>
                 <td>MON-CC-009</td>
               </tr>
+              <tr>
+                <td>MON-CC-009</td>
+              </tr>
+              <tr>
+                <td>MON-CC-009</td>
+              </tr>
+              <tr>
+                <td>MON-CC-009</td>
+              </tr>
+              <tr>
+                <td>MON-CC-009</td>
+              </tr>
+              <tr>
+                <td>MON-CC-009</td>
+              </tr>
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
+  </div>
+</div>
+  
 
     <!-- graficos de cpu e ram -->
-    <div>
+    <div class="pai-graficos">
       <div class="displayFlex">
-        <div class="grafico" style="width: 820px">
+        <div class="grafico" style="width: 820px; height: 550px;">
           <h4>Quedas por Dia e Turno</h4>
-          <canvas id="quedasDia"></canvas>
+          <div id="quedasDia"></div>
         </div>
 
         <div class="grafico" style="width: 820px">
@@ -310,6 +327,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Cadastros e modulos ativos -->
 
@@ -323,6 +341,7 @@
   <script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="https://jsdelivr.net"></script>
 </body>
 
@@ -376,137 +395,122 @@
   // document.getElementById("kpi_mais").innerText = "Sexta";
   // document.getElementById("kpi_menos").innerText = "Segunda";
 
-  function generateData(count, yrange) {
-    var i = 0;
-    var series = [];
-    while (i < count) {
-        var x = 'w' + (i + 1).toString();
-        var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-        series.push({
-            x: x,
-            y: y
-        });
-        i++;
-    }
-    return series;
+
+var testeGraf = {
+  chart: {
+    type: 'heatmap'
+  },
+  series: [
+    {
+      name: "Madrugada",
+      data: [{
+        x: 'W1',
+            y: 23
+          }, {
+            x: 'W2',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }]
+    },
+    {
+      name: "Noite",
+      data: [{
+        x: 'W1',
+            y: 23
+          }, {
+            x: 'W2',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }]
+    },
+    {
+      name: "Tarde",
+        data: [{
+          x: 'W1',
+            y: 23
+          }, {
+            x: 'W2',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }]
+      },
+      {
+        name: "Manhã",
+          data: [{
+            x: 'W1',
+            y: 23
+          }, {
+            x: 'W2',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W3',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }, {
+            x: 'W4',
+            y: 23
+          }]
+        }
+  ]
+,
+  xaxis: {
+    categories: ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]
+  }
 }
 
-  // var options = {
-  //         series: [{
-  //           name: 'Jan',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Feb',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Mar',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Apr',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'May',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Jun',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Jul',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Aug',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         },
-  //         {
-  //           name: 'Sep',
-  //           data: generateData(20, {
-  //             min: -30,
-  //             max: 55
-  //           })
-  //         }
-  //       ],
-  //         chart: {
-  //         height: 350,
-  //         type: 'heatmap',
-  //       },
-  //       plotOptions: {
-  //         heatmap: {
-  //           shadeIntensity: 0.5,
-  //           radius: 0,
-  //           useFillColorAsStroke: true,
-  //           colorScale: {
-  //             ranges: [{
-  //                 from: -30,
-  //                 to: 5,
-  //                 name: 'low',
-  //                 color: '#00A100'
-  //               },
-  //               {
-  //                 from: 6,
-  //                 to: 20,
-  //                 name: 'medium',
-  //                 color: '#128FD9'
-  //               },
-  //               {
-  //                 from: 21,
-  //                 to: 45,
-  //                 name: 'high',
-  //                 color: '#FFB200'
-  //               },
-  //               {
-  //                 from: 46,
-  //                 to: 55,
-  //                 name: 'extreme',
-  //                 color: '#FF0000'
-  //               }
-  //             ]
-  //           }
-  //         }
-  //       },
-  //       dataLabels: {
-  //         enabled: false
-  //       },
-  //       stroke: {
-  //         width: 1
-  //       },
-  //       title: {
-  //         text: 'HeatMap Chart with Color Range'
-  //       },
-  //       };
+var teste = new ApexCharts(document.querySelector("#quedasDia"), testeGraf);
 
-  //       var chart = new ApexCharts(document.querySelector("#quedasDia"), options);
-  //       chart.render();
+teste.render();
 
   const ctx = document.getElementById('alertaSemana');
 
