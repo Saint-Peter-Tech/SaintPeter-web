@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/dashMonitores.css">
   <link rel="stylesheet" href="../css/dashGrafico.css">
 
+
   <!-- fontes -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
@@ -145,19 +146,25 @@
     <!-- Escolha monitor -->
     <div class="divInfoMonitor">
       <div style="display: flex; border-bottom: 2px solid #f5f5f5;">
-        <select class="selectPrincipal" id="select_monitor">
-
+        <select class="selectPrincipal" onchange="" id="select_monitor">
         </select>
+        <button class="botaoConfig2" onclick="statusMonitor(),  modeloMonitor(), descricaoManutencao()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+            <path
+              d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+          </svg></button>
       </div>
 
-      <div>
+      <div class="displayFlex">
         <div class="displayFlex">
-          <div style="width: 200%;">
+          <div style="width: 70%; margin-right: 300px;">
             <div>
               <br>
               <!-- Status do monitor -->
               <span id="divStatus" style="display: block;">
-                <div class="infoMonitorInativo" style="width: 300px!important;">
+                <div class="infoMonitorInativo">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-wrench" viewBox="0 0 16 16">
                     <path
@@ -166,74 +173,119 @@
                   <b> </b>
                 </div>
               </span>
-              <p>• Em andamento</p>
+              <span id="spanDescricaoManutencao" style="display: none;">
+                <p>• Em andamento</p>
+              </span>
               <span id="divModelo">
-                <p><b>Modelo:</b> </p>
+                <p><b>Modelo:</b></p>
               </span>
             </div>
             <br>
             <span><i>Data da última calibração: 12/05/2026</i></span>
           </div>
+        </div>
 
+        <div>
+          <div class="table-scroll">
+            <table class="tabelaModulosAtivos"">
+              <thead>
+                <tr>
+                  <th>Módulo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
 
-          <div class="displayFlex">
-            <div class="alertasGerados linha-vertical">
-              <h2>
-                5
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                  class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
-                  <path
-                    d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
-                  <path
-                    d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-                </svg>
-              </h2>
-              <p>
-              <h6>Alertas gerados</h6>
-              </p>
-              <p><i>Última semana</i></p>
-
-            </div>
+              <tbody>
+                <tr>
+                  <td>BPM</td>
+                  <td class="moduloAtivo">Ativo</td>
+                </tr>
+                <tr>
+                  <td>PA</td>
+                  <td class="moduloAtivo">Ativo</td>
+                </tr>
+                <tr>
+                  <td>SPO2</td>
+                  <td class="moduloInativo">Inativo</td>
+                </tr>
+                <tr>
+                  <td>RESP</td>
+                  <td class="moduloInativo">Inativo</td>
+                </tr>
+                <tr>
+                  <td>TEMP</td>
+                  <td class="moduloInativo">Inativo</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </div>
 
-
-          <div class="" style="margin-top: 0.5%;">
-            <span>
-              <select class="selectComp" onchange="listarParametros(), atualizarLinhaLimite()" name=""
-                id="selectParametro">
-                <option value="#" selected disabled>Seleciona uma opção</option>
-                <option value="5">Rede</option>
-                <option value="2">Ram</option>
-                <option value="1">CPU</option>
-                <option value="4">Disco Rígido</option>
-              </select>
-            </span>
-
-            <div id="divParametro" style="display: flex; display: block; width: 300px; margin-top: 2%;" class="">
-
-              <div class="" style="width: 200px;">
-                <div><b>Cadastro:</b></div>
-              </div>
-
-
-              <div class="atualizarCadastroComponentes">
-                <button class="displayFlex botaoConfig"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                    <path
-                      d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
-                    <path
-                      d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
-                  </svg></button>
-              </div>
-
-            </div>
+        <!-- alertas gerados -->
+        <div class="displayFlex">
+          <div class="alertasGerados linha-vertical">
+            <h2>
+              5
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                <path
+                  d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
+                <path
+                  d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+              </svg>
+            </h2>
+            <p>
+            <h6>Alertas gerados</h6>
+            </p>
+            <p><i>Última semana</i></p>
 
           </div>
         </div>
 
+        <!-- Select de componentes -->
+        <div class="" style="margin-top: 0.5%;">
+          <span>
+            <select class="selectComp" onchange="" name="" id="selectParametro">
+              <option value="#" selected disabled>Seleciona uma opção</option>
+              <option value="5">Rede</option>
+              <option value="2">Ram</option>
+              <option value="1">CPU</option>
+              <option value="4">Disco Rígido</option>
+            </select>
+            <button class="botaoSelect" onclick="listarParametros(), atualizarLinhaLimite()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
+
+          <div id="divParametro" style="display: flex; display: block; width: 300px; margin-top: 2%;" class="">
+
+            <div class="" style="width: 200px;">
+              <div><b>Cadastro:</b></div>
+            </div>
 
 
+            <div class="atualizarCadastroComponentes">
+              <button class="displayFlex botaoConfig"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                  <path
+                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                  <path
+                    d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                </svg></button>
+            </div>
+
+          </div>
+
+        </div>
       </div>
+
+
+
+    </div>
 
     </div>
 
@@ -331,7 +383,7 @@
 
     </div>
     <!-- kpis cpu, ram e disco rígido -->
-    <div style="margin-left: 2%;" class="displayFlex">
+    <div style="margin-left: 2%; margin-top: 1%;" class="displayFlex">
       <div class="kpiMonitorComponente"
         style="color: #991616; border-bottom: 4px solid #991616; margin-bottom: 2%; margin-left: -2%;">
         <div class="displayFlex" style="gap: 80%;">
@@ -406,7 +458,7 @@
     </div>
     <!-- graficos de cpu e ram -->
     <div>
-      <div class="displayFlex">
+      <div class="displayFlex" style="margin-top: -1%; margin-bottom: 1%;">
         <div class="grafico" style="width: 820px;">
           <h4>Uso de CPU</h4>
           <canvas id="meuGraficoCpu"></canvas>
@@ -420,54 +472,6 @@
     </div>
     </div>
 
-    <!-- Cadastros e modulos ativos -->
-    <div class="grafico modulosAtivos">
-      <h5>Lista de módulos ativos</h5>
-
-      <div class="container pt-5 w-30">
-        <table id="example" class="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Módulo</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>RESP</td>
-              <td><span class="statusMonitorInativo">Inativo</span></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>TEMP</td>
-              <td><span class="statusMonitorInativo">Inativo</span></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>BPM</td>
-              <td><span class="statusMonitorAtivo">Ativo</span></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>SpO2</td>
-              <td><span class="statusMonitorAtivo">Ativo</span></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>ECG</td>
-              <td><span class="statusMonitorAtivo">Ativo</span></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>PNI/NIBP</td>
-              <td><span class="statusMonitorAtivo">Ativo</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </main>
 
   <!-- links javascript boostrap tabela -->
@@ -488,6 +492,7 @@
     listarParametros();
     statusMonitor();
     modeloMonitor();
+    descricaoManutencao();
   }
 
   // função para iniciar a tabela
@@ -502,9 +507,9 @@
   });
 
   // função para select de parametros
- var limiteRamConst = null;
- var limiteCPUConst = null;
- var limiteRedeConst = null;
+  var limiteRamConst;
+  var limiteCPUConst;
+  var limiteRedeConst;
 
   function listarParametros() {
     const idMonitor = sessionStorage.ID_MONITOR;
@@ -576,7 +581,7 @@
     },
     {
       label: 'Limite',
-      data: Array(24).fill(),
+      data: Array(24).fill(limiteRedeConst),
       borderColor: 'red',
       borderWidth: 2,
       backgroundColor: 'transparent',
@@ -732,7 +737,7 @@
       chartRam.update;
     }
   }
-  
+
   // função para select de monitores
   function listarNomesMonitores() {
     const fk_unidade = sessionStorage.ID_UNIDADE
@@ -837,8 +842,26 @@
   }
 
   function descricaoManutencao() {
-    if(statusMonitor == "Manutenção"){
-      
+    var idMonitor = sessionStorage.ID_MONITOR;
+
+    if (statusMonitorConst == "Manutenção") {
+      spanDescricaoManutencao.style.display = "block"
+
+      fetch(`/monitor/descricaoManutencao()?id_monitor=${idMonitor}`)
+        .then(function (resposta) {
+          return resposta.json;
+        })
+        .then(function (descricao) {
+
+          spanDescricaoManutencao.innerHTML = ` <p>• ${descricao[0].descricao_manutencao}</p>`;
+
+        })
+
+    } else if (statusMonitorConst == "Ativo" || statusMonitorConst == "Inativo") {
+      spanDescricaoManutencao.style.display = "none"
+    } else {
+      spanDescricaoManutencao.style.display = "none"
+      console.log("Status de monitor inválido: " + statusMonitorConst);
     }
   }
   /*

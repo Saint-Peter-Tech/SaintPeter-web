@@ -65,11 +65,20 @@ function modeloMonitor(idMonitor){
   return database.executar(instrucaoSql)
 }
 
+function descricaoManutencao(idMonitor){
+  instrucaoSql = `
+  select descricao_manutencao from monitores where id_monitor = '${idMonitor}';
+  `
+  console.log("Executando a instrução SQL: \n " + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
 module.exports = {
   cadastrarMonitor,
   vincularComponente,
   listarNomesMonitores,
   listarParametros,
   statusMonitor,
-  modeloMonitor
+  modeloMonitor,
+  descricaoManutencao
 };

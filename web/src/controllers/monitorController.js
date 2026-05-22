@@ -94,10 +94,25 @@ function modeloMonitor(req, res){
   })
 }
 
+function descricaoManutencao(req, res){
+  var idMonitor = req.query.id_monitor;
+
+  monitorModel
+  .modeloMonitor(idMonitor)
+  .then(function (resultado){
+    res.json(resultado)
+  })
+  .catch(function (erro){
+    console.log(erro)
+    res.status(500).json(erro.sqlMessage);
+  })
+}
+
 module.exports = {
   cadastrarMonitor,
   listarNomesMonitores,
   listarParametros,
   statusMonitor,
-  modeloMonitor
+  modeloMonitor,
+  descricaoManutencao
 };

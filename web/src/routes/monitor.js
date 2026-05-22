@@ -25,4 +25,7 @@ router.get("/modeloMonitor", function(req, res){
     monitorController.modeloMonitor(req, res)
 })
 
+router.get("/descricaoManutencao", function(req, res){
+    monitorController.modeloMonitor(req,res)
+})
 module.exports = router; 

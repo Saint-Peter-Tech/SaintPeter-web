@@ -909,6 +909,7 @@ h5 {
   border-radius: 10px;
   padding: 1%;
   transition: transform 0.3s ease;
+  margin-bottom: 2%;
 }
 
 .infoMonitorInativo{
@@ -917,6 +918,7 @@ h5 {
   border-radius: 10px;
   padding: 1%;
   transition: transform 0.3s ease;
+  margin-bottom: 2%;
 }
 
 .infoMonitorAtivo{
@@ -925,6 +927,7 @@ h5 {
   border-radius: 10px;
   padding: 1%;
   transition: transform 0.3s ease;
+  margin-bottom: 2%;
 }
 
 .infoMonitorAlerta{
