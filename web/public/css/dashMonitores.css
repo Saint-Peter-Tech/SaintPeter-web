@@ -183,6 +183,7 @@
   background-color: white;
   color: #13347b;
   transition: transform 0.3s ease;
+  margin-top: 25%;
 }
 
 .botaoConfig2 {
@@ -206,14 +207,14 @@
   border-radius: 10px;
 }
 
-.botaoConfig:hover,
 .botaoConfig2:hover {
   transform: scale(1.03);
   color: #4169e1;
   border: #4169e1 2px solid;
 }
 
-.botaoSelect:hover {
+.botaoSelect:hover, 
+.botaoConfig:hover{
   transform: scale(1.03);
   color: #4169e1;
 }
@@ -233,6 +234,7 @@
   background-color: white;
   display: flex;
   justify-content: end;
+  width: 80%;
 }
 
 .kpiMonitor {
