@@ -249,11 +249,11 @@
         <p>
           Escolha um modelo para visualizar informações detalhadas de monitoramento
         </p>
-        <select class="opcaoDashboard" id="select_unidade">
+        <select class="opcaoDashboard" id="select_modelo">
           <option value="0" selected disabled>Selecione um modelo</option>
         </select>
         <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
-            href="./dashGraficosGerente.html">Visualizar Dashboard ></a></button>
+            href="./dashGraficosGerente.html">Visualizar Dashboard</a></button>
       </div>
 
 
@@ -437,29 +437,31 @@
 
   window.onload = function () {
     validarSessao();
-    listarUnidades();
+    listarModelos();
   };
 
-  function listarUnidades() {
+  function listarModelos() {
     var fk_Empresa = sessionStorage.FK_EMPRESA;
-    var selectUnidade = document.getElementById("select_unidade");
+    var selectModelo = document.getElementById("select_modelo");
 
-    fetch(`/unidade/unidadesPorEmpresa?fk_Empresa=${fk_Empresa}`)
+    console.log(fk_Empresa);
+
+    fetch(`/modelo/listarModelos?fkEmpresa=${fk_Empresa}`)
       .then(function (resposta) {
         if (resposta.ok) {
           return resposta.json();
         }
       })
-      .then(function (unidades) {
-        unidades.forEach(unidade => {
+      .then(function (modelos) {
+        modelos.forEach(modelo => {
           const option = document.createElement("option");
-          option.value = unidade.id_unidade;
-          option.textContent = unidade.nome_unidade;
-          selectUnidade.appendChild(option);
+          option.value = modelo.id_modelo;
+          option.textContent = modelo.nome;
+          selectModelo.appendChild(option);
         });
       })
       .catch(function (erro) {
-        console.error("Erro ao buscar unidades:", erro);
+        console.error("Erro ao buscar modelos:", erro);
       });
   }
 
