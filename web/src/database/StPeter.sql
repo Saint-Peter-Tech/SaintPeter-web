@@ -110,9 +110,6 @@ CREATE TABLE IF NOT EXISTS componente_monitor
 (fk_componente INT,
 fk_monitor INT,
 limite DECIMAL(5,2),
-
-constraint limitePorcentagem
-	check (limite >= 0 AND limite <= 100),
         
 constraint fk_monitorComp
 	foreign key(fk_monitor)
@@ -209,11 +206,10 @@ VALUES
 (3, 2, 5, '2024-02-01', '2025-02-01', 'Inativo'),
 (3, 2, 6, '2024-03-01', '2025-03-01', 'Inativo');
 
-INSERT IGNORE INTO componente_monitor (fk_componente, fk_monitor, limite)
-VALUES
-(1,1,70),(2,1,85),(3,1,50),(4,1,5),
-(1,2,70),(2,2,85),(3,2,50),(4,2,5),
-(1,3,70),(2,3,85),(3,3,50),(4,3,5),
-(1,4,80),(2,4,75),(3,4,70),(4,4,10),
-(1,5,80),(2,5,75),(3,5,70),(4,5,10),
-(1,6,80),(2,6,75),(3,6,70),(4,6,10);
+INSERT INTO componente_monitor (fk_componente, fk_monitor, limite) VALUES
+(1, 1, 70), (2, 1, 85), (3, 1, 50), (4, 1, 80), (5, 1, 150),
+(1, 2, 70), (2, 2, 85), (3, 2, 50), (4, 2, 80), (5, 2, 150),
+(1, 3, 70), (2, 3, 85), (3, 3, 50), (4, 3, 80), (5, 3, 150),
+(1, 4, 80), (2, 4, 75), (3, 4, 70), (4, 4, 80), (5, 4, 150),
+(1, 5, 80), (2, 5, 75), (3, 5, 70), (4, 5, 80), (5, 5, 150),
+(1, 6, 80), (2, 6, 75), (3, 6, 70), (4, 6, 80), (5, 6, 150);
