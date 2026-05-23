@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <div style="width: 100%; height: 260px; position: relative;">
-                    <canvas id="canvasLinhaRede"></canvas>
+                    <canvas id="canvasAlertas"></canvas>
                 </div>
             </div>
 
@@ -283,41 +283,8 @@
                 });
         }
 
-
-        const ctxBarra = document.getElementById('canvasLinhaRede');
-        Chart.register(ChartDataLabels);
-
-        new Chart(ctxBarra, {
-            type: 'bar',
-            data: {
-                labels: ['CPU', 'RAM', 'DISCO', 'REDE'],
-                datasets: [{
-                    label: 'Alertas',
-                    data: [45, 32, 28, 19],
-                    backgroundColor: '#3b82f6',
-                    borderRadius: 5,
-                    barThickness: 45
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 60,
-                        grid: { color: '#f1f5f9' }
-                    },
-                    x: { grid: { display: false } }
-                },
-                plugins: {
-                    legend: { display: false },
-                    datalabels: { display: false }
-                }
-            }
-        });
-
         var dadosHospital = null;
+        let myChart = null
 
         async function atualizarDashboard() {
             const idHospital = sessionStorage.ID_HOSPITAL;
@@ -398,7 +365,7 @@
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasDiscoCriticos}`;
 
-            } else if (selectFiltro == 5) {
+            } else {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>REDE</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.rede;
 
@@ -408,8 +375,90 @@
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasRedeCriticos}`;
-
             }
+
+            plotarGrafico(selectFiltro);
+        }
+
+        function plotarGrafico(componente) {
+            const ctxBarra = document.getElementById('canvasAlertas').getContext('2d');
+
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            var labels = [];
+            var data = [];
+
+            if (componente == 0) {
+                labels = ['Total Total (Crit + Geral)', 'Críticos', 'CPU Crit.', 'RAM Crit.', 'Disco Crit.', 'Rede Crit.'];
+                data = [
+                    dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
+                    dadosHospital.criticos.totalCriticos,
+                    dadosHospital.criticos.porComponente.cpuCritico,
+                    dadosHospital.criticos.porComponente.ramCritico,
+                    dadosHospital.criticos.porComponente.discoCritico,
+                    dadosHospital.criticos.porComponente.redeCritico
+                ];
+            } else if (componente == 1) {
+                labels = ['Total (Crit + Geral)', 'Geral', 'CPU', 'RAM', 'Disco', 'Rede'];
+                data = [
+                    dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
+                    dadosHospital.alertasSemanais.totalAlertas,
+                    dadosHospital.alertasSemanais.porComponente.cpu,
+                    dadosHospital.alertasSemanais.porComponente.ram,
+                    dadosHospital.alertasSemanais.porComponente.disco,
+                    dadosHospital.alertasSemanais.porComponente.rede
+                ];
+            } else if (componente == 2) {
+                labels = ['Total CPU', 'Total Crit CPU', 'CPU Geral'];
+                data = [
+                    dadosHospital.alertasSemanais.porComponente.cpu + dadosHospital.criticos.porComponente.cpuCritico,
+                    dadosHospital.criticos.porComponente.cpuCritico,
+                    dadosHospital.alertasSemanais.porComponente.cpu
+                ];
+            } else if (componente == 3) {
+                labels = ['Total RAM', 'Total Crit RAM', 'RAM Geral'];
+                data = [
+                    dadosHospital.alertasSemanais.porComponente.ram + dadosHospital.criticos.porComponente.ramCritico,
+                    dadosHospital.criticos.porComponente.ramCritico,
+                    dadosHospital.alertasSemanais.porComponente.ram
+                ];
+            } else if (componente == 4) {
+                labels = ['Total Disco', 'Total Crit Disco', 'Disco Geral'];
+                data = [
+                    dadosHospital.alertasSemanais.porComponente.disco + dadosHospital.criticos.porComponente.discoCritico,
+                    dadosHospital.criticos.porComponente.discoCritico,
+                    dadosHospital.alertasSemanais.porComponente.disco
+                ];
+            } else {
+                labels = ['Total Rede', 'Total Crit Rede', 'Rede Geral'];
+                data = [
+                    dadosHospital.alertasSemanais.porComponente.rede + dadosHospital.criticos.porComponente.redeCritico,
+                    dadosHospital.criticos.porComponente.redeCritico,
+                    dadosHospital.alertasSemanais.porComponente.rede
+                ];
+            }
+            myChart = new Chart(ctxBarra, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Alertas',
+                        data: data,
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 5,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } }
+                    }
+                }
+            });
         }
 
     </script>
