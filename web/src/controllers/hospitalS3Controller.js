@@ -11,6 +11,12 @@ async function buscarHospitalJson(req, res) {
 
         res.json(dados);
     } catch (erro) {
+        if (erro.Code === 'NoSuchKey') {
+                return res.json({
+                    alertasSemanais: { totalAlertas: 0 },
+                    criticos: { totalCriticos: 0 }
+                });
+            }
         console.log("Erro ao buscar hospital no S3:", erro);
         res.status(500).json({
             erro: "Erro ao buscar JSON do hospital no S3"

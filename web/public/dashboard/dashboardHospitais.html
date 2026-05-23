@@ -138,6 +138,7 @@
     </div>
 
     <main class="main-content">
+        <h1 style="color: #13347b;">Selecione o hospital desejado abaixo:</h1>
         <div class="container-fluid" style="width: 60%; margin-left: -3px;">
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" id="input_busca" placeholder="Buscar hospital..."
@@ -151,7 +152,6 @@
             </form>
             <br>
         </div>
-
         <div style="display: flex; flex-wrap: wrap; gap: 2%;" id="containerCardHospital">
         </div>
     </main>
@@ -168,6 +168,8 @@
         validarSessao();
         buscarDadosHospitais();
     };
+
+    var hospitaisCarregados = 0;
 
     function buscarDadosHospitais() {
         var idEmpresa = sessionStorage.FK_EMPRESA;
@@ -207,6 +209,48 @@
             .catch(function (erro) {
                 console.error("Erro ao buscar hospitais:", erro);
             });
+
+    }
+
+    async function buscarAlertasS3(idHospital, idEmpresa) {
+        try {
+            const resposta = await fetch(`/hospitalS3/${idEmpresa}/${idHospital}`);
+            if (!resposta.ok) return;
+
+            const dados = await resposta.json();
+
+            const totalAlertas = dados.alertasSemanais.totalAlertas + dados.criticos.totalCriticos;
+
+            var cor = "green"
+            var mensagem = "Status: Normal"
+
+            if (totalAlertas > 100) {
+                cor = "red"
+                mensagem = "Status: CRÍTICO"
+            } else if (totalAlertas >= 70) {
+                cor = "orange"
+                mensagem = "Status: Em alerta"
+            }
+
+            const divAlertas = document.getElementById(`alertas_${idHospital}`);
+            divAlertas.innerHTML = `
+            <div style="margin-top: 10px;">
+                <span style="color: ${cor}; font-weight: bold;">
+                ${mensagem} | ${totalAlertas} alertas
+                </span>
+            </div>
+        `;
+
+            document.getElementById(`card_${idHospital}`).setAttribute("data-total", totalAlertas);
+
+            hospitaisCarregados++;
+
+            if (totalHospitaisCarregados == listaHospitais.length) {
+                ordenarCardsPorGravidade();
+            }
+        } catch (erro) {
+            console.error("Erro ao carregar dados S3:", erro);
+        }
     }
 
     function plotarCards(dados) {
@@ -243,11 +287,15 @@
                         <p style="font-size: 12px; color: gray; margin: 5px 0 0 0;">
                             ID: #00${hospital.id_hospital}
                         </p>
+                        <div id="alertas_${hospital.id_hospital}" style="margin-top: 5px;">
+                            Carregando status...
+                        </div>
                     </div>
                 </div>
             </div>
         `;
             container.appendChild(card);
+            buscarAlertasS3(hospital.id_hospital, sessionStorage.FK_EMPRESA);
         });
     }
 
@@ -263,15 +311,29 @@
         });
         plotarCards(hospitaisFiltrados);
     }
+
+    function ordenarHospitais() {
+        var container = document.getElementById("containerCardHospital");
+        var cards = Array.from(container.getElementsByClassName("cardHospital")); // Convertendo os cards em um vetor
+
+        cards.sort((hospitalA, hospitalB) => {
+            var totalHospitalA = Number(hospitalA.getAttribute("data-total") || 0);
+            var totalHospitalB = Number(hospitalB.getAttribute("data-total") || 0);
+
+            return totalHospitalB - totalHospitalA;
+        });
+
+        cards.forEach(card => container.appendChild(card));
+    }
 </script>
 
 <style>
-        .cardHospital {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .cardHospital {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .cardHospital:hover {
-            transform: scale(1.03); 
-            box-shadow: 0px 8px 20px rgba(19, 52, 123, 0.15); 
-        }
-    </style>
+    .cardHospital:hover {
+        transform: scale(1.03);
+        box-shadow: 0px 8px 20px rgba(19, 52, 123, 0.15);
+    }
+</style>
