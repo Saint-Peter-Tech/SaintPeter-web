@@ -213,8 +213,8 @@
   border: #4169e1 2px solid;
 }
 
-.botaoSelect:hover, 
-.botaoConfig:hover{
+.botaoSelect:hover,
+.botaoConfig:hover {
   transform: scale(1.03);
   color: #4169e1;
 }
@@ -360,7 +360,51 @@
   border-radius: 10px;
 }
 
-.linhaTabela{
+.linhaTabela {
   border-bottom: #13347b 2px solid;
 }
 
+.atualizarInfoMonitor {
+  color: #13347b;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2%;
+  width: 30%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 25%;
+  left: 65%;
+  border: #13347b0c 0.5px solid;
+}
+
+.optAtualizar {
+  border: none;
+  padding: 1%;
+  border-radius: 10px;
+  color: #13347b;
+  border: #13347b 1px solid;
+  width: 250px;
+    background-color: white;
+}
+
+.inputAtualizar {
+  border: #13347b 1px solid;
+  border-radius: 10px;
+  margin-bottom: 2%;
+}
+
+.buttonAtualizar {
+  border: none;
+  background-color: #13347b;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 1%;
+  align-self: flex-end;
+  transition: 0.3s ease transform;
+}
+
+.buttonAtualizar:hover {
+  transform: scale(1.03);
+  background-color: #4169e1;
+}
