@@ -1,4 +1,4 @@
-
+/*
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
 const s3 = new S3Client({
@@ -21,4 +21,4 @@ async function buscarJson(key) {
     return JSON.parse(conteudo);
 }
 
-module.exports = { buscarJson };
+module.exports = { buscarJson };*/

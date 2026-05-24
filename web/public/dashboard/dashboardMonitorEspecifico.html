@@ -510,6 +510,33 @@
         <button class="buttonAtualizar" onclick="atualizarLimites()">Atualizar Limites</button>
       </div>
     </div>
+
+    <div id="divSucesso" class="sucesso" style="display: none;">
+      <p>
+      <h5>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile"
+          viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+          <path
+            d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+        </svg> Atualizado com sucesso!
+      </h5>
+      </p>
+    </div>
+
+    <div id="divErro" class="erro" style="display: none;">
+      <p>
+      <h5>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-frown"
+          viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+          <path
+            d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.5 3.5 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.5 4.5 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+        </svg> Valores com incorretos.
+        <br> Tente novamente.
+      </h5>
+      </p>
+    </div>
   </main>
 
   <!-- links javascript boostrap tabela -->
@@ -885,7 +912,7 @@
           return resposta.json();
         })
         .then(function (descricao) {
-          
+
           spanDescricaoManutencao.innerHTML = ` <p>• ${descricao[0].descricao_manutencao}</p>`;
 
         })
@@ -940,6 +967,10 @@
 
     } else {
       console.log('select invalido')
+      var divErro = document.getElementById('divErro')
+      divErro.style.display = 'block';
+
+      setTimeout(() => sumirDiv(divErro), 2000)
       return false;
     }
 
@@ -955,6 +986,10 @@
       atualizarDescricaoString = 'Nenhuma'
     } else {
       console.log('select invalido')
+      var divErro = document.getElementById('divErro')
+      divErro.style.display = 'block';
+
+      setTimeout(() => sumirDiv(divErro), 2000)
       return false;
     }
 
@@ -972,6 +1007,10 @@
         .then(function (atualizacao) {
 
           console.log('Status atualizado com sucesso!')
+
+          sucesso();
+
+          setTimeout(() => sumirDiv(divSucesso), 2000);
         })
         .catch(function (erro) {
           console.log('Erro ao atualizar o status do monitor: ', erro)
@@ -988,20 +1027,41 @@
 
     console.log(sessionStorage.ID_MONITOR);
 
-    if (isNaN(iptCompRede)){
+    if (isNaN(iptCompRede)) {
       console.log('numero invalido')
+
+      var divErro = document.getElementById('divErro')
+      divErro.style.display = 'block';
+      setTimeout(() => sumirDiv(divErro), 2000)
+
+
       return false;
     }
-    if (isNaN(iptCompRam)){
+    if (isNaN(iptCompRam)) {
       console.log('numero invalido')
+
+      var divErro = document.getElementById('divErro')
+      divErro.style.display = 'block';
+      setTimeout(() => sumirDiv(divErro), 2000)
+
       return false;
     }
-    if (isNaN(iptCompCpu)){
+    if (isNaN(iptCompCpu)) {
       console.log('numero invalido')
+
+      var divErro = document.getElementById('divErro')
+      divErro.style.display = 'block';
+      setTimeout(() => sumirDiv(divErro), 2000)
+
       return false;
     }
-    if (isNaN(iptCompDisco)){
+    if (isNaN(iptCompDisco)) {
       console.log('numero invalido')
+
+      var divErro = document.getElementById('divErro')
+      divErro.style.display = 'block';
+      setTimeout(() => sumirDiv(divErro), 2000)
+
       return false;
     }
 
@@ -1020,6 +1080,10 @@
       .then(function (atualizacao) {
         console.log('Limite atualizado com sucesso!')
 
+        sucesso();
+
+        setTimeout(() => sumirDiv(divSucesso), 2000);
+
       })
       .catch(function (erro) {
         console.log('Erro ao atualizar o status do monitor: ', erro)
@@ -1027,8 +1091,19 @@
 
   }
 
+  function sucesso() {
+    var divSucesso = document.getElementById('divSucesso')
+    divSucesso.style.display = 'block';
+  }
 
+  function erro() {
+    var divErro = document.getElementById('divErro')
+    divErro.style.display = 'block';
+  }
 
+  function sumirDiv(div) {
+    div.style.display = 'none';
+  }
   /*
   function kpiPicoRede(){
     fetch("/monitor/kpiPicoRede")

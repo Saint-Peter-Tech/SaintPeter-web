@@ -408,3 +408,31 @@
   transform: scale(1.03);
   background-color: #4169e1;
 }
+
+.sucesso {
+  color: #006300;
+  background-color: white;
+  border-radius: 10px;
+  padding-left: 1%;
+  width: 20%;
+  height: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 20%;
+  left: 63%;
+  border: #13347b0c 0.5px solid;
+}
+
+.erro {
+  color: #991616;
+  background-color: white;
+  border-radius: 10px;
+  padding-left: 1%;
+  width: 20%;
+  height: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 20%;
+  left: 63%;
+  border: #13347b0c 0.5px solid;
+}
