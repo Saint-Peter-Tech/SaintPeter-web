@@ -1,5 +1,5 @@
 const { buscarJson } = require("../s3/conexaoS3");
-/*
+
 async function buscarHospitalJson(req, res) {
     try {
         const empresa = req.params.empresa;
@@ -20,4 +20,4 @@ async function buscarHospitalJson(req, res) {
 
 module.exports = {
     buscarHospitalJson
-};*/
+};
