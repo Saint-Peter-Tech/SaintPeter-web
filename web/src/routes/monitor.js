@@ -26,6 +26,15 @@ router.get("/modeloMonitor", function(req, res){
 })
 
 router.get("/descricaoManutencao", function(req, res){
-    monitorController.modeloMonitor(req,res)
+    monitorController.descricaoManutencao(req,res)
+})
+
+
+router.put("/atualizarStatusMonitor", function(req, res){
+    monitorController.atualizarStatusMonitor(req, res)
+})
+
+router.put("/atualizarLimites", function(req,res){
+    monitorController.atualizarLimites(req,res)
 })
 module.exports = router; 

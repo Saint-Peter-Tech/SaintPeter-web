@@ -50,62 +50,98 @@ function listarNomesMonitores(req, res) {
     });
 }
 
-function listarParametros(req, res){
+function listarParametros(req, res) {
   var idComponente = req.query.id_componente;
   var fkMonitor = req.query.id_monitor;
 
   monitorModel
     .listarParametros(idComponente, fkMonitor)
-    .then(function (resultado){
+    .then(function (resultado) {
       res.json(resultado);
     })
-    .catch(function (erro){
+    .catch(function (erro) {
       console.log(erro);
-      res.status(500).json(erro.sqlMessage)
-    })
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
-function statusMonitor(req, res){
+function statusMonitor(req, res) {
   var idMonitor = req.query.id_monitor;
   var fkEmpresa = req.query.fk_empresa;
 
   monitorModel
-  .statusMonitor(idMonitor, fkEmpresa)
-  .then(function (resultado){
-    res.json(resultado);
-  })
-  .catch(function (erro){
-    console.log(erro)
-    res.status(500).json(erro.sqlMessage);
-  })
+    .statusMonitor(idMonitor, fkEmpresa)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
-function modeloMonitor(req, res){
+function modeloMonitor(req, res) {
   var idMonitor = req.query.id_monitor;
 
   monitorModel
-  .modeloMonitor(idMonitor)
-  .then(function (resultado){
-    res.json(resultado)
-  })
-  .catch(function (erro){
-    console.log(erro)
-    res.status(500).json(erro.sqlMessage)
-  })
+    .modeloMonitor(idMonitor)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
-function descricaoManutencao(req, res){
+function descricaoManutencao(req, res) {
   var idMonitor = req.query.id_monitor;
 
   monitorModel
-  .modeloMonitor(idMonitor)
-  .then(function (resultado){
-    res.json(resultado)
-  })
-  .catch(function (erro){
-    console.log(erro)
-    res.status(500).json(erro.sqlMessage);
-  })
+    .descricaoManutencao(idMonitor)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarStatusMonitor(req, res) {
+  var idMonitor = req.query.id_monitor;
+  var statusNovo = req.body.atualizarStatus;
+  var descricaoNovo = req.body.atualizarDescricao;
+
+  monitorModel
+    .atualizarStatusMonitor(idMonitor, statusNovo, descricaoNovo)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarLimites(req, res) {
+  var fkMonitor = req.query.fk_monitor;
+  var CompRede = req.body.CompRede;
+  var CompRam = req.body.CompRam;
+  var CompCpu = req.body.CompCpu;
+  var CompDisco = req.body.CompDisco;
+
+  console.log('ESTOU NO REQ.QUERY',req.query.fkMonitor);
+
+  monitorModel
+    .atualizarLimites(fkMonitor, CompRede, CompRam, CompCpu, CompDisco)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 module.exports = {
@@ -114,5 +150,7 @@ module.exports = {
   listarParametros,
   statusMonitor,
   modeloMonitor,
-  descricaoManutencao
+  descricaoManutencao,
+  atualizarStatusMonitor,
+  atualizarLimites,
 };

@@ -184,7 +184,7 @@
             <span><i>Data da última calibração: 12/05/2026</i></span>
           </div>
         </div>
-
+        <!-- tabela  -->
         <div>
           <div class="table-scroll">
             <table class="tabelaModulosAtivos"">
@@ -198,24 +198,24 @@
               <tbody>
                 <tr>
                   <td>BPM</td>
-                  <td class="moduloAtivo">Ativo</td>
-                </tr>
-                <tr>
-                  <td>PA</td>
-                  <td class="moduloAtivo">Ativo</td>
-                </tr>
-                <tr>
-                  <td>SPO2</td>
-                  <td class="moduloInativo">Inativo</td>
-                </tr>
-                <tr>
-                  <td>RESP</td>
-                  <td class="moduloInativo">Inativo</td>
-                </tr>
-                <tr>
-                  <td>TEMP</td>
-                  <td class="moduloInativo">Inativo</td>
-                </tr>
+                  <td class=" moduloAtivo">Ativo</td>
+              </tr>
+              <tr>
+                <td>PA</td>
+                <td class="moduloAtivo">Ativo</td>
+              </tr>
+              <tr>
+                <td>SPO2</td>
+                <td class="moduloInativo">Inativo</td>
+              </tr>
+              <tr>
+                <td>RESP</td>
+                <td class="moduloInativo">Inativo</td>
+              </tr>
+              <tr>
+                <td>TEMP</td>
+                <td class="moduloInativo">Inativo</td>
+              </tr>
               </tbody>
             </table>
           </div>
@@ -252,7 +252,7 @@
               <option value="1">CPU</option>
               <option value="4">Disco Rígido</option>
             </select>
-            <button class="botaoSelect" onclick="listarParametros(), atualizarLinhaLimite()">
+            <button class="botaoSelect" onclick="listarParametros()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
@@ -266,25 +266,20 @@
             <div class="" style="width: 200px;">
               <div><b>Cadastro:</b></div>
             </div>
-
-
-            <div class="atualizarCadastroComponentes">
-              <button class="displayFlex botaoConfig"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                  fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                  <path
-                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
-                  <path
-                    d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
-                </svg></button>
-            </div>
-
           </div>
 
+          <div class="atualizarCadastroComponentes">
+            <button class="displayFlex botaoConfig" onclick="aparecerDivAtualizarMonitor()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                <path
+                  d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+              </svg></button>
+          </div>
         </div>
       </div>
-
-
-
     </div>
 
     </div>
@@ -473,26 +468,47 @@
     </div>
 
 
-    <div id="atualizarInfoMonitor" class="atualizarInfoMonitor">
-        <h5>Atualizar informações do monitor</h5>
-        <p class="">Status do monitor: <select name="" class="optAtualizar" id="selectAtualizarStatus">
+    <div id="atualizarInfoMonitor" style="display: none;" class="atualizarInfoMonitor">
+      <h5>Atualizar informações do monitor</h5> <br>
+      <h6>Status do monitor</h6>
+      <p class="">Status do monitor: <select name="" class="optAtualizar" style="width: 278px;"
+          id="selectAtualizarStatus">
           <option value="#" selected disabled>Selecione uma opção</option>
           <option value="3">Ativo</option>
           <option value="2">Inativo</option>
           <option value="1">Manutenção</option>
-        </select></p>
+        </select>
+        <br> <br>
+        Descrição da Manutenção: <select name="" class="optAtualizar" id="selectAtualizarDescricao">
+          <option value="#" selected disabled>Selecione uma opção</option>
+          <option value="4">Inicializada</option>
+          <option value="3">Em Andamento</option>
+          <option value="2">Finalizada</option>
+          <option value="1">Pendente</option>
+          <option value="0">Nenhuma</option>
+        </select>
 
-        <p>
-          <h6>Limites</h6> <br>
-          Rede: <input class="inputAtualizar" style="width: 354px" type="text"> <br>
-          Ram: <input class="inputAtualizar" style="width: 358px" type="text"> <br>
-          CPU: <input class="inputAtualizar" style="width:364px" type="text"> <br>
-          Disco Rígido: <input class="inputAtualizar" style="width: 296px;" type="text">
-        </p>
+      </p>
 
-        <div style="display: flex; justify-content: end;">
-          <button class="buttonAtualizar">Atualizar</button>
-        </div>
+      <div style="display: flex; justify-content: end;">
+        <button class="buttonAtualizar" onclick="atualizarStatusMonitor()">Atualizar Status</button>
+      </div>
+
+      <p>
+      <h6>Limites</h6>
+      <i>Rede:</i> <input type="number" step="0.01" class="inputAtualizar" id="inputAtualizarCompRede"
+        style="width: 354px"> <br>
+      <i>Ram:</i> <input type="number" step="0.01" class="inputAtualizar" id="inputAtualizarCompRam"
+        style="width: 358px"> <br>
+      <i>CPU:</i> <input type="number" step="0.01" class="inputAtualizar" id="inputAtualizarCompCpu"
+        style="width:364px"> <br>
+      <i>Disco Rígido:</i> <input type="number" step="0.01" class="inputAtualizar" id="inputAtualizarCompDisco"
+        style="width: 296px;">
+      </p>
+
+      <div style="display: flex; justify-content: end;">
+        <button class="buttonAtualizar" onclick="atualizarLimites()">Atualizar Limites</button>
+      </div>
     </div>
   </main>
 
@@ -557,18 +573,7 @@
                 <i>Máximo</i>
                 <b>${parametros[0].limite}</b>
               </div>
-
-
-              <div class="atualizarCadastroComponentes">
-                <button class="displayFlex botaoConfig"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                    <path
-                      d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
-                    <path
-                      d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
-                  </svg></button>
-              </div>
-
+      </div>
       `
         console.log('parametros: ', parametros)
 
@@ -848,6 +853,9 @@
           console.log('Status inválido')
         }
       })
+      .catch(function (erro) {
+        console.error("Erro ao encontrar status do monitor:", erro);
+      });
   }
 
   function modeloMonitor() {
@@ -861,31 +869,166 @@
         console.log('Modelo: ', modelo)
         divModelo.innerHTML = `<b>Modelo:</b> ${modelo[0].nome}`;
       })
+      .catch(function (erro) {
+        console.error("Erro ao encontrar modelos do monitor:", erro);
+      });
   }
 
   function descricaoManutencao() {
     var idMonitor = sessionStorage.ID_MONITOR;
 
     if (statusMonitorConst == "Manutenção") {
-      spanDescricaoManutencao.style.display = "block"
+      spanDescricaoManutencao.style.display = "block";
 
-      fetch(`/monitor/descricaoManutencao()?id_monitor=${idMonitor}`)
+      fetch(`/monitor/descricaoManutencao?id_monitor=${idMonitor}`)
         .then(function (resposta) {
-          return resposta.json;
+          return resposta.json();
         })
         .then(function (descricao) {
-
+          
           spanDescricaoManutencao.innerHTML = ` <p>• ${descricao[0].descricao_manutencao}</p>`;
 
         })
+        .catch(function (erro) {
+          console.error("Erro ao encontrar descrição da manutenção do monitor:", erro);
+        });
 
     } else if (statusMonitorConst == "Ativo" || statusMonitorConst == "Inativo") {
       spanDescricaoManutencao.style.display = "none"
+
     } else {
       spanDescricaoManutencao.style.display = "none"
       console.log("Status de monitor inválido: " + statusMonitorConst);
     }
   }
+
+  var divAtualizarBlock = true;
+
+  function aparecerDivAtualizarMonitor() {
+    console.log('estou aqui')
+    if (divAtualizarBlock) {
+      divAtualizar = document.getElementById('atualizarInfoMonitor')
+      divAtualizar.style.display = 'none'
+
+      divAtualizarBlock = false;
+
+    } else {
+      divAtualizar = document.getElementById('atualizarInfoMonitor')
+      divAtualizar.style.display = 'block'
+
+      divAtualizarBlock = true;
+    }
+  }
+
+  function atualizarStatusMonitor() {
+    var atualizarStatus = selectAtualizarStatus.value
+    var atualizarDescricao = selectAtualizarDescricao.value
+    var idMonitor = sessionStorage.ID_MONITOR;
+
+
+    var atualizarStatusString = '';
+    var atualizarDescricaoString = '';
+
+    if (atualizarStatus == '1') {
+      atualizarStatusString = 'Manutenção'
+
+    } else if (atualizarStatus == '2') {
+      atualizarStatusString = 'Inativo'
+
+    } else if (atualizarStatus == '3') {
+      atualizarStatusString = 'Ativo'
+
+    } else {
+      console.log('select invalido')
+      return false;
+    }
+
+    if (atualizarDescricao == '4') {
+      atualizarDescricaoString = 'Inicializada'
+    } else if (atualizarDescricao == '3') {
+      atualizarDescricaoString = 'Em Andamento'
+    } else if (atualizarDescricao == '2') {
+      atualizarDescricaoString = 'Finalizada'
+    } else if (atualizarDescricao == '1') {
+      atualizarDescricaoString = 'Pendente'
+    } else if (atualizarDescricao == '0') {
+      atualizarDescricaoString = 'Nenhuma'
+    } else {
+      console.log('select invalido')
+      return false;
+    }
+
+    if (atualizarStatus != '#') {
+      fetch(`/monitor/atualizarStatusMonitor?id_monitor=${idMonitor}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          atualizarStatus: atualizarStatusString,
+          atualizarDescricao: atualizarDescricaoString
+        })
+      })
+        .then(function (atualizacao) {
+
+          console.log('Status atualizado com sucesso!')
+        })
+        .catch(function (erro) {
+          console.log('Erro ao atualizar o status do monitor: ', erro)
+        })
+    }
+  }
+
+  function atualizarLimites() {
+    var iptCompRede = parseFloat(inputAtualizarCompRede.value.trim())
+    var iptCompRam = parseFloat(inputAtualizarCompRam.value.trim())
+    var iptCompCpu = parseFloat(inputAtualizarCompCpu.value.trim())
+    var iptCompDisco = parseFloat(inputAtualizarCompDisco.value.trim())
+    var idMonitor = sessionStorage.ID_MONITOR;
+
+    console.log(sessionStorage.ID_MONITOR);
+
+    if (isNaN(iptCompRede)){
+      console.log('numero invalido')
+      return false;
+    }
+    if (isNaN(iptCompRam)){
+      console.log('numero invalido')
+      return false;
+    }
+    if (isNaN(iptCompCpu)){
+      console.log('numero invalido')
+      return false;
+    }
+    if (isNaN(iptCompDisco)){
+      console.log('numero invalido')
+      return false;
+    }
+
+    fetch(`/monitor/atualizarLimites?fk_monitor=${idMonitor}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        CompRede: iptCompRede,
+        CompRam: iptCompRam,
+        CompCpu: iptCompCpu,
+        CompDisco: iptCompDisco
+      })
+    })
+      .then(function (atualizacao) {
+        console.log('Limite atualizado com sucesso!')
+
+      })
+      .catch(function (erro) {
+        console.log('Erro ao atualizar o status do monitor: ', erro)
+      })
+
+  }
+
+
+
   /*
   function kpiPicoRede(){
     fetch("/monitor/kpiPicoRede")
