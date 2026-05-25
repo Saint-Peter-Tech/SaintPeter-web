@@ -136,12 +136,12 @@
             </div>
 
             <div class="cardFormulario card-kpi-dashboard" style="flex: 1; min-width: 280px; position: relative;">
-                <p class="kpi-label">Unidade mais Crítica</p>
-                <h1 class="kpi-valor-medio">UTI Adulto</h1>
-                <div class="d-flex align-items-center" style="font-size: 12px; color: #dd6b20; font-weight: bold;">
-                    <span
+                <p class="kpi-label">Unidade em Destaque</p>
+                <h1 class="kpi-valor-medio" id="kpiNomeUnidadeCritica">Carregando...</h1>
+                <div class="d-flex align-items-center" style="font-size: 12px; font-weight: bold;">
+                    <span id="kpiIndicadorCor"
                         style="display: inline-block; width: 6px; height: 6px; background-color: #dd6b20; border-radius: 50%; margin-right: 6px;"></span>
-                    23 alertas ativos
+                    <span id="kpiTotalUnidadeCritica" style="color: #dd6b20;">0 alertas</span>
                 </div>
                 <div
                     style="position: absolute; top: 20px; right: 20px; background-color: #fffaf0; padding: 12px; border-radius: 50%; color: #dd6b20;">
@@ -305,76 +305,219 @@
             const selectFiltro = select_componente.value;
 
             const kpiAlertas = document.getElementById("kpiAlertas");
-            const totalDeAlertas = document.getElementById("totalDeAlertas")
-            const qtdAlertas = document.getElementById("qtdAlertas")
-            const mensagemKpiAlerta = document.getElementById("mensagemKpiAlerta")
+            const totalDeAlertas = document.getElementById("totalDeAlertas");
+            const qtdAlertas = document.getElementById("qtdAlertas");
+            const mensagemKpiAlerta = document.getElementById("mensagemKpiAlerta");
+
+            const kpiNomeUnidade = document.getElementById("kpiNomeUnidadeCritica");
+            const kpiTotalUnidade = document.getElementById("kpiTotalUnidadeCritica");
+            const kpiIndicadorCor = document.getElementById("kpiIndicadorCor");
 
             if (!dadosHospital) return;
+
+            const unidadesArray = Object.values(dadosHospital.unidades); // Convertendo o JSON para
+            var maxValor = -1;
+            var unidadeVencedora = null;
+            var labelFiltro = "";
 
             if (selectFiltro == 0) {
                 totalDeAlertas.innerHTML = `Total de Alertas Críticos. <b>(Ultrapassaram 20% do limite)</b>`;
                 kpiAlertas.innerHTML = dadosHospital.criticos.totalCriticos;
 
                 var totalGeral = dadosHospital.criticos.totalCriticos + dadosHospital.alertasSemanais.totalAlertas;
-
+                var totalCriticos = dadosHospital.criticos.totalCriticos;
                 qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "Total de alertas no hospital: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${totalGeral}`;
+
+                if (totalGeral == 0) {
+                    kpiAlertas.style.color = `green`;
+                    kpiAlertas.innerHTML = `Sem Alertas`;
+                }
+
+                if (totalCriticos == 0) {
+                    mensagemKpiAlerta.style.color = `green`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                }
+
+                for (var i = 0; i < unidadesArray.length; i++) {
+                    if (unidadesArray[i].totalCriticos > maxValor) {
+                        maxValor = unidadesArray[i].totalCriticos;
+                        unidadeVencedora = unidadesArray[i];
+                    }
+                }
+                labelFiltro = "críticos ativos";
 
             } else if (selectFiltro == 1) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>Gerais</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.totalAlertas;
 
                 var alertasCriticos = dadosHospital.criticos.totalCriticos;
+                var alertasGeral = dadosHospital.alertasSemanais.totalAlertas;
 
                 qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasCriticos}`;
+
+                if (alertasGeral == 0) {
+                    kpiAlertas.style.color = `green`;
+                    kpiAlertas.innerHTML = `Sem Alertas`;
+                }
+
+                if (alertasCriticos == 0) {
+                    mensagemKpiAlerta.style.color = `green`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                }
+
+
+                for (var i = 0; i < unidadesArray.length; i++) {
+                    if (unidadesArray[i].totalComuns > maxValor) {
+                        maxValor = unidadesArray[i].totalComuns;
+                        unidadeVencedora = unidadesArray[i];
+                    }
+                }
+                labelFiltro = "gerais ativos";
+
             } else if (selectFiltro == 2) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>CPU</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.cpu;
 
                 var alertasCpuCriticos = dadosHospital.criticos.porComponente.cpuCritico;
+                var alertasCpu = dadosHospital.alertasSemanais.porComponente.cpu;
 
                 qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasCpuCriticos}`;
 
+                if (alertasCpu == 0) {
+                    kpiAlertas.style.color = `green`;
+                    kpiAlertas.innerHTML = `Sem Alertas`;
+                }
+
+                if (alertasCpuCriticos == 0) {
+                    mensagemKpiAlerta.style.color = `green`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                }
+
+                for (var i = 0; i < unidadesArray.length; i++) {
+                    var totalCpu = unidadesArray[i].detalhes.cpu + unidadesArray[i].detalhesCriticos.cpuCritico;
+                    if (totalCpu > maxValor) {
+                        maxValor = totalCpu;
+                        unidadeVencedora = unidadesArray[i];
+                    }
+                }
+                labelFiltro = "alertas de CPU";
+
             } else if (selectFiltro == 3) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>RAM</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.ram;
 
                 var alertasRamCriticos = dadosHospital.criticos.porComponente.ramCritico;
+                var alertasRam = dadosHospital.alertasSemanais.porComponente.ram;
 
                 qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasRamCriticos}`;
 
+                if (alertasRam == 0) {
+                    kpiAlertas.style.color = `green`;
+                    kpiAlertas.innerHTML = `Sem Alertas`;
+                }
+
+                if (alertasRamCriticos == 0) {
+                    mensagemKpiAlerta.style.color = `green`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                }
+
+                for (var i = 0; i < unidadesArray.length; i++) {
+                    var totalRam = unidadesArray[i].detalhes.ram + unidadesArray[i].detalhesCriticos.ramCritico;
+                    if (totalRam > maxValor) {
+                        maxValor = totalRam;
+                        unidadeVencedora = unidadesArray[i];
+                    }
+                }
+                labelFiltro = "alertas de RAM";
+
             } else if (selectFiltro == 4) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>DISCO</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.disco;
 
                 var alertasDiscoCriticos = dadosHospital.criticos.porComponente.discoCritico;
+                var alertasDisco = dadosHospital.alertasSemanais.porComponente.disco;
 
                 qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasDiscoCriticos}`;
 
+                if (alertasDisco == 0) {
+                    kpiAlertas.style.color = `green`;
+                    kpiAlertas.innerHTML = `Sem Alertas`;
+                }
+
+                if (alertasDiscoCriticos == 0) {
+                    mensagemKpiAlerta.style.color = `green`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                }
+
+                for (var i = 0; i < unidadesArray.length; i++) {
+                    var totalDisco = unidadesArray[i].detalhes.disco + unidadesArray[i].detalhesCriticos.discoCritico;
+                    if (totalDisco > maxValor) {
+                        maxValor = totalDisco;
+                        unidadeVencedora = unidadesArray[i];
+                    }
+                }
+                labelFiltro = "alertas de Disco";
+
             } else {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>REDE</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.rede;
 
                 var alertasRedeCriticos = dadosHospital.criticos.porComponente.redeCritico;
+                var alertasRede = dadosHospital.alertasSemanais.porComponente.rede;
 
                 qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
                 mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasRedeCriticos}`;
+
+                if (alertasRede == 0) {
+                    kpiAlertas.style.color = `green`;
+                    kpiAlertas.innerHTML = `Sem Alertas`;
+                }
+
+                if (alertasRedeCriticos == 0) {
+                    mensagemKpiAlerta.style.color = `green`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                }
+
+                for (var i = 0; i < unidadesArray.length; i++) {
+                    var totalRede = unidadesArray[i].detalhes.rede + unidadesArray[i].detalhesCriticos.redeCritico;
+                    if (totalRede > maxValor) {
+                        maxValor = totalRede;
+                        unidadeVencedora = unidadesArray[i];
+                    }
+                }
+                labelFiltro = "alertas de Rede";
+            }
+
+            if (unidadeVencedora && maxValor > 0) {
+                kpiNomeUnidade.innerText = unidadeVencedora.nome;
+                kpiTotalUnidade.innerText = `${maxValor} ${labelFiltro}`;
+
+                kpiNomeUnidade.style.color = "#1e293b";
+                kpiTotalUnidade.style.color = "#dd6b20";
+                kpiIndicadorCor.style.backgroundColor = "#dd6b20";
+            } else {
+                kpiNomeUnidade.innerText = "Sem unidades críticas";
+                kpiTotalUnidade.innerText = `0 ${labelFiltro}`;
+                kpiNomeUnidade.style.color = "green";
+                kpiTotalUnidade.style.color = "green";
+                kpiIndicadorCor.style.backgroundColor = "green";
             }
 
             plotarGrafico(selectFiltro);
@@ -391,7 +534,7 @@
             var data = [];
 
             if (componente == 0) {
-                labels = ['Total Total (Crit + Geral)', 'Críticos', 'CPU Crit.', 'RAM Crit.', 'Disco Crit.', 'Rede Crit.'];
+                labels = ['Total (Crit + Geral)', 'Críticos', 'CPU Crit.', 'RAM Crit.', 'Disco Crit.', 'Rede Crit.'];
                 data = [
                     dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
                     dadosHospital.criticos.totalCriticos,
@@ -460,7 +603,6 @@
                 }
             });
         }
-
     </script>
 </body>
 
