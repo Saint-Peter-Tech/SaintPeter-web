@@ -151,13 +151,14 @@
 
             <div class="cardFormulario card-kpi-dashboard" style="flex: 1; min-width: 280px; position: relative;">
                 <p class="kpi-label">Crescimento Semanal</p>
-                <h1 class="kpi-valor" style="color: #e53e3e;">+12.5%</h1>
-                <div class="d-flex align-items-center" style="font-size: 12px; color: #718096; font-weight: 500;">
-                    Sem. atual: 124 <span class="ms-2" style="color: #cbd5e1;">|</span> Sem. passada: 110
+                <h1 class="kpi-valor" id="kpiCrescimentoPorcentagem">0%</h1>
+                <div class="d-flex align-items-center" style="font-size: 12px; font-weight: 500;"
+                    id="kpiCrescimentoDetalhes">
+                    Sem. atual: 0 <span class="ms-2" style="color: #cbd5e1;">|</span> Sem. passada: 0
                 </div>
-                <div
+                <div id="kpiCrescimentoIcone"
                     style="position: absolute; top: 20px; right: 20px; background-color: #fff5f5; padding: 12px; border-radius: 50%; color: #e53e3e;">
-                    <i class="fa-solid fa-chart-line fa-lg"></i>
+                    <i id="iconeChartLine" class="fa-solid fa-chart-line fa-lg"></i>
                 </div>
             </div>
         </div>
@@ -312,6 +313,8 @@
             const kpiNomeUnidade = document.getElementById("kpiNomeUnidadeCritica");
             const kpiTotalUnidade = document.getElementById("kpiTotalUnidadeCritica");
             const kpiIndicadorCor = document.getElementById("kpiIndicadorCor");
+            var valorAtualCrescimento = 0;
+            var valorPassadoCrescimento = 0;
 
             if (!dadosHospital) return;
 
@@ -349,6 +352,9 @@
                 }
                 labelFiltro = "críticos ativos";
 
+                valorAtualCrescimento = dadosHospital.criticos.totalCriticos;
+                valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalCriticos;
+
             } else if (selectFiltro == 1) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>Gerais</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.totalAlertas;
@@ -379,6 +385,9 @@
                     }
                 }
                 labelFiltro = "gerais ativos";
+
+                valorAtualCrescimento = dadosHospital.alertasSemanais.totalAlertas;
+                valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalAlertas;
 
             } else if (selectFiltro == 2) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>CPU</b>`;
@@ -411,6 +420,9 @@
                 }
                 labelFiltro = "alertas de CPU";
 
+                valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.cpu + dadosHospital.criticos.porComponente.cpuCritico;
+                valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.cpu + dadosHospital.alertasSemanaPassada.criticosPorComponente.cpuCritico;
+
             } else if (selectFiltro == 3) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>RAM</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.ram;
@@ -441,6 +453,9 @@
                     }
                 }
                 labelFiltro = "alertas de RAM";
+
+                valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.ram + dadosHospital.criticos.porComponente.ramCritico;
+                valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.ram + dadosHospital.alertasSemanaPassada.criticosPorComponente.ramCritico;
 
             } else if (selectFiltro == 4) {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>DISCO</b>`;
@@ -473,6 +488,9 @@
                 }
                 labelFiltro = "alertas de Disco";
 
+                valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.disco + dadosHospital.criticos.porComponente.discoCritico;
+                valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.disco + dadosHospital.alertasSemanaPassada.criticosPorComponente.discoCritico;
+
             } else {
                 totalDeAlertas.innerHTML = `Total de Alertas: <b>REDE</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.rede;
@@ -503,6 +521,9 @@
                     }
                 }
                 labelFiltro = "alertas de Rede";
+
+                valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.rede + dadosHospital.criticos.porComponente.redeCritico;
+                valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.rede + dadosHospital.alertasSemanaPassada.criticosPorComponente.redeCritico;
             }
 
             if (unidadeVencedora && maxValor > 0) {
@@ -520,7 +541,50 @@
                 kpiIndicadorCor.style.backgroundColor = "green";
             }
 
+            atualizarKpiCrescimento(valorAtualCrescimento, valorPassadoCrescimento);
             plotarGrafico(selectFiltro);
+        }
+
+        function atualizarKpiCrescimento(semanaAtual, semanaPassada) {
+            const h1Porcentagem = document.getElementById("kpiCrescimentoPorcentagem");
+            const divDetalhes = document.getElementById("kpiCrescimentoDetalhes");
+            const divIcone = document.getElementById("kpiCrescimentoIcone");
+            const iconeChart = document.getElementById("iconeChartLine");
+
+            var porcentagem = 0;
+
+            if (semanaPassada == 0) {
+                if (semanaAtual > 0) {
+                    porcentagem = 100;
+                }
+            } else {
+                porcentagem = ((semanaAtual - semanaPassada) / semanaPassada) * 100; 
+            }
+
+            var corText = "#718096";
+            var corBackground = "#f1f5f9";
+            var sinal = "";
+
+            if (porcentagem > 0) {
+                corText = "#e53e3e";  // Vermelho (Mais alertas = Ruim)
+                corBackground = "#fff5f5";
+                sinal = "+";
+                iconeChart.className = "fa-solid fa-arrow-trend-up fa-lg";
+            } else if (porcentagem < 0) {
+                corText = "#38a169";  // Verde (Menos alertas = Bom)
+                corBackground = "#f0fff4";
+                iconeChart.className = "fa-solid fa-arrow-trend-down fa-lg";
+            } else {
+                iconeChart.className = "fa-solid fa-minus fa-lg"; // Neutro
+            }
+
+            h1Porcentagem.style.color = corText;
+            h1Porcentagem.innerText = `${sinal}${porcentagem.toFixed(1)}%`;
+
+            divIcone.style.color = corText;
+            divIcone.style.backgroundColor = corBackground;
+
+            divDetalhes.innerHTML = `Sem. atual: ${semanaAtual} <span class="ms-2" style="color: #cbd5e1;">|</span> Sem. passada: ${semanaPassada}`;
         }
 
         function plotarGrafico(componente) {
