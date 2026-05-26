@@ -44,7 +44,7 @@
             </select>
         </p>
             <p class="infoCaptura">
-            Dados coletados dos últimos <span id="diasCapturaKPI">7 dias</span>,
+            Dados coletados dos últimos <span id="diasCapturaKPI"></span>,
             com capturas a cada 20 minutos</span>.
             </p>
         <hr class="rounded">
@@ -162,7 +162,7 @@
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Módulo mais utilizado
                   <br>
-                  <h1 id="moduloutilizadoKPI" style="color: green; font-weight: bold;">TEMP</h1>
+                  <h1 id="moduloutilizadoKPI" style="color: green; font-weight: bold;"></h1>
                 </div>
                 <div class="imgKpiContainer" style="width: 100%;">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -171,7 +171,7 @@
                 </svg>
                 </div>
               </div>
-              <span id="frequenciaKPI" style="font-weight: bolder;">90%</span> de frequência
+              <span id="frequenciaKPI" style="font-weight: bolder;"></span> de frequência
             </div>
 
             <div class="KpisMonitoresAntigos">
@@ -179,7 +179,7 @@
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Módulo mais Crítico
                   <br>
-                  <h1 id="modulocriticoKPI" style="color: #ff4b4b; font-weight: bold;">TEMP</h1>
+                  <h1 id="modulocriticoKPI" style="color: #ff4b4b; font-weight: bold;"></h1>
                 </div>
                 <div class="imgKpiContainer" style="width: 100%;">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +189,7 @@
                 <path d="M24 29H24.01" stroke="#E7000B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
               </div>
-              <span id="ocorrenciasKPI" style="font-weight: bolder;">888</span> ocorrências
+              <span id="ocorrenciasKPI" style="font-weight: bolder;"></span> ocorrências
             </div>
 
             <div class="KpisMonitoresAntigos">
@@ -197,7 +197,7 @@
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Estabilidade Geral
                   <br>
-                  <h1 id="estabilidadeKPI" style="font-weight: bold; color: red;">40%</h1>
+                  <h1 id="estabilidadeKPI" style="font-weight: bold; color: red;"></h1>
                 </div>
                 <div class="imgKpiContainer" style="width: 100%;">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +206,7 @@
                     </svg>
                 </div>
               </div>
-              Você está á: <span id="metasKPI" style="font-weight: bolder; color: red">40%</span> de alcançar a meta | Meta: <span id="metasKPI2" style="font-weight: bolder; color: green">80%</span>
+              Você está á: <span id="metasKPI" style="font-weight: bolder; color: red"></span> de alcançar a meta | Meta: <span id="metasKPI2" style="font-weight: bolder; color: green"></span>
             </div>
         </div>
           <main class="dashboard-grid">
@@ -235,7 +235,7 @@
 
 </div>
             <div class="table-scroll">
-            <table class="criticidade-table">
+            <table class="criticidade-table" id="tabelaModulos">
                 <thead>
                 <tr>
                     <th>Módulo</th>
@@ -246,60 +246,6 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>BPM</td>
-                    <td class="ok-bg">45</td>
-                    <td class="warning-bg">8</td>
-                    <td class="critical-bg">2</td>
-                </tr>
-                <tr>
-                    <td>PA</td>
-                    <td class="ok-bg">42</td>
-                    <td class="warning-bg">10</td>
-                    <td class="critical-bg">3</td>
-                </tr>
-                <tr>
-                    <td>SPO2</td>
-                    <td class="ok-bg">38</td>
-                    <td class="warning-bg">12</td>
-                    <td class="critical-bg">5</td>
-                </tr>
-                <tr>
-                    <td>RESP</td>
-                    <td class="ok-bg">18</td>
-                    <td class="warning-bg">2</td>
-                    <td class="critical-bg">12</td>
-                </tr>
-                <tr>
-                    <td>TEMP</td>
-                    <td class="ok-bg">51</td>
-                    <td class="warning-bg">77</td>
-                    <td class="critical-bg">888</td>
-                </tr>
-                <tr>
-                    <td>PIC</td>
-                    <td class="ok-bg">2</td>
-                    <td class="warning-bg">25</td>
-                    <td class="critical-bg">89</td>
-                </tr>
-                <tr>
-                    <td>PVC</td>
-                    <td class="ok-bg">101</td>
-                    <td class="warning-bg">102</td>
-                    <td class="critical-bg">235</td>
-                </tr>
-                <tr>
-                    <td>ECG</td>
-                    <td class="ok-bg">75</td>
-                    <td class="warning-bg">570</td>
-                    <td class="critical-bg">71</td>
-                </tr>
-                <tr>
-                    <td>ETCO2</td>
-                    <td class="ok-bg">84</td>
-                    <td class="warning-bg">99</td>
-                    <td class="critical-bg">92</td>
-                </tr>
                 </tbody>
             </table>
             </div>
@@ -350,6 +296,8 @@
         const metakpi30 = document.getElementById("metasKPI");
         const metakpi31 = document.getElementById("metasKPI2");
 
+        const tabela = document.getElementById("tabelaModulos");
+
         window.onload = function () {
             validarSessao();
             listarModelos();
@@ -358,8 +306,8 @@
 
     function listarModelos() {
     const selectModelo = document.getElementById("selectModelo");
-    var idEmpresa = sessionStorage.FK_EMPRESA;
-    fetch('/modelo/listarModelosPorNome')
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/modelo/listarModelos?fkEmpresa=${fkEmpresa}`)
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -395,7 +343,7 @@ new Chart(impactCtx, {
     data: { 
         labels: modulos, 
         datasets: [{ 
-            data: [40, 65, 50, 80, 80, 30, 45, 70, 50], 
+            data: [], 
             backgroundColor: (context) => { 
                 const value = context.raw;
                 if (value >= 80) return '#E7000B';
@@ -459,7 +407,7 @@ new Chart(trendCtx, {
         datasets: [{
             label: 'Uso (%)',
 
-            data: [90, 70, 85, 50, 90, 35, 60, 95, 75],
+            data: [],
 
             backgroundColor: [
                 '#13347b',
@@ -504,7 +452,7 @@ new Chart(radarCtx, {
         labels: modulos,
         datasets: [{
             label: 'Estabilidade(%)',
-            data: [88, 72, 91, 60, 95, 40, 58, 84, 76],
+            data: [],
             borderColor: '#00A63E',
             backgroundColor: 'rgba(0, 166, 62, 0.2)',
             pointBackgroundColor: '#00A63E'
