@@ -1,3 +1,4 @@
+
 const { buscarJson } = require("../s3/conexaoS3");
 
 async function buscarHospitalJson(req, res) {

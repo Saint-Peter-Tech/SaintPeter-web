@@ -1104,6 +1104,26 @@
   function sumirDiv(div) {
     div.style.display = 'none';
   }
+
+
+  async function receberDadosBucket() {
+    const idHospital = sessionStorage.ID_HOSPITAL;
+    const idEmpresa = sessionStorage.FK_EMPRESA;
+    const idUnidade = sessionStorage.ID_UNIDADE;
+    const idMonitor = sessionStorage.ID_MONITOR;
+
+
+    try {
+      const resposta = await fetch(`/monitorS3/${idEmpresa}/${idHospital}/${idUnidade}/monitor_${idMonitor}.json`);
+      if (!resposta.ok) return;
+
+      dadosMonitor = await resposta.json();
+      carregarDados();
+    } catch (erro) {
+      console.error("Erro ao buscar dados do S3:", erro);
+    }
+
+  }
   /*
   function kpiPicoRede(){
     fetch("/monitor/kpiPicoRede")
