@@ -69,7 +69,7 @@
         </svg>
         <span class="description">Hospitais</span>
       </a>
-      
+
       <a class="nav-link" href="./dashboard/dashboardUnidades.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital"
           viewBox="0 0 16 16">
@@ -174,6 +174,8 @@
         <p>
           <button class="botaoCadastrar" onclick="cadastrarUnidade()">Cadastrar Unidade</button>
         </p>
+        <input type="hidden" id="input_latitude">
+        <input type="hidden" id="input_longitude">
         <div id="div_erroCadastro"></div>
       </div>
     </div>
@@ -194,18 +196,13 @@
         return resposta.json();
       })
       .then(function (hospitais) {
-
         const select = document.getElementById("select_hospital");
-
         hospitais.forEach(hospital => {
           const option = document.createElement("option");
-
           option.value = hospital.id_hospital;
           option.textContent = hospital.nome_hospital;
-
           select.appendChild(option);
         });
-
       })
       .catch(function (erro) {
         console.error("Erro ao buscar hospitais:", erro);
@@ -214,7 +211,7 @@
 
   function buscarcep() {
     var cepOriginal = input_cep.value;
-    var cep = cepOriginal.replace(/\D/g, ""); // D ignora tudo que é não numérico e o g deixa válido para toda a input, não somente no primeiro cenário
+    var cep = cepOriginal.replace(/\D/g, "");
 
     if (cep.length == 8 || cep.length == 9) {
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -226,6 +223,10 @@
             input_rua.value = dados.logradouro;
             input_cidade.value = dados.localidade;
             div_erroCadastro.innerHTML = "";
+
+            if (input_numero.value != "") {
+              buscarCoordenadas();
+            }
           } else {
             div_erroCadastro.innerHTML = `CEP não encontrado.<br>`;
             input_rua.value = "";
@@ -236,6 +237,46 @@
           console.log("Erro na busca:", erro);
         });
     }
+  }
+
+  function buscarCoordenadas() {
+    var rua = input_rua.value;
+    var numero = input_numero.value;
+    var cidade = input_cidade.value;
+
+    if (rua !== "" && numero !== "" && cidade !== "") {
+      var queryBusca = encodeURIComponent(`${rua}, ${numero}, ${cidade}, Brasil`);
+
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${queryBusca}&limit=1`)
+        .then(function (resposta) {
+          return resposta.json();
+        })
+        .then(function (resultado) {
+          if (resultado.length > 0) {
+            document.getElementById("input_latitude").value = resultado[0].lat;
+            document.getElementById("input_longitude").value = resultado[0].lon;
+            div_erroCadastro.innerHTML = "";
+          } else {
+            console.log("Coordenadas exatas não encontradas pelo número. Tentando buscar por rua...");
+            buscarCoordenadasPorRua(rua, cidade);
+          }
+        })
+        .catch(function (erro) {
+          console.error("Erro ao buscar coordenadas no Nominatim:", erro);
+        });
+    }
+  }
+
+  function buscarCoordenadasPorRua(rua, cidade) {
+    var queryBusca = encodeURIComponent(`${rua}, ${cidade}, Brasil`);
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${queryBusca}&limit=1`)
+      .then(res => res.json())
+      .then(resultado => {
+        if (resultado.length > 0) {
+          document.getElementById("input_latitude").value = resultado[0].lat;
+          document.getElementById("input_longitude").value = resultado[0].lon;
+        }
+      });
   }
 
   function cadastrarUnidade() {
@@ -249,6 +290,8 @@
     var emailResponsavel = input_emailResponsavel.value;
     var telefoneResponsavel = input_telefoneResponsavel.value;
     var redeTotal = Number(input_redeTotal.value);
+    var latitude = input_latitude.value;
+    var longitude = input_longitude.value;
 
     div_erroCadastro.innerHTML = "";
     div_erroCadastro.style.color = "red";
@@ -261,6 +304,10 @@
 
     if (unidade == "" || cep == "" || rua == "" || numero == "" || cidade == "") {
       mensagemErro += "Preencha todos os campos de endereço (Unidade, CEP, Rua, Num e Cidade).<br>";
+    }
+
+    if (latitude == "" || longitude == "") {
+      mensagemErro += "Não foi possível carregar as coordenadas geográficas para este endereço. Verifique os dados.<br>";
     }
 
     if (!emailResponsavel.includes("@") || emailResponsavel.length < 5 || !emailResponsavel.includes(".com")) {
@@ -296,28 +343,34 @@
         emailResponsavelServer: emailResponsavel,
         telefoneResponsavelServer: telefoneResponsavel,
         fkHospitalServer: fkHospital,
-        redeTotalServer: redeTotal
+        redeTotalServer: redeTotal,
+        latitudeServer: latitude,
+        longitudeServer: longitude
       }),
     })
       .then(function (resposta) {
-        console.log("resposta: ", resposta);
-        div_erroCadastro.style.color = "green";
-        div_erroCadastro.innerHTML = "Cadastro de Unidade realizado com sucesso!";
+        if (resposta.ok) {
+          div_erroCadastro.style.color = "green";
+          div_erroCadastro.innerHTML = "Cadastro de Unidade realizado com sucesso!";
 
-        input_cep.value = "";
-        select_hospital.value = "0";
-        input_rua.value = "";
-        input_numero.value = "";
-        input_cidade.value = "";
-        input_unidade.value = "";
-        input_emailResponsavel.value = "";
-        input_telefoneResponsavel.value = "";
-        input_redeTotal.value = "";
-
-        return resposta.json();
+          input_cep.value = "";
+          select_hospital.value = "0";
+          input_rua.value = "";
+          input_numero.value = "";
+          input_cidade.value = "";
+          input_unidade.value = "";
+          input_emailResponsavel.value = "";
+          input_telefoneResponsavel.value = "";
+          input_redeTotal.value = "";
+          document.getElementById("input_latitude").value = "";
+          document.getElementById("input_longitude").value = "";
+        } else {
+          throw ("Erro ao tentar cadastrar!");
+        }
+      }).catch(function (erro) {
+        console.log(erro);
       })
   }
-
 </script>
 
 </html>
