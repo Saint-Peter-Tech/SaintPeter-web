@@ -1,19 +1,21 @@
 var unidadeModel = require("../models/unidadeModel");
 
 function cadastrarUnidade(req, res) {
-    var fkHospital = req.body.fkHospitalServer
-    var cep = req.body.cepServer
-    var rua = req.body.ruaServer
-    var numero = req.body.numeroServer
-    var cidade = req.body.cidadeServer
-    var unidade = req.body.unidadeServer
-    var emailResponsavel = req.body.emailResponsavelServer
-    var telefoneResponsavel = req.body.telefoneResponsavelServer
-    var redeTotal = req.body.redeTotalServer
-
+    var fkHospital = req.body.fkHospitalServer;
+    var cep = req.body.cepServer;
+    var rua = req.body.ruaServer;
+    var numero = req.body.numeroServer;
+    var cidade = req.body.cidadeServer;
+    var unidade = req.body.unidadeServer;
+    var latitude = req.body.latitudeServer ? req.body.latitudeServer : "NULL";
+    var longitude = req.body.longitudeServer ? req.body.longitudeServer : "NULL";
+    
+    var emailResponsavel = req.body.emailResponsavelServer;
+    var telefoneResponsavel = req.body.telefoneResponsavelServer;
+    var redeTotal = req.body.redeTotalServer;
 
     unidadeModel
-        .cadastrarUnidade(fkHospital, cep, rua, numero, cidade, unidade, emailResponsavel, telefoneResponsavel, redeTotal)
+        .cadastrarUnidade(fkHospital, cep, rua, numero, cidade, latitude, longitude, unidade, emailResponsavel, telefoneResponsavel, redeTotal)
         .then(function (resultado) {
             res.json({ id: resultado.insertId });
         })
@@ -21,7 +23,7 @@ function cadastrarUnidade(req, res) {
             console.log(erro);
             console.log(
                 "\nHouve um erro ao realizar o cadastro! Erro: ",
-                erro.sqlMessage,
+                erro.sqlMessage
             );
             res.status(500).json(erro.sqlMessage);
         });
@@ -52,7 +54,6 @@ function unidadesPorEmpresa(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
-
 
 module.exports = {
     cadastrarUnidade,
