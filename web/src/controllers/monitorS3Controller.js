@@ -1,14 +1,19 @@
-
 const { buscarJson } = require("../s3/conexaoS3");
 
-async function buscarMonitorJson(req, res) {
+async function buscarDadosMonitor(req, res) {
   try {
     const empresa = req.params.empresa;
     const hospital = req.params.hospital;
     const unidade = req.params.unidade;
     const monitor = req.params.monitor;
 
-    const key = `client/empresa_${empresa}/hospital_${hospital}/unidade_${unidade}/monitor_${monitor}.json`;
+    // console.log(
+    //   `req.params \n EMPRESA: ${empresa}  \n HOSPITAL: ${hospital} \n UNIDADE: ${unidade} \n MONITOR: ${monitor} \n`,
+    // );
+
+    const key = `client/empresa_${empresa}/hospital_${hospital}/unidade_${unidade}/monitor_${monitor}`;
+
+    console.log(`KEY: ${key}`);
 
     const dados = await buscarJson(key);
     res.json(dados);
@@ -38,12 +43,28 @@ async function buscarMonitorJson(req, res) {
           limiteDisco: 0,
           limiteRede: 0,
         },
+        modulos: {
+          bpm_status: "Inativo",
+          pa_status: "Inativo",
+          spo2_status: "Inativo",
+          resp_status: "Inativo",
+          temperatura_status: "Inativo",
+          pic_status: "Inativo",
+          pvc_status: "Inativo",
+          ecg_status: "Inativo",
+          etco2_status: "Inativo",
+        },
       });
     }
-    res.status(500).json({ erro: "Erro ao buscar JSON" });
+    console.log("Erro ao buscar JSON");
+    res.status(500).json({
+        erro: erro.message,
+        name: erro.name,
+        stack: erro.stack
+    });
   }
 }
 
 module.exports = {
-  buscarMonitorJson,
+  buscarDadosMonitor,
 };

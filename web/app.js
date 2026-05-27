@@ -25,6 +25,7 @@ var hospitalRouter = require("./src/routes/hospital");
 var hospitalS3Router = require("./src/routes/hospitalS3");
 var unidadeRouter = require("./src/routes/unidade")
 var monitorRouter = require("./src/routes/monitor")
+var monitorS3Router = require("./src/routes/monitorS3")
 var modeloRouter = require("./src/routes/modelo")
 
 app.use(express.json());
@@ -39,10 +40,11 @@ app.use("/cadastroEmpresa", cadastroEmpresaRouter);
 app.use("/cadastroAdm", cadastroAdmRouter);
 app.use("/cadastroFuncionario", cadastroFuncionarioRouter);
 app.use("/hospitalS3", hospitalS3Router);
-app.use("/hospital", hospitalRouter)
-app.use("/unidade", unidadeRouter)
-app.use("/monitor", monitorRouter)
-app.use("/modelo", modeloRouter)
+app.use("/hospital", hospitalRouter);
+app.use("/unidade", unidadeRouter);
+app.use("/monitor", monitorRouter);
+app.use("/monitorS3", monitorS3Router);
+app.use("/modelo", modeloRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

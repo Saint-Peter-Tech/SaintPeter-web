@@ -379,77 +379,82 @@
     </div>
     <!-- kpis cpu, ram e disco rígido -->
     <div style="margin-left: 2%; margin-top: 1%;" class="displayFlex">
-      <div class="kpiMonitorComponente"
-        style="color: #991616; border-bottom: 4px solid #991616; margin-bottom: 2%; margin-left: -2%;">
-        <div class="displayFlex" style="gap: 80%;">
-          <h5>CPU</h5>
+      <span id="divKpiCpu" style="margin-bottom: 2%; margin-left: -2%;">
+        <div class="kpiMonitorComponente">
+          <div class="displayFlex" style="gap: 80%;">
+            <h5>CPU</h5>
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cpu"
-            viewBox="0 0 16 16">
-            <path
-              d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
-          </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cpu"
+              viewBox="0 0 16 16">
+              <path
+                d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+            </svg>
+          </div>
+
+          <span style="display: flex; gap: 25%;">
+            <div>
+              <h4><b>59.0</b></h4>
+              <p><i>Pico do uso da CPU</i></p>
+            </div>
+            <div style="align-self: flex-end; text-align: end;">
+              <p><i>Última atualização: 13/05/2026</i></p>
+            </div>
+          </span>
         </div>
+      </span>
 
-        <span style="display: flex; gap: 25%;">
-          <div>
-            <h4><b>59.0</b></h4>
-            <p><i>Pico do uso da CPU</i></p>
+      <span id="divKpiRam">
+        <div class="kpiMonitorComponente">
+          <div class="displayFlex" style="gap: 60%;">
+            <h5>MEMÓRIA RAM</h5>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-sd-card"
+              viewBox="0 0 16 16">
+              <path
+                d="M6.25 3.5a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" />
+              <path fill-rule="evenodd"
+                d="M5.914 0H12.5A1.5 1.5 0 0 1 14 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5V3.914c0-.398.158-.78.44-1.06L4.853.439A1.5 1.5 0 0 1 5.914 0M13 1.5a.5.5 0 0 0-.5-.5H5.914a.5.5 0 0 0-.353.146L3.146 3.561A.5.5 0 0 0 3 3.914V14.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5z" />
+            </svg>
           </div>
-          <div style="align-self: flex-end; text-align: end;">
-            <p><i>Última atualização: 13/05/2026</i></p>
-          </div>
-        </span>
-      </div>
 
-      <div class="kpiMonitorComponente" style="color: #991616; border-bottom: 4px solid #991616; margin-bottom: 2%;">
-        <div class="displayFlex" style="gap: 60%;">
-          <h5>MEMÓRIA RAM</h5>
-
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-sd-card"
-            viewBox="0 0 16 16">
-            <path
-              d="M6.25 3.5a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0zm2 0a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" />
-            <path fill-rule="evenodd"
-              d="M5.914 0H12.5A1.5 1.5 0 0 1 14 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5V3.914c0-.398.158-.78.44-1.06L4.853.439A1.5 1.5 0 0 1 5.914 0M13 1.5a.5.5 0 0 0-.5-.5H5.914a.5.5 0 0 0-.353.146L3.146 3.561A.5.5 0 0 0 3 3.914V14.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5z" />
-          </svg>
+          <span style="display: flex; gap: 10%;">
+            <div>
+              <h4><b>59.0</b></h4>
+              <p><i>Pico do uso da Memória RAM</i></p>
+            </div>
+            <div style="align-self: flex-end; text-align: end;">
+              <p><i>Última atualização: 13/05/2026</i></p>
+            </div>
+          </span>
         </div>
+      </span>
 
-        <span style="display: flex; gap: 10%;">
-          <div>
-            <h4><b>59.0</b></h4>
-            <p><i>Pico do uso da Memória RAM</i></p>
+      <span id="divKpiDisco">
+        <div class="kpiMonitorComponente" style="height: 200px!important;">
+          <div class="displayFlex" style="gap: 60%;">
+            <h5>DISCO RÍGIDO</h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-device-hdd"
+              viewBox="0 0 16 16">
+              <path
+                d="M12 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-7.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1M5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M8 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+              <path
+                d="M12 7a4 4 0 0 1-3.937 4c-.537.813-1.02 1.515-1.181 1.677a1.102 1.102 0 0 1-1.56-1.559c.1-.098.396-.314.795-.588A4 4 0 0 1 8 3a4 4 0 0 1 4 4m-1 0a3 3 0 1 0-3.891 2.865c.667-.44 1.396-.91 1.955-1.268.224-.144.483.115.34.34l-.62.96A3 3 0 0 0 11 7" />
+              <path
+                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+            </svg>
           </div>
-          <div style="align-self: flex-end; text-align: end;">
-            <p><i>Última atualização: 13/05/2026</i></p>
-          </div>
-        </span>
-      </div>
 
-      <div class="kpiMonitorComponente" style="height: 200px!important;">
-        <div class="displayFlex" style="gap: 60%;">
-          <h5>DISCO RÍGIDO</h5>
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-device-hdd"
-            viewBox="0 0 16 16">
-            <path
-              d="M12 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-7.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1M5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M8 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-            <path
-              d="M12 7a4 4 0 0 1-3.937 4c-.537.813-1.02 1.515-1.181 1.677a1.102 1.102 0 0 1-1.56-1.559c.1-.098.396-.314.795-.588A4 4 0 0 1 8 3a4 4 0 0 1 4 4m-1 0a3 3 0 1 0-3.891 2.865c.667-.44 1.396-.91 1.955-1.268.224-.144.483.115.34.34l-.62.96A3 3 0 0 0 11 7" />
-            <path
-              d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
-          </svg>
+          <span style="display: flex; gap: 25%;">
+            <div>
+              <h4><b>26.1/102.0</b></h4>
+              <p><i>Uso do Disco Rígido</i></p>
+            </div>
+            <div style="align-self: flex-end; text-align: end;">
+              <p><i>Última atualização: 13/05/2026</i></p>
+            </div>
+          </span>
         </div>
-
-        <span style="display: flex; gap: 25%;">
-          <div>
-            <h4><b>26.1/102.0</b></h4>
-            <p><i>Uso do Disco Rígido</i></p>
-          </div>
-          <div style="align-self: flex-end; text-align: end;">
-            <p><i>Última atualização: 13/05/2026</i></p>
-          </div>
-        </span>
-      </div>
+      </span>
     </div>
     <!-- graficos de cpu e ram -->
     <div>
@@ -558,6 +563,7 @@
     statusMonitor();
     modeloMonitor();
     descricaoManutencao();
+    receberDadosBucket();
   }
 
   // função para iniciar a tabela
@@ -821,6 +827,8 @@
 
         selectMonitor.addEventListener("change", function () {
           sessionStorage.ID_MONITOR = selectMonitor.value;
+
+          receberDadosBucket();
         })
       })
       .catch(function (erro) {
@@ -1105,6 +1113,7 @@
     div.style.display = 'none';
   }
 
+  var dadosMonitor;
 
   async function receberDadosBucket() {
     const idHospital = sessionStorage.ID_HOSPITAL;
@@ -1114,25 +1123,120 @@
 
 
     try {
-      const resposta = await fetch(`/monitorS3/${idEmpresa}/${idHospital}/${idUnidade}/monitor_${idMonitor}.json`);
-      if (!resposta.ok) return;
+      console.log('Iniciando fetch de dados do monitor')
+      const resposta = await fetch(`/monitorS3/${idEmpresa}/${idHospital}/${idUnidade}/${idMonitor}.json`);
+      console.log(resposta)
+      if (!resposta.ok) {
+        const erro = await resposta.text();
+        console.log("ERRO BACKEND:");
+        console.log(erro);
+        return;
+      }
 
+      console.log('TO AQUI DENTRO DO TRY')
       dadosMonitor = await resposta.json();
+      console.log('Dados do monitor: \n', dadosMonitor)
       carregarDados();
+
     } catch (erro) {
       console.error("Erro ao buscar dados do S3:", erro);
     }
 
   }
-  /*
-  function kpiPicoRede(){
-    fetch("/monitor/kpiPicoRede")
-    .then(resposta => resposta.json())
-    .then(picoRede => {
-      const picoRede = document.getElementById('divPicoRede')
 
-      picoRede.innerHTML = ""
-    })
+
+
+  function carregarDados() {
+    const divPicoRede = document.getElementById('divPicoRede')
+    const divPicoCpu = document.getElementById('divKpiCpu')
+
+    console.log('cheguei na função de carregar os dados do monitor')
+    if (!dadosMonitor) { return }
+
+    dataUltimaAtualizacao = dadosMonitor.horario;
+
+    divPicoRede.innerHTML = `<div style="display: flex; gap: 60%;">
+                            <h5>Rede</h5>
+                            <img src="../assets/icones-alerta/rede-acima-icone.png" width="60px"
+                            style="margin-right: 2%; border-radius: 10px;" alt="">
+                        </div>
+                            <br>
+                            <h4><b>200mb/s</b></h4>
+                            <p><i>Pico de rede</i></p>
+                          
+                            <span style="align-self: flex-end;">
+                              <p><i>Última atualização: 13/05/2026</i></p>
+                            </span>`
+
+
+    var statusCpu = "ok";
+
+    if (dadosMonitor.cpu.cpuPico > dadosMonitor.limites.limiteCpu) {
+      picoCpu = dadosMonitor.cpu.cpuPico;
+      statusCpu = "acima";
+    } else {
+      picoCpu = dadosMonitor.cpu.cpuPico;
+      statusCpu = "ok";
+    }
+
+    console.log("esse é o pico da cpu: ", picoCpu)
+
+    if (statusCpu === "ok") {
+      divPicoCpu.innerHTML = `
+        <div class="kpiMonitorComponente">
+          <div class="displayFlex" style="gap: 80%;">
+            <h5>CPU</h5>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cpu"
+              viewBox="0 0 16 16">
+              <path
+                d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+            </svg>
+          </div>
+
+          <span style="display: flex; gap: 25%;">
+            <div>
+              <h4><b>${picoCpu}</b></h4>
+              <p><i>Pico do uso da CPU</i></p>
+            </div>
+            <div style="align-self: flex-end; text-align: end;">
+              <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
+            </div>
+          </span>
+        </div>
+    `
+
+    } else if (statusCpu === "acima") {
+      divPicoCpu.innerHTML = `
+      <div class="kpiMonitorComponenteAcima">
+          <div class="displayFlex" style="gap: 80%;">
+            <h5>CPU</h5>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cpu"
+              viewBox="0 0 16 16">
+              <path
+                d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+            </svg>
+          </div>
+
+          <span style="display: flex; gap: 25%;">
+            <div>
+              <h4><b>${picoCpu}</b></h4>
+              <p><i>Pico do uso da CPU</i></p>
+            </div>
+            <div style="align-self: flex-end; text-align: end;">
+              <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
+            </div>
+          </span>
+        </div>
+        `
+    } else {
+      console.log('status kpi invalido')
+      return
+    }
   }
-*/
+
+
+
+
 </script>

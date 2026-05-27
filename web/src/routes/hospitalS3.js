@@ -3,7 +3,7 @@ var router = express.Router();
 
 var hospitalS3Controller = require("../controllers/hospitalS3Controller");
 
-router.get("/:empresa/:hospital", function (req, res) {
+router.get("/:empresa/:hospital", function (req, res) {    
     hospitalS3Controller.buscarHospitalJson(req, res);
 });
 
