@@ -148,7 +148,7 @@
       <div style="display: flex; border-bottom: 2px solid #f5f5f5;">
         <select class="selectPrincipal" onchange="" id="select_monitor">
         </select>
-        <button class="botaoConfig2" onclick="statusMonitor(),  modeloMonitor(), descricaoManutencao()">
+        <button class="botaoConfig2" onclick="statusMonitor(),  modeloMonitor(), descricaoManutencao(), carregarDados()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
@@ -195,27 +195,8 @@
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>BPM</td>
-                  <td class=" moduloAtivo">Ativo</td>
-              </tr>
-              <tr>
-                <td>PA</td>
-                <td class="moduloAtivo">Ativo</td>
-              </tr>
-              <tr>
-                <td>SPO2</td>
-                <td class="moduloInativo">Inativo</td>
-              </tr>
-              <tr>
-                <td>RESP</td>
-                <td class="moduloInativo">Inativo</td>
-              </tr>
-              <tr>
-                <td>TEMP</td>
-                <td class="moduloInativo">Inativo</td>
-              </tr>
+              <tbody id="corpoTabela">
+
               </tbody>
             </table>
           </div>
@@ -315,7 +296,7 @@
                   <div>
                     <I>DOWNLOAD</I>
                     <h5>
-                      <p>300.000 bytes</p>
+                      <p>0.0 bytes</p>
                     </h5>
                   </div>
                 </div>
@@ -335,7 +316,7 @@
                   <div>
                     <I>UPLOAD</I>
                     <h5>
-                      <p>500.000 bytes</p>
+                      <p>0.0 bytes</p>
                     </h5>
                   </div>
                   <br>
@@ -1156,11 +1137,81 @@
     const divDownloadoUpload = document.getElementById('divDownloadoUpload')
     const divTrafegoTotal = document.getElementById('divTrafegoTotal')
 
+    const divCorpoTabela = document.getElementById('corpoTabela')
+    console.log("essa é a divTabel", divCorpoTabela)
+
     console.log('cheguei na função de carregar os dados do monitor')
     if (!dadosMonitor) { return }
 
     dataUltimaAtualizacao = dadosMonitor.horario;
 
+    // tabela de modulos
+
+    console.log("esse é o id do monitor:" ,dadosMonitor.id)
+
+      var modulosArray = Object.entries(dadosMonitor.modulos)
+
+      console.log("Modulos", modulosArray, modulosArray.length)
+
+      var modulosArrayTratado = []
+
+      for (var i = 0; i < modulosArray.length; i++) {
+        modulosArrayTratado[i] = [modulosArray[i][0].replace("_status", "").toUpperCase(), modulosArray[i][1].toUpperCase()]
+      }
+
+      console.log("Modulos tratados:", modulosArrayTratado)
+
+      var modulosAtivos = []
+      var modulosInativos = []
+
+      contInativos = 0;
+      contAtivos = 0;
+
+      for (var l = 0; l < modulosArrayTratado.length; l++) {
+        if (modulosArrayTratado[l][1] === "INATIVO") {
+          modulosInativos[contInativos] = [modulosArrayTratado[l][0], modulosArrayTratado[l][1]];
+          ++contInativos;
+
+        } else if (modulosArrayTratado[l][1] === "ATIVO") {
+          modulosAtivos[contAtivos] = [modulosArrayTratado[l][0], modulosArrayTratado[l][1]];
+          ++contAtivos;
+
+        } else {
+          console.log('valor do modulo inválido')
+        }
+      }
+
+
+      var modulosOrdenados = modulosAtivos.concat(modulosInativos);
+
+      console.log("Inativos: ", modulosInativos)
+      console.log('Ativos: ', modulosAtivos)
+
+      divCorpoTabela.innerHTML = "";
+      
+      for (var j = 0; j < modulosOrdenados.length; j++) {
+        console.log('dentro do for para criar a tabela de modulos')
+
+        if (modulosOrdenados[j][1] == "ATIVO") {
+          console.log('encontrei um modulo ativo')
+          divCorpoTabela.innerHTML += `
+          <tr>
+            <td>${modulosOrdenados[j][0]}</td>
+            <td class=" moduloAtivo">${modulosOrdenados[j][1]}</td>
+          </tr>
+        `
+        } else if (modulosOrdenados[j][1] == "INATIVO") {
+          divCorpoTabela.innerHTML += `
+          <tr>
+            <td>${modulosOrdenados[j][0]}</td>
+            <td class=" moduloInativo">${modulosOrdenados[j][1]}</td>
+          </tr>
+        `
+        } else {
+          console.log('status do modulo inválido')
+        }
+      }
+   
     // rede
     divDownloadoUpload.innerHTML = `
             <h5>Tráfego atual</h5>
@@ -1367,7 +1418,7 @@
 
     // disco rígido
     var usoDiscoPercent = dadosMonitor.disco.diskUsed * 100 / dadosMonitor.disco.diskTotal
-    
+
     if (usoDiscoPercent >= dadosMonitor.limites.limiteDisco) {
 
       divDiscoRigido.innerHTML = `
