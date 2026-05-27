@@ -148,7 +148,8 @@
       <div style="display: flex; border-bottom: 2px solid #f5f5f5;">
         <select class="selectPrincipal" onchange="" id="select_monitor">
         </select>
-        <button class="botaoConfig2" onclick="statusMonitor(),  modeloMonitor(), descricaoManutencao(), carregarDados()">
+        <button class="botaoConfig2"
+          onclick="statusMonitor(),  modeloMonitor(), descricaoManutencao(), carregarDados()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
@@ -609,157 +610,6 @@
       })
   }
 
-  // gráfico de linha de rede
-  const labels = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00"];
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: 'Uso percentual da rede',
-      data: [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80, 81],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      backgroundColor: '#4063ce',
-      tension: 0.1,
-      borderWidth: 1
-    },
-    {
-      label: 'Limite',
-      data: Array(24).fill(limiteRedeConst),
-      borderColor: 'red',
-      borderWidth: 2,
-      backgroundColor: 'transparent',
-      borderDash: [5, 5],
-      pointRadius: 0,
-      fill: false
-    }
-    ]
-  };
-
-  const config = {
-    type: 'line',
-    data: data,
-  };
-
-  const ctx = document.getElementById('meuGrafico');
-  const chartRede = new Chart(ctx, config);
-
-  // grafico de cpu
-
-  const dataCpu = {
-    labels: xValues = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"],
-
-    datasets: [
-      {
-        label: 'CPU',
-        data: [65, 67, 69, 71, 70, 68, 66, 64, 63, 65],
-        borderColor: '#AA99FF',
-        backgroundColor: '#AA99FF',
-        tension: 0.1,
-        borderWidth: 1
-      },
-      {
-        label: 'Limite',
-        data: Array(10).fill(limiteCPUConst),
-        borderDash: [5, 5],
-        borderColor: 'red',
-        borderWidth: 2,
-        backgroundColor: 'transparent',
-        pointRadius: 0,
-        fill: false
-      }
-    ],
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: 'Horas'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Porcentagem (%)'
-          }
-        }
-      },
-      plugins: {
-        datalabels: {
-          display: false
-        }
-      },
-    },
-  };
-
-  const configCpu = {
-    type: 'line',
-    data: dataCpu,
-  };
-
-  const ctxCpu = document.getElementById('meuGraficoCpu');
-
-  const chartCpu = new Chart(ctxCpu, configCpu);
-
-  // grafico de ram
-
-  const dataRam = {
-    labels: xValues = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"],
-
-    datasets: [
-      {
-        label: 'Memória RAM',
-        data: [60, 62, 64, 66, 67, 65, 63, 61, 60, 62],
-        fill: false,
-        borderColor: '#AA99FF',
-        backgroundColor: '#D5CCFF',
-        tension: 0.1,
-        borderWidth: 1
-      },
-      {
-        label: 'Limite',
-        data: Array(10).fill(limiteRamConst),
-        borderDash: [5, 5],
-        borderColor: 'red',
-        backgroundColor: 'transparent',
-        borderWidth: 2,
-        pointRadius: 0,
-        fill: false
-      }
-    ],
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: 'Horas'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Porcentagem (%)'
-          }
-        }
-      },
-      plugins: {
-        datalabels: {
-          display: false
-        }
-      },
-    },
-  };
-
-  const configRam = {
-    type: 'line',
-    data: dataRam,
-  };
-
-  const ctxRam = document.getElementById('meuGraficoRam');
-
-  const chartRam = new Chart(ctxRam, configRam);
-
   function atualizarLinhaLimite() {
     var selectValue = selectParametro.value
     if (selectValue == '5') {
@@ -1082,6 +932,158 @@
 
   }
 
+  // gráfico de linha de rede
+  const labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  const data = {
+    labels: labelsRede,
+    datasets: [{
+      label: 'Uso percentual da rede',
+      data: [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80],
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      backgroundColor: '#4063ce',
+      tension: 0.1,
+      borderWidth: 1
+    },
+    {
+      label: 'Limite',
+      data: Array(10).fill(limiteRedeConst),
+      borderColor: 'red',
+      borderWidth: 2,
+      backgroundColor: 'transparent',
+      borderDash: [5, 5],
+      pointRadius: 0,
+      fill: false
+    }
+    ]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+  };
+
+  const ctx = document.getElementById('meuGrafico');
+  const chartRede = new Chart(ctx, config);
+
+  // grafico de cpu
+
+  const labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  const dataCpu = {
+    labels: labelsCpu,
+    datasets: [
+      {
+        label: 'CPU',
+        data: [65, 67, 69, 71, 70, 68, 66, 64, 63, 65],
+        borderColor: '#AA99FF',
+        backgroundColor: '#AA99FF',
+        tension: 0.1,
+        borderWidth: 1
+      },
+      {
+        label: 'Limite',
+        data: Array(10).fill(limiteCPUConst),
+        borderDash: [5, 5],
+        borderColor: 'red',
+        borderWidth: 2,
+        backgroundColor: 'transparent',
+        pointRadius: 0,
+        fill: false
+      }
+    ],
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Horas'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Porcentagem (%)'
+          }
+        }
+      },
+      plugins: {
+        datalabels: {
+          display: false
+        }
+      },
+    },
+  };
+
+  const configCpu = {
+    type: 'line',
+    data: dataCpu,
+  };
+
+  const ctxCpu = document.getElementById('meuGraficoCpu');
+
+  const chartCpu = new Chart(ctxCpu, configCpu);
+
+  // grafico de ram
+
+  const labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+
+  const dataRam = {
+    labels: labelsRam,
+    datasets: [
+      {
+        label: 'Memória RAM',
+        data: [60, 62, 64, 66, 67, 65, 63, 61, 60, 62],
+        fill: false,
+        borderColor: '#AA99FF',
+        backgroundColor: '#D5CCFF',
+        tension: 0.1,
+        borderWidth: 1
+      },
+      {
+        label: 'Limite',
+        data: Array(10).fill(limiteRamConst),
+        borderDash: [5, 5],
+        borderColor: 'red',
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: 0,
+        fill: false
+      }
+    ],
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Horas'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Porcentagem (%)'
+          }
+        }
+      },
+      plugins: {
+        datalabels: {
+          display: false
+        }
+      },
+    },
+  };
+
+  const configRam = {
+    type: 'line',
+    data: dataRam,
+  };
+
+  const ctxRam = document.getElementById('meuGraficoRam');
+
+  const chartRam = new Chart(ctxRam, configRam);
+
   function sucesso() {
     var divSucesso = document.getElementById('divSucesso')
     divSucesso.style.display = 'block';
@@ -1138,80 +1140,77 @@
     const divTrafegoTotal = document.getElementById('divTrafegoTotal')
 
     const divCorpoTabela = document.getElementById('corpoTabela')
-    console.log("essa é a divTabel", divCorpoTabela)
 
-    console.log('cheguei na função de carregar os dados do monitor')
     if (!dadosMonitor) { return }
 
     dataUltimaAtualizacao = dadosMonitor.horario;
+    horarioGrafico = dadosMonitor.horarioGrafico;
 
     // tabela de modulos
 
-    console.log("esse é o id do monitor:" ,dadosMonitor.id)
+    var modulosArray = Object.entries(dadosMonitor.modulos)
 
-      var modulosArray = Object.entries(dadosMonitor.modulos)
+    console.log("Modulos", modulosArray, modulosArray.length)
 
-      console.log("Modulos", modulosArray, modulosArray.length)
+    var modulosArrayTratado = []
 
-      var modulosArrayTratado = []
+    for (var i = 0; i < modulosArray.length; i++) {
+      modulosArrayTratado[i] = [modulosArray[i][0].replace("_status", "").toUpperCase(), modulosArray[i][1].toUpperCase()]
+    }
 
-      for (var i = 0; i < modulosArray.length; i++) {
-        modulosArrayTratado[i] = [modulosArray[i][0].replace("_status", "").toUpperCase(), modulosArray[i][1].toUpperCase()]
+    console.log("Modulos tratados:", modulosArrayTratado)
+
+    var modulosAtivos = []
+    var modulosInativos = []
+
+    contInativos = 0;
+    contAtivos = 0;
+
+    for (var l = 0; l < modulosArrayTratado.length; l++) {
+      if (modulosArrayTratado[l][1] === "INATIVO") {
+        modulosInativos[contInativos] = [modulosArrayTratado[l][0], modulosArrayTratado[l][1]];
+        ++contInativos;
+
+      } else if (modulosArrayTratado[l][1] === "ATIVO") {
+        modulosAtivos[contAtivos] = [modulosArrayTratado[l][0], modulosArrayTratado[l][1]];
+        ++contAtivos;
+
+      } else {
+        console.log('valor do modulo inválido')
       }
-
-      console.log("Modulos tratados:", modulosArrayTratado)
-
-      var modulosAtivos = []
-      var modulosInativos = []
-
-      contInativos = 0;
-      contAtivos = 0;
-
-      for (var l = 0; l < modulosArrayTratado.length; l++) {
-        if (modulosArrayTratado[l][1] === "INATIVO") {
-          modulosInativos[contInativos] = [modulosArrayTratado[l][0], modulosArrayTratado[l][1]];
-          ++contInativos;
-
-        } else if (modulosArrayTratado[l][1] === "ATIVO") {
-          modulosAtivos[contAtivos] = [modulosArrayTratado[l][0], modulosArrayTratado[l][1]];
-          ++contAtivos;
-
-        } else {
-          console.log('valor do modulo inválido')
-        }
-      }
+    }
 
 
-      var modulosOrdenados = modulosAtivos.concat(modulosInativos);
+    var modulosOrdenados = modulosAtivos.concat(modulosInativos);
 
-      console.log("Inativos: ", modulosInativos)
-      console.log('Ativos: ', modulosAtivos)
+    console.log("Inativos: ", modulosInativos)
+    console.log('Ativos: ', modulosAtivos)
 
-      divCorpoTabela.innerHTML = "";
-      
-      for (var j = 0; j < modulosOrdenados.length; j++) {
-        console.log('dentro do for para criar a tabela de modulos')
+    divCorpoTabela.innerHTML = "";
 
-        if (modulosOrdenados[j][1] == "ATIVO") {
-          console.log('encontrei um modulo ativo')
-          divCorpoTabela.innerHTML += `
+    for (var j = 0; j < modulosOrdenados.length; j++) {
+      console.log('dentro do for para criar a tabela de modulos')
+
+      if (modulosOrdenados[j][1] == "ATIVO") {
+        console.log('encontrei um modulo ativo')
+        divCorpoTabela.innerHTML += `
           <tr>
             <td>${modulosOrdenados[j][0]}</td>
             <td class=" moduloAtivo">${modulosOrdenados[j][1]}</td>
           </tr>
         `
-        } else if (modulosOrdenados[j][1] == "INATIVO") {
-          divCorpoTabela.innerHTML += `
+      } else if (modulosOrdenados[j][1] == "INATIVO") {
+        divCorpoTabela.innerHTML += `
           <tr>
             <td>${modulosOrdenados[j][0]}</td>
             <td class=" moduloInativo">${modulosOrdenados[j][1]}</td>
           </tr>
         `
-        } else {
-          console.log('status do modulo inválido')
-        }
+      } else {
+        console.log('status do modulo inválido')
       }
-   
+    }
+
     // rede
     divDownloadoUpload.innerHTML = `
             <h5>Tráfego atual</h5>
@@ -1417,10 +1416,7 @@
     }
 
     // disco rígido
-    var usoDiscoPercent = dadosMonitor.disco.diskUsed * 100 / dadosMonitor.disco.diskTotal
-
-    if (usoDiscoPercent >= dadosMonitor.limites.limiteDisco) {
-
+    if (dadosMonitor.usoPercentualDisco >= dadosMonitor.limites.limiteDisco) {
       divDiscoRigido.innerHTML = `
         <div class="kpiMonitorComponenteAcima" style="height: 200px!important;">
           <div class="displayFlex" style="gap: 60%;">
@@ -1442,7 +1438,7 @@
               <p><i>Uso do Disco Rígido</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: </i></p>
+              <p><i>Última atualização: ${dataUltimaAtualizacao} </i></p>
             </div>
           </span>
         </div>
@@ -1475,9 +1471,16 @@
         </div>
     `
     }
+
+    // Atualizando gráficos
+    labelsRede.shift();
+    labelsRede.push(horarioGrafico);
+
+    labelsCpu.shift();
+    labelsCpu.push(horarioGrafico);
+
+    labelsRam.shift();
+    labelsRam.push(horarioGrafico);
   }
-
-
-
 
 </script>
