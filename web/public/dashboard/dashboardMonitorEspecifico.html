@@ -299,7 +299,7 @@
         <div class="displayFlex">
           <div>
             <div class="kpiMonitor">
-              <div>
+              <div id="divDownloadoUpload">
                 <h5>Tráfego atual</h5>
 
                 <div class="displayFlex">
@@ -344,23 +344,25 @@
             </div>
           </div>
 
-          <div class="kpiPicoRedeRuim" id="divPicoRede">
-            <div style="display: flex; gap: 60%;">
-              <h5>Rede</h5>
-              <img src="../assets/icones-alerta/rede-acima-icone.png" width="60px"
-                style="margin-right: 2%; border-radius: 10px;" alt="">
-            </div>
-            <br>
-            <h4><b>200mb/s</b></h4>
-            <p><i>Pico de rede</i></p>
+          <span id="divPicoRede">
+            <div class="kpiPicoRede">
+              <div style="display: flex; gap: 60%;">
+                <h5>Rede</h5>
+                <img src="../assets/icones-alerta/picoRede.png" width="60px"
+                  style="margin-right: 2%; border-radius: 10px;" alt="">
+              </div>
+              <br>
+              <h4><b>0mb/s</b></h4>
+              <p><i>Pico de rede</i></p>
 
-            <span style="align-self: flex-end;">
-              <p><i>Última atualização: 13/05/2026</i></p>
-            </span>
-          </div>
+              <span style="align-self: flex-end;">
+                <p><i>Última atualização: </i></p>
+              </span>
+            </div>
+          </span>
         </div>
 
-        <div class="displayFlex kpiMonitor"
+        <div class="displayFlex kpiMonitor" id="divTrafegoTotal"
           style="gap: 50%!important; width: 845px!important; margin-top: 2%; align-items: end;">
           <div>
             <h5>
@@ -393,11 +395,11 @@
 
           <span style="display: flex; gap: 25%;">
             <div>
-              <h4><b>59.0</b></h4>
+              <h4><b>0</b></h4>
               <p><i>Pico do uso da CPU</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: 13/05/2026</i></p>
+              <p><i>Última atualização: </i></p>
             </div>
           </span>
         </div>
@@ -419,11 +421,11 @@
 
           <span style="display: flex; gap: 10%;">
             <div>
-              <h4><b>59.0</b></h4>
+              <h4><b>0</b></h4>
               <p><i>Pico do uso da Memória RAM</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: 13/05/2026</i></p>
+              <p><i>Última atualização: </i></p>
             </div>
           </span>
         </div>
@@ -446,11 +448,11 @@
 
           <span style="display: flex; gap: 25%;">
             <div>
-              <h4><b>26.1/102.0</b></h4>
+              <h4><b>0/0</b></h4>
               <p><i>Uso do Disco Rígido</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: 13/05/2026</i></p>
+              <p><i>Última atualização: </i></p>
             </div>
           </span>
         </div>
@@ -1133,7 +1135,6 @@
         return;
       }
 
-      console.log('TO AQUI DENTRO DO TRY')
       dadosMonitor = await resposta.json();
       console.log('Dados do monitor: \n', dadosMonitor)
       carregarDados();
@@ -1144,69 +1145,121 @@
 
   }
 
-
-
   function carregarDados() {
+
+    // divs Kpis
     const divPicoRede = document.getElementById('divPicoRede')
     const divPicoCpu = document.getElementById('divKpiCpu')
+    const divPicoRam = document.getElementById('divKpiRam')
+    const divDiscoRigido = document.getElementById('divKpiDisco')
+
+    const divDownloadoUpload = document.getElementById('divDownloadoUpload')
+    const divTrafegoTotal = document.getElementById('divTrafegoTotal')
 
     console.log('cheguei na função de carregar os dados do monitor')
     if (!dadosMonitor) { return }
 
     dataUltimaAtualizacao = dadosMonitor.horario;
 
-    divPicoRede.innerHTML = `<div style="display: flex; gap: 60%;">
-                            <h5>Rede</h5>
-                            <img src="../assets/icones-alerta/rede-acima-icone.png" width="60px"
-                            style="margin-right: 2%; border-radius: 10px;" alt="">
-                        </div>
-                            <br>
-                            <h4><b>200mb/s</b></h4>
-                            <p><i>Pico de rede</i></p>
-                          
-                            <span style="align-self: flex-end;">
-                              <p><i>Última atualização: 13/05/2026</i></p>
-                            </span>`
+    // rede
+    divDownloadoUpload.innerHTML = `
+    <h5>Tráfego atual</h5>
 
+                <div class="displayFlex">
+                  <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#4169E1" class="bi bi-download"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                      <path
+                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <I>DOWNLOAD</I>
+                    <h5>
+                      <p>${dadosMonitor.rede.download} bytes</p>
+                    </h5>
+                  </div>
+                </div>
 
-    var statusCpu = "ok";
+                <br>
 
-    if (dadosMonitor.cpu.cpuPico > dadosMonitor.limites.limiteCpu) {
-      picoCpu = dadosMonitor.cpu.cpuPico;
-      statusCpu = "acima";
-    } else {
-      picoCpu = dadosMonitor.cpu.cpuPico;
-      statusCpu = "ok";
-    }
-
-    console.log("esse é o pico da cpu: ", picoCpu)
-
-    if (statusCpu === "ok") {
-      divPicoCpu.innerHTML = `
-        <div class="kpiMonitorComponente">
-          <div class="displayFlex" style="gap: 80%;">
-            <h5>CPU</h5>
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cpu"
-              viewBox="0 0 16 16">
-              <path
-                d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
-            </svg>
-          </div>
-
-          <span style="display: flex; gap: 25%;">
-            <div>
-              <h4><b>${picoCpu}</b></h4>
-              <p><i>Pico do uso da CPU</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
-            </div>
-          </span>
-        </div>
+                <div class="displayFlex">
+                  <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#0FC251" class="bi bi-upload"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                      <path
+                        d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <I>UPLOAD</I>
+                    <h5>
+                      <p>${dadosMonitor.rede.upload} bytes</p>
+                    </h5>
+                  </div>
+                  <br>
+                </div>
     `
 
-    } else if (statusCpu === "acima") {
+    divTrafegoTotal.innerHTML = `
+          <div>
+            <h5>
+              <p><i>Tráfego Total: </i></p>
+            </h5>
+            <h3><b>${dadosMonitor.rede.trafegoTotal} bytes</b></h3>
+          </div>
+          <div style="display: flex; flex-direction: column; align-content: end; text-align: end;">
+            <br>
+            <p><i>Última atualização:</i></p>
+            <p>${dataUltimaAtualizacao}</p>
+          </div>
+    `
+
+    if (dadosMonitor.rede.picoMbs >= dadosMonitor.limites.limiteRede) {
+      divPicoRede.innerHTML = ` <div class="kpiPicoRedeRuim" >
+              <div style="display: flex; gap: 60%;">
+                <h5>Rede</h5>
+                <img src="../assets/icones-alerta/rede-acima-icone.png" width="60px"
+                  style="margin-right: 2%; border-radius: 10px;" alt="">
+              </div>
+              <br>
+              <h4><b>${dadosMonitor.rede.picoMbs}mb/s</b></h4>
+              <p><i>Pico de rede</i></p>
+
+              <span style="align-self: flex-end;">
+                <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
+              </span>
+            </div>`
+    } else {
+      divPicoRede.innerHTML = `<div class="kpiPicoRede" >
+              <div style="display: flex; gap: 60%;">
+                <h5>Rede</h5>
+                <img src="../assets/icones-alerta/picoRede.png" width="60px"
+                  style="margin-right: 2%; border-radius: 10px;" alt="">
+              </div>
+              <br>
+              <h4><b>${dadosMonitor.rede.picoMbs}mb/s</b></h4>
+              <p><i>Pico de rede</i></p>
+
+              <span style="align-self: flex-end;">
+                <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
+              </span>
+            </div>
+      
+      `
+    }
+
+
+    // cpu
+    if (dadosMonitor.cpu.cpuPico >= dadosMonitor.limites.limiteCpu) {
+      picoCpu = dadosMonitor.cpu.cpuPico;
+      console.log("esse é o pico da cpu: ", picoCpu, " Esse é o limite da Cpu: ", dadosMonitor.limites.limiteCpu)
+
+
       divPicoCpu.innerHTML = `
       <div class="kpiMonitorComponenteAcima">
           <div class="displayFlex" style="gap: 80%;">
@@ -1230,10 +1283,35 @@
           </span>
         </div>
         `
+
     } else {
-      console.log('status kpi invalido')
-      return
+      picoCpu = dadosMonitor.cpu.cpuPico;
+      divPicoCpu.innerHTML = `
+        <div class="kpiMonitorComponente">
+          <div class="displayFlex" style="gap: 80%;">
+            <h5>CPU</h5>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cpu"
+              viewBox="0 0 16 16">
+              <path
+                d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+            </svg>
+          </div>
+
+          <span style="display: flex; gap: 25%;">
+            <div>
+              <h4><b>${picoCpu}</b></h4>
+              <p><i>Pico do uso da CPU</i></p>
+            </div>
+            <div style="align-self: flex-end; text-align: end;">
+              <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
+            </div>
+          </span>
+        </div>
+    `
     }
+
+    // ram
   }
 
 
