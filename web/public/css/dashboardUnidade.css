@@ -1,0 +1,121 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+
+
+.main {
+    margin-left: 240px;
+    padding: 25px;
+}
+
+
+.topo {
+    margin-bottom: 25px;
+}
+
+.topo h1 {
+    color: #163599;
+}
+
+
+.kpis {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.card-kpi {
+    background-color: white;
+    width: 220px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px lightgray;
+}
+
+.card-kpi p {
+    color: gray;
+    margin: 0;
+}
+
+.card-kpi h2 {
+    color: #163599;
+}
+
+
+.grafico {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px lightgray;
+}
+
+.grafico canvas {
+    max-height: 250px;
+}
+
+
+.listas {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card-lista {
+    flex: 1;
+    min-width: 320px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px lightgray;
+}
+
+.card-lista #listaAlertas,
+.card-lista #listaTempo {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+.item {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    display: block;
+}
+
+.item:hover {
+    background-color: #f5f7fb;
+}
+
+#listaAlertas,
+#listaTempo {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.critico {
+    color: red;
+    font-weight: bold;
+}
+
+.alerta {
+    color: orange;
+    font-weight: bold;
+}
+
+.normal {
+    color: green;
+    font-weight: bold;
+}
