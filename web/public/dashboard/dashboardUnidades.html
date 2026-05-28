@@ -582,9 +582,13 @@
     window.onload = function () {
         validarSessao();
         listarHospitais();
-        listarInfoUnidade();
     };
 
+    function selecionarUnidade(idUnidade, qtdMonitores) {
+        sessionStorage.ID_UNIDADE = idUnidade;
+        sessionStorage.QTD_MONITORES = qtdMonitores;
+        window.location.href = "./dashboardUnidade.html";
+    }
     function listarHospitais() {
         var idEmpresa = sessionStorage.FK_EMPRESA
         fetch(`/hospital/buscarHospitais?idEmpresa=${idEmpresa}`)
@@ -606,6 +610,7 @@
 
                 if (hospitais.length > 0) {
                     sessionStorage.ID_HOSPITAL = hospitais[0].id_hospital;
+                    listarInfoUnidade(); 
                 }
 
                 select.addEventListener("change", function () {
@@ -636,7 +641,7 @@
 
                 hospitais.forEach(hospital => {
                     containerHospital.innerHTML += `
-                        <div class="kpiQtdMonitor">
+                        <div class="kpiQtdMonitor" style="cursor: pointer;" onclick="selecionarUnidade(${hospital.id_unidade}, ${hospital.qtdMonitores || 0})">
                             <div class="qtdMonitores">
                                 <img height="50px" src="../assets/icones-alerta/unidade-icon.png" alt="">
                                 <span class="qtd">
@@ -667,7 +672,7 @@
                                             Ativos
                                         </div>
                                         <div>
-                                            90/120
+                                            ${hospital.qtdMonitores || 0}
                                         </div>
                                     </div>
                                 
@@ -684,8 +689,6 @@
                             </div>
                         </div>
                         `
-
-                        sessionStorage.setItem("ID_UNIDADE", hospital.id_unidade)
                 });
             })
             .catch(function (erro) {

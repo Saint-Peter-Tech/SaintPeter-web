@@ -112,9 +112,6 @@ CREATE TABLE IF NOT EXISTS componente_monitor
 (fk_componente INT,
 fk_monitor INT,
 limite DECIMAL(5,2),
-
-constraint limitePorcentagem
-	check (limite >= 0 AND limite <= 100),
         
 constraint fk_monitorComp
 	foreign key(fk_monitor)
@@ -159,10 +156,12 @@ VALUES
 INSERT IGNORE INTO unidades 
 (fk_hospital, cep, rua, numero, cidade, latitude, longitude, nome_unidade, email_responsavel, telefone_responsavel, rede_total)
 VALUES
-(1, '04293970', 'Rua do Boqueirão', '320', 'São Paulo', -23.62207690, -46.61616220, 'Unidade SP - SP Tech', 'spnovaesperanca@esperanca.com', '11911111111', 1000),
-(2, '05109130', 'Rua Teixeira Soares', '200', 'São Paulo', -23.50425200, -46.76041800, 'Unidade SP - Bem Estar', 'spbemestar@bemestar.com', '11922222222', 1000),
+(1, '04293970', 'Rua do Boqueirão', '320', 'São Paulo', -23.62207690, -46.61616220, 'Unidade Vila da Saúde', 'spnovaesperanca@esperanca.com', '11911111111', 1000),
+(1, '01414001', 'Rua Haddock Lobo', '595', 'São Paulo', -23.55802090, -46.66167880, 'Unidade SPTech', 'spnovaesperanca@esperanca.com', '11952814455', 1000),
+(1, '01424001', 'Alameda Lorena', '53', 'São Paulo', -23.57348290, -46.65604000, 'Unidade Jardim Paulista', 'spnovaesperanca@esperanca.com', '11995735566', 1000),
+(2, '05109130', 'Rua Teixeira Soares', '200', 'São Paulo', -23.50425200, -46.63711190, 'Unidade SP - Bem Estar', 'spbemestar@bemestar.com', '11922222222', 1000),
 (3,  '04075904', 'Avenida Açocê', '530', 'São Paulo', -23.60424520, -46.65596360, 'Unidade SP - Santa Helena', 'spsantahelena@santahelena.com', '1123235167', 1000),  
-(4, '01007900', 'Rua Doutor Faria Pereira', '56', 'São Paulo', -23.48943940, -46.63711190, 'Unidade SP - Central Brasil', 'spcentralbrasil@centralbrasil.com', '1132567234', 1000);
+(4, '01007900', 'Rua Doutor Faria Pereira', '56', 'São Paulo', -23.48977930, -46.63747200, 'Unidade SP - Central Brasil', 'spcentralbrasil@centralbrasil.com', '1132567234', 1000);
 
 INSERT IGNORE INTO usuarios (fk_adm, fk_empresa, nome_usuario, email, senha, cpf) VALUES
 (
@@ -204,16 +203,15 @@ INSERT IGNORE INTO monitores
 VALUES
 (1, 2, 1, '2024-01-01', '2025-01-01', 'Inativo'),
 (1, 2, 2, '2024-02-01', '2025-02-01', 'Inativo'),
-(1, 2, 3, '2024-03-01', '2025-03-01', 'Inativo'),
-(1, 2, 4, '2024-01-01', '2025-01-01', 'Inativo'),
-(1, 2, 5, '2024-02-01', '2025-02-01', 'Inativo'),
-(1, 2, 6, '2024-03-01', '2025-03-01', 'Inativo');
+(2, 2, 3, '2024-03-01', '2025-03-01', 'Inativo'),
+(2, 2, 4, '2024-01-01', '2025-01-01', 'Inativo'),
+(3, 2, 5, '2024-02-01', '2025-02-01', 'Inativo'),
+(3, 2, 6, '2024-03-01', '2025-03-01', 'Inativo');
 
-INSERT IGNORE INTO componente_monitor (fk_componente, fk_monitor, limite)
-VALUES
-(1,1,70),(2,1,85),(3,1,50),(4,1,5),
-(1,2,70),(2,2,85),(3,2,50),(4,2,5),
-(1,3,70),(2,3,85),(3,3,50),(4,3,5),
-(1,4,80),(2,4,75),(3,4,70),(4,4,10),
-(1,5,80),(2,5,75),(3,5,70),(4,5,10),
-(1,6,80),(2,6,75),(3,6,70),(4,6,10);
+INSERT INTO componente_monitor (fk_componente, fk_monitor, limite) VALUES
+(1, 1, 70), (2, 1, 85), (3, 1, 80), (4, 1, 80), (5, 1, 150),
+(1, 2, 70), (2, 2, 85), (3, 2, 80), (4, 2, 80), (5, 2, 150),
+(1, 3, 70), (2, 3, 85), (3, 3, 80), (4, 3, 80), (5, 3, 150),
+(1, 4, 80), (2, 4, 75), (3, 4, 80), (4, 4, 80), (5, 4, 150),
+(1, 5, 80), (2, 5, 75), (3, 5, 80), (4, 5, 80), (5, 5, 150),
+(1, 6, 80), (2, 6, 75), (3, 6, 80), (4, 6, 80), (5, 6, 150);
