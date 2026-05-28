@@ -227,32 +227,42 @@
     </div>
 
     <div class="paiListas d-flex gap-4">
-      <div class="grafico modulosAtivos">
-        <span style="font-size: large;"><h5>LISTA DE MONITORES INDISPONÍVEIS</h5></span>
+      <div class="grafico modulosAtivos d-flex flex-column">
+        <div style="font-size: large;"><h5>LISTA DE MONITORES INDISPONÍVEIS</h5></div>
 
-        <div class="container pt-3 w-30">
+        <div style="max-height: 200px; max-width: 500px; overflow-y: auto">
           <table id="example" class="table table-striped">
-            <tbody id="lista1" onload="listaMonitorIndisponivel()" style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto d-flex flex-column justify-content-between">
-              <tr>
-                <td>MON-UTI-007</td>
-              </tr>
+            <thead class="sticky-top">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">UNIDADE</th>
+                </tr>
+              </thead>
+            <tbody id="lista1" onload="listaMonitorIndisponivel()" class="table table-striped">
               </tbody>
           </table>
         </div>
       </div>
 
-      <div class="grafico modulosAtivos">
-        <span style="font-size: large;"><h5>RANKING DE UNIDADES COM QUEDAS</h5></span>
+      <div class="grafico modulosAtivos d-flex flex-column">
+        <div style="font-size: large;"><h5>RANKING DE UNIDADES COM QUEDAS</h5></div>
 
-        <div class="container pt-3 w-30">
+        <div style="max-height: 200px; max-width: 500px; overflow-y: auto" >
           <table id="example" class="table table-striped">
-            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
+            <thead class="sticky-top">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">QTD. QUEDAS</th>
+                </tr>
+              </thead>
+            <tbody>
               <tr>
-                <td>MON-UTI-007</td>
+                <th>MON-UTI-007</th>
+                <td>12</td>
               </tr>
               <tr>
-                <td>MON-UTI-008</td>
-              </tr>
+                <th>MON-UTI-008</th>
+                <td>34</td>
               <tr>
                 <td>MON-CC-002</td>
               </tr>
@@ -264,12 +274,18 @@
         </div>
       </div>
 
-  <div class="grafico modulosAtivos">
+  <div class="grafico modulosAtivos d-flex flex-column">
         <div style="font-size: large;"><h5>HOSPITAIS COM MAIS DE 5 ALERTAS / 24H</h5></div>
 
-        <div class="container pt-3 w-30">
+        <div style="max-height: 200px; max-width: 500px; overflow-y: auto">
           <table id="example" class="table table-striped">
-            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
+            <thead class="sticky-top">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">QTD. ALERTAS</th>
+                </tr>
+              </thead>
+            <tbody>
               <tr class="bg-white">
                 <td class="bg-white">MON-UTI-007</td>
               </tr>
@@ -444,7 +460,7 @@
 
         lista.innerHTML += `
             <tr>
-                <td>${dados[i].id_monitor}</td>
+                <th scope="row">${dados[i].id_monitor}</th>
                 <td>${dados[i].nome_unidade}</td>
             </tr>
         `;
