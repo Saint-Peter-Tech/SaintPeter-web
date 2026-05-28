@@ -232,20 +232,11 @@
 
         <div class="container pt-3 w-30">
           <table id="example" class="table table-striped">
-            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
+            <tbody id="lista1" onload="listaMonitorIndisponivel()" style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto d-flex flex-column justify-content-between">
               <tr>
                 <td>MON-UTI-007</td>
               </tr>
-              <tr>
-                <td>MON-UTI-008</td>
-              </tr>
-              <tr>
-                <td>MON-CC-002</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-            </tbody>
+              </tbody>
           </table>
         </div>
       </div>
@@ -424,6 +415,48 @@
   }
 
   kpiMonitorIndisponivel();
+
+  function listaMonitorIndisponivel() {
+
+    console.log("Chamou função 2.")
+
+      fetch("/analista/listaMonitorIndisponivel", {
+      method: "GET"
+  })
+  .then(function (resposta) {
+
+      if (resposta.ok) {
+          return resposta.json();
+      }
+
+      throw "Erro ao listar monitores indisponíveis";
+  })
+  .then(function (dados) {
+      console.log("Monitores indisponíveis:", dados);
+
+      console.log("Quantidade:", dados[0]);
+
+      var lista = document.getElementById("lista1");
+
+      lista.innerHTML = "";
+
+      for (var i = 0; i < dados.length; i++){
+
+        lista.innerHTML += `
+            <tr>
+                <td>${dados[i].id_monitor}</td>
+                <td>${dados[i].nome_unidade}</td>
+            </tr>
+        `;
+      }
+  })
+  .catch(function (erro) {
+      console.log("#ERRO:", erro);
+  });
+
+  }
+
+  listaMonitorIndisponivel();
 
 
 var testeGraf = {
