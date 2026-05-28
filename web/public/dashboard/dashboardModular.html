@@ -279,8 +279,8 @@
         </div>
     </main>
 
-</body>
 </div>
+</body>
 <script>
         Chart.register(window['chartjs-plugin-annotation']);
         
@@ -303,7 +303,6 @@
             listarModelos();
         };
 
-
     function listarModelos() {
     const selectModelo = document.getElementById("selectModelo");
     var fkEmpresa = sessionStorage.FK_EMPRESA;
@@ -322,15 +321,26 @@
                     option.textContent = modelo.nome;
                     selectModelo.appendChild(option);
                 });
+
+                selectModelo.value = modelos[0].id_modelo;
+                atualizar();
             })
             .catch(function (erro) {
                 console.error("Erro ao preencher select de modelos:", erro);
             });
     }
 
-    function atualizar() {
-        modelo = selectModelo.value;
+async function atualizar() {
+
+    const selectModelo = document.getElementById("selectModelo");
+    const idModelo = selectModelo.value;
+
+    if (!idModelo || idModelo == "0") {
+        return;
     }
+
+    await buscarDadosModelo(idModelo);
+}
 
 const modulos = ['BPM', 'PA', 'SPO2', 'RESP', 'TEMP', 'PIC', 'PVC', 'ECG', 'ETCO2'];
 
@@ -338,13 +348,16 @@ const impactCtx = document.getElementById('impactChart');
 
 const LimiteBar = 75
 
-new Chart(impactCtx, { 
+const impactChart = new Chart(impactCtx, { 
     type: 'bar', 
     data: { 
         labels: modulos, 
-        datasets: [{ 
-            data: [], 
-            backgroundColor: (context) => { 
+        datasets: [{
+            data: [],
+            minBarLength: 6,
+            borderRadius: 8,
+            maxBarThickness: 45,
+            backgroundColor: (context) => {
                 const value = context.raw;
                 if (value >= 80) return '#E7000B';
                 if (value >= 60) return '#ff9800';
@@ -356,8 +369,23 @@ new Chart(impactCtx, {
         responsive: true, 
         maintainAspectRatio: false, 
         scales: { 
-            x: { title: { display: true, text: 'Módulos' } }, 
-            y: { title: { display: true, text: 'Impacto(%)' }, max: 100, min: 0 } 
+            x: { 
+                title: { display: true, text: 'Módulos' },
+                grid: { display: false }
+            }, 
+            y: {
+                title: { display: true, text: 'Impacto (%)', font: { size: 14, weight: 'bold' } },
+                min: 0,
+                max: 115,
+                ticks: {
+                    stepSize: 20,
+                    color: '#666',
+                    callback: function(value) {
+                        if (value <= 100) return value + '%';
+                    }
+                },
+                grid: { color: 'rgba(0,0,0,0.06)' }
+            }
         }, 
         plugins: { 
             annotation: { 
@@ -381,25 +409,14 @@ new Chart(impactCtx, {
                     } 
                 } 
             },
-            legend: {
-            display: false
-        } ,
-        tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw}% de Instabilidade`;
-                        }
-                    }
-                }
-    }
-        
+            legend: { display: false }
+        }
     }
 });
 
+const trendCtx = document.getElementById("trendChart")
 
-const trendCtx = document.getElementById('trendChart');
-
-new Chart(trendCtx, {
+const trendChart = new Chart(trendCtx, {
     type: 'polarArea',
     data: {
           labels: modulos,
@@ -419,7 +436,7 @@ new Chart(trendCtx, {
                 '#82a8ff',
                 '#9bb9ff',
                 '#b5cbff'
-            ]
+            ],
         }]
     },
     options: {
@@ -444,9 +461,9 @@ new Chart(trendCtx, {
         }
     });
 
-const radarCtx = document.getElementById('radarChart');
+const radarCtx = document.getElementById("radarChart")
 
-new Chart(radarCtx, {
+const radarChart = new Chart(radarCtx, {
     type: 'radar',
     data: {
         labels: modulos,
@@ -486,5 +503,136 @@ new Chart(radarCtx, {
     }
 });
 
+    async function buscarDadosModelo(idModelo) {
+
+    const empresa = sessionStorage.FK_EMPRESA;
+
+    try {
+
+        const resposta = await fetch(`/moduloS3/${empresa}/${idModelo}`);
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao buscar dados");
+        }
+
+        const dados = await resposta.json();
+
+        console.log(dados);
+
+        dados.modulos.sort((a, b) => {
+
+            if (b.critico !== a.critico) {
+                return b.critico - a.critico;
+            }
+
+            if (b.alerta !== a.alerta) {
+                return b.alerta - a.alerta;
+            }
+
+            return b.instabilidade - a.instabilidade;
+        });
+
+        preencherKPIs(dados);
+
+        preencherTabela(dados.modulos);
+
+        atualizarGraficos(dados.modulos);
+
+    } catch (erro) {
+
+        console.error("Erro ao buscar dashboard:", erro);
+
+    }
+}
+
+function preencherKPIs(dados) {
+
+    kpi0.innerHTML = `${dados.periodo.diasCaptura} dias`;
+
+    kpi1.innerHTML = dados.kpis.moduloMaisUtilizado;
+    metakpi1.innerHTML = `${dados.kpis.frequenciaMaisUtilizada}%`;
+
+    kpi2.innerHTML = dados.kpis.moduloMaisCritico;
+    metakpi2.innerHTML = dados.kpis.ocorrenciasCriticas;
+
+    kpi3.innerHTML = `${dados.kpis.estabilidadeGeral}%`;
+
+    metakpi30.innerHTML = `${dados.kpis.metaAtual}%`;
+    metakpi31.innerHTML = `${dados.kpis.meta}%`;
+
+}
+
+function preencherTabela(modulos) {
+
+    const tbody = tabela.querySelector("tbody");
+
+    tbody.innerHTML = "";
+
+    modulos.sort((a, b) => {
+        if (b.critico !== a.critico) {
+            return b.critico - a.critico;
+        }
+
+        if (b.alerta !== a.alerta) {
+            return b.alerta - a.alerta;
+        }
+
+        return a.ok - b.ok;
+    });
+
+    modulos.forEach(modulo => {
+
+        let classeLinha = "";
+
+        if (modulo.critico > 0) {
+            classeLinha = "linha-critica";
+        } else if (modulo.alerta > 0) {
+            classeLinha = "linha-alerta";
+        }
+
+        tbody.innerHTML += `
+            <tr class="${classeLinha}">
+                <td>
+                    <strong>${modulo.nome}</strong>
+                </td>
+
+                <td class="ok-bg">
+                    ${modulo.ok}
+                </td>
+
+                <td class="warning-bg">
+                    ${modulo.alerta}
+                </td>
+
+                <td class="critical-bg">
+                    ${modulo.critico}
+                </td>
+            </tr>
+        `;
+    });
+}
+
+function atualizarGraficos(modulosDados) {
+
+    const labels = modulosDados.map(m => m.nome);
+
+    const instabilidade = modulosDados.map(m => m.instabilidade);
+
+    const uso = modulosDados.map(m => m.usoPercentual);
+
+    const estabilidade = modulosDados.map(m => m.estabilidade);
+
+    impactChart.data.labels = labels;
+    impactChart.data.datasets[0].data = instabilidade;
+    impactChart.update();
+
+    trendChart.data.labels = labels;
+    trendChart.data.datasets[0].data = uso;
+    trendChart.update();
+
+    radarChart.data.labels = labels;
+    radarChart.data.datasets[0].data = estabilidade;
+    radarChart.update();
+}
 </script>
 </html>
