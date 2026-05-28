@@ -63,7 +63,7 @@
                 <img width="100%" src="../assets/Identidade Visual/LogoEscura.png" id="logo_navbar2" alt="">
             </a>
 
-            <a class="nav-link" id="navDashInicial" href="./dashboardGerente.html">
+            <a class="nav-link" id="navDashInicial" href="./dashboardAnalista.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid"
                     viewBox="0 0 16 16">
                     <path
@@ -71,7 +71,7 @@
                 </svg>
                 <span class="description">Início</span>
             </a>
-            <a class="nav-link" id="cadastroModelos" href="dashboardModelo.html">
+            <a class="nav-link" id="cadastroModelos" href="./dashboardModelo.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-projector" viewBox="0 0 16 16">
                     <path
@@ -120,6 +120,32 @@
                 <span class="description">Funcionários</span>
             </a>
 
+            <div id="gerenteAba">
+    <span class="menu-title">GERENTE</span>
+
+    <a class="nav-link" href="./dashboardGerente.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-box-seam" viewBox="0 0 16 16">
+            <path
+                d="M8.186.113a1 1 0 0 0-.372 0l-7 1.75A1 1 0 0 0 0 2.83v10.34a1 1 0 0 0 .757.97l7 1.75a1 1 0 0 0 .486 0l7-1.75A1 1 0 0 0 16 13.17V2.83a1 1 0 0 0-.757-.97zM8 1.15l6.5 1.625L8 4.4 1.5 2.775zM1 3.694l6.5 1.625v9.531L1 13.225zm14 0v9.531l-6.5 1.625V5.319z"/>
+        </svg>
+
+        <span class="description">Modelos</span>
+    </a>
+
+    <a class="nav-link" href="./dashboardModular.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+            <path fill-rule="evenodd"
+                d="M0 0h1v15h15v1H0zm10-10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V-9.293l-4.146 4.147a.5.5 0 0 1-.708 0L7.5-7.293 3.854-3.646a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0L9.5-6.707 13.293-10.5z"/>
+        </svg>
+
+        <span class="description">Módulos</span>
+    </a>
+    </div>
+    </nav
+</div>
             <div class="dropdown usuario">
                 <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -152,9 +178,7 @@
                     <li><a class="dropdown-item" style="color: #13347b;" style="color: #13347b;">Sair</a></li>
                 </ul>
             </div>
-        </nav>
     </div>
-
     <div class="container-fluid" style="width:148.5vh; height: 100%; margin-left: 260px;">
         <div class="boxesModular">
            <div class="KpisMonitoresAntigos">
@@ -475,30 +499,33 @@ const radarChart = new Chart(radarCtx, {
             pointBackgroundColor: '#00A63E'
         }]
     },
+
     options: {
         responsive: true,
         maintainAspectRatio: false,
 
-        
+        scales: {
+            r: {
+                min: 0,
+                max: 100,
+
+                ticks: {
+                    stepSize: 10,
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }
+        },
+
         plugins: {
-            annotation: {
-                annotations: {
-                    limite: {
-                        type: 'polygon',
-                        radius: 70,
-                        borderColor: 'red',
-                        borderWidth: 2,
-                        borderDash: [5, 5]
-                    }
-                }
-            },
             tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw}% de estabilidade`;
-                        }
+                callbacks: {
+                    label: function(context) {
+                        return `${context.label}: ${context.raw}% de estabilidade`;
                     }
                 }
+            }
         }
     }
 });
