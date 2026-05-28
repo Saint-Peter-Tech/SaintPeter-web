@@ -336,6 +336,18 @@
   gap: 20%;
 }
 
+.kpiMonitorComponenteAnalista {
+  color: #13347b;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2%;
+  border-bottom: #13347b solid 4px;
+  transition: transform ease 0.3s;
+  width: 537px;
+  height: 200px;
+  gap: 20%;
+}
+
 .kpiMonitorComponenteAcima {
   color: #991616;
   background-color: white;

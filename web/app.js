@@ -28,6 +28,7 @@ var monitorRouter = require("./src/routes/monitor")
 var monitorS3Router = require("./src/routes/monitorS3")
 var modeloRouter = require("./src/routes/modelo")
 var unidadeS3Router = require("./src/routes/unidadeS3")
+var analistaRouter = require("./src/routes/analista")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,7 +47,8 @@ app.use("/unidade", unidadeRouter);
 app.use("/monitor", monitorRouter);
 app.use("/monitorS3", monitorS3Router);
 app.use("/modelo", modeloRouter);
-app.use("/unidadeS3", unidadeS3Router)
+app.use("/unidadeS3", unidadeS3Router);
+app.use("/analista", analistaRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

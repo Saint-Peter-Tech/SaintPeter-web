@@ -167,26 +167,26 @@
       <!-- kpis cpu, ram e disco rígido -->
   <div class="pai-todos d-flex flex-column gap-4">
       <div class="displayFlex d-flex flex-row gap-4">
-        <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
+        <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
           <div class="parte-cima-kpi d-flex justify-content-between">
             <div class="displayFlex" style="gap: 80%">
               <h5>MONITORES INDISPONÍVEIS <br>AGORA</h5>
             </div>
 
 
-            <span style="display: flex; gap: 25%">
+          <span style="display: flex; gap: 25%" onload="kpiMonitorIndisponivel()">
               <div>
-                <h1><b>5</b></h1>
+                <h1><b id="span_kpi1">0</b></h1>
               </div>
-          </div>
-          <div class="parte-baixo-kpi d-flex justify-content-between">
-            <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
-            <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
-            </span>
-          </div>
+              </div>
+            <div class="parte-baixo-kpi d-flex justify-content-between">
+              <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
+              <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
+          </span>
+            </div>
         </div>
 
-        <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
+        <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
           <div class="parte-cima-kpi d-flex justify-content-between">
             <div class="displayFlex" style="gap: 60%">
               <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
@@ -204,7 +204,7 @@
           </div>
         </div>
 
-        <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
+        <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
           <div class="parte-cima-kpi d-flex justify-content-between">
             <div class="displayFlex" style="gap: 60%">
                 <h5>HOSPITAIS COM +5 ALERTAS <br>/ 24H</h5>
@@ -342,7 +342,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="https://jsdelivr.net"></script>
+  <!-- <script src="https://jsdelivr.net"></script> -->
 </body>
 
 <script>
@@ -394,6 +394,36 @@
   // document.getElementById("kpi_media_ram").innerText = "65%";
   // document.getElementById("kpi_mais").innerText = "Sexta";
   // document.getElementById("kpi_menos").innerText = "Segunda";
+
+  function kpiMonitorIndisponivel() {
+
+    console.log("Chamou função 1.")
+
+      fetch("/analista/kpiMonitorIndisponivel", {
+      method: "GET"
+  })
+  .then(function (resposta) {
+
+      if (resposta.ok) {
+          return resposta.json();
+      }
+
+      throw "Erro ao buscar quantidade de monitores indisponíveis";
+  })
+  .then(function (dados) {
+      console.log("Monitores indisponíveis:", dados);
+
+      console.log("Quantidade:", dados[0].quantidade);
+
+      document.getElementById("span_kpi1").innerHTML = dados[0].quantidade;
+  })
+  .catch(function (erro) {
+      console.log("#ERRO:", erro);
+  });
+    
+  }
+
+  kpiMonitorIndisponivel();
 
 
 var testeGraf = {
