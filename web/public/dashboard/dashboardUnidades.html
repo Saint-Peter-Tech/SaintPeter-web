@@ -610,8 +610,9 @@
 
                 if (hospitais.length > 0) {
                     sessionStorage.ID_HOSPITAL = hospitais[0].id_hospital;
-                    listarInfoUnidade(); 
+                    listarInfoUnidade();
                 }
+
 
                 select.addEventListener("change", function () {
 
@@ -634,7 +635,7 @@
                 return resposta.json();
             })
             .then(function (hospitais) {
-                
+
                 const containerHospital = document.getElementById("containerCardHospital");
 
                 containerHospital.innerHTML = "";
@@ -690,6 +691,11 @@
                         </div>
                         `
                 });
+
+                select.addEventListener("change", function () {
+                    sessionStorage.setItem("ID_UNIDADE", hospitais.id_unidade)
+                })
+
             })
             .catch(function (erro) {
                 console.error("Erro ao buscar informações para o card de unidades: ", erro);
