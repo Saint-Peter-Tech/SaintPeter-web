@@ -613,9 +613,7 @@
                     listarInfoUnidade();
                 }
 
-
                 select.addEventListener("change", function () {
-
                     sessionStorage.ID_HOSPITAL = select.value;
 
                     console.log("Hospital selecionado:", sessionStorage.ID_HOSPITAL);
@@ -692,8 +690,11 @@
                         `
                 });
 
-                select.addEventListener("change", function () {
-                    sessionStorage.setItem("ID_UNIDADE", hospitais.id_unidade)
+
+                const selectNomeUnidade = document.getElementById("select_hospital");
+
+                selectNomeUnidade.addEventListener("change", function () {
+                    sessionStorage.setItem("ID_UNIDADE", hospitais[0].id_unidade)
                 })
 
             })
