@@ -23,12 +23,13 @@ var cadastroAdmRouter = require("./src/routes/cadastroAdm");
 var cadastroFuncionarioRouter = require("./src/routes/cadastroFuncionario");
 var hospitalRouter = require("./src/routes/hospital");
 var hospitalS3Router = require("./src/routes/hospitalS3");
-var unidadeRouter = require("./src/routes/unidade")
-var monitorRouter = require("./src/routes/monitor")
-var monitorS3Router = require("./src/routes/monitorS3")
-var modeloRouter = require("./src/routes/modelo")
-var unidadeS3Router = require("./src/routes/unidadeS3")
-var analistaRouter = require("./src/routes/analista")
+var unidadeRouter = require("./src/routes/unidade");
+var monitorRouter = require("./src/routes/monitor");
+var monitorS3Router = require("./src/routes/monitorS3");
+var modeloRouter = require("./src/routes/modelo");
+var modeloS3Router = require("./src/routes/modeloS3");
+var unidadeS3Router = require("./src/routes/unidadeS3");
+var analistaRouter = require("./src/routes/analista");
 var moduloS3Router = require("./src/routes/moduloS3");
 
 app.use(express.json());
@@ -48,6 +49,7 @@ app.use("/unidade", unidadeRouter);
 app.use("/monitor", monitorRouter);
 app.use("/monitorS3", monitorS3Router);
 app.use("/modelo", modeloRouter);
+app.use("/modeloS3", modeloS3Router);
 app.use("/unidadeS3", unidadeS3Router);
 app.use("/analista", analistaRouter);
 app.use("/moduloS3", moduloS3Router);
