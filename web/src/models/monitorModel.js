@@ -89,11 +89,11 @@ function atualizarStatusMonitor(idMonitor, statusNovo, descricaoNovo) {
 
 function atualizarLimites(fkMonitor, CompRede, CompRam, CompCpu, CompDisco) {
   /*
-	  1 = cpu
+    1 = cpu
     2 - ram
     4 - disco
     5 - rede
-	*/
+  */
 
   var componentes = '';
 
@@ -118,15 +118,28 @@ function atualizarLimites(fkMonitor, CompRede, CompRam, CompCpu, CompDisco) {
     instrucaoSql += `WHEN fk_componente = 5 THEN ${CompRede} `;
     componentes += '5,';
   }
-  
-  componentes = componentes.substring(0, componentes.length-1)
+
+  componentes = componentes.substring(0, componentes.length - 1)
 
   instrucaoSql += `END
 		              WHERE fk_monitor = '${fkMonitor}'
 		              AND fk_componente IN (${componentes});`;
-  
+
 
   console.log("Executando a instrução SQL: \n " + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function listarMonitores(fkEmpresa) {
+  var instrucaoSql = `
+        SELECT 
+            m.id_monitor, 
+            u.nome_unidade 
+        FROM monitores m
+        JOIN unidades u ON m.fk_unidade = u.id_unidade
+        WHERE m.fk_empresa = ${fkEmpresa};
+    `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
@@ -140,4 +153,5 @@ module.exports = {
   descricaoManutencao,
   atualizarStatusMonitor,
   atualizarLimites,
+  listarMonitores,
 };
