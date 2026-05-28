@@ -176,7 +176,7 @@
 
           <span style="display: flex; gap: 25%" onload="kpiMonitorIndisponivel()">
               <div>
-                <h1><b>5</b></h1>
+                <h1><b id="span_kpi1">0</b></h1>
               </div>
               </div>
             <div class="parte-baixo-kpi d-flex justify-content-between">
@@ -342,7 +342,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="https://jsdelivr.net"></script>
+  <!-- <script src="https://jsdelivr.net"></script> -->
 </body>
 
 <script>
@@ -397,8 +397,33 @@
 
   function kpiMonitorIndisponivel() {
 
+    console.log("Chamou função 1.")
+
+      fetch("/analista/kpiMonitorIndisponivel", {
+      method: "GET"
+  })
+  .then(function (resposta) {
+
+      if (resposta.ok) {
+          return resposta.json();
+      }
+
+      throw "Erro ao buscar quantidade de monitores indisponíveis";
+  })
+  .then(function (dados) {
+      console.log("Monitores indisponíveis:", dados);
+
+      console.log("Quantidade:", dados[0].quantidade);
+
+      document.getElementById("span_kpi1").innerHTML = dados[0].quantidade;
+  })
+  .catch(function (erro) {
+      console.log("#ERRO:", erro);
+  });
     
   }
+
+  kpiMonitorIndisponivel();
 
 
 var testeGraf = {

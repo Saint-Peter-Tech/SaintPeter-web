@@ -1,18 +1,14 @@
 var express = require("express");
 var router = express.Router();
 
-var usuarioController = require("../controllers/analistaController");
+var analistaController = require("../controllers/analistaController");
 
-router.post("/autenticaremail", function (req, res) {
-    usuarioController.autenticaremail(req, res);
-});
+// router.post("/kpiMonitorIndisponivel", function (req, res) {
+//     analistaController.kpiMonitorIndisponivel(req, res);
+// });
 
-router.post("/autenticarcpf", function (req, res) {
-    usuarioController.autenticarcpf(req, res);
-});
-
-router.get("/listarFuncionarios", function (req, res) {
-    usuarioController.listarFuncionariosPorEmpresa(req, res);
+router.get("/kpiMonitorIndisponivel", function (req, res) {
+    analistaController.kpiMonitorIndisponivel(req, res);
 });
 
 module.exports = router;
