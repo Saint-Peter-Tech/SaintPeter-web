@@ -59,6 +59,7 @@
 
 .botaoAdicionarMonitor:hover,
 .alertasGerados:hover,
+.alertasGeradosAcima:hover,
 .kpiMonitor:hover,
 .kpiPicoRedeRuim:hover,
 .kpiMonitorComponente:hover,
@@ -164,6 +165,19 @@
 }
 
 .alertasGerados {
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  text-align: end;
+  color: #13347b;
+  transition: ease 0.3s transform;
+  cursor: pointer;
+  padding: 2%;
+  line-height: 0.1;
+}
+
+
+.alertasGeradosAcima {
   display: flex;
   width: 500px;
   flex-direction: column;

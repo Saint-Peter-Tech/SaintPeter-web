@@ -204,7 +204,7 @@
         </div>
 
         <!-- alertas gerados -->
-        <div class="displayFlex">
+        <div class="displayFlex" id="divAlertas">
           <div class="alertasGerados linha-vertical">
             <h2>
               5
@@ -271,7 +271,16 @@
     <div class="displayFlex">
       <div style="display: flex; gap: 2%">
         <div class="grafico graficoRede" style="width: 800px;">
-          <h4>Monitoramento de uso da rede</h4>
+          <span style="display: flex; gap: 37%;">
+            <h4>Monitoramento de consumo da rede</h4>
+            <button class="botaoSelect" onclick="listarParametros(), carregarDados()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
           <canvas id="meuGrafico"></canvas>
         </div>
       </div>
@@ -350,7 +359,7 @@
             <h5>
               <p><i>Tráfego Total: </i></p>
             </h5>
-            <h3><b>800.000 bytes</b></h3>
+            <h3><b>0.0 bytes</b></h3>
           </div>
           <div style="display: flex; flex-direction: column; align-content: end; text-align: end;">
             <br>
@@ -444,12 +453,30 @@
     <div>
       <div class="displayFlex" style="margin-top: -1%; margin-bottom: 1%;">
         <div class="grafico" style="width: 820px;">
-          <h4>Uso de CPU</h4>
+          <span style="display: flex; gap: 80%;">
+            <h4>Uso de CPU</h4>
+            <button class="botaoSelect" onclick="listarParametros(), carregarDados()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
           <canvas id="meuGraficoCpu"></canvas>
         </div>
 
         <div class="grafico" style="width: 820px;">
-          <h4>Uso da Memória RAM</h4>
+          <span style="display: flex; gap: 80%;">
+            <h4>Uso da Memória RAM</h4>
+            <button class="botaoSelect" onclick="listarParametros(), carregarDados()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
           <canvas id="meuGraficoRam"></canvas>
         </div>
       </div>
@@ -608,27 +635,6 @@
         }
 
       })
-  }
-
-  function atualizarLinhaLimite() {
-    var selectValue = selectParametro.value
-    if (selectValue == '5') {
-      console.log('dentro do update chart rede')
-      chartRede.data.datasets[1].data = Array(labels.length).fill(limiteRedeConst);;
-      chartRede.update();
-    }
-
-    if (selectValue == '1') {
-      console.log('dentro do update chart cpu')
-      chartCpu.data.datasets[1].data = Array(labels.length).fill(limiteCPUConst);
-      chartCpu.update;
-    }
-
-    if (selectValue == '2') {
-      console.log('dentro do update chart ram')
-      chartRam.data.datasets[1].data = Array(labels.length).fill(limiteRamConst);
-      chartRam.update;
-    }
   }
 
   // função para select de monitores
@@ -933,12 +939,15 @@
   }
 
   // gráfico de linha de rede
-  const labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsLimiteRede = Array(10).fill(limiteRedeConst);
+  let datasetRede = [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80];
+
   const data = {
     labels: labelsRede,
     datasets: [{
       label: 'Uso percentual da rede',
-      data: [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80],
+      data: datasetRede,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       backgroundColor: '#4063ce',
@@ -947,7 +956,7 @@
     },
     {
       label: 'Limite',
-      data: Array(10).fill(limiteRedeConst),
+      data: labelsLimiteRede,
       borderColor: 'red',
       borderWidth: 2,
       backgroundColor: 'transparent',
@@ -968,13 +977,16 @@
 
   // grafico de cpu
 
-  const labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsLimiteCpu = Array(10).fill(limiteCPUConst);
+  let datasetCpu = [13, 12, 12.5, 12, 13, 14.5, 14.3, 13.8, 14.1, 14.5];
+
   const dataCpu = {
     labels: labelsCpu,
     datasets: [
       {
         label: 'CPU',
-        data: [65, 67, 69, 71, 70, 68, 66, 64, 63, 65],
+        data: datasetCpu,
         borderColor: '#AA99FF',
         backgroundColor: '#AA99FF',
         tension: 0.1,
@@ -982,7 +994,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(limiteCPUConst),
+        data: labelsLimiteCpu,
         borderDash: [5, 5],
         borderColor: 'red',
         borderWidth: 2,
@@ -1026,14 +1038,16 @@
 
   // grafico de ram
 
-  const labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsLimiteRam = Array(10).fill(limiteRamConst)
+  let datasetRam = [60, 62, 64, 66, 67, 65, 63, 61, 60, 62];
 
   const dataRam = {
     labels: labelsRam,
     datasets: [
       {
         label: 'Memória RAM',
-        data: [60, 62, 64, 66, 67, 65, 63, 61, 60, 62],
+        data: datasetRam,
         fill: false,
         borderColor: '#AA99FF',
         backgroundColor: '#D5CCFF',
@@ -1042,7 +1056,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(limiteRamConst),
+        data: labelsLimiteRam,
         borderDash: [5, 5],
         borderColor: 'red',
         backgroundColor: 'transparent',
@@ -1084,6 +1098,28 @@
 
   const chartRam = new Chart(ctxRam, configRam);
 
+  /*
+  function atualizarLinhaLimite() {
+    var selectValue = selectParametro.value
+    if (selectValue == '5') {
+      console.log('dentro do update chart rede')
+      chartRede.data.datasets[1].data = Array(labels.length).fill(limiteRedeConst);;
+      chartRede.update();
+    }
+
+    if (selectValue == '1') {
+      console.log('dentro do update chart cpu')
+      chartCpu.data.datasets[1].data = Array(labels.length).fill(limiteCPUConst);
+      chartCpu.update;
+    }
+
+    if (selectValue == '2') {
+      console.log('dentro do update chart ram')
+      chartRam.data.datasets[1].data = Array(labels.length).fill(limiteRamConst);
+      chartRam.update;
+    }
+  }
+*/
   function sucesso() {
     var divSucesso = document.getElementById('divSucesso')
     divSucesso.style.display = 'block';
@@ -1140,6 +1176,7 @@
     const divTrafegoTotal = document.getElementById('divTrafegoTotal')
 
     const divCorpoTabela = document.getElementById('corpoTabela')
+    const divAlertas = document.getElementById('divAlertas')
 
     if (!dadosMonitor) { return }
 
@@ -1472,15 +1509,110 @@
     `
     }
 
+    // Alertas
+    if(dadosMonitor.alertasMonitor.alertasTotais <= 0){
+      divAlertas.innerHTML = `
+      <div class="alertasGerados linha-vertical">
+            <h2>
+              ${dadosMonitor.alertasMonitor.alertasTotais}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                <path
+                  d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
+                <path
+                  d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+              </svg>
+            </h2>
+            <p>
+            <h6>Alertas gerados</h6>
+            </p>
+            <p><i>Última semana</i></p>
+
+          </div>
+          `
+    } else {
+      divAlertas.innerHTML = `
+      <div class="alertasGeradosAcima linha-vertical">
+            <h2>
+              ${dadosMonitor.alertasMonitor.alertasTotais}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                <path
+                  d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
+                <path
+                  d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+              </svg>
+            </h2>
+            <p>
+            <h6>Alertas gerados</h6>
+            </p>
+            <p><i>Última semana</i></p>
+
+          </div>
+          `
+    }
+
     // Atualizando gráficos
-    labelsRede.shift();
-    labelsRede.push(horarioGrafico);
+    // Rede
+    var ultimoHorario = labelsRede[labelsRede.length - 1];
 
-    labelsCpu.shift();
-    labelsCpu.push(horarioGrafico);
 
-    labelsRam.shift();
-    labelsRam.push(horarioGrafico);
+    labelsRede.length = 0;
+    datasetRede.length = 0;
+    labelsLimiteRede.length = 0;
+
+    labelsCpu.length = 0;
+    datasetCpu.length = 0;
+    labelsLimiteCpu.length = 0;
+
+    labelsRam.length = 0;
+    datasetRam.length = 0;
+    labelsLimiteRam.length = 0;
+
+    if (horarioGrafico > ultimoHorario) {
+
+      labelsRede.shift();
+      labelsRede.push(horarioGrafico);
+
+      datasetRede.shift();
+      datasetRede.push(dadosMonitor.rede.trafegoTotal)
+
+      labelsLimiteRede.shift();
+      labelsLimiteRede.push((dadosMonitor.limites.limiteRede))
+
+      chartRede.update();
+    }
+
+
+    // Cpu
+    var ultimoHorario = labelsCpu[labelsRede.length - 1];
+    if (horarioGrafico > ultimoHorario) {
+      labelsCpu.shift();
+      labelsCpu.push(horarioGrafico);
+
+      datasetCpu.shift();
+      datasetCpu.push(dadosMonitor.cpu.usoCpuPercent)
+
+      labelsLimiteCpu.shift();
+      labelsLimiteCpu.push((dadosMonitor.limites.limiteCpu))
+
+      chartCpu.update();
+    }
+
+    // Ram
+    var ultimoHorario = labelsCpu[labelsRede.length - 1];
+    if (horarioGrafico > ultimoHorario) {
+      labelsRam.shift();
+      labelsRam.push(horarioGrafico);
+
+      datasetRam.shift();
+      datasetRam.push(dadosMonitor.ram.usoRamPercent)
+
+      labelsLimiteRam.shift();
+      labelsLimiteRam.push((dadosMonitor.limites.limiteCpu))
+
+      chartRam.update();
+    }
   }
 
 </script>
