@@ -170,7 +170,7 @@
               </thead>
 
               <tbody id="corpoLista">
-                
+
               </tbody>
             </table>
           </div>
@@ -220,11 +220,9 @@
         <p>
           Escolha um modelo para visualizar informações detalhadas de monitoramento
         </p>
-        <select class="opcaoDashboard" id="select_modelo">
+        <select class="opcaoDashboard" id="select_modelo" onchange="filtrar()">
           <option value="0" selected disabled>Selecione um modelo</option>
         </select>
-        <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
-            href="./dashGraficosGerente.html">Visualizar Dashboard</a></button>
       </div>
 
 
@@ -232,14 +230,14 @@
       <div class="displayFlex">
         <div class="kpiModelo">
           <div class="displayFlex" style="gap: 65%;">
-            <h5>MONITORES</h5>
+            <h5>COMPONENTE MAIS CRÍTICO</h5>
             <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
           </div>
 
           <span style="display: flex; gap: 20%;">
             <div>
               <h4><b>156</b></h4>
-              <p><i>Quantidade total de monitores do modelo</i></p>
+              <p><i>Componente mais crítico</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
@@ -560,6 +558,7 @@
   }
 
   // GRÁFICOS
+  let graficoAlertas;
 
   // Gráfico CPU
   const parametros = ["0-40%", "40-80%", ">80%"];
@@ -715,73 +714,73 @@
   })
 
   // Gráfico Linha Alertas
-  const rotulos = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
+  // const rotulos = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
 
-  const graficoModeloLinhaAlertas = document.getElementById('modeloGraficoLinhaAlertas');
+  // const graficoModeloLinhaAlertas = document.getElementById('modeloGraficoLinhaAlertas');
 
-  new Chart(graficoModeloLinhaAlertas, {
-    type: 'line',
-    data: {
-      labels: rotulos,
-      datasets: [
-        {
-          label: 'CPU',
-          data: [45, 52, 48, 56, 51, 38, 35],
-          borderColor: "#57D6E2",
-          borderWidth: 4
-        },
-        {
-          label: 'RAM',
-          data: [78, 85, 82, 89, 87, 65, 62],
-          borderColor: "#1268B8",
-          borderWidth: 4
-        },
-        {
-          label: 'Rede',
-          data: [54, 75, 42, 39, 80, 55, 72],
-          borderColor: '#4698c1',
-          borderWidth: 4
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false
-          },
-          ticks: {
-            font: {
-              size: 18
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Utilização (%)",
-            font: {
-              size: 20
-            }
-          },
-          ticks: {
-            font: {
-              size: 18
-            }
-          }
-        }
-      }
-    }
-  });
+  // new Chart(graficoModeloLinhaAlertas, {
+  //   type: 'line',
+  //   data: {
+  //     labels: rotulos,
+  //     datasets: [
+  //       {
+  //         label: 'CPU',
+  //         data: [45, 52, 48, 56, 51, 38, 35],
+  //         borderColor: "#57D6E2",
+  //         borderWidth: 4
+  //       },
+  //       {
+  //         label: 'RAM',
+  //         data: [78, 85, 82, 89, 87, 65, 62],
+  //         borderColor: "#1268B8",
+  //         borderWidth: 4
+  //       },
+  //       {
+  //         label: 'Rede',
+  //         data: [54, 75, 42, 39, 80, 55, 72],
+  //         borderColor: '#4698c1',
+  //         borderWidth: 4
+  //       }
+  //     ]
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     plugins: {
+  //       legend: {
+  //         position: 'top',
+  //       },
+  //       title: {
+  //         display: false
+  //       }
+  //     },
+  //     scales: {
+  //       x: {
+  //         title: {
+  //           display: false
+  //         },
+  //         ticks: {
+  //           font: {
+  //             size: 18
+  //           }
+  //         }
+  //       },
+  //       y: {
+  //         title: {
+  //           display: true,
+  //           text: "Utilização (%)",
+  //           font: {
+  //             size: 20
+  //           }
+  //         },
+  //         ticks: {
+  //           font: {
+  //             size: 18
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // });
 
   // Gráfico Origem dos Alertas
   const data = {
@@ -871,7 +870,7 @@
       `
     }
 
-    plotarKpisGerais(modelos);    
+    plotarKpisGerais(modelos);
   }
 
   function plotarKpisGerais(modelos) {
@@ -891,6 +890,108 @@
     }
 
     kpiModelosInstaveis.innerHTML = modelosInstaveis
+  }
+
+  async function filtrar() {
+
+    const selectModelo = document.getElementById("select_modelo");
+    const idModelo = selectModelo.value;
+
+    if (!idModelo || idModelo == "0") {
+      return;
+    }
+
+    await buscarDadosModelo(idModelo);
+
+  }
+
+  async function buscarDadosModelo(idModelo) {
+    const resposta = await fetch(`/modeloS3/${sessionStorage.FK_EMPRESA}`);
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar dados");
+    }
+
+    const dados = await resposta.json();
+
+    const modelos = Object.values(dados.modelos);
+
+    for (const modelo of modelos) {
+      if (modelo.id_modelo == idModelo) {
+        plotarGraficoBarra(
+          modelo.alertas_cpu,
+          modelo.criticos_cpu,
+          modelo.alertas_ram,
+          modelo.criticos_ram,
+          modelo.alertas_rede,
+          modelo.criticos_rede
+        );
+      }
+    }
+  }
+
+  function plotarGraficoBarra(alertasCpu, criticosCpu, alertasRam, criticosRam, alertasRede, criticosRede) {
+    const graficoBarraExemplo = document.getElementById('modeloGraficoLinhaAlertas');
+
+    if (graficoAlertas) {
+      graficoAlertas.destroy();
+    }
+
+    graficoAlertas = new Chart(graficoBarraExemplo, {
+      type: 'bar',
+      data: {
+        labels: ['CPU', 'RAM', 'Rede'],
+        datasets: [{
+          label: 'Alertas',
+          data: [alertasCpu, alertasRam, alertasRede],
+          backgroundColor: '#4698c1',
+          borderRadius: 8
+        },
+        {
+          label: 'Alertas Críticos',
+          data: [criticosCpu, criticosRam, criticosRede],
+          backgroundColor: '#1268B8',
+          borderRadius: 8
+        }
+        ]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: true
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            title: {
+              display: false,
+              text: "Intervalo da Captura"
+            },
+            ticks: {
+              font: {
+                size: 14
+              }
+            }
+          },
+          y: {
+            stacked: true,
+            title: {
+              display: true,
+              text: "Capturas acima do limite (%)",
+              font: {
+                size: 16
+              }
+            },
+            ticks: {
+              font: {
+                size: 14
+              }
+            }
+          }
+        }
+      }
+    })
   }
 
 </script>
