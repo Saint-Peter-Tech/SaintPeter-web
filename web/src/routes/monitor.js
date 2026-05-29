@@ -37,4 +37,9 @@ router.put("/atualizarStatusMonitor", function(req, res){
 router.put("/atualizarLimites", function(req,res){
     monitorController.atualizarLimites(req,res)
 })
+
+router.get("/listarMonitores/:fkEmpresa", function (req, res) {
+    monitorController.listarMonitores(req, res);
+});
+
 module.exports = router; 
