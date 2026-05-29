@@ -270,11 +270,9 @@
         </div>
       </div>
     </div>
-
     </div>
 
     <!-- Sessão rede -->
-
     <div class="displayFlex">
       <div style="display: flex; gap: 2%">
         <div class="grafico graficoRede" style="width: 800px;">
@@ -377,6 +375,7 @@
       </div>
 
     </div>
+
     <!-- kpis cpu, ram e disco rígido -->
     <div style="margin-left: 2%; margin-top: 1%;" class="displayFlex">
       <span id="divKpiCpu" style="margin-bottom: 2%; margin-left: -2%;">
@@ -490,9 +489,7 @@
     </div>
     </div>
 
-
-    <!-- Popups -->
-
+    <!-- Pop-ups -->
     <div id="atualizarInfoMonitor" style="display: none;" class="atualizarInfoMonitor">
       <h5>Atualizar informações do monitor</h5> <br>
       <h6>Status do monitor</h6>
@@ -599,7 +596,6 @@
   });
 
   // função para select de parametros
-
   function listarParametros() {
     const idMonitor = sessionStorage.ID_MONITOR;
     const selectValue = selectParametro.value;
@@ -669,7 +665,7 @@
       })
   }
 
-  var statusMonitorConst
+  var statusMonitorConst;
 
   function statusMonitor() {
     const idMonitor = sessionStorage.ID_MONITOR;
@@ -1588,6 +1584,5 @@
     chartRam.update();
 
   }
-
 
 </script>
