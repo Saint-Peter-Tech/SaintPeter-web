@@ -223,3 +223,24 @@ hr.rounded {
         align-items: flex-start;
     }
 }
+
+.selectModular {
+color: #13347b;
+  border: none;
+  width: 30%;
+  height: 32px;
+  border-radius: 10px;
+  background-color: #ddf5f1;
+  text-align: center;
+}
+
+.fundinhoBranco {
+    background-color: white;
+    display: flex;
+    border: 1px solid rgba(0,0,0,0.03);
+    border-radius: 10px;
+    margin-bottom: 35px;
+    margin-left: 270px;
+    align-items: center;
+    padding-left: 20px;
+}
