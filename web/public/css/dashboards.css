@@ -8,6 +8,7 @@ body {
   background-color: #f5f5f5;
   padding: 1.5%;
 }
+
 /* aqui começa o novo estilo da dashboard */
 
 /* NAVBAR */
@@ -46,6 +47,15 @@ body {
   color: white;
   min-height: 144px;
   padding: 2%;
+}
+
+.menu-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 1px;
+  padding: 0 14px;
+  margin-bottom: 6px;
 }
 
 .main-content {
@@ -165,6 +175,7 @@ body {
   height: 32px;
   font-weight: bold;
 }
+
 .botaoEscolhaSessao:hover {
   transform: scale(1.03);
 }
@@ -304,7 +315,7 @@ h5 {
 
 }
 
-.containeiBotaoCali:hover{
+.containeiBotaoCali:hover {
   transform: scale(1.03);
 }
 
@@ -322,7 +333,7 @@ h5 {
   margin-bottom: 125%;
   transform: translateX(-50%);
   white-space: nowrap;
-  font-size: 10px!important;
+  font-size: 10px !important;
 }
 
 .tooltip-container:hover .tooltip-text {
@@ -350,8 +361,8 @@ h5 {
   border-radius: 10px;
 }
 
-.KpisMonitores{
-    color: #13347b;
+.KpisMonitores {
+  color: #13347b;
   background-color: #ffff;
   width: 32%;
   min-height: 150px;
@@ -363,7 +374,7 @@ h5 {
 }
 
 .KpisMonitoresAntigos:hover,
-.KpisMonitores:hover{
+.KpisMonitores:hover {
   transform: scale(1.03);
 }
 
@@ -464,17 +475,18 @@ h5 {
   transition: transform 0.3s ease;
 }
 
-.blocoStatus_critico:hover{
+.blocoStatus_critico:hover {
   transform: scale(1.03);
 }
 
-.blocoStatus_alerta:hover{
+.blocoStatus_alerta:hover {
   transform: scale(1.03);
 }
 
-.blocoStatus_normal:hover{
+.blocoStatus_normal:hover {
   transform: scale(1.03);
 }
+
 .spanFaixa {
   display: flex;
   margin-bottom: 5%;
@@ -599,6 +611,7 @@ h5 {
   0% {
     width: 0%;
   }
+
   100% {
     width: 67%;
   }
@@ -608,6 +621,7 @@ h5 {
   0% {
     width: 0%;
   }
+
   100% {
     width: 53%;
   }
@@ -617,6 +631,7 @@ h5 {
   0% {
     width: 0%;
   }
+
   100% {
     width: 17%;
   }
@@ -626,6 +641,7 @@ h5 {
   0% {
     width: 0%;
   }
+
   100% {
     width: 63%;
   }
@@ -635,6 +651,7 @@ h5 {
   0% {
     width: 0%;
   }
+
   100% {
     width: 50%;
   }
@@ -644,6 +661,7 @@ h5 {
   0% {
     width: 0%;
   }
+
   100% {
     width: 25%;
   }
@@ -695,6 +713,7 @@ h5 {
   .opcaoDashboard {
     width: 70%;
   }
+
   /* KPIS */
 
   .container-kpis {
@@ -748,6 +767,7 @@ h5 {
   .container_monitor_amarelo:hover {
     transform: scale(1.03);
   }
+
   .container_monitor {
     height: 120px;
     width: 250px;
@@ -833,22 +853,22 @@ h5 {
 
 /* dashboardMonitores */
 
-.tuplaMonitor{
+.tuplaMonitor {
   cursor: pointer;
 }
 
 /* dashboard monitor especifico */
 
-.div_escolha_monitor{
+.div_escolha_monitor {
   background-color: #f5f5f5;
   color: #13347b;
   border-radius: 10px;
   padding: 1%;
   margin-bottom: 1%;
-  margin-top: -1%!important;
+  margin-top: -1% !important;
 }
 
-.KpisMonitoresEspecificosNormal{
+.KpisMonitoresEspecificosNormal {
   background-color: white;
   color: #13347b;
   padding: 5%;
@@ -862,7 +882,7 @@ h5 {
 }
 
 
-.KpisMonitoresEspecificosCritico{
+.KpisMonitoresEspecificosCritico {
   background-color: white;
   color: #ff4b4b;
   padding: 2%;
@@ -873,7 +893,7 @@ h5 {
   border-bottom: #ff4b4b 4px solid;
 }
 
-.KpisMonitoresEspecificosAlerta{
+.KpisMonitoresEspecificosAlerta {
   background-color: white;
   color: #d4c11c;
   padding: 2%;
@@ -890,11 +910,11 @@ h5 {
 .statusMonitor:hover,
 .infoMonitorManutencao:hover,
 .infoMonitorInativo:hover,
-.infoMonitorAtivo:hover{
+.infoMonitorAtivo:hover {
   transform: scale(1.01);
 }
 
-.statusMonitor{
+.statusMonitor {
   background-color: white;
   border-radius: 10px;
   padding: 2%;
@@ -903,7 +923,7 @@ h5 {
   margin-bottom: 2%;
 }
 
-.infoMonitorManutencao{
+.infoMonitorManutencao {
   background-color: #ffeeee;
   color: #991616;
   border-radius: 10px;
@@ -912,7 +932,7 @@ h5 {
   margin-bottom: 2%;
 }
 
-.infoMonitorInativo{
+.infoMonitorInativo {
   background-color: #e6e6e6;
   color: #424242;
   border-radius: 10px;
@@ -921,7 +941,7 @@ h5 {
   margin-bottom: 2%;
 }
 
-.infoMonitorAtivo{
+.infoMonitorAtivo {
   background-color: #cdefce;
   color: #3fb945;
   border-radius: 10px;
@@ -930,7 +950,7 @@ h5 {
   margin-bottom: 2%;
 }
 
-.infoMonitorAlerta{
+.infoMonitorAlerta {
   background-color: #fffdeb;
   color: #d4c11c;
   border-radius: 10px;
@@ -938,7 +958,7 @@ h5 {
   transition: transform 0.3s ease;
 }
 
-.infoMonitorNormal{
+.infoMonitorNormal {
   background-color: #ddf5f1;
   color: #13347b;
   border-radius: 10px;
