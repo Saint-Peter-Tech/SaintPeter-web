@@ -169,37 +169,8 @@
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>IntelliVue MX400</td>
-                  <td>91</td>
-                  <td class="critical-bg">Crítico</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX450</td>
-                  <td>87</td>
-                  <td class="critical-bg">Crítico</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX500</td>
-                  <td>68</td>
-                  <td class="warning-bg">Atenção</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX550</td>
-                  <td>22</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX750</td>
-                  <td>11</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX850</td>
-                  <td>10</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
+              <tbody id="corpoLista">
+                
               </tbody>
             </table>
           </div>
@@ -214,7 +185,7 @@
 
             <span style="display: flex; gap: 20%;">
               <div>
-                <h4><b>IntelliVue MX400</b></h4>
+                <h4><b id="kpiModeloMaisCritico"></b></h4>
                 <p><i>Modelo com pior health score</i></p>
               </div>
               <div style="align-self: flex-end; text-align: end;">
@@ -231,7 +202,7 @@
 
             <span style="display: flex; gap: 20%;">
               <div>
-                <h4><b>2</b></h4>
+                <h4><b id="kpiModelosInstaveis"></b></h4>
                 <p><i>Quantidade total de modelos instáveis</i></p>
               </div>
               <div style="align-self: flex-end; text-align: end;">
@@ -560,6 +531,7 @@
   window.onload = function () {
     validarSessao();
     listarModelos();
+    buscarDadosS3(sessionStorage.FK_EMPRESA);
   };
 
   function listarModelos() {
@@ -711,7 +683,7 @@
           display: false
         }
       },
-      
+
       scales: {
         x: {
           title: {
@@ -857,98 +829,68 @@
 
   new Chart(modeloGraficoPizza, config);
 
-  //b_usuario.innerHTML = "Fernando";
+  async function buscarDadosS3(id_empresa) {
 
-  const dias = [
-    "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"
-  ];
+    const resposta = await fetch(`/modeloS3/${id_empresa}`);
 
-  const consumoCPU = [35, 48, 52, 60, 72, 55, 40];
-  const consumoRAM = [45, 50, 58, 63, 70, 62, 48];
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar dados");
+    }
 
-  document.getElementById("kpi_media_ram").innerText = "65%";
-  document.getElementById("kpi_mais").innerText = "Sexta";
-  document.getElementById("kpi_menos").innerText = "Segunda";
+    const dados = await resposta.json();
 
-  //const ctx = document.getElementById('lineChart');
+    plotarListaModelos(dados);
 
-  const configCPU = {
-    type: 'line',
-    data: {
-      labels: dias,
-      datasets: [{
-        label: 'Consumo médio de CPU (%)',
-        data: consumoCPU,
-        borderColor: '#1c52c8',
-        backgroundColor: '#08a4bd33',
-        fill: true,
-        tension: 0.3
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: true }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100
-        }
+  }
+
+  function plotarListaModelos(dados) {
+    const modelos = Object.values(dados.modelos);
+
+    modelos.sort(
+      (a, b) => a.healthscore - b.healthscore
+    );
+
+    for (const modelo of modelos) {
+      bgColor = "critical-bg";
+      msg = "Crítico";
+
+      if (modelo.healthscore > 79) {
+        bgColor = "ok-bg";
+        msg = "Estável";
+      } else if (modelo.healthscore > 59) {
+        bgColor = "warning-bg";
+        msg = "Atenção";
       }
+
+      corpoLista.innerHTML += `
+        <tr>
+          <td>${modelo.nome}</td>
+          <td>${modelo.healthscore}</td>
+          <td class="${bgColor}">${msg}</td>
+        </tr>
+      `
     }
-  };
 
-  new Chart(ctx, configCPU);
+    plotarKpisGerais(modelos);    
+  }
 
+  function plotarKpisGerais(modelos) {
+    modelosInstaveis = 0;
 
-  const ctxBar = document.getElementById('barChart');
+    // Plotando a KPI de modelo mais crítico
+    modeloMaisCritico = modelos[0].nome
+    kpiModeloMaisCritico.innerHTML = modeloMaisCritico
 
-  const configRAM = {
-    type: 'bar',
-    data: {
-      labels: dias,
-      datasets: [{
-        label: 'Consumo médio de RAM (%)',
-        data: consumoRAM,
-        backgroundColor: '#1c52c8'
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: true }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100
-        }
+    // Plotando KPI de quantidade de modelos instáveis
+    for (const modelo of modelos) {
+
+      if (modelo.healthscore < 60) {
+        modelosInstaveis++
       }
+
     }
-  };
 
-  new Chart(ctxBar, configRAM);
-
-
-  function alertaPopUp() {
-    if (Number(consumoCPU[4]) >= 70) {
-      var mensagem = `Consumo de CPU elevado na Sexta-feira`;
-
-      alerta_popup.style.display = 'flex';
-      mensagem_alerta.innerHTML = mensagem;
-    }
+    kpiModelosInstaveis.innerHTML = modelosInstaveis
   }
-
-  function escondeAlerta() {
-    alerta_popup.style.display = 'none';
-  }
-
-  alertaPopUp();
-
-  function fecharAlerta() {
-    document.getElementById("alerta_popup").style.display = "none";
-  }
-
 
 </script>
