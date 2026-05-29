@@ -29,7 +29,8 @@
 </head>
 
 <body>
-    <h4 class="tituloDash" style="margin-left: 270px;">
+    <div class="fundinhoBranco">
+    <h4 class="tituloDash" style="margin-top: 35px; margin-left: 10px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
           viewBox="0 0 16 16">
           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -37,9 +38,11 @@
             d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
         </svg>
         Bem vindo de volta, <span id="be_usuario" style="font-weight: bolder;"></span>
-        <hr class="solid">
-        <p style="margin-top: 25px; font-weight: bolder;"><span>Selecione o Modelo desejado:</span> <br> </p>
-        <select style="font-size: 20px; width: 300px;" class="selectCadastro" id="selectModelo" onchange="atualizar()">
+        <p style="margin-top: 25px; font-weight: bolder; font-size: 30px;"><span>Selecionar Modelo</span> <br> </p>
+        <p style="font-size: 15px;">
+          Escolha um modelo para visualizar informações detalhadas de monitoramento
+        </p>
+        <select style="font-size: 20px; width: 100%;" class="selectModular" id="selectModelo" onchange="atualizar()">
                 <option value="0" selected disabled>Selecione uma opção</option>
             </select>
         </p>
@@ -47,8 +50,8 @@
             Dados coletados dos últimos <span id="diasCapturaKPI"></span>,
             com capturas a cada 20 minutos</span>.
             </p>
-        <hr class="rounded">
     </h4>
+    </div>
      <div class="sidebar">
         <nav class="nav flex-column">
             <a href="../index.html"
@@ -181,24 +184,24 @@
     </div>
     <div class="container-fluid" style="width:148.5vh; height: 100%; margin-left: 260px;">
         <div class="boxesModular">
-           <div class="KpisMonitoresAntigos">
+           <div class="KpisMonitoresAntigos" style="border-bottom: 4px solid;">
               <div class="containerKpiMA">
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Módulo mais utilizado
                   <br>
-                  <h1 id="moduloutilizadoKPI" style="color: green; font-weight: bold;"></h1>
+                  <h1 id="moduloutilizadoKPI" style="color: #13347b; font-weight: bold;"></h1>
                 </div>
                 <div class="imgKpiContainer" style="width: 100%;">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 10C0 4.47715 4.47715 0 10 0H38C43.5229 0 48 4.47715 48 10V38C48 43.5229 43.5228 48 38 48H10C4.47715 48 0 43.5228 0 38V10Z" fill="#F0FDF4"/>
-                <path d="M34 24H31.52C31.083 23.9991 30.6577 24.1413 30.3091 24.405C29.9606 24.6686 29.708 25.0392 29.59 25.46L27.24 33.82C27.2249 33.8719 27.1933 33.9175 27.15 33.95C27.1067 33.9825 27.0541 34 27 34C26.9459 34 26.8933 33.9825 26.85 33.95C26.8067 33.9175 26.7751 33.8719 26.76 33.82L21.24 14.18C21.2249 14.1281 21.1933 14.0825 21.15 14.05C21.1067 14.0175 21.0541 14 21 14C20.9459 14 20.8933 14.0175 20.85 14.05C20.8067 14.0825 20.7751 14.1281 20.76 14.18L18.41 22.54C18.2925 22.9592 18.0414 23.3285 17.6949 23.592C17.3483 23.8555 16.9253 23.9988 16.49 24H14" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M0 10C0 4.47715 4.47715 0 10 0H38C43.5229 0 48 4.47715 48 10V38C48 43.5229 43.5228 48 38 48H10C4.47715 48 0 43.5228 0 38V10Z" fill="#ddf5f1"/>
+                <path d="M34 24H31.52C31.083 23.9991 30.6577 24.1413 30.3091 24.405C29.9606 24.6686 29.708 25.0392 29.59 25.46L27.24 33.82C27.2249 33.8719 27.1933 33.9175 27.15 33.95C27.1067 33.9825 27.0541 34 27 34C26.9459 34 26.8933 33.9825 26.85 33.95C26.8067 33.9175 26.7751 33.8719 26.76 33.82L21.24 14.18C21.2249 14.1281 21.1933 14.0825 21.15 14.05C21.1067 14.0175 21.0541 14 21 14C20.9459 14 20.8933 14.0175 20.85 14.05C20.8067 14.0825 20.7751 14.1281 20.76 14.18L18.41 22.54C18.2925 22.9592 18.0414 23.3285 17.6949 23.592C17.3483 23.8555 16.9253 23.9988 16.49 24H14" stroke="#13347b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 </div>
               </div>
               <span id="frequenciaKPI" style="font-weight: bolder;"></span> de frequência
             </div>
 
-            <div class="KpisMonitoresAntigos">
+            <div class="KpisMonitoresAntigos" style="border-bottom: 4px solid #ff4b4b">
               <div class="containerKpiMA">
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Módulo mais Crítico
@@ -216,7 +219,7 @@
               <span id="ocorrenciasKPI" style="font-weight: bolder;"></span> ocorrências
             </div>
 
-            <div class="KpisMonitoresAntigos">
+            <div class="KpisMonitoresAntigos" style="border-bottom: 4px solid green;">
               <div class="containerKpiMA">
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Estabilidade Geral
