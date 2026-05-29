@@ -195,8 +195,7 @@
                   <th>Status</th>
                 </tr>
               </thead>
-
-              <tbody id="corpoTabela">
+              <tbody id="bodyTabela">
 
               </tbody>
             </table>
@@ -207,7 +206,7 @@
         <div class="displayFlex" id="divAlertas">
           <div class="alertasGerados linha-vertical">
             <h2>
-              5
+              0
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
                 <path
@@ -220,8 +219,16 @@
             <h6>Alertas gerados</h6>
             </p>
             <p><i>Última semana</i></p>
-
           </div>
+
+          <div id="divAlertasEspecificos" class="divAlertasEspecifico">
+            <h5>Alertas</h5>
+            Rede: <br>
+            CPU: <br>
+            Ram: <br>
+            Disco Rígido:
+          </div>
+
         </div>
 
         <!-- Select de componentes -->
@@ -354,7 +361,7 @@
         </div>
 
         <div class="displayFlex kpiMonitor" id="divTrafegoTotal"
-          style="gap: 50%!important; width: 845px!important; margin-top: 2%; align-items: end;">
+          style="gap: 35%!important; width: 845px!important; margin-top: 2%; align-items: end;">
           <div>
             <h5>
               <p><i>Tráfego Total: </i></p>
@@ -484,6 +491,8 @@
     </div>
 
 
+    <!-- Popups -->
+
     <div id="atualizarInfoMonitor" style="display: none;" class="atualizarInfoMonitor">
       <h5>Atualizar informações do monitor</h5> <br>
       <h6>Status do monitor</h6>
@@ -553,6 +562,7 @@
       </h5>
       </p>
     </div>
+
   </main>
 
   <!-- links javascript boostrap tabela -->
@@ -941,7 +951,7 @@
   // gráfico de linha de rede
   let labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
   let labelsLimiteRede = Array(10).fill(limiteRedeConst);
-  let datasetRede = [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80];
+  let datasetRede = [65, 65, 65, 65, 65, 65, 65, 65, 65, 65];
 
   const data = {
     labels: labelsRede,
@@ -979,7 +989,7 @@
 
   let labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
   let labelsLimiteCpu = Array(10).fill(limiteCPUConst);
-  let datasetCpu = [13, 12, 12.5, 12, 13, 14.5, 14.3, 13.8, 14.1, 14.5];
+  let datasetCpu = [13, 13, 13, 13, 13, 13, 13, 13, 13, 13,];
 
   const dataCpu = {
     labels: labelsCpu,
@@ -1040,7 +1050,7 @@
 
   let labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
   let labelsLimiteRam = Array(10).fill(limiteRamConst)
-  let datasetRam = [60, 62, 64, 66, 67, 65, 63, 61, 60, 62];
+  let datasetRam = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
 
   const dataRam = {
     labels: labelsRam,
@@ -1098,28 +1108,6 @@
 
   const chartRam = new Chart(ctxRam, configRam);
 
-  /*
-  function atualizarLinhaLimite() {
-    var selectValue = selectParametro.value
-    if (selectValue == '5') {
-      console.log('dentro do update chart rede')
-      chartRede.data.datasets[1].data = Array(labels.length).fill(limiteRedeConst);;
-      chartRede.update();
-    }
-
-    if (selectValue == '1') {
-      console.log('dentro do update chart cpu')
-      chartCpu.data.datasets[1].data = Array(labels.length).fill(limiteCPUConst);
-      chartCpu.update;
-    }
-
-    if (selectValue == '2') {
-      console.log('dentro do update chart ram')
-      chartRam.data.datasets[1].data = Array(labels.length).fill(limiteRamConst);
-      chartRam.update;
-    }
-  }
-*/
   function sucesso() {
     var divSucesso = document.getElementById('divSucesso')
     divSucesso.style.display = 'block';
@@ -1156,6 +1144,7 @@
 
       dadosMonitor = await resposta.json();
       console.log('Dados do monitor: \n', dadosMonitor)
+
       carregarDados();
 
     } catch (erro) {
@@ -1175,13 +1164,13 @@
     const divDownloadoUpload = document.getElementById('divDownloadoUpload')
     const divTrafegoTotal = document.getElementById('divTrafegoTotal')
 
-    const divCorpoTabela = document.getElementById('corpoTabela')
+    const divCorpoTabela = document.getElementById('bodyTabela')
     const divAlertas = document.getElementById('divAlertas')
+    const divAlertasEspecificos = document.getElementById('divAlertasEspecificos')
 
     if (!dadosMonitor) { return }
 
     dataUltimaAtualizacao = dadosMonitor.horario;
-    horarioGrafico = dadosMonitor.horarioGrafico;
 
     // tabela de modulos
 
@@ -1223,7 +1212,7 @@
     console.log("Inativos: ", modulosInativos)
     console.log('Ativos: ', modulosAtivos)
 
-    divCorpoTabela.innerHTML = "";
+    divCorpoTabela.innerHTML = " ";
 
     for (var j = 0; j < modulosOrdenados.length; j++) {
       console.log('dentro do for para criar a tabela de modulos')
@@ -1502,7 +1491,7 @@
               <p><i>Uso do Disco Rígido</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: </i></p>
+              <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
             </div>
           </span>
         </div>
@@ -1510,7 +1499,8 @@
     }
 
     // Alertas
-    if(dadosMonitor.alertasMonitor.alertasTotais <= 0){
+    console.log("alertaaaaaaas: ", dadosMonitor.alertasMonitor.alertasTotais)
+    if (dadosMonitor.alertasMonitor.alertasTotais <= 0) {
       divAlertas.innerHTML = `
       <div class="alertasGerados linha-vertical">
             <h2>
@@ -1530,6 +1520,8 @@
 
           </div>
           `
+
+
     } else {
       divAlertas.innerHTML = `
       <div class="alertasGeradosAcima linha-vertical">
@@ -1550,69 +1542,57 @@
 
           </div>
           `
-    }
 
+    }
     // Atualizando gráficos
+    chartRede.data.labels = [];
+    chartRede.data.datasets[0].data = [];
+    chartRede.data.datasets[1].data = [];
+
+    chartCpu.data.labels = [];
+    chartCpu.data.datasets[0].data = [];
+    chartCpu.data.datasets[1].data = [];
+    
+    chartRam.data.labels = [];
+    chartRam.data.datasets[0].data = [];
+    chartRam.data.datasets[1].data = [];
+    
+    
     // Rede
-    var ultimoHorario = labelsRede[labelsRede.length - 1];
+    chartRede.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
+    chartRede.data.datasets[0].data = [...dadosMonitor.graficos.valorRede];
 
-    labelsRede.length = 0;
-    datasetRede.length = 0;
-    labelsLimiteRede.length = 0;
+    chartRede.data.datasets[1].data =
+      new Array(dadosMonitor.graficos.valorRede.length)
+        .fill(dadosMonitor.limites.limiteRede);
 
-    labelsCpu.length = 0;
-    datasetCpu.length = 0;
-    labelsLimiteCpu.length = 0;
-
-    labelsRam.length = 0;
-    datasetRam.length = 0;
-    labelsLimiteRam.length = 0;
-
-    if (horarioGrafico > ultimoHorario) {
-
-      labelsRede.shift();
-      labelsRede.push(horarioGrafico);
-
-      datasetRede.shift();
-      datasetRede.push(dadosMonitor.rede.trafegoTotal)
-
-      labelsLimiteRede.shift();
-      labelsLimiteRede.push((dadosMonitor.limites.limiteRede))
-
-      chartRede.update();
-    }
-
+    chartRede.update();
 
     // Cpu
-    var ultimoHorario = labelsCpu[labelsRede.length - 1];
-    if (horarioGrafico > ultimoHorario) {
-      labelsCpu.shift();
-      labelsCpu.push(horarioGrafico);
+    chartCpu.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
-      datasetCpu.shift();
-      datasetCpu.push(dadosMonitor.cpu.usoCpuPercent)
+    chartCpu.data.datasets[0].data = [...dadosMonitor.graficos.valoresCpu];
 
-      labelsLimiteCpu.shift();
-      labelsLimiteCpu.push((dadosMonitor.limites.limiteCpu))
+    chartCpu.data.datasets[1].data =
+      new Array(dadosMonitor.graficos.valoresCpu.length)
+        .fill(dadosMonitor.limites.limiteCpu);
 
-      chartCpu.update();
-    }
+    chartCpu.update();
 
     // Ram
-    var ultimoHorario = labelsCpu[labelsRede.length - 1];
-    if (horarioGrafico > ultimoHorario) {
-      labelsRam.shift();
-      labelsRam.push(horarioGrafico);
+    chartRam.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
-      datasetRam.shift();
-      datasetRam.push(dadosMonitor.ram.usoRamPercent)
+    chartRam.data.datasets[0].data = [...dadosMonitor.graficos.valorRam];
 
-      labelsLimiteRam.shift();
-      labelsLimiteRam.push((dadosMonitor.limites.limiteCpu))
+    chartRam.data.datasets[1].data =
+      new Array(dadosMonitor.graficos.valorRam.length)
+        .fill(dadosMonitor.limites.limiteRam)
 
-      chartRam.update();
-    }
+    chartRam.update();
+
   }
+
+
 
 </script>
