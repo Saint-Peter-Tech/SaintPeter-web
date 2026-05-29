@@ -169,37 +169,8 @@
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>IntelliVue MX400</td>
-                  <td>91</td>
-                  <td class="critical-bg">Crítico</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX450</td>
-                  <td>87</td>
-                  <td class="critical-bg">Crítico</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX500</td>
-                  <td>68</td>
-                  <td class="warning-bg">Atenção</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX550</td>
-                  <td>22</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX750</td>
-                  <td>11</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX850</td>
-                  <td>10</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
+              <tbody id="corpoLista">
+                
               </tbody>
             </table>
           </div>
@@ -868,22 +839,46 @@
 
     const dados = await resposta.json();
 
-    plotarKpisGerais(dados);
+    plotarListaModelos(dados);
 
   }
 
-  function plotarKpisGerais(dados) {
-    modelosInstaveis = 0;
-
+  function plotarListaModelos(dados) {
     const modelos = Object.values(dados.modelos);
 
-    // Plotando a KPI de modelo mais crítico
     modelos.sort(
       (a, b) => a.healthscore - b.healthscore
     );
 
-    modeloMaisCritico = modelos[0].nome
+    for (const modelo of modelos) {
+      bgColor = "critical-bg";
+      msg = "Crítico";
 
+      if (modelo.healthscore > 79) {
+        bgColor = "ok-bg";
+        msg = "Estável";
+      } else if (modelo.healthscore > 59) {
+        bgColor = "warning-bg";
+        msg = "Atenção";
+      }
+
+      corpoLista.innerHTML += `
+        <tr>
+          <td>${modelo.nome}</td>
+          <td>${modelo.healthscore}</td>
+          <td class="${bgColor}">${msg}</td>
+        </tr>
+      `
+    }
+
+    plotarKpisGerais(modelos);    
+  }
+
+  function plotarKpisGerais(modelos) {
+    modelosInstaveis = 0;
+
+    // Plotando a KPI de modelo mais crítico
+    modeloMaisCritico = modelos[0].nome
     kpiModeloMaisCritico.innerHTML = modeloMaisCritico
 
     // Plotando KPI de quantidade de modelos instáveis
