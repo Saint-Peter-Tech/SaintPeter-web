@@ -1499,7 +1499,6 @@
     }
 
     // Alertas
-    console.log("alertaaaaaaas: ", dadosMonitor.alertasMonitor.alertasTotais)
     if (dadosMonitor.alertasMonitor.alertasTotais <= 0) {
       divAlertas.innerHTML = `
       <div class="alertasGerados linha-vertical">
@@ -1542,7 +1541,9 @@
 
           </div>
           `
+      divAlertasEspecificos.innerHTML += `            
 
+            `
     }
     // Atualizando gráficos
     chartRede.data.labels = [];
@@ -1552,12 +1553,15 @@
     chartCpu.data.labels = [];
     chartCpu.data.datasets[0].data = [];
     chartCpu.data.datasets[1].data = [];
-    
+
     chartRam.data.labels = [];
     chartRam.data.datasets[0].data = [];
     chartRam.data.datasets[1].data = [];
-    
-    
+
+    chartRede.update();
+    chartCpu.update();
+    chartRam.update();
+
     // Rede
     chartRede.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
