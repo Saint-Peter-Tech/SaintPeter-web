@@ -361,7 +361,7 @@
         </div>
 
         <div class="displayFlex kpiMonitor" id="divTrafegoTotal"
-          style="gap: 35%!important; width: 845px!important; margin-top: 2%; align-items: end;">
+          style="gap: 28%!important; width: 845px!important; margin-top: 2%; align-items: end;">
           <div>
             <h5>
               <p><i>Tráfego Total: </i></p>
@@ -599,9 +599,6 @@
   });
 
   // função para select de parametros
-  var limiteRamConst;
-  var limiteCPUConst;
-  var limiteRedeConst;
 
   function listarParametros() {
     const idMonitor = sessionStorage.ID_MONITOR;
@@ -630,19 +627,6 @@
       </div>
       `
         console.log('parametros: ', parametros)
-
-        if (selectValue != '#') {
-          if (selectValue == "5") {
-            limiteRedeConst = Number(parametros[0].limite)
-
-          } else if (selectValue == "2") {
-            limiteRamConst = Number(parametros[0].limite)
-
-          } else if (selectValue == "1") {
-            limiteCPUConst = Number(parametros[0].limite)
-
-          }
-        }
 
       })
   }
@@ -950,7 +934,7 @@
 
   // gráfico de linha de rede
   let labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
-  let labelsLimiteRede = Array(10).fill(limiteRedeConst);
+  let labelsLimiteRede = Array(10).fill(0);
   let datasetRede = [65, 65, 65, 65, 65, 65, 65, 65, 65, 65];
 
   const data = {
@@ -988,7 +972,7 @@
   // grafico de cpu
 
   let labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
-  let labelsLimiteCpu = Array(10).fill(limiteCPUConst);
+  let labelsLimiteCpu = Array(10).fill(0);
   let datasetCpu = [13, 13, 13, 13, 13, 13, 13, 13, 13, 13,];
 
   const dataCpu = {
@@ -1049,7 +1033,7 @@
   // grafico de ram
 
   let labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
-  let labelsLimiteRam = Array(10).fill(limiteRamConst)
+  let labelsLimiteRam = Array(10).fill(0)
   let datasetRam = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
 
   const dataRam = {
@@ -1541,27 +1525,35 @@
 
           </div>
           `
-      divAlertasEspecificos.innerHTML += `            
-
-            `
     }
     // Atualizando gráficos
-    chartRede.data.labels = [];
-    chartRede.data.datasets[0].data = [];
-    chartRede.data.datasets[1].data = [];
+    chartRede.data.labels = new Array(10)
+      .fill(0);
+    chartRede.data.datasets[0].data = new Array(10)
+      .fill(0);
+    chartRede.data.datasets[1].data = new Array(10)
+      .fill(0);
+
+    chartRede.update();
 
     chartCpu.data.labels = [];
     chartCpu.data.datasets[0].data = [];
     chartCpu.data.datasets[1].data = [];
 
+    chartCpu.update();
+
     chartRam.data.labels = [];
     chartRam.data.datasets[0].data = [];
     chartRam.data.datasets[1].data = [];
 
-    chartRede.update();
-    chartCpu.update();
     chartRam.update();
 
+    atualizarGraficos();
+
+  }
+
+  function atualizarGraficos() {
+    console.log('cheguei na função para atualizar o gráfico')
     // Rede
     chartRede.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
@@ -1596,7 +1588,6 @@
     chartRam.update();
 
   }
-
 
 
 </script>
