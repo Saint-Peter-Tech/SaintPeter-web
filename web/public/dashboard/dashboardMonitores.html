@@ -177,16 +177,16 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Modelo</th>
                     <th>Unidade</th>
-                    <th>CPU (%)</th>
-                    <th>RAM (%)</th>
-                    <th>Disco (%)</th>
+                    <th>Status do Monitor</th>
                 </tr>
             </thead>
             <tbody id="corpoTabelaMonitores">
             </tbody>
         </table>
     </div>
+
     <!-- links javascript boostrap tabela -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="../js/sessao.js"></script>
@@ -244,12 +244,17 @@
                     table.clear();
 
                     monitores.forEach(monitor => {
+
+                        var linkId = `<a href="dashboardMonitorEspecifico.html" onclick="sessionStorage.setItem('ID_MONITOR', ${monitor.id_monitor})" style="text-decoration: none; color: black;">${monitor.id_monitor}</a>`;
+                        var linkNome = `<a href="dashboardMonitorEspecifico.html" onclick="sessionStorage.setItem('ID_MONITOR', ${monitor.id_monitor})" style="text-decoration: none; color: black;">${monitor.nome}</a>`;
+                        var linkUnidade = `<a href="dashboardMonitorEspecifico.html" onclick="sessionStorage.setItem('ID_MONITOR', ${monitor.id_monitor})" style="text-decoration: none; color: black;">${monitor.nome_unidade}</a>`;
+                        var linkStatusMonitor = `<a href="dashboardMonitorEspecifico.html" onclick="sessionStorage.setItem('ID_MONITOR', ${monitor.id_monitor})" style="text-decoration: none; color: black;">${monitor.status_monitor}</a>`;
                         table.row.add([
-                            monitor.id_monitor,
-                            monitor.nome_unidade,
-                            "-",
-                            "-",
-                            "-"
+                            linkId,
+                            linkNome,
+                            linkUnidade,
+                            linkStatusMonitor
+
                         ]);
                     });
 

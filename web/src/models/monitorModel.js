@@ -134,9 +134,12 @@ function listarMonitores(fkEmpresa) {
   var instrucaoSql = `
         SELECT 
             m.id_monitor, 
-            u.nome_unidade 
+            u.nome_unidade,
+            m.status_monitor,
+            mo.nome
         FROM monitores m
         JOIN unidades u ON m.fk_unidade = u.id_unidade
+        JOIN modelos mo ON m.fk_modelo = mo.id_modelo
         WHERE m.fk_empresa = ${fkEmpresa};
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
