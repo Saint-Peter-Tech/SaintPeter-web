@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | SPT</title>
+  <title>Modelos | SPT</title>
   <link rel="icon" href="../assets/LogoClara.png" />
 
 
@@ -248,8 +248,10 @@
         <select class="opcaoDashboard" id="select_modelo" onchange="filtrar()">
           <option value="0" selected disabled>Selecione um modelo</option>
         </select>
+        <div>
+        <h4 style="padding-top: 20px; margin: 0;">Modelo Selecionado: <b><span id="modeloEspecifico"></span></b></h4>
       </div>
-
+      </div>
 
       <!-- KPIs -->
       <div class="displayFlex">
@@ -407,7 +409,7 @@
           </div>
 
           <div id="containerCardsModulos">
-            
+
           </div>
         </div>
       </div>
@@ -441,6 +443,7 @@
     validarSessao();
     listarModelos();
     buscarDadosS3(sessionStorage.FK_EMPRESA);
+    filtrar();
   };
 
   function listarModelos() {
@@ -489,7 +492,7 @@
       y: {
         title: {
           display: true,
-          text: "Quantidade de capturas",
+          text: "Capturas (%)",
           font: {
             size: 16
           }
@@ -507,10 +510,6 @@
   let graficoRede;
   let graficoAlertas;
   let graficoOrigem;
-
-
-  // Gráfico Origem dos Alertas
-
 
   async function buscarDadosS3(id_empresa) {
 
@@ -581,10 +580,6 @@
     const selectModelo = document.getElementById("select_modelo");
     const idModelo = selectModelo.value;
 
-    if (!idModelo || idModelo == "0") {
-      return;
-    }
-
     await buscarDadosModelo(idModelo);
 
   }
@@ -599,6 +594,55 @@
     const dados = await resposta.json();
 
     const modelos = Object.values(dados.modelos);
+
+    modelos.sort(
+      (a, b) => a.healthscore - b.healthscore
+    );
+
+    if (idModelo == 0) {
+      modelo = modelos[0]
+      idModeloMaisCritico = modelo.id_modelo;
+
+      plotarGraficoCpu(
+          modelo.pct_ok_cpu,
+          modelo.pct_alertas_cpu,
+          modelo.pct_criticos_cpu
+        );
+
+        plotarGraficoRam(
+          modelo.pct_ok_ram,
+          modelo.pct_alertas_ram,
+          modelo.pct_criticos_ram
+        );
+
+        plotarGraficoRede(
+          modelo.pct_ok_rede,
+          modelo.pct_alertas_rede,
+          modelo.pct_criticos_rede
+        );
+
+        plotarGraficoBarra(
+          modelo.alertas_cpu,
+          modelo.criticos_cpu,
+          modelo.alertas_ram,
+          modelo.criticos_ram,
+          modelo.alertas_rede,
+          modelo.criticos_rede
+        );
+
+        plotarGraficoOrigem(
+          modelo.origem_alertas_cpu,
+          modelo.origem_alertas_ram,
+          modelo.origem_alertas_rede
+        );
+
+        plotarListaModulos(idModeloMaisCritico);
+
+        modeloEspecifico.innerHTML = modelo.nome;
+
+        return;
+
+    }
 
     for (const modelo of modelos) {
       if (modelo.id_modelo == idModelo) {
@@ -636,6 +680,8 @@
         );
 
         plotarListaModulos(idModelo);
+
+        modeloEspecifico.innerHTML = modelo.nome;
 
         return;
       }
