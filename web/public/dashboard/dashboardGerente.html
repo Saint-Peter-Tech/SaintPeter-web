@@ -406,115 +406,8 @@
             </a>
           </div>
 
-          <div id="container-cards-modulos">
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">TEMP</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #e41033;">60</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="critical-bg d-flex justify-content-center">
-                  <span>Crítico</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">RESP</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #e41033;">65</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="critical-bg d-flex justify-content-center">
-                  <span>Crítico</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">ECG</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #FFE821;">75</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="warning-bg d-flex justify-content-center">
-                  <span>Atenção</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">PA</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #FFE821;">75</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="warning-bg d-flex justify-content-center">
-                  <span>Atenção</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">BPM</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">SPO2</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">PIC</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">PVC</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">ETCO2</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
+          <div id="containerCardsModulos">
+            
           </div>
         </div>
       </div>
@@ -553,8 +446,6 @@
   function listarModelos() {
     var fk_Empresa = sessionStorage.FK_EMPRESA;
     var selectModelo = document.getElementById("select_modelo");
-
-    console.log(fk_Empresa);
 
     fetch(`/modelo/listarModelos?fkEmpresa=${fk_Empresa}`)
       .then(function (resposta) {
@@ -744,6 +635,8 @@
           modelo.origem_alertas_rede
         );
 
+        plotarListaModulos(idModelo);
+
         return;
       }
     }
@@ -831,10 +724,6 @@
     );
 
     const divStatus = document.getElementById(`divStatus${componente}`);
-
-    console.log(pct)
-    console.log(status)
-    console.log(divStatus)
 
     bgColor = "ok-bg";
     msg = "Estável";
@@ -967,6 +856,72 @@
     }
 
     graficoOrigem = new Chart(modeloGraficoPizza, config);
+  }
+
+  async function plotarListaModulos(idModelo) {
+    const empresa = sessionStorage.FK_EMPRESA;
+
+    containerCardsModulos.innerHTML = ``;
+
+    try {
+
+      const resposta = await fetch(`/moduloS3/${empresa}/${idModelo}`);
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar dados");
+      }
+
+      const dados = await resposta.json();
+
+      modulos = dados.modulos.sort((a, b) => {
+
+        if (b.critico !== a.critico) {
+          return b.critico - a.critico;
+        }
+
+        if (b.alerta !== a.alerta) {
+          return b.alerta - a.alerta;
+        }
+
+        return b.instabilidade - a.instabilidade;
+      });
+
+      modulos.forEach(modulo => {
+
+        bgColor = "critical-bg";
+        msg = "Crítico";
+        colorText = "#e41033";
+
+        if (modulo.estabilidade > 79) {
+          bgColor = "ok-bg";
+          msg = "Estável";
+          colorText = "#00A63E";
+        } else if (modulo.estabilidade > 59) {
+          bgColor = "warning-bg";
+          msg = "Atenção";
+          colorText = "#FFE821";
+        }
+
+        containerCardsModulos.innerHTML += `
+          <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
+            <div class="card-header"><span class="h4">${modulo.nome}</span></div>
+            <div class="card-body d-flex flex-column gap-3">
+              <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
+                <span class="h1" style="color: ${colorText};">${modulo.estabilidade}</span>
+                <span style="color: #919295;"><i>Score de Estabilidade</i></span>
+              </div>
+              <div class="${bgColor} d-flex justify-content-center">
+                <span>${msg}</span>
+              </div>
+            </div>
+          </div> `;
+      });
+
+    } catch (erro) {
+
+      console.error("Erro ao buscar dashboard:", erro);
+
+    }
   }
 
 </script>

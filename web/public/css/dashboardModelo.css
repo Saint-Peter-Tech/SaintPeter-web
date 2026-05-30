@@ -134,26 +134,26 @@
     align-self: center;
 }
 
-#container-cards-modulos {
+#containerCardsModulos {
     display: flex;
     gap: 2%;
     overflow-x: auto;
 }
 
-#container-cards-modulos::-webkit-scrollbar{
+#containerCardsModulos::-webkit-scrollbar{
     height: 8px;
 }
 
-#container-cards-modulos::-webkit-scrollbar-thumb{
+#containerCardsModulos::-webkit-scrollbar-thumb{
     background:#c7cedb;
     border-radius:10px;
 }
 
-#container-cards-modulos::-webkit-scrollbar-track{
+#containerCardsModulos::-webkit-scrollbar-track{
     background:transparent;
 }
 
-#container-cards-modulos::-webkit-scrollbar-thumb:hover {
+#containerCardsModulos::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
