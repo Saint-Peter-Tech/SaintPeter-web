@@ -619,50 +619,7 @@
 
 
   // Gráfico Origem dos Alertas
-  const data = {
-    labels: ['CPU', 'RAM', 'Rede'],
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [35, 48, 17],
-        backgroundColor: ["#57D6E2", "#1268B8", "#4698c1"]
-      }
-    ]
-  };
 
-  const config = {
-    type: 'pie',
-    data: data,
-    plugins: [ChartDataLabels],
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top'
-        },
-        title: {
-          display: false,
-        },
-        datalabels: {
-          color: ['#57D6E2', '#1268B8', '#4698c1'],
-          font: {
-            weight: 'bold',
-            size: 25
-          },
-          anchor: 'end',
-          align: 'end',
-          formatter: (value) => {
-            return `${value}%`;
-          }
-        }
-      },
-      maintainAspectRatio: false
-    }
-  };
-
-  const modeloGraficoPizza = document.getElementById('modeloGraficoPizza');
-
-  new Chart(modeloGraficoPizza, config);
 
   async function buscarDadosS3(id_empresa) {
 
@@ -758,19 +715,19 @@
           modelo.pct_ok_cpu,
           modelo.pct_alertas_cpu,
           modelo.pct_criticos_cpu
-        )
+        );
 
         plotarGraficoRam(
           modelo.pct_ok_ram,
           modelo.pct_alertas_ram,
           modelo.pct_criticos_ram
-        )
+        );
 
         plotarGraficoRede(
           modelo.pct_ok_rede,
           modelo.pct_alertas_rede,
           modelo.pct_criticos_rede
-        )
+        );
 
         plotarGraficoBarra(
           modelo.alertas_cpu,
@@ -780,6 +737,14 @@
           modelo.alertas_rede,
           modelo.criticos_rede
         );
+
+        plotarGraficoOrigem(
+          modelo.origem_alertas_cpu,
+          modelo.origem_alertas_ram,
+          modelo.origem_alertas_rede
+        );
+
+        return;
       }
     }
   }
@@ -858,11 +823,11 @@
 
   function plotarKpiGraficos(alertas, criticos, componente) {
     const pct = document.getElementById(
-        `pct${componente}`
+      `pct${componente}`
     );
 
     const status = document.getElementById(
-        `status${componente}`
+      `status${componente}`
     );
 
     const divStatus = document.getElementById(`divStatus${componente}`);
@@ -951,6 +916,57 @@
         }
       }
     })
+  }
+
+  function plotarGraficoOrigem(pctCpu, pctRam, pctRede) {
+    const data = {
+      labels: ['CPU', 'RAM', 'Rede'],
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: [pctCpu, pctRam, pctRede],
+          backgroundColor: ["#57D6E2", "#1268B8", "#4698c1"]
+        }
+      ]
+    };
+
+    const config = {
+      type: 'pie',
+      data: data,
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: false,
+          },
+          datalabels: {
+            color: ['#57D6E2', '#1268B8', '#4698c1'],
+            font: {
+              weight: 'bold',
+              size: 25
+            },
+            anchor: 'end',
+            align: 'end',
+            formatter: (value) => {
+              return `${value}%`;
+            }
+          }
+        },
+        maintainAspectRatio: false
+      }
+    };
+
+    const modeloGraficoPizza = document.getElementById('modeloGraficoPizza');
+
+    if (graficoOrigem) {
+      graficoOrigem.destroy();
+    }
+
+    graficoOrigem = new Chart(modeloGraficoPizza, config);
   }
 
 </script>
