@@ -319,12 +319,12 @@
             <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Acima do limite</span>
-                <span class="h3" style="color: #57D6E2;">8.2%</span>
+                <span class="h3" style="color: #57D6E2;" id="pctCpu"></span>
               </div>
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Status</span>
-                <div class="rounded p-2" style="background-color: #FEF9C2; color: #A65F00;">
-                  <span class="h5">Atenção</span>
+                <div class="rounded p-2" id="divStatusCpu">
+                  <span class="h5" id="statusCpu">Atenção</span>
                 </div>
               </div>
             </div>
@@ -339,12 +339,12 @@
             <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Acima do limite</span>
-                <span class="h3" style="color: #1268B8;">12.5%</span>
+                <span class="h3" style="color: #1268B8;" id="pctRam"></span>
               </div>
               <div class="d-flex flex-column">
                 <span class="h6" style="color: #13347b;">Status</span>
-                <div class="rounded p-2" style="background-color: #FFA2A2; color: #C10007;">
-                  <span class="h5">Crítico</span>
+                <div class="rounded p-2" id="divStatusRam">
+                  <span class="h5" id="statusRam"></span>
                 </div>
               </div>
             </div>
@@ -359,12 +359,12 @@
             <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Acima do limite</span>
-                <span class="h3" style="color: #4698c1;">12.5%</span>
+                <span class="h3" style="color: #4698c1;" id="pctRede"></span>
               </div>
               <div class="d-flex flex-column">
                 <span class="h6" style="color: #13347b;">Status</span>
-                <div class="rounded p-2" style="background-color: #FFA2A2; color: #C10007;">
-                  <span class="h5">Crítico</span>
+                <div class="rounded p-2" id="divStatusRede">
+                  <span class="h5" id="statusRede">Crítico</span>
                 </div>
               </div>
             </div>
@@ -519,13 +519,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- Dash de analista -->
-
-    <div id="div_analista" style="display: none;">
-
-    </div>
   </main>
 
 
@@ -583,229 +576,47 @@
   }
 
   // GRÁFICOS
+  const parametros = ["Sem alertas", "Alertas", "Alertas Críticos"];
+  const configGraficoBarra = {
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      x: {
+        title: {
+          display: false,
+          text: "Intervalo da Captura"
+        },
+        ticks: {
+          font: {
+            size: 14
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Quantidade de capturas",
+          font: {
+            size: 16
+          }
+        },
+        ticks: {
+          font: {
+            size: 14
+          }
+        }
+      }
+    }
+  }
+  let graficoCpu;
+  let graficoRam;
+  let graficoRede;
   let graficoAlertas;
+  let graficoOrigem;
 
-  // Gráfico CPU
-  const parametros = ["0-40%", "40-80%", ">80%"];
-
-  const graficoModeloCpu = document.getElementById('modeloGraficoCpu');
-
-  new Chart(graficoModeloCpu, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1680, 4120, 450],
-        backgroundColor: '#57D6E2',
-        borderRadius: 8
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas",
-            font: {
-              size: 16
-            }
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  });
-
-  // Gráfico RAM
-  const graficoModeloRam = document.getElementById('modeloGraficoRam');
-
-  new Chart(graficoModeloRam, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1450, 4320, 680],
-        backgroundColor: '#1268B8',
-        borderRadius: 8
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas",
-            font: {
-              size: 16
-            }
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  })
-
-  // Gráfico Rede
-  const graficoModeloRede = document.getElementById('modeloGraficoRede');
-
-  new Chart(graficoModeloRede, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1450, 4320, 680],
-        backgroundColor: '#4698c1',
-        borderRadius: 8
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas",
-            font: {
-              size: 16
-            }
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  })
-
-  // Gráfico Linha Alertas
-  // const rotulos = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
-
-  // const graficoModeloLinhaAlertas = document.getElementById('modeloGraficoLinhaAlertas');
-
-  // new Chart(graficoModeloLinhaAlertas, {
-  //   type: 'line',
-  //   data: {
-  //     labels: rotulos,
-  //     datasets: [
-  //       {
-  //         label: 'CPU',
-  //         data: [45, 52, 48, 56, 51, 38, 35],
-  //         borderColor: "#57D6E2",
-  //         borderWidth: 4
-  //       },
-  //       {
-  //         label: 'RAM',
-  //         data: [78, 85, 82, 89, 87, 65, 62],
-  //         borderColor: "#1268B8",
-  //         borderWidth: 4
-  //       },
-  //       {
-  //         label: 'Rede',
-  //         data: [54, 75, 42, 39, 80, 55, 72],
-  //         borderColor: '#4698c1',
-  //         borderWidth: 4
-  //       }
-  //     ]
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top',
-  //       },
-  //       title: {
-  //         display: false
-  //       }
-  //     },
-  //     scales: {
-  //       x: {
-  //         title: {
-  //           display: false
-  //         },
-  //         ticks: {
-  //           font: {
-  //             size: 18
-  //           }
-  //         }
-  //       },
-  //       y: {
-  //         title: {
-  //           display: true,
-  //           text: "Utilização (%)",
-  //           font: {
-  //             size: 20
-  //           }
-  //         },
-  //         ticks: {
-  //           font: {
-  //             size: 18
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // });
 
   // Gráfico Origem dos Alertas
   const data = {
@@ -943,6 +754,24 @@
 
     for (const modelo of modelos) {
       if (modelo.id_modelo == idModelo) {
+        plotarGraficoCpu(
+          modelo.pct_ok_cpu,
+          modelo.pct_alertas_cpu,
+          modelo.pct_criticos_cpu
+        )
+
+        plotarGraficoRam(
+          modelo.pct_ok_ram,
+          modelo.pct_alertas_ram,
+          modelo.pct_criticos_ram
+        )
+
+        plotarGraficoRede(
+          modelo.pct_ok_rede,
+          modelo.pct_alertas_rede,
+          modelo.pct_criticos_rede
+        )
+
         plotarGraficoBarra(
           modelo.alertas_cpu,
           modelo.criticos_cpu,
@@ -953,6 +782,111 @@
         );
       }
     }
+  }
+
+  function plotarGraficoCpu(okCpu, alertasCpu, criticosCpu) {
+    const graficoModeloCpu = document.getElementById('modeloGraficoCpu');
+
+    if (graficoCpu) {
+      graficoCpu.destroy();
+    }
+
+    graficoCpu = new Chart(graficoModeloCpu, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okCpu, alertasCpu, criticosCpu],
+          backgroundColor: '#57D6E2',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasCpu, criticosCpu, "Cpu")
+  }
+
+  function plotarGraficoRam(okRam, alertasRam, criticosRam) {
+    const graficoModeloRam = document.getElementById('modeloGraficoRam');
+
+    if (graficoRam) {
+      graficoRam.destroy();
+    }
+
+    graficoRam = new Chart(graficoModeloRam, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okRam, alertasRam, criticosRam],
+          backgroundColor: '#1268B8',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasRam, criticosRam, "Ram")
+  }
+
+  function plotarGraficoRede(okRede, alertasRede, criticosRede) {
+    const graficoModeloRede = document.getElementById('modeloGraficoRede');
+
+    if (graficoRede) {
+      graficoRede.destroy();
+    }
+
+    graficoRede = new Chart(graficoModeloRede, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okRede, alertasRede, criticosRede],
+          backgroundColor: '#4698c1',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasRede, criticosRede, "Rede")
+  }
+
+  function plotarKpiGraficos(alertas, criticos, componente) {
+    const pct = document.getElementById(
+        `pct${componente}`
+    );
+
+    const status = document.getElementById(
+        `status${componente}`
+    );
+
+    const divStatus = document.getElementById(`divStatus${componente}`);
+
+    console.log(pct)
+    console.log(status)
+    console.log(divStatus)
+
+    bgColor = "ok-bg";
+    msg = "Estável";
+
+    tmpAcimaLimite = alertas + criticos
+
+    if (tmpAcimaLimite > 30) {
+      bgColor = "critical-bg";
+      msg = "Crítico";
+    } else if (tmpAcimaLimite > 20) {
+      bgColor = "warning-bg";
+      msg = "Atenção";
+    }
+
+    pct.innerHTML = `${tmpAcimaLimite}%`
+    status.innerHTML = msg
+    divStatus.classList.add(bgColor)
   }
 
   function plotarGraficoBarra(alertasCpu, criticosCpu, alertasRam, criticosRam, alertasRede, criticosRede) {
