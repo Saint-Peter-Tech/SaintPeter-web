@@ -10,6 +10,22 @@
     border-radius: 10px;
 }
 
+.legendaItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status.ok { background-color: #16a34a; }
+.status.alerta { background-color: #f59e0b; }
+.status.critico { background-color: #dc2626; }
+
 .table-scroll{
     max-height:350px;
     overflow-y:auto;
