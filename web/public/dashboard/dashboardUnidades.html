@@ -616,8 +616,12 @@
                 select.addEventListener("change", function () {
 
                     sessionStorage.ID_HOSPITAL = select.value;
+                    sessionStorage.removeItem("ID_UNIDADE");
+                    sessionStorage.removeItem("QTD_MONITORES");
 
                     console.log("Hospital selecionado:", sessionStorage.ID_HOSPITAL);
+
+                    listarInfoUnidade();
                 });
 
             })
