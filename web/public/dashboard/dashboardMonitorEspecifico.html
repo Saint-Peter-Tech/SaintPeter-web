@@ -220,7 +220,7 @@
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody id=" bodyTabela">
+              <tbody id="bodyTabela">
 
               </tbody>
             </table>
@@ -246,13 +246,13 @@
             <p><i>Última semana</i></p>
           </div>
 
-          <div id="divAlertasEspecificos" class="divAlertasEspecifico">
+          <!-- <div id="divAlertasEspecificos" class="divAlertasEspecifico">
             <h5>Alertas</h5>
             Rede: <br>
             CPU: <br>
             Ram: <br>
             Disco Rígido:
-          </div>
+          </div> -->
 
         </div>
 
@@ -336,7 +336,7 @@
                   <div>
                     <I>DOWNLOAD</I>
                     <h5>
-                      <p>0.0 bytes</p>
+                      <p>0.0 Mbps</p>
                     </h5>
                   </div>
                 </div>
@@ -356,7 +356,7 @@
                   <div>
                     <I>UPLOAD</I>
                     <h5>
-                      <p>0.0 bytes</p>
+                      <p>0.0 Mbps</p>
                     </h5>
                   </div>
                   <br>
@@ -373,7 +373,7 @@
                   style="margin-right: 2%; border-radius: 10px;" alt="">
               </div>
               <br>
-              <h4><b>0mb/s</b></h4>
+              <h4><b>0 Mbps</b></h4>
               <p><i>Pico de rede</i></p>
 
               <span style="align-self: flex-end;">
@@ -389,7 +389,7 @@
             <h5>
               <p><i>Tráfego Total: </i></p>
             </h5>
-            <h3><b>0.0 bytes</b></h3>
+            <h3><b>0.0 Mbps</b></h3>
           </div>
           <div style="display: flex; flex-direction: column; align-content: end; text-align: end;">
             <br>
@@ -956,12 +956,12 @@
   // gráfico de linha de rede
   let labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
   let labelsLimiteRede = Array(10).fill(0);
-  let datasetRede = [65, 65, 65, 65, 65, 65, 65, 65, 65, 65];
+  let datasetRede = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const data = {
     labels: labelsRede,
     datasets: [{
-      label: 'Uso percentual da rede',
+      label: 'Tráfego de Rede (MB)',
       data: datasetRede,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
@@ -994,7 +994,7 @@
 
   let labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
   let labelsLimiteCpu = Array(10).fill(0);
-  let datasetCpu = [13, 13, 13, 13, 13, 13, 13, 13, 13, 13,];
+  let datasetCpu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
 
   const dataCpu = {
     labels: labelsCpu,
@@ -1055,7 +1055,7 @@
 
   let labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
   let labelsLimiteRam = Array(10).fill(0)
-  let datasetRam = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
+  let datasetRam = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const dataRam = {
     labels: labelsRam,
@@ -1171,7 +1171,6 @@
 
     const divCorpoTabela = document.getElementById('bodyTabela')
     const divAlertas = document.getElementById('divAlertas')
-    const divAlertasEspecificos = document.getElementById('divAlertasEspecificos')
 
     if (!dadosMonitor) { return }
 
@@ -1258,7 +1257,7 @@
                   <div>
                     <I>DOWNLOAD</I>
                     <h5>
-                      <p>${dadosMonitor.rede.download} bytes</p>
+                      <p>${dadosMonitor.rede.download} Mbps</p>
                     </h5>
                   </div>
                 </div>
@@ -1278,7 +1277,7 @@
                   <div>
                     <I>UPLOAD</I>
                     <h5>
-                      <p>${dadosMonitor.rede.upload} bytes</p>
+                      <p>${dadosMonitor.rede.upload} Mbps</p>
                     </h5>
                   </div>
                   <br>
@@ -1290,7 +1289,7 @@
             <h5>
               <p><i>Tráfego Total: </i></p>
             </h5>
-            <h3><b>${dadosMonitor.rede.trafegoTotal} bytes</b></h3>
+            <h3><b>${dadosMonitor.rede.trafegoTotal} Mbps</b></h3>
           </div>
           <div style="display: flex; flex-direction: column; align-content: end; text-align: end;">
             <br>
@@ -1307,7 +1306,7 @@
                   style="margin-right: 2%; border-radius: 10px;" alt="">
               </div>
               <br>
-              <h4><b>${dadosMonitor.rede.picoMbs}mb/s</b></h4>
+              <h4><b>${dadosMonitor.rede.picoMbs} Mbps</b></h4>
               <p><i>Pico de rede</i></p>
 
               <span style="align-self: flex-end;">
@@ -1322,7 +1321,7 @@
                   style="margin-right: 2%; border-radius: 10px;" alt="">
               </div>
               <br>
-              <h4><b>${dadosMonitor.rede.picoMbs}mb/s</b></h4>
+              <h4><b>${dadosMonitor.rede.picoMbs} Mbps</b></h4>
               <p><i>Pico de rede</i></p>
 
               <span style="align-self: flex-end;">
