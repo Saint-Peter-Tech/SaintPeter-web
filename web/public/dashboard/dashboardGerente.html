@@ -189,7 +189,7 @@
               <thead>
                 <tr>
                   <th>Modelo</th>
-                  <th>Estabilidade</th>
+                  <th>Health Score</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -228,7 +228,7 @@
             <span style="display: flex; gap: 20%;">
               <div>
                 <h4><b id="kpiModelosInstaveis"></b></h4>
-                <p><i>Quantidade total de modelos instáveis</i></p>
+                <p><i>Quantidade de modelos com health score abaixo de 60</i></p>
               </div>
               <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
@@ -249,8 +249,8 @@
           <option value="0" selected disabled>Selecione um modelo</option>
         </select>
         <div>
-        <h4 style="padding-top: 20px; margin: 0;">Modelo Selecionado: <b><span id="modeloEspecifico"></span></b></h4>
-      </div>
+          <h4 style="padding-top: 20px; margin: 0;">Modelo Selecionado: <b><span id="modeloEspecifico"></span></b></h4>
+        </div>
       </div>
 
       <!-- KPIs -->
@@ -377,7 +377,7 @@
           <div class="modeloGrafico d-flex flex-column gap-4 p-4">
             <div class="d-flex gap-3">
               <img src="../assets/dash-modelo/icon-linha.png" class="imgGrafico" alt="">
-              <h3 class="tituloGrafico">Quantidade de Alertas por Dia</h3>
+              <h3 class="tituloGrafico">Estabilidade por Componente</h3>
             </div>
             <canvas id="modeloGraficoLinhaAlertas"></canvas>
           </div>
@@ -422,11 +422,13 @@
   <script src="../js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 
 </body>
 
 
 <script>
+  Chart.register(window['chartjs-plugin-annotation']);
 
   function selecionarG() {
     document.getElementById('div_gerente').style.display = "block";
@@ -604,43 +606,40 @@
       idModeloMaisCritico = modelo.id_modelo;
 
       plotarGraficoCpu(
-          modelo.pct_ok_cpu,
-          modelo.pct_alertas_cpu,
-          modelo.pct_criticos_cpu
-        );
+        modelo.pct_ok_cpu,
+        modelo.pct_alertas_cpu,
+        modelo.pct_criticos_cpu
+      );
 
-        plotarGraficoRam(
-          modelo.pct_ok_ram,
-          modelo.pct_alertas_ram,
-          modelo.pct_criticos_ram
-        );
+      plotarGraficoRam(
+        modelo.pct_ok_ram,
+        modelo.pct_alertas_ram,
+        modelo.pct_criticos_ram
+      );
 
-        plotarGraficoRede(
-          modelo.pct_ok_rede,
-          modelo.pct_alertas_rede,
-          modelo.pct_criticos_rede
-        );
+      plotarGraficoRede(
+        modelo.pct_ok_rede,
+        modelo.pct_alertas_rede,
+        modelo.pct_criticos_rede
+      );
 
-        plotarGraficoBarra(
-          modelo.alertas_cpu,
-          modelo.criticos_cpu,
-          modelo.alertas_ram,
-          modelo.criticos_ram,
-          modelo.alertas_rede,
-          modelo.criticos_rede
-        );
+      plotarGraficoBarra(
+        modelo.healthscore_cpu,
+        modelo.healthscore_ram,
+        modelo.healthscore_rede
+      );
 
-        plotarGraficoOrigem(
-          modelo.origem_alertas_cpu,
-          modelo.origem_alertas_ram,
-          modelo.origem_alertas_rede
-        );
+      plotarGraficoOrigem(
+        modelo.origem_alertas_cpu,
+        modelo.origem_alertas_ram,
+        modelo.origem_alertas_rede
+      );
 
-        plotarListaModulos(idModeloMaisCritico);
+      plotarListaModulos(idModeloMaisCritico);
 
-        modeloEspecifico.innerHTML = modelo.nome;
+      modeloEspecifico.innerHTML = modelo.nome;
 
-        return;
+      return;
 
     }
 
@@ -665,12 +664,9 @@
         );
 
         plotarGraficoBarra(
-          modelo.alertas_cpu,
-          modelo.criticos_cpu,
-          modelo.alertas_ram,
-          modelo.criticos_ram,
-          modelo.alertas_rede,
-          modelo.criticos_rede
+          modelo.healthscore_cpu,
+          modelo.healthscore_ram,
+          modelo.healthscore_rede
         );
 
         plotarGraficoOrigem(
@@ -789,8 +785,22 @@
     divStatus.classList.add(bgColor)
   }
 
-  function plotarGraficoBarra(alertasCpu, criticosCpu, alertasRam, criticosRam, alertasRede, criticosRede) {
+  function plotarGraficoBarra(scoreCpu, scoreRam, scoreRede) {
     const graficoBarraExemplo = document.getElementById('modeloGraficoLinhaAlertas');
+
+    var corCpu = '#57D6E2'
+    var corRam = '#1268B8'
+    var corRede = '#4698c1'
+
+    if (scoreCpu < 60) {
+      corCpu = '#e41033'
+    } 
+    if (scoreRam < 60) {
+      corRam = '#e41033'
+    } 
+    if (scoreRede < 60) {
+      corRede = '#e41033'
+    } 
 
     if (graficoAlertas) {
       graficoAlertas.destroy();
@@ -802,19 +812,13 @@
         labels: ['CPU', 'RAM', 'Rede'],
         datasets: [{
           label: 'Alertas',
-          data: [alertasCpu, alertasRam, alertasRede],
-          backgroundColor: '#4698c1',
+          data: [scoreCpu, scoreRam, scoreRede],
+          backgroundColor: [corCpu, corRam, corRede],
           borderRadius: 8
-        },
-        {
-          label: 'Alertas Críticos',
-          data: [criticosCpu, criticosRam, criticosRede],
-          backgroundColor: '#1268B8',
-          borderRadius: 8
-        }
-        ]
+        }]
       },
       options: {
+        indexAxis: 'y',
         plugins: {
           legend: {
             display: true
@@ -822,10 +826,12 @@
         },
         scales: {
           x: {
-            stacked: true,
             title: {
-              display: false,
-              text: "Intervalo da Captura"
+              display: true,
+              text: "Health Score",
+              font: {
+                size: 16
+              }
             },
             ticks: {
               font: {
@@ -834,9 +840,8 @@
             }
           },
           y: {
-            stacked: true,
             title: {
-              display: true,
+              display: false,
               text: "Capturas acima do limite (%)",
               font: {
                 size: 16
@@ -848,6 +853,30 @@
               }
             }
           }
+        },
+        plugins: {
+          annotation: {
+            annotations: {
+              limitLine: {
+                type: 'line',
+                xMin: 60,
+                xMax: 60,
+                borderColor: '#FF7F7F',
+                borderWidth: 2,
+                label: { display: true, position: 'end' }
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const value = context.raw;
+                const status = value > 60 ? 'Estável' : 'Instável';
+                return `Valor: ${value} (${status})`;
+              }
+            }
+          },
+          legend: { display: false }
         }
       }
     })
