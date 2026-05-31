@@ -10,6 +10,22 @@
     border-radius: 10px;
 }
 
+.legendaItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status.ok { background-color: #16a34a; }
+.status.alerta { background-color: #f59e0b; }
+.status.critico { background-color: #dc2626; }
+
 .table-scroll{
     max-height:350px;
     overflow-y:auto;
@@ -87,7 +103,9 @@
   transition: transform ease 0.3s;
   width: 600px;
   height: 200px;
-  gap: 2%;
+  display: grid;
+  grid-row: 1fr 1fr 1fr;
+  align-items: end;
 }
 
 .kpiModelo:hover {
@@ -97,6 +115,11 @@
 .displayFlex {
   display: flex;
   gap: 2%;
+}
+
+.displayGrid {
+    display: grid;
+    grid-template-columns: 1fr auto;
 }
 
 .container-graficos1{
@@ -134,26 +157,26 @@
     align-self: center;
 }
 
-#container-cards-modulos {
+#containerCardsModulos {
     display: flex;
     gap: 2%;
     overflow-x: auto;
 }
 
-#container-cards-modulos::-webkit-scrollbar{
+#containerCardsModulos::-webkit-scrollbar{
     height: 8px;
 }
 
-#container-cards-modulos::-webkit-scrollbar-thumb{
+#containerCardsModulos::-webkit-scrollbar-thumb{
     background:#c7cedb;
     border-radius:10px;
 }
 
-#container-cards-modulos::-webkit-scrollbar-track{
+#containerCardsModulos::-webkit-scrollbar-track{
     background:transparent;
 }
 
-#container-cards-modulos::-webkit-scrollbar-thumb:hover {
+#containerCardsModulos::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 

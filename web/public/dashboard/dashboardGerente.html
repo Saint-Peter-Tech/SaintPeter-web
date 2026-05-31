@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | SPT</title>
+  <title>Modelos | SPT</title>
   <link rel="icon" href="../assets/LogoClara.png" />
 
 
@@ -174,14 +174,36 @@
       </h4>
 
 
-      <div>
-        <h1 style="color: #13347b;">Dashboard - Modelos</h1>
+      <div class="displayGrid" style="background-color: white; border-radius: 10px; padding: 1.5%; margin-bottom: 2%;">
+        <div>
+          <h1 style="color: #13347b;">Dashboard - Modelos</h1>
+        </div>
+        <div class="d-flex gap-2">
+          <span class="tituloGrafico h5">Gerar relatório</span>
+          <img src="../assets/dash-modelo/icon-download.png" alt="" style="width: 25px; height: 25px; align-self: center;">
+        </div>
       </div>
 
       <div class="container-graficoInicial">
         <div class="lista-modelos">
-          <div class="pt-4 ps-4">
+          <div class="displayGrid pt-4 ps-4 pe-4">
             <h3 style="color: #13347b;">Lista de Modelos</h3>
+            <div class="d-flex gap-3" style="font-style: italic; font-weight: bold; color: #64748b; font-size: 16px;">
+              <div class="legendaItem">
+                <span class="status ok"></span>
+                Estável: Score ≥ 80
+              </div>
+
+              <div class="legendaItem">
+                <span class="status alerta"></span>
+                Atenção: Score ≥ 60
+              </div>
+
+              <div class="legendaItem">
+                <span class="status critico"></span>
+                Crítico: Score &lt; 60
+              </div>
+            </div>
           </div>
 
           <div class="table-scroll">
@@ -189,7 +211,7 @@
               <thead>
                 <tr>
                   <th>Modelo</th>
-                  <th>Estabilidade</th>
+                  <th>Health Score</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -203,37 +225,41 @@
 
         <div class="d-flex flex-column gap-4">
           <div class="kpiModelo">
-            <div class="displayFlex" style="gap: 65%;">
+            <div class="displayGrid">
               <h5>MODELO MAIS CRÍTICO</h5>
               <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
             </div>
 
-            <span style="display: flex; gap: 20%;">
+            <!-- <span style="display: flex; gap: 20%;"> -->
               <div>
                 <h4><b id="kpiModeloMaisCritico"></b></h4>
-                <p><i>Modelo com pior health score</i></p>
               </div>
-              <div style="align-self: flex-end; text-align: end;">
+              <div>
+                <p><i>Modelo com pior Health Score</i></p>
+              </div>
+              <!-- <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
-              </div>
-            </span>
+              </div> -->
+            <!-- </span> -->
           </div>
 
           <div class="kpiModelo">
-            <div class="displayFlex" style="gap: 55%;">
+            <div class="displayGrid">
               <h5>MODELOS INSTÁVEIS</h5>
               <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
             </div>
 
-            <span style="display: flex; gap: 20%;">
+            <!-- <span style="display: flex; gap: 20%;"> -->
               <div>
                 <h4><b id="kpiModelosInstaveis"></b></h4>
-                <p><i>Quantidade total de modelos instáveis</i></p>
               </div>
-              <div style="align-self: flex-end; text-align: end;">
+              <div>
+                <p><i>Quantidade de modelos com Health Score abaixo de 60</i></p>
+              </div>
+              <!-- <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
-              </div>
-            </span>
+              </div> -->
+            <!-- </span> -->
           </div>
         </div>
       </div>
@@ -248,60 +274,68 @@
         <select class="opcaoDashboard" id="select_modelo" onchange="filtrar()">
           <option value="0" selected disabled>Selecione um modelo</option>
         </select>
+        <div>
+          <h4 style="padding-top: 20px; margin: 0;">Modelo Selecionado: <b><span id="modeloEspecifico"></span></b></h4>
+        </div>
       </div>
-
 
       <!-- KPIs -->
       <div class="displayFlex">
         <div class="kpiModelo">
-          <div class="displayFlex" style="gap: 65%;">
-            <h5>COMPONENTE MAIS CRÍTICO</h5>
+          <div class="displayGrid">
+            <h5>LANÇAMENTO</h5>
             <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
           </div>
 
-          <span style="display: flex; gap: 20%;">
-            <div>
-              <h4><b>156</b></h4>
-              <p><i>Componente mais crítico</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 20%;"> -->
+          <div>
+            <h4><b id="kpiLancamento"></b></h4>
+          </div>
+          <div>
+            <p><i>Ano em que o modelo foi criado</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
 
-        <div class="kpiModelo" style="color: #00A63E; border-bottom: 4px solid #00A63E; margin-bottom: 2%;">
-          <div class="displayFlex" style="gap: 55%;">
-            <h5 style="color: #13347b;">DISPONIBILIDADE</h5>
-            <img src="../assets/dash-modelo/icon-uptime.png" alt="" class="kpiImg">
+        <div class="kpiModelo" style="margin-bottom: 2%;" id="containerKpiAcimaLimite">
+          <div class="displayGrid">
+            <h5 style="color: #13347b;">TEMPO ACIMA DO LIMITE</h5>
+            <img alt="" class="kpiImg" id="imgKpiAcimaLimite">
           </div>
 
-          <span style="display: flex; gap: 25%; color: #13347b;">
-            <div>
-              <h4 style="color: #00A63E;"><b>98.5%</b></h4>
-              <p><i>Uptime do Modelo</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 20%; color: #13347b;"> -->
+          <div>
+            <h4><b id="kpiAcimaLimite"></b></h4>
+          </div>
+          <div>
+            <p style="color: #13347b;"><i>Com ao menos um componente acima do limite</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
 
-        <div class="kpiModelo" style="color: #e41033; border-bottom: 4px solid #e41033; margin-bottom: 2%;">
-          <div class="displayFlex" style="gap: 60%;">
+        <div class="kpiModelo" style="margin-bottom: 2%;" id="containerKpiEstabilidade">
+          <div class="displayGrid">
             <h5 style="color: #13347b;">ESTABILIDADE</h5>
-            <img src="../assets/dash-modelo/icon-criticidade.png" alt="" class="kpiImg">
+            <img alt="" class="kpiImg" id="imgKpiEstabilidade">
           </div>
 
-          <span style="display: flex; gap: 25%; color: #13347b;">
-            <div>
-              <h4 style="color: #e41033;"><b>87</b></h4>
-              <p><i>Score de risco operacional</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 25%; color: #13347b;"> -->
+          <div>
+            <h4><b id="kpiScore"></b></h4>
+          </div>
+          <div>
+            <p style="color: #13347b;"><i>Health Score do modelo</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
       </div>
 
@@ -319,12 +353,12 @@
             <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Acima do limite</span>
-                <span class="h3" style="color: #57D6E2;">8.2%</span>
+                <span class="h3" style="color: #57D6E2;" id="pctCpu"></span>
               </div>
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Status</span>
-                <div class="rounded p-2" style="background-color: #FEF9C2; color: #A65F00;">
-                  <span class="h5">Atenção</span>
+                <div class="rounded p-2" id="divStatusCpu">
+                  <span class="h5" id="statusCpu">Atenção</span>
                 </div>
               </div>
             </div>
@@ -339,12 +373,12 @@
             <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Acima do limite</span>
-                <span class="h3" style="color: #1268B8;">12.5%</span>
+                <span class="h3" style="color: #1268B8;" id="pctRam"></span>
               </div>
               <div class="d-flex flex-column">
                 <span class="h6" style="color: #13347b;">Status</span>
-                <div class="rounded p-2" style="background-color: #FFA2A2; color: #C10007;">
-                  <span class="h5">Crítico</span>
+                <div class="rounded p-2" id="divStatusRam">
+                  <span class="h5" id="statusRam"></span>
                 </div>
               </div>
             </div>
@@ -359,12 +393,12 @@
             <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
                 <span class="h6" style="color: #13347b;">Acima do limite</span>
-                <span class="h3" style="color: #4698c1;">12.5%</span>
+                <span class="h3" style="color: #4698c1;" id="pctRede"></span>
               </div>
               <div class="d-flex flex-column">
                 <span class="h6" style="color: #13347b;">Status</span>
-                <div class="rounded p-2" style="background-color: #FFA2A2; color: #C10007;">
-                  <span class="h5">Crítico</span>
+                <div class="rounded p-2" id="divStatusRede">
+                  <span class="h5" id="statusRede">Crítico</span>
                 </div>
               </div>
             </div>
@@ -375,7 +409,7 @@
           <div class="modeloGrafico d-flex flex-column gap-4 p-4">
             <div class="d-flex gap-3">
               <img src="../assets/dash-modelo/icon-linha.png" class="imgGrafico" alt="">
-              <h3 class="tituloGrafico">Quantidade de Alertas por Dia</h3>
+              <h3 class="tituloGrafico">Estabilidade por Componente</h3>
             </div>
             <canvas id="modeloGraficoLinhaAlertas"></canvas>
           </div>
@@ -399,132 +433,18 @@
             </div>
             <a href="./dashboardModular.html" id="ref-modulo">
               <div class="d-flex gap-1 w-100 h-100">
-                <span class="tituloGrafico h5"">Ver análise completa</span>
+                <span class="tituloGrafico h5">Ver análise completa</span>
                 <img src=" ../assets/dash-modelo/icon-seta.png" style="width: 35px; height: 35px; align-self: center;"
                   alt="">
               </div>
             </a>
           </div>
 
-          <div id="container-cards-modulos">
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">TEMP</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #e41033;">60</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="critical-bg d-flex justify-content-center">
-                  <span>Crítico</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">RESP</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #e41033;">65</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="critical-bg d-flex justify-content-center">
-                  <span>Crítico</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">ECG</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #FFE821;">75</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="warning-bg d-flex justify-content-center">
-                  <span>Atenção</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">PA</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #FFE821;">75</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="warning-bg d-flex justify-content-center">
-                  <span>Atenção</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">BPM</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">SPO2</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">PIC</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">PVC</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
-              <div class="card-header"><span class="h4">ETCO2</span></div>
-              <div class="card-body d-flex flex-column gap-3">
-                <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
-                  <span class="h1" style="color: #00A63E;">85</span>
-                  <span style="color: #919295;"><i>Score de Estabilidade</i></span>
-                </div>
-                <div class="ok-bg d-flex justify-content-center">
-                  <span>Estável</span>
-                </div>
-              </div>
-            </div>
+          <div id="containerCardsModulos">
+
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- Dash de analista -->
-
-    <div id="div_analista" style="display: none;">
-
     </div>
   </main>
 
@@ -534,11 +454,14 @@
   <script src="../js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 
 </body>
 
 
 <script>
+  Chart.register(window['chartjs-plugin-annotation']);
 
   function selecionarG() {
     document.getElementById('div_gerente').style.display = "block";
@@ -555,13 +478,12 @@
     validarSessao();
     listarModelos();
     buscarDadosS3(sessionStorage.FK_EMPRESA);
+    filtrar();
   };
 
   function listarModelos() {
     var fk_Empresa = sessionStorage.FK_EMPRESA;
     var selectModelo = document.getElementById("select_modelo");
-
-    console.log(fk_Empresa);
 
     fetch(`/modelo/listarModelos?fkEmpresa=${fk_Empresa}`)
       .then(function (resposta) {
@@ -583,275 +505,46 @@
   }
 
   // GRÁFICOS
-  let graficoAlertas;
-
-  // Gráfico CPU
-  const parametros = ["0-40%", "40-80%", ">80%"];
-
-  const graficoModeloCpu = document.getElementById('modeloGraficoCpu');
-
-  new Chart(graficoModeloCpu, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1680, 4120, 450],
-        backgroundColor: '#57D6E2',
-        borderRadius: 8
-      }]
+  const parametros = ["Sem alertas", "Alertas", "Alertas Críticos"];
+  const configGraficoBarra = {
+    plugins: {
+      legend: {
+        display: false
+      }
     },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas",
-            font: {
-              size: 16
-            }
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  });
-
-  // Gráfico RAM
-  const graficoModeloRam = document.getElementById('modeloGraficoRam');
-
-  new Chart(graficoModeloRam, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1450, 4320, 680],
-        backgroundColor: '#1268B8',
-        borderRadius: 8
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas",
-            font: {
-              size: 16
-            }
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  })
-
-  // Gráfico Rede
-  const graficoModeloRede = document.getElementById('modeloGraficoRede');
-
-  new Chart(graficoModeloRede, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1450, 4320, 680],
-        backgroundColor: '#4698c1',
-        borderRadius: 8
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas",
-            font: {
-              size: 16
-            }
-          },
-          ticks: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  })
-
-  // Gráfico Linha Alertas
-  // const rotulos = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
-
-  // const graficoModeloLinhaAlertas = document.getElementById('modeloGraficoLinhaAlertas');
-
-  // new Chart(graficoModeloLinhaAlertas, {
-  //   type: 'line',
-  //   data: {
-  //     labels: rotulos,
-  //     datasets: [
-  //       {
-  //         label: 'CPU',
-  //         data: [45, 52, 48, 56, 51, 38, 35],
-  //         borderColor: "#57D6E2",
-  //         borderWidth: 4
-  //       },
-  //       {
-  //         label: 'RAM',
-  //         data: [78, 85, 82, 89, 87, 65, 62],
-  //         borderColor: "#1268B8",
-  //         borderWidth: 4
-  //       },
-  //       {
-  //         label: 'Rede',
-  //         data: [54, 75, 42, 39, 80, 55, 72],
-  //         borderColor: '#4698c1',
-  //         borderWidth: 4
-  //       }
-  //     ]
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top',
-  //       },
-  //       title: {
-  //         display: false
-  //       }
-  //     },
-  //     scales: {
-  //       x: {
-  //         title: {
-  //           display: false
-  //         },
-  //         ticks: {
-  //           font: {
-  //             size: 18
-  //           }
-  //         }
-  //       },
-  //       y: {
-  //         title: {
-  //           display: true,
-  //           text: "Utilização (%)",
-  //           font: {
-  //             size: 20
-  //           }
-  //         },
-  //         ticks: {
-  //           font: {
-  //             size: 18
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // });
-
-  // Gráfico Origem dos Alertas
-  const data = {
-    labels: ['CPU', 'RAM', 'Rede'],
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [35, 48, 17],
-        backgroundColor: ["#57D6E2", "#1268B8", "#4698c1"]
-      }
-    ]
-  };
-
-  const config = {
-    type: 'pie',
-    data: data,
-    plugins: [ChartDataLabels],
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top'
-        },
+    scales: {
+      x: {
         title: {
           display: false,
+          text: "Intervalo da Captura"
         },
-        datalabels: {
-          color: ['#57D6E2', '#1268B8', '#4698c1'],
+        ticks: {
           font: {
-            weight: 'bold',
-            size: 25
-          },
-          anchor: 'end',
-          align: 'end',
-          formatter: (value) => {
-            return `${value}%`;
+            size: 14
           }
         }
       },
-      maintainAspectRatio: false
+      y: {
+        title: {
+          display: true,
+          text: "Capturas (%)",
+          font: {
+            size: 16
+          }
+        },
+        ticks: {
+          font: {
+            size: 14
+          }
+        }
+      }
     }
-  };
-
-  const modeloGraficoPizza = document.getElementById('modeloGraficoPizza');
-
-  new Chart(modeloGraficoPizza, config);
+  }
+  let graficoCpu;
+  let graficoRam;
+  let graficoRede;
+  let graficoAlertas;
+  let graficoOrigem;
 
   async function buscarDadosS3(id_empresa) {
 
@@ -922,10 +615,6 @@
     const selectModelo = document.getElementById("select_modelo");
     const idModelo = selectModelo.value;
 
-    if (!idModelo || idModelo == "0") {
-      return;
-    }
-
     await buscarDadosModelo(idModelo);
 
   }
@@ -941,22 +630,269 @@
 
     const modelos = Object.values(dados.modelos);
 
+    modelos.sort(
+      (a, b) => a.healthscore - b.healthscore
+    );
+
+    if (idModelo == 0) {
+      modelo = modelos[0]
+      idModeloMaisCritico = modelo.id_modelo
+
+      plotarKpisEspecificas(
+        idModeloMaisCritico,
+        modelo.pct_alertas,
+        modelo.healthscore
+      )
+
+      plotarGraficoCpu(
+        modelo.pct_ok_cpu,
+        modelo.pct_alertas_cpu,
+        modelo.pct_criticos_cpu
+      );
+
+      plotarGraficoRam(
+        modelo.pct_ok_ram,
+        modelo.pct_alertas_ram,
+        modelo.pct_criticos_ram
+      );
+
+      plotarGraficoRede(
+        modelo.pct_ok_rede,
+        modelo.pct_alertas_rede,
+        modelo.pct_criticos_rede
+      );
+
+      plotarGraficoBarra(
+        modelo.healthscore_cpu,
+        modelo.healthscore_ram,
+        modelo.healthscore_rede
+      );
+
+      plotarGraficoOrigem(
+        modelo.origem_alertas_cpu,
+        modelo.origem_alertas_ram,
+        modelo.origem_alertas_rede
+      );
+
+      plotarListaModulos(idModeloMaisCritico);
+
+      modeloEspecifico.innerHTML = modelo.nome;
+
+      return;
+
+    }
+
     for (const modelo of modelos) {
       if (modelo.id_modelo == idModelo) {
-        plotarGraficoBarra(
-          modelo.alertas_cpu,
-          modelo.criticos_cpu,
-          modelo.alertas_ram,
-          modelo.criticos_ram,
-          modelo.alertas_rede,
-          modelo.criticos_rede
+        plotarKpisEspecificas(
+          idModelo,
+          modelo.pct_alertas,
+          modelo.healthscore
+        )
+
+        plotarGraficoCpu(
+          modelo.pct_ok_cpu,
+          modelo.pct_alertas_cpu,
+          modelo.pct_criticos_cpu
         );
+
+        plotarGraficoRam(
+          modelo.pct_ok_ram,
+          modelo.pct_alertas_ram,
+          modelo.pct_criticos_ram
+        );
+
+        plotarGraficoRede(
+          modelo.pct_ok_rede,
+          modelo.pct_alertas_rede,
+          modelo.pct_criticos_rede
+        );
+
+        plotarGraficoBarra(
+          modelo.healthscore_cpu,
+          modelo.healthscore_ram,
+          modelo.healthscore_rede
+        );
+
+        plotarGraficoOrigem(
+          modelo.origem_alertas_cpu,
+          modelo.origem_alertas_ram,
+          modelo.origem_alertas_rede
+        );
+
+        plotarListaModulos(idModelo);
+
+        modeloEspecifico.innerHTML = modelo.nome;
+
+        return;
       }
     }
   }
 
-  function plotarGraficoBarra(alertasCpu, criticosCpu, alertasRam, criticosRam, alertasRede, criticosRede) {
+  function plotarKpisEspecificas(idModelo, acimaLimite, score) {
+
+    var corAcimaLimite = '#00A63E';
+    var corEstabilidade = '#e41033';
+    var imgAcimaLimite = '../assets/dash-modelo/icon-uptime.png';
+    var imgEstabilidade = '../assets/dash-modelo/icon-alerta.png';
+
+    if (acimaLimite > 30) {
+      corAcimaLimite = '#e41033';
+      imgAcimaLimite = '../assets/dash-modelo/icon-uptime-red.png';
+    } else if (acimaLimite > 20) {
+      corAcimaLimite = '#dac617';
+      imgAcimaLimite = '../assets/dash-modelo/icon-uptime-yellow.png';
+    }
+
+    if (score > 79) {
+      corEstabilidade = '#00A63E';
+      imgEstabilidade = '../assets/dash-modelo/icon-alerta-green.png';
+    } else if (score > 59) {
+      corEstabilidade = '#dac617';
+      imgEstabilidade = '../assets/dash-modelo/icon-alerta-yellow.png';
+    }
+
+    fetch(`/modelo/buscarModelo/${idModelo}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (resposta) {
+            kpiLancamento.innerHTML = resposta[0].dtLancamento
+          })
+        }
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar modelo:", erro);
+      });
+
+    kpiAcimaLimite.innerHTML = `${acimaLimite}%`;
+    kpiAcimaLimite.style.color = corAcimaLimite;
+    containerKpiAcimaLimite.style.borderBottom = `4px solid ${corAcimaLimite}`;
+    imgKpiAcimaLimite.src = imgAcimaLimite;
+
+    kpiScore.innerHTML = score;
+    kpiScore.style.color = corEstabilidade;
+    containerKpiEstabilidade.style.borderBottom = `4px solid ${corEstabilidade}`;
+    imgKpiEstabilidade.src = imgEstabilidade;
+
+  }
+
+  function plotarGraficoCpu(okCpu, alertasCpu, criticosCpu) {
+    const graficoModeloCpu = document.getElementById('modeloGraficoCpu');
+
+    if (graficoCpu) {
+      graficoCpu.destroy();
+    }
+
+    graficoCpu = new Chart(graficoModeloCpu, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okCpu, alertasCpu, criticosCpu],
+          backgroundColor: '#57D6E2',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasCpu, criticosCpu, "Cpu")
+  }
+
+  function plotarGraficoRam(okRam, alertasRam, criticosRam) {
+    const graficoModeloRam = document.getElementById('modeloGraficoRam');
+
+    if (graficoRam) {
+      graficoRam.destroy();
+    }
+
+    graficoRam = new Chart(graficoModeloRam, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okRam, alertasRam, criticosRam],
+          backgroundColor: '#1268B8',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasRam, criticosRam, "Ram")
+  }
+
+  function plotarGraficoRede(okRede, alertasRede, criticosRede) {
+    const graficoModeloRede = document.getElementById('modeloGraficoRede');
+
+    if (graficoRede) {
+      graficoRede.destroy();
+    }
+
+    graficoRede = new Chart(graficoModeloRede, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okRede, alertasRede, criticosRede],
+          backgroundColor: '#4698c1',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasRede, criticosRede, "Rede")
+  }
+
+  function plotarKpiGraficos(alertas, criticos, componente) {
+    const pct = document.getElementById(
+      `pct${componente}`
+    );
+
+    const status = document.getElementById(
+      `status${componente}`
+    );
+
+    const divStatus = document.getElementById(`divStatus${componente}`);
+
+    bgColor = "ok-bg";
+    msg = "Estável";
+
+    tmpAcimaLimite = alertas + criticos
+
+    if (tmpAcimaLimite > 30) {
+      bgColor = "critical-bg";
+      msg = "Crítico";
+    } else if (tmpAcimaLimite > 20) {
+      bgColor = "warning-bg";
+      msg = "Atenção";
+    }
+
+    pct.innerHTML = `${tmpAcimaLimite}%`
+    status.innerHTML = msg
+    divStatus.classList.add(bgColor)
+  }
+
+  function plotarGraficoBarra(scoreCpu, scoreRam, scoreRede) {
     const graficoBarraExemplo = document.getElementById('modeloGraficoLinhaAlertas');
+
+    var corCpu = '#57D6E2'
+    var corRam = '#1268B8'
+    var corRede = '#4698c1'
+
+    if (scoreCpu < 60) {
+      corCpu = '#e41033'
+    }
+    if (scoreRam < 60) {
+      corRam = '#e41033'
+    }
+    if (scoreRede < 60) {
+      corRede = '#e41033'
+    }
 
     if (graficoAlertas) {
       graficoAlertas.destroy();
@@ -968,19 +904,13 @@
         labels: ['CPU', 'RAM', 'Rede'],
         datasets: [{
           label: 'Alertas',
-          data: [alertasCpu, alertasRam, alertasRede],
-          backgroundColor: '#4698c1',
+          data: [scoreCpu, scoreRam, scoreRede],
+          backgroundColor: [corCpu, corRam, corRede],
           borderRadius: 8
-        },
-        {
-          label: 'Alertas Críticos',
-          data: [criticosCpu, criticosRam, criticosRede],
-          backgroundColor: '#1268B8',
-          borderRadius: 8
-        }
-        ]
+        }]
       },
       options: {
+        indexAxis: 'y',
         plugins: {
           legend: {
             display: true
@@ -988,10 +918,12 @@
         },
         scales: {
           x: {
-            stacked: true,
             title: {
-              display: false,
-              text: "Intervalo da Captura"
+              display: true,
+              text: "Health Score",
+              font: {
+                size: 16
+              }
             },
             ticks: {
               font: {
@@ -1000,9 +932,8 @@
             }
           },
           y: {
-            stacked: true,
             title: {
-              display: true,
+              display: false,
               text: "Capturas acima do limite (%)",
               font: {
                 size: 16
@@ -1014,9 +945,150 @@
               }
             }
           }
+        },
+        plugins: {
+          annotation: {
+            annotations: {
+              limitLine: {
+                type: 'line',
+                xMin: 60,
+                xMax: 60,
+                borderColor: '#FF7F7F',
+                borderWidth: 2,
+                label: { display: true, position: 'end' }
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const value = context.raw;
+                const status = value > 60 ? 'Estável' : 'Instável';
+                return `Valor: ${value} (${status})`;
+              }
+            }
+          },
+          legend: { display: false }
         }
       }
     })
+  }
+
+  function plotarGraficoOrigem(pctCpu, pctRam, pctRede) {
+    const data = {
+      labels: ['CPU', 'RAM', 'Rede'],
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: [pctCpu, pctRam, pctRede],
+          backgroundColor: ["#57D6E2", "#1268B8", "#4698c1"]
+        }
+      ]
+    };
+
+    const config = {
+      type: 'pie',
+      data: data,
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: false,
+          },
+          datalabels: {
+            color: ['#57D6E2', '#1268B8', '#4698c1'],
+            font: {
+              weight: 'bold',
+              size: 25
+            },
+            anchor: 'end',
+            align: 'end',
+            formatter: (value) => {
+              return `${value}%`;
+            }
+          }
+        },
+        maintainAspectRatio: false
+      }
+    };
+
+    const modeloGraficoPizza = document.getElementById('modeloGraficoPizza');
+
+    if (graficoOrigem) {
+      graficoOrigem.destroy();
+    }
+
+    graficoOrigem = new Chart(modeloGraficoPizza, config);
+  }
+
+  async function plotarListaModulos(idModelo) {
+    const empresa = sessionStorage.FK_EMPRESA;
+
+    containerCardsModulos.innerHTML = ``;
+
+    try {
+
+      const resposta = await fetch(`/moduloS3/${empresa}/${idModelo}`);
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar dados");
+      }
+
+      const dados = await resposta.json();
+
+      modulos = dados.modulos.sort((a, b) => {
+
+        if (b.critico !== a.critico) {
+          return b.critico - a.critico;
+        }
+
+        if (b.alerta !== a.alerta) {
+          return b.alerta - a.alerta;
+        }
+
+        return b.instabilidade - a.instabilidade;
+      });
+
+      modulos.forEach(modulo => {
+
+        bgColor = "critical-bg";
+        msg = "Crítico";
+        colorText = "#e41033";
+
+        if (modulo.estabilidade > 79) {
+          bgColor = "ok-bg";
+          msg = "Estável";
+          colorText = "#00A63E";
+        } else if (modulo.estabilidade > 59) {
+          bgColor = "warning-bg";
+          msg = "Atenção";
+          colorText = "#FFE821";
+        }
+
+        containerCardsModulos.innerHTML += `
+          <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
+            <div class="card-header"><span class="h4">${modulo.nome}</span></div>
+            <div class="card-body d-flex flex-column gap-3">
+              <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
+                <span class="h1" style="color: ${colorText};">${modulo.estabilidade}</span>
+                <span style="color: #919295;"><i>Score de Estabilidade</i></span>
+              </div>
+              <div class="${bgColor} d-flex justify-content-center">
+                <span>${msg}</span>
+              </div>
+            </div>
+          </div> `;
+      });
+
+    } catch (erro) {
+
+      console.error("Erro ao buscar dashboard:", erro);
+
+    }
   }
 
 </script>

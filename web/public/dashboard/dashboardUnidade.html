@@ -140,15 +140,15 @@
             </div>
 
             <div class="card-kpi">
-                <p>Acima de 12h</p>
-                <h2 id="kpiTempo">0</h2>
+                <p>Rede Utilizada</p>
+                <h2 id="kpiGargalo">0</h2>
             </div>
 
         </div>
 
         <div class="grafico">
 
-            <h4>Tráfego de Rede</h4>
+            <h4>Utilização da Rede da Unidade (%)</h4>
 
             <canvas id="graficoRede"></canvas>
 
@@ -167,7 +167,7 @@
             </div>
 
             <div class="card-lista">
-                <h4>Monitores com Alto Tempo</h4>
+                <h4>Monitores com Maior Consumo de Rede</h4>
 
                 <div id="listaTempo">
 
@@ -204,12 +204,23 @@
             try {
                 var resposta = await fetch(`/unidadeS3/${idEmpresa}/${idHospital}/${idUnidade}`);
 
+                if (!resposta.ok) {
+                    console.log("Erro HTTP ao buscar unidade:", resposta.status);
+                    return;
+                }
+
                 var dados = await resposta.json();
+
+                if (!dados || dados.erro) {
+                    console.log("JSON da unidade não encontrado ou inválido:", dados);
+                    document.getElementById("nomeUnidade").innerHTML = "Sem dados da unidade";
+                    return;
+                }
 
                 mostrarDados(dados);
 
             } catch (erro) {
-                console.log("Erro:", erro);
+                console.error("Erro ao carregar dashboard:", erro);
             }
 
         }
@@ -222,7 +233,17 @@
             document.getElementById("kpiAtivos").innerHTML = ativos + " / " + totalBanco;
             document.getElementById("nomeUnidade").innerHTML = dados.nome || "--";
             document.getElementById("ultimaAtualizacao").innerHTML = dados.ultimaAtualizacao || "--";
-            document.getElementById("kpiTempo").innerHTML = dados.monitoresAcimaDeDozeHoras ?? "--";
+            var usoRede = Number(dados.usoRedePercentual || 0);
+
+            document.getElementById("kpiGargalo").innerHTML = usoRede.toFixed(1) + "%";
+
+            if (usoRede >= 90) {
+                document.getElementById("kpiGargalo").style.color = "red";
+            } else if (usoRede >= 70) {
+                document.getElementById("kpiGargalo").style.color = "orange";
+            } else {
+                document.getElementById("kpiGargalo").style.color = "green";
+            }
 
             document.getElementById("kpiAlerta").innerHTML = dados.emAlerta ?? "--";
 
@@ -236,129 +257,243 @@
                 document.getElementById("kpiCritico").style.color = "red";
             }
 
-            carregarAlertas(dados.monitoresEmAlertaLista);
-            carregarTempo(dados.monitoresAltoTempoUso);
-            carregarGrafico(dados.trafegoRede, dados.redeTotalMbps);
+            carregarAlertas(dados.monitoresEmAlertaLista || []);
+            carregarGrafico(dados.trafegoRede || [], dados.redeTotalMbps);
+            carregarConsumoRede(dados.monitoresConsumoRede || []);
+
+        }
+        
+        function carregarConsumoRede(lista) {
+
+            var container = document.getElementById("listaTempo");
+
+            container.innerHTML = "";
+
+            if (!lista || lista.length == 0) {
+
+                container.innerHTML = "<p class='normal'>Nenhum consumo de rede registrado</p>";
+
+                return;
+
+            }
+
+            for (var i = 0; i < lista.length; i++) {
+
+                var monitor = lista[i];
+
+                container.innerHTML += `
+                    <button class="item" onclick="irParaMonitor(${monitor.id})">
+                        <p><b>Monitor ${monitor.id}</b></p>
+                        <p>Rede atual: ${monitor.redeAtual ?? monitor.rede ?? 0} Mb/s</p>
+                    </button>
+                `;
+
+            }
 
         }
 
         function carregarGrafico(trafego, limite) {
 
+            if (!Array.isArray(trafego)) {
+                trafego = [];
+            }
+
             var labels = [];
             var valores = [];
+            var limiteNumerico = Number(limite);
+
+            function formatarHorario(valor) {
+                if (!valor) {
+                    return "";
+                }
+
+                var texto = String(valor);
+
+                if (texto.indexOf(" ") >= 0) {
+                    return texto.split(" ")[1].substring(0, 8);
+                }
+
+                return texto;
+            }
 
             for (var i = 0; i < trafego.length; i++) {
-                labels.push(i + 1);
-                var valor = trafego[i].trafegoMbps;
-                if (!valor) valor = 0;
-                valores.push(valor);
+                var item = trafego[i];
+
+                labels.push(formatarHorario(item.timestamp || (i + 1)));
+
+                var porcentagem = Number(item.usoRedePercentual);
+
+                if (isNaN(porcentagem)) {
+                    var valor = Number(item.trafegoMbps || 0);
+
+                    if (limiteNumerico > 0) {
+                        porcentagem = (valor / limiteNumerico) * 100;
+                    } else {
+                        porcentagem = 0;
+                    }
+                }
+
+                valores.push(Number(porcentagem.toFixed(2)));
+            }
+
+            var maiorValor = 0;
+
+            for (var i = 0; i <valores.length; i++) {
+                if (valores[i] > maiorValor) {
+                    maiorValor = valores[i];
+                }
+            }
+
+            var maximoGrafico = 10;
+
+            if (maiorValor <= 1) {
+                maximoGrafico = 1;
+            } else if (maiorValor <= 5) {
+                maximoGrafico = 5;
+            } else if (maiorValor <= 10) {
+                maximoGrafico = 10;
+            } else if (maiorValor <= 50) {
+                maximoGrafico = Math.ceil((maiorValor + 5) / 5) * 5;
+            } else {
+                maximoGrafico = Math.ceil((maiorValor + 20) / 10) * 10;
             }
 
             var datasets = [{
-                label: "Mb/s",
+                label: "% de uso da rede da unidade",
                 data: valores,
                 borderColor: "#163599",
-                backgroundColor: "rgba(22,53,153,0.1)",
-                fill: true
+                backgroundColor: "transparent",
+                borderWidth: 3,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                tension: 0.2,
+                fill: false
             }];
 
-            if (limite) {
+            if (maximoGrafico >= 90) {
                 datasets.push({
-                    label: "Limite (" + limite + " Mb/s)",
-                    data: labels.map(function () { return limite; }),
+                    label: "Limite crítico de utilização (90%)",
+                    data: labels.map(function () { return 90; }),
+                    type: "line",
                     borderColor: "red",
                     borderDash: [6, 4],
-                    borderWidth: 1.5,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false
+                });
+            }
+
+            if (maximoGrafico >= 100) {
+                datasets.push({
+                    label: "Capacidade da rede (100%)",
+                    data: labels.map(function () { return 100; }),
+                    type: "line",
+                    borderColor: "orange",
+                    borderDash: [4, 4],
+                    borderWidth: 2,
                     pointRadius: 0,
                     fill: false
                 });
             }
 
             var ctx = document.getElementById("graficoRede");
+
+            if (grafico) {
+                grafico.destroy();
+            }
+
             grafico = new Chart(ctx, {
                 type: "line",
-                data: { labels: labels, datasets: datasets }
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: maximoGrafico,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + "%";
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                maxTicksLimit: 8
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return "Uso: " + context.raw + "%";
+                                }
+                            }
+                        }
+                    }
+                }
             });
         }
+
         function carregarAlertas(lista) {
 
             var container = document.getElementById("listaAlertas");
 
             container.innerHTML = "";
 
-            if (lista.length == 0) {
+            if (!lista || lista.length == 0) {
 
                 container.innerHTML = `
                     <p class="normal">
                         Nenhum alerta
                     </p>
                 `;
-            } else {
 
-                for (var i = 0; i < lista.length; i++) {
+                return;
+            }
 
-                    var monitor = lista[i];
+            var criticos = [];
+            var alertas = [];
 
-                    var classe = "alerta";
+            for (var i = 0; i < lista.length; i++) {
 
-                    if (monitor.statusGeral == "Crítico") {
-
-                        classe = "critico";
-
-                    }
-
-                    container.innerHTML += `
-                        <button class="item" onclick="irParaMonitor(${monitor.id})" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">
-                            <p><b>Monitor ${monitor.id}</b></p>
-                            <p>CPU: ${monitor.cpu}%</p>
-                            <p>RAM: ${monitor.ram}%</p>
-                            <p class="${classe}">${monitor.statusGeral}</p>
-                        </button>
-                    `;
+                if (lista[i].statusGeral == "Crítico") {
+                    criticos.push(lista[i]);
+                } else {
+                    alertas.push(lista[i]);
                 }
+            }
+
+            lista = criticos.concat(alertas);
+
+            for (var i = 0; i < lista.length; i++) {
+
+                var monitor = lista[i];
+
+                var classe = "alerta";
+
+                if (monitor.statusGeral == "Crítico") {
+                    classe = "critico";
+                }
+
+                container.innerHTML += `
+                    <button class="item" onclick="irParaMonitor(${monitor.id})">
+                        <p><b>Monitor ${monitor.id}</b></p>
+                        <p>CPU: ${monitor.cpu}%</p>
+                        <p>RAM: ${monitor.ram}%</p>
+                        <p class="${classe}">${monitor.statusGeral}</p>
+                    </button>
+                `;
             }
         }
         function irParaMonitor(idMonitor) {
             sessionStorage.ID_MONITOR = idMonitor;
-            window.location.href = "./dashboardMonitor.html";
-        }
-
-        function carregarTempo(lista) {
-
-            var container = document.getElementById("listaTempo");
-
-            container.innerHTML = "";
-
-            if (lista.length == 0) {
-
-                container.innerHTML = `
-                    <p class="normal">
-                        Nenhum monitor acima de 12h
-                    </p>
-                `;
-            } else {
-
-                for (var i = 0; i < lista.length; i++) {
-
-                    var monitor = lista[i];
-
-                    container.innerHTML += `
-                    
-                        <div class="item">
-
-                            <p>
-                                <b>Monitor ${monitor.id}</b>
-                            </p>
-
-                            <p>
-                                ${monitor.tempoUsoHoras} horas ligado
-                            </p>
-
-                        </div>
-
-                    `;
-                }
-            }
+            window.location.href = "./dashboardMonitorEspecifico.html";
         }
     </script>
 
