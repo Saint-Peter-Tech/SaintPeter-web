@@ -51,6 +51,15 @@ function validarSessao() {
             botaoNavDashInicial.href = "./dashboardSuporteEmpresa.html";
         }
     }
+
+    const gerenteAba = document.getElementById("gerenteAba");
+
+    if(gerenteAba != null) {
+        if (adm != "null") {
+            gerenteAba.style.display = "none";
+        }
+    }
+
 }
 
 function limparSessao() {

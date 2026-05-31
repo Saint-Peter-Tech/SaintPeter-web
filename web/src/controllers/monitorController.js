@@ -131,12 +131,29 @@ function atualizarLimites(req, res) {
   var CompCpu = req.body.CompCpu;
   var CompDisco = req.body.CompDisco;
 
-  console.log('ESTOU NO REQ.QUERY',req.query.fkMonitor);
+  console.log('ESTOU NO REQ.QUERY', req.query.fkMonitor);
 
   monitorModel
     .atualizarLimites(fkMonitor, CompRede, CompRam, CompCpu, CompDisco)
     .then(function (resultado) {
       res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarMonitores(req, res) {
+  var fkEmpresa = req.params.fkEmpresa;
+
+  monitorModel.listarMonitores(fkEmpresa)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum monitor encontrado!");
+      }
     })
     .catch(function (erro) {
       console.log(erro);
@@ -153,4 +170,5 @@ module.exports = {
   descricaoManutencao,
   atualizarStatusMonitor,
   atualizarLimites,
+  listarMonitores,
 };

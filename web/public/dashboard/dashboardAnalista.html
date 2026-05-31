@@ -105,6 +105,31 @@
         <span class="description">Funcionários</span>
       </a>
 
+      <div id="gerenteAba">
+        <span class="menu-title">GERENTE</span>
+
+        <a class="nav-link" href="./dashboardGerente.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.186.113a1 1 0 0 0-.372 0l-7 1.75A1 1 0 0 0 0 2.83v10.34a1 1 0 0 0 .757.97l7 1.75a1 1 0 0 0 .486 0l7-1.75A1 1 0 0 0 16 13.17V2.83a1 1 0 0 0-.757-.97zM8 1.15l6.5 1.625L8 4.4 1.5 2.775zM1 3.694l6.5 1.625v9.531L1 13.225zm14 0v9.531l-6.5 1.625V5.319z" />
+          </svg>
+
+          <span class="description">Modelos</span>
+        </a>
+
+        <a class="nav-link" href="./dashboardModular.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+            <path fill-rule="evenodd"
+              d="M0 0h1v15h15v1H0zm10-10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V-9.293l-4.146 4.147a.5.5 0 0 1-.708 0L7.5-7.293 3.854-3.646a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0L9.5-6.707 13.293-10.5z" />
+          </svg>
+
+          <span class="description">Módulos</span>
+        </a>
+      </div>
+
       <div class="dropdown usuario">
         <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -165,171 +190,184 @@
       </div>
 
       <!-- kpis cpu, ram e disco rígido -->
-  <div class="pai-todos d-flex flex-column gap-4">
-      <div class="displayFlex d-flex flex-row gap-4">
-        <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
-          <div class="parte-cima-kpi d-flex justify-content-between">
-            <div class="displayFlex" style="gap: 80%">
-              <h5>MONITORES INDISPONÍVEIS <br>AGORA</h5>
-            </div>
-
-
-            <span style="display: flex; gap: 25%">
-              <div>
-                <h1><b>5</b></h1>
+      <div class="pai-todos d-flex flex-column gap-4">
+        <div class="displayFlex d-flex flex-row gap-4">
+          <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
+            <div class="parte-cima-kpi d-flex justify-content-between">
+              <div class="displayFlex" style="gap: 80%">
+                <h5>MONITORES INDISPONÍVEIS <br>AGORA</h5>
               </div>
-          </div>
-          <div class="parte-baixo-kpi d-flex justify-content-between">
-            <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
-            <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
-            </span>
-          </div>
-        </div>
 
-        <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
-          <div class="parte-cima-kpi d-flex justify-content-between">
-            <div class="displayFlex" style="gap: 60%">
-              <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
+
+              <span style="display: flex; gap: 25%" onload="kpiMonitorIndisponivel()">
+                <div>
+                  <h1><b id="span_kpi1">0</b></h1>
+                </div>
             </div>
-
-            <span class="text-end" style="display: flex; gap: 10%">
-              <h4><b>EINSTEIN - ALPHAVILLE</b></h4>
-          </div>
-          <div class="parte-baixo-kpi d-flex justify-content-between">
-            <p><i>14 Quedas</i></p>
-            <div style="align-self: flex-end; text-align: end">
-              <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
+            <div class="parte-baixo-kpi d-flex justify-content-between">
+              <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
+              <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
+              </span>
             </div>
-            </span>
           </div>
-        </div>
 
-        <div class="kpiMonitorComponente d-flex flex-column gap-5" style="height: 200px !important">
-          <div class="parte-cima-kpi d-flex justify-content-between">
-            <div class="displayFlex" style="gap: 60%">
+          <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
+            <div class="parte-cima-kpi d-flex justify-content-between">
+              <div class="displayFlex" style="gap: 60%">
+                <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
+              </div>
+
+              <span class="text-end" style="display: flex; gap: 10%">
+                <h4><b>EINSTEIN - ALPHAVILLE</b></h4>
+            </div>
+            <div class="parte-baixo-kpi d-flex justify-content-between">
+              <p><i>14 Quedas</i></p>
+              <div style="align-self: flex-end; text-align: end">
+                <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
+              </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
+            <div class="parte-cima-kpi d-flex justify-content-between">
+              <div class="displayFlex" style="gap: 60%">
                 <h5>HOSPITAIS COM +5 ALERTAS <br>/ 24H</h5>
-            </div>
+              </div>
 
               <span style="display: flex; gap: 25%">
                 <div>
                   <h1><b>6</b></h1>
                 </div>
-          </div>
+            </div>
             <div class="parte-baixo-kpi d-flex justify-content-between">
-                  <p><i>HOJE 6 - ONTEM 1</i></p>
-                <!-- </div> -->
-                <div style="align-self: flex-end; text-align: end">
-                  <p><i><a href="./dashboardAlertasHospital.html" style="color: inherit;">Saiba mais</a></i></p>
-                </div>
+              <p><i>HOJE 6 - ONTEM 1</i></p>
+              <!-- </div> -->
+              <div style="align-self: flex-end; text-align: end">
+                <p><i><a href="./dashboardAlertasHospital.html" style="color: inherit;">Saiba mais</a></i></p>
+              </div>
               </span>
             </div>
+          </div>
         </div>
-    </div>
 
-    <div class="paiListas d-flex gap-4">
-      <div class="grafico modulosAtivos">
-        <span style="font-size: large;"><h5>LISTA DE MONITORES INDISPONÍVEIS</h5></span>
+        <div class="paiListas d-flex gap-4">
+          <div class="grafico modulosAtivos d-flex flex-column">
+            <div style="font-size: large;">
+              <h5>LISTA DE MONITORES INDISPONÍVEIS</h5>
+            </div>
 
-        <div class="container pt-3 w-30">
-          <table id="example" class="table table-striped">
-            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
-              <tr>
-                <td>MON-UTI-007</td>
-              </tr>
-              <tr>
-                <td>MON-UTI-008</td>
-              </tr>
-              <tr>
-                <td>MON-CC-002</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-            </tbody>
-          </table>
+            <div style="max-height: 200px; max-width: 500px; overflow-y: auto">
+              <table id="example" class="table table-striped">
+                <thead class="sticky-top">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">UNIDADE</th>
+                  </tr>
+                </thead>
+                <tbody id="lista1" onload="listaMonitorIndisponivel()" class="table table-striped">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grafico modulosAtivos d-flex flex-column">
+            <div style="font-size: large;">
+              <h5>RANKING DE UNIDADES COM QUEDAS</h5>
+            </div>
+
+            <div style="max-height: 200px; max-width: 500px; overflow-y: auto">
+              <table id="example" class="table table-striped">
+                <thead class="sticky-top">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">QTD. QUEDAS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>MON-UTI-007</th>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <th>MON-UTI-008</th>
+                    <td>34</td>
+                  <tr>
+                    <td>MON-CC-002</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grafico modulosAtivos d-flex flex-column">
+            <div style="font-size: large;">
+              <h5>HOSPITAIS COM MAIS DE 5 ALERTAS / 24H</h5>
+            </div>
+
+            <div style="max-height: 200px; max-width: 500px; overflow-y: auto">
+              <table id="example" class="table table-striped">
+                <thead class="sticky-top">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">QTD. ALERTAS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-white">
+                    <td class="bg-white">MON-UTI-007</td>
+                  </tr>
+                  <tr>
+                    <td>MON-UTI-008</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-002</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                  <tr>
+                    <td>MON-CC-009</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- graficos de cpu e ram -->
+        <div class="pai-graficos">
+          <div class="displayFlex">
+            <div class="grafico" style="width: 820px; height: 550px;">
+              <h4><img src="../assets/dash-modelo/icon-rede.png" alt=""> Quedas por Dia e Turno</h4>
+              <div id="quedasDia"></div>
+            </div>
+
+            <div class="grafico" style="width: 820px">
+              <h4><img src="../assets/dash-modelo/icon-alerta.png" alt=""> Alertas por Semana do Mês</h4>
+              <canvas id="alertaSemana"></canvas>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="grafico modulosAtivos">
-        <span style="font-size: large;"><h5>RANKING DE UNIDADES COM QUEDAS</h5></span>
-
-        <div class="container pt-3 w-30">
-          <table id="example" class="table table-striped">
-            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
-              <tr>
-                <td>MON-UTI-007</td>
-              </tr>
-              <tr>
-                <td>MON-UTI-008</td>
-              </tr>
-              <tr>
-                <td>MON-CC-002</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-  <div class="grafico modulosAtivos">
-        <div style="font-size: large;"><h5>HOSPITAIS COM MAIS DE 5 ALERTAS / 24H</h5></div>
-
-        <div class="container pt-3 w-30">
-          <table id="example" class="table table-striped">
-            <tbody style="max-height: 165px; max-width: 500px;" class="list-group overflow-auto">
-              <tr class="bg-white">
-                <td class="bg-white">MON-UTI-007</td>
-              </tr>
-              <tr>
-                <td>MON-UTI-008</td>
-              </tr>
-              <tr>
-                <td>MON-CC-002</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-              <tr>
-                <td>MON-CC-009</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  </div>
-</div>
-  
-
-    <!-- graficos de cpu e ram -->
-    <div class="pai-graficos">
-      <div class="displayFlex">
-        <div class="grafico" style="width: 820px; height: 550px;">
-          <h4><img src="../assets/dash-modelo/icon-rede.png" alt=""> Quedas por Dia e Turno</h4>
-          <div id="quedasDia"></div>
-        </div>
-
-        <div class="grafico" style="width: 820px">
-          <h4><img src="../assets/dash-modelo/icon-alerta.png" alt=""> Alertas por Semana do Mês</h4>
-          <canvas id="alertaSemana"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Cadastros e modulos ativos -->
+      <!-- Cadastros e modulos ativos -->
 
   </main>
 
@@ -342,7 +380,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="https://jsdelivr.net"></script>
+  <!-- <script src="https://jsdelivr.net"></script> -->
 </body>
 
 <script>
@@ -395,143 +433,215 @@
   // document.getElementById("kpi_mais").innerText = "Sexta";
   // document.getElementById("kpi_menos").innerText = "Segunda";
 
+  function kpiMonitorIndisponivel() {
 
-var testeGraf = {
-  chart: {
-    type: 'heatmap'
-  },
-  series: [
-    {
-      name: "Madrugada",
-      data: [{
-        x: 'W1',
-            y: 23
-          }, {
-            x: 'W2',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }]
+    console.log("Chamou função 1.")
+
+    fetch("/analista/kpiMonitorIndisponivel", {
+      method: "GET"
+    })
+      .then(function (resposta) {
+
+        if (resposta.ok) {
+          return resposta.json();
+        }
+
+        throw "Erro ao buscar quantidade de monitores indisponíveis";
+      })
+      .then(function (dados) {
+        console.log("Monitores indisponíveis:", dados);
+
+        console.log("Quantidade:", dados[0].quantidade);
+
+        document.getElementById("span_kpi1").innerHTML = dados[0].quantidade;
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+
+  }
+
+  kpiMonitorIndisponivel();
+
+  function listaMonitorIndisponivel() {
+
+    console.log("Chamou função 2.")
+
+    fetch("/analista/listaMonitorIndisponivel", {
+      method: "GET"
+    })
+      .then(function (resposta) {
+
+        if (resposta.ok) {
+          return resposta.json();
+        }
+
+        throw "Erro ao listar monitores indisponíveis";
+      })
+      .then(function (dados) {
+        console.log("Monitores indisponíveis:", dados);
+
+        console.log("Quantidade:", dados[0]);
+
+        var lista = document.getElementById("lista1");
+
+        lista.innerHTML = "";
+
+        for (var i = 0; i < dados.length; i++) {
+
+          lista.innerHTML += `
+            <tr>
+                <th scope="row">${dados[i].id_monitor}</th>
+                <td>${dados[i].nome_unidade}</td>
+            </tr>
+        `;
+        }
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+
+  }
+
+  listaMonitorIndisponivel();
+
+
+  var testeGraf = {
+    chart: {
+      type: 'heatmap'
     },
-    {
-      name: "Noite",
-      data: [{
-        x: 'W1',
-            y: 23
-          }, {
-            x: 'W2',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }]
-    },
-    {
-      name: "Tarde",
+    series: [
+      {
+        name: "Madrugada",
         data: [{
           x: 'W1',
-            y: 23
-          }, {
-            x: 'W2',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }]
+          y: 23
+        }, {
+          x: 'W2',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }]
+      },
+      {
+        name: "Noite",
+        data: [{
+          x: 'W1',
+          y: 23
+        }, {
+          x: 'W2',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }]
+      },
+      {
+        name: "Tarde",
+        data: [{
+          x: 'W1',
+          y: 23
+        }, {
+          x: 'W2',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }]
       },
       {
         name: "Manhã",
-          data: [{
-            x: 'W1',
-            y: 23
-          }, {
-            x: 'W2',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W3',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }, {
-            x: 'W4',
-            y: 23
-          }]
-        }
-  ]
-,
-  xaxis: {
-    categories: ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]
+        data: [{
+          x: 'W1',
+          y: 23
+        }, {
+          x: 'W2',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W3',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }, {
+          x: 'W4',
+          y: 23
+        }]
+      }
+    ]
+    ,
+    xaxis: {
+      categories: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+    }
   }
-}
 
-var teste = new ApexCharts(document.querySelector("#quedasDia"), testeGraf);
+  var teste = new ApexCharts(document.querySelector("#quedasDia"), testeGraf);
 
-teste.render();
+  teste.render();
 
   const ctx = document.getElementById('alertaSemana');
 
   const config = {
-  type: 'bar',
-  data: {
-    labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
-    datasets: [{
-      label: 'Alertas',
-      data: [10, 20, 30, 40], // ✅ array com os 4 valores
-      backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2']
-    }]
-  },
-  options: {
-    scales: {
-      y: { beginAtZero: true }
+    type: 'bar',
+    data: {
+      labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+      datasets: [{
+        label: 'Alertas',
+        data: [10, 20, 30, 40], // ✅ array com os 4 valores
+        backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2']
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
     }
-  }
-};
+  };
 
-const alertaSemana = new Chart(ctx, config);
+  const alertaSemana = new Chart(ctx, config);
 
   // function alertaPopUp() {
   //   if (Number(consumoCPU[4]) >= 70) {

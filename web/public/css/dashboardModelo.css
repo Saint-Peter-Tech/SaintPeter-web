@@ -10,6 +10,22 @@
     border-radius: 10px;
 }
 
+.legendaItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status.ok { background-color: #16a34a; }
+.status.alerta { background-color: #f59e0b; }
+.status.critico { background-color: #dc2626; }
+
 .table-scroll{
     max-height:350px;
     overflow-y:auto;
@@ -87,7 +103,9 @@
   transition: transform ease 0.3s;
   width: 600px;
   height: 200px;
-  gap: 2%;
+  display: grid;
+  grid-row: 1fr 1fr 1fr;
+  align-items: end;
 }
 
 .kpiModelo:hover {
@@ -99,9 +117,14 @@
   gap: 2%;
 }
 
+.displayGrid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
 .container-graficos1{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2%;
 }
 
@@ -119,7 +142,7 @@
 
 #containerGraficoPizza {
     display: grid;
-    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-rows: 1fr 7fr;
     gap: 4%;
 }
 
@@ -132,4 +155,41 @@
     color: #13347b;
     margin: 0; 
     align-self: center;
+}
+
+#containerCardsModulos {
+    display: flex;
+    gap: 2%;
+    overflow-x: auto;
+}
+
+#containerCardsModulos::-webkit-scrollbar{
+    height: 8px;
+}
+
+#containerCardsModulos::-webkit-scrollbar-thumb{
+    background:#c7cedb;
+    border-radius:10px;
+}
+
+#containerCardsModulos::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+#containerCardsModulos::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#ref-modulo {
+    text-decoration: none;
+}
+
+#ref-modulo:hover {
+    transform: scale(1.03);
+}
+
+.card-score {
+    border: #13347b solid 2px;
+    border-color: #CAD1DA;
+    border-radius: 10px;
 }

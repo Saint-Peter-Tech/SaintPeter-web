@@ -106,6 +106,31 @@
         <span class="description">Funcionários</span>
       </a>
 
+      <div id="gerenteAba">
+        <span class="menu-title">GERENTE</span>
+
+        <a class="nav-link" href="./dashboardGerente.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.186.113a1 1 0 0 0-.372 0l-7 1.75A1 1 0 0 0 0 2.83v10.34a1 1 0 0 0 .757.97l7 1.75a1 1 0 0 0 .486 0l7-1.75A1 1 0 0 0 16 13.17V2.83a1 1 0 0 0-.757-.97zM8 1.15l6.5 1.625L8 4.4 1.5 2.775zM1 3.694l6.5 1.625v9.531L1 13.225zm14 0v9.531l-6.5 1.625V5.319z" />
+          </svg>
+
+          <span class="description">Modelos</span>
+        </a>
+
+        <a class="nav-link" href="./dashboardModular.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+            <path fill-rule="evenodd"
+              d="M0 0h1v15h15v1H0zm10-10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V-9.293l-4.146 4.147a.5.5 0 0 1-.708 0L7.5-7.293 3.854-3.646a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0L9.5-6.707 13.293-10.5z" />
+          </svg>
+
+          <span class="description">Módulos</span>
+        </a>
+      </div>
+
       <div class="dropdown usuario">
         <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -195,8 +220,7 @@
                   <th>Status</th>
                 </tr>
               </thead>
-
-              <tbody id="corpoTabela">
+              <tbody id="bodyTabela">
 
               </tbody>
             </table>
@@ -204,10 +228,10 @@
         </div>
 
         <!-- alertas gerados -->
-        <div class="displayFlex">
+        <div class="displayFlex" id="divAlertas">
           <div class="alertasGerados linha-vertical">
             <h2>
-              5
+              0
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
                 <path
@@ -220,8 +244,16 @@
             <h6>Alertas gerados</h6>
             </p>
             <p><i>Última semana</i></p>
-
           </div>
+
+          <!-- <div id="divAlertasEspecificos" class="divAlertasEspecifico">
+            <h5>Alertas</h5>
+            Rede: <br>
+            CPU: <br>
+            Ram: <br>
+            Disco Rígido:
+          </div> -->
+
         </div>
 
         <!-- Select de componentes -->
@@ -263,15 +295,22 @@
         </div>
       </div>
     </div>
-
     </div>
 
     <!-- Sessão rede -->
-
     <div class="displayFlex">
       <div style="display: flex; gap: 2%">
         <div class="grafico graficoRede" style="width: 800px;">
-          <h4>Monitoramento de uso da rede</h4>
+          <span style="display: flex; gap: 37%;">
+            <h4>Monitoramento de consumo da rede</h4>
+            <button class="botaoSelect" onclick="listarParametros(), carregarDados()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
           <canvas id="meuGrafico"></canvas>
         </div>
       </div>
@@ -297,7 +336,7 @@
                   <div>
                     <I>DOWNLOAD</I>
                     <h5>
-                      <p>0.0 bytes</p>
+                      <p>0.0 Mb</p>
                     </h5>
                   </div>
                 </div>
@@ -317,7 +356,7 @@
                   <div>
                     <I>UPLOAD</I>
                     <h5>
-                      <p>0.0 bytes</p>
+                      <p>0.0 Mb</p>
                     </h5>
                   </div>
                   <br>
@@ -334,7 +373,7 @@
                   style="margin-right: 2%; border-radius: 10px;" alt="">
               </div>
               <br>
-              <h4><b>0mb/s</b></h4>
+              <h4><b>0 Mb</b></h4>
               <p><i>Pico de rede</i></p>
 
               <span style="align-self: flex-end;">
@@ -345,12 +384,12 @@
         </div>
 
         <div class="displayFlex kpiMonitor" id="divTrafegoTotal"
-          style="gap: 50%!important; width: 845px!important; margin-top: 2%; align-items: end;">
+          style="gap: 28%!important; width: 845px!important; margin-top: 2%; align-items: end;">
           <div>
             <h5>
               <p><i>Tráfego Total: </i></p>
             </h5>
-            <h3><b>800.000 bytes</b></h3>
+            <h3><b>0.0 Mb</b></h3>
           </div>
           <div style="display: flex; flex-direction: column; align-content: end; text-align: end;">
             <br>
@@ -361,6 +400,7 @@
       </div>
 
     </div>
+
     <!-- kpis cpu, ram e disco rígido -->
     <div style="margin-left: 2%; margin-top: 1%;" class="displayFlex">
       <span id="divKpiCpu" style="margin-bottom: 2%; margin-left: -2%;">
@@ -444,19 +484,37 @@
     <div>
       <div class="displayFlex" style="margin-top: -1%; margin-bottom: 1%;">
         <div class="grafico" style="width: 820px;">
-          <h4>Uso de CPU</h4>
+          <span style="display: flex; gap: 80%;">
+            <h4>Uso de CPU</h4>
+            <button class="botaoSelect" onclick="listarParametros(), carregarDados()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
           <canvas id="meuGraficoCpu"></canvas>
         </div>
 
         <div class="grafico" style="width: 820px;">
-          <h4>Uso da Memória RAM</h4>
+          <span style="display: flex; gap: 80%;">
+            <h4>Uso da Memória RAM</h4>
+            <button class="botaoSelect" onclick="listarParametros(), carregarDados()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+              </svg></button>
+          </span>
           <canvas id="meuGraficoRam"></canvas>
         </div>
       </div>
     </div>
     </div>
 
-
+    <!-- Pop-ups -->
     <div id="atualizarInfoMonitor" style="display: none;" class="atualizarInfoMonitor">
       <h5>Atualizar informações do monitor</h5> <br>
       <h6>Status do monitor</h6>
@@ -526,6 +584,7 @@
       </h5>
       </p>
     </div>
+
   </main>
 
   <!-- links javascript boostrap tabela -->
@@ -562,10 +621,6 @@
   });
 
   // função para select de parametros
-  var limiteRamConst;
-  var limiteCPUConst;
-  var limiteRedeConst;
-
   function listarParametros() {
     const idMonitor = sessionStorage.ID_MONITOR;
     const selectValue = selectParametro.value;
@@ -594,41 +649,7 @@
       `
         console.log('parametros: ', parametros)
 
-        if (selectValue != '#') {
-          if (selectValue == "5") {
-            limiteRedeConst = Number(parametros[0].limite)
-
-          } else if (selectValue == "2") {
-            limiteRamConst = Number(parametros[0].limite)
-
-          } else if (selectValue == "1") {
-            limiteCPUConst = Number(parametros[0].limite)
-
-          }
-        }
-
       })
-  }
-
-  function atualizarLinhaLimite() {
-    var selectValue = selectParametro.value
-    if (selectValue == '5') {
-      console.log('dentro do update chart rede')
-      chartRede.data.datasets[1].data = Array(labels.length).fill(limiteRedeConst);;
-      chartRede.update();
-    }
-
-    if (selectValue == '1') {
-      console.log('dentro do update chart cpu')
-      chartCpu.data.datasets[1].data = Array(labels.length).fill(limiteCPUConst);
-      chartCpu.update;
-    }
-
-    if (selectValue == '2') {
-      console.log('dentro do update chart ram')
-      chartRam.data.datasets[1].data = Array(labels.length).fill(limiteRamConst);
-      chartRam.update;
-    }
   }
 
   // função para select de monitores
@@ -669,7 +690,7 @@
       })
   }
 
-  var statusMonitorConst
+  var statusMonitorConst;
 
   function statusMonitor() {
     const idMonitor = sessionStorage.ID_MONITOR;
@@ -933,12 +954,15 @@
   }
 
   // gráfico de linha de rede
-  const labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsLimiteRede = Array(10).fill(0);
+  let datasetRede = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
   const data = {
     labels: labelsRede,
     datasets: [{
-      label: 'Uso percentual da rede',
-      data: [65, 59, 80, 81, 56, 55, 40, 44, 65, 59, 80],
+      label: 'Tráfego de Rede (MB)',
+      data: datasetRede,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       backgroundColor: '#4063ce',
@@ -947,7 +971,7 @@
     },
     {
       label: 'Limite',
-      data: Array(10).fill(limiteRedeConst),
+      data: labelsLimiteRede,
       borderColor: 'red',
       borderWidth: 2,
       backgroundColor: 'transparent',
@@ -968,13 +992,16 @@
 
   // grafico de cpu
 
-  const labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsCpu = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsLimiteCpu = Array(10).fill(0);
+  let datasetCpu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
+
   const dataCpu = {
     labels: labelsCpu,
     datasets: [
       {
         label: 'CPU',
-        data: [65, 67, 69, 71, 70, 68, 66, 64, 63, 65],
+        data: datasetCpu,
         borderColor: '#AA99FF',
         backgroundColor: '#AA99FF',
         tension: 0.1,
@@ -982,7 +1009,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(limiteCPUConst),
+        data: labelsLimiteCpu,
         borderDash: [5, 5],
         borderColor: 'red',
         borderWidth: 2,
@@ -1026,14 +1053,16 @@
 
   // grafico de ram
 
-  const labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsRam = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
+  let labelsLimiteRam = Array(10).fill(0)
+  let datasetRam = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const dataRam = {
     labels: labelsRam,
     datasets: [
       {
         label: 'Memória RAM',
-        data: [60, 62, 64, 66, 67, 65, 63, 61, 60, 62],
+        data: datasetRam,
         fill: false,
         borderColor: '#AA99FF',
         backgroundColor: '#D5CCFF',
@@ -1042,7 +1071,7 @@
       },
       {
         label: 'Limite',
-        data: Array(10).fill(limiteRamConst),
+        data: labelsLimiteRam,
         borderDash: [5, 5],
         borderColor: 'red',
         backgroundColor: 'transparent',
@@ -1120,6 +1149,7 @@
 
       dadosMonitor = await resposta.json();
       console.log('Dados do monitor: \n', dadosMonitor)
+
       carregarDados();
 
     } catch (erro) {
@@ -1139,12 +1169,12 @@
     const divDownloadoUpload = document.getElementById('divDownloadoUpload')
     const divTrafegoTotal = document.getElementById('divTrafegoTotal')
 
-    const divCorpoTabela = document.getElementById('corpoTabela')
+    const divCorpoTabela = document.getElementById('bodyTabela')
+    const divAlertas = document.getElementById('divAlertas')
 
     if (!dadosMonitor) { return }
 
     dataUltimaAtualizacao = dadosMonitor.horario;
-    horarioGrafico = dadosMonitor.horarioGrafico;
 
     // tabela de modulos
 
@@ -1186,7 +1216,7 @@
     console.log("Inativos: ", modulosInativos)
     console.log('Ativos: ', modulosAtivos)
 
-    divCorpoTabela.innerHTML = "";
+    divCorpoTabela.innerHTML = " ";
 
     for (var j = 0; j < modulosOrdenados.length; j++) {
       console.log('dentro do for para criar a tabela de modulos')
@@ -1227,7 +1257,7 @@
                   <div>
                     <I>DOWNLOAD</I>
                     <h5>
-                      <p>${dadosMonitor.rede.download} bytes</p>
+                      <p>${dadosMonitor.rede.download} Mb</p>
                     </h5>
                   </div>
                 </div>
@@ -1247,7 +1277,7 @@
                   <div>
                     <I>UPLOAD</I>
                     <h5>
-                      <p>${dadosMonitor.rede.upload} bytes</p>
+                      <p>${dadosMonitor.rede.upload} Mb</p>
                     </h5>
                   </div>
                   <br>
@@ -1259,7 +1289,7 @@
             <h5>
               <p><i>Tráfego Total: </i></p>
             </h5>
-            <h3><b>${dadosMonitor.rede.trafegoTotal} bytes</b></h3>
+            <h3><b>${dadosMonitor.rede.trafegoTotal} Mb</b></h3>
           </div>
           <div style="display: flex; flex-direction: column; align-content: end; text-align: end;">
             <br>
@@ -1276,7 +1306,7 @@
                   style="margin-right: 2%; border-radius: 10px;" alt="">
               </div>
               <br>
-              <h4><b>${dadosMonitor.rede.picoMbs}mb/s</b></h4>
+              <h4><b>${dadosMonitor.rede.picoMbs} Mb</b></h4>
               <p><i>Pico de rede</i></p>
 
               <span style="align-self: flex-end;">
@@ -1291,7 +1321,7 @@
                   style="margin-right: 2%; border-radius: 10px;" alt="">
               </div>
               <br>
-              <h4><b>${dadosMonitor.rede.picoMbs}mb/s</b></h4>
+              <h4><b>${dadosMonitor.rede.picoMbs} Mb</b></h4>
               <p><i>Pico de rede</i></p>
 
               <span style="align-self: flex-end;">
@@ -1465,22 +1495,118 @@
               <p><i>Uso do Disco Rígido</i></p>
             </div>
             <div style="align-self: flex-end; text-align: end;">
-              <p><i>Última atualização: </i></p>
+              <p><i>Última atualização: ${dataUltimaAtualizacao}</i></p>
             </div>
           </span>
         </div>
     `
     }
 
+    // Alertas
+    if (dadosMonitor.alertasMonitor.alertasTotais <= 0) {
+      divAlertas.innerHTML = `
+      <div class="alertasGerados linha-vertical">
+            <h2>
+              ${dadosMonitor.alertasMonitor.alertasTotais}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                <path
+                  d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
+                <path
+                  d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+              </svg>
+            </h2>
+            <p>
+            <h6>Alertas gerados</h6>
+            </p>
+            <p><i>Última semana</i></p>
+
+          </div>
+          `
+
+
+    } else {
+      divAlertas.innerHTML = `
+      <div class="alertasGeradosAcima linha-vertical">
+            <h2>
+              ${dadosMonitor.alertasMonitor.alertasTotais}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                <path
+                  d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
+                <path
+                  d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+              </svg>
+            </h2>
+            <p>
+            <h6>Alertas gerados</h6>
+            </p>
+            <p><i>Última semana</i></p>
+
+          </div>
+          `
+    }
     // Atualizando gráficos
-    labelsRede.shift();
-    labelsRede.push(horarioGrafico);
+    chartRede.data.labels = new Array(10)
+      .fill(0);
+    chartRede.data.datasets[0].data = new Array(10)
+      .fill(0);
+    chartRede.data.datasets[1].data = new Array(10)
+      .fill(0);
 
-    labelsCpu.shift();
-    labelsCpu.push(horarioGrafico);
+    chartRede.update();
 
-    labelsRam.shift();
-    labelsRam.push(horarioGrafico);
+    chartCpu.data.labels = [];
+    chartCpu.data.datasets[0].data = [];
+    chartCpu.data.datasets[1].data = [];
+
+    chartCpu.update();
+
+    chartRam.data.labels = [];
+    chartRam.data.datasets[0].data = [];
+    chartRam.data.datasets[1].data = [];
+
+    chartRam.update();
+
+    atualizarGraficos();
+
+  }
+
+  function atualizarGraficos() {
+    console.log('cheguei na função para atualizar o gráfico')
+    // Rede
+    chartRede.data.labels = [...dadosMonitor.graficos.horariosGrafico];
+
+    chartRede.data.datasets[0].data = [...dadosMonitor.graficos.valorRede];
+
+    chartRede.data.datasets[1].data =
+      new Array(dadosMonitor.graficos.valorRede.length)
+        .fill(dadosMonitor.limites.limiteRede);
+
+    chartRede.update();
+
+    // Cpu
+    chartCpu.data.labels = [...dadosMonitor.graficos.horariosGrafico];
+
+    chartCpu.data.datasets[0].data = [...dadosMonitor.graficos.valoresCpu];
+
+    chartCpu.data.datasets[1].data =
+      new Array(dadosMonitor.graficos.valoresCpu.length)
+        .fill(dadosMonitor.limites.limiteCpu);
+
+    chartCpu.update();
+
+    // Ram
+    chartRam.data.labels = [...dadosMonitor.graficos.horariosGrafico];
+
+    chartRam.data.datasets[0].data = [...dadosMonitor.graficos.valorRam];
+
+    chartRam.data.datasets[1].data =
+      new Array(dadosMonitor.graficos.valorRam.length)
+        .fill(dadosMonitor.limites.limiteRam)
+
+    chartRam.update();
+
   }
 
 </script>

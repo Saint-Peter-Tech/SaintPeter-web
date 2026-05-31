@@ -29,7 +29,8 @@
 </head>
 
 <body>
-    <h4 class="tituloDash" style="margin-left: 270px;">
+    <div class="fundinhoBranco">
+    <h4 class="tituloDash" style="margin-top: 35px; margin-left: 10px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
           viewBox="0 0 16 16">
           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -37,9 +38,11 @@
             d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
         </svg>
         Bem vindo de volta, <span id="be_usuario" style="font-weight: bolder;"></span>
-        <hr class="solid">
-        <p style="margin-top: 25px; font-weight: bolder;"><span>Selecione o Modelo desejado:</span> <br> </p>
-        <select style="font-size: 20px; width: 300px;" class="selectCadastro" id="selectModelo" onchange="atualizar()">
+        <p style="margin-top: 25px; font-weight: bolder; font-size: 30px;"><span>Selecionar Modelo</span> <br> </p>
+        <p style="font-size: 15px;">
+          Escolha um modelo para visualizar informações detalhadas de monitoramento
+        </p>
+        <select style="font-size: 20px; width: 100%;" class="selectModular" id="selectModelo" onchange="atualizar()">
                 <option value="0" selected disabled>Selecione uma opção</option>
             </select>
         </p>
@@ -47,8 +50,8 @@
             Dados coletados dos últimos <span id="diasCapturaKPI"></span>,
             com capturas a cada 20 minutos</span>.
             </p>
-        <hr class="rounded">
     </h4>
+    </div>
      <div class="sidebar">
         <nav class="nav flex-column">
             <a href="../index.html"
@@ -63,7 +66,7 @@
                 <img width="100%" src="../assets/Identidade Visual/LogoEscura.png" id="logo_navbar2" alt="">
             </a>
 
-            <a class="nav-link" id="navDashInicial" href="./dashboardGerente.html">
+            <a class="nav-link" id="navDashInicial" href="./dashboardAnalista.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid"
                     viewBox="0 0 16 16">
                     <path
@@ -71,7 +74,7 @@
                 </svg>
                 <span class="description">Início</span>
             </a>
-            <a class="nav-link" id="cadastroModelos" href="dashboardModelo.html">
+            <a class="nav-link" id="cadastroModelos" href="./dashboardModelo.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-projector" viewBox="0 0 16 16">
                     <path
@@ -120,6 +123,32 @@
                 <span class="description">Funcionários</span>
             </a>
 
+            <div id="gerenteAba">
+    <span class="menu-title">GERENTE</span>
+
+    <a class="nav-link" href="./dashboardGerente.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-box-seam" viewBox="0 0 16 16">
+            <path
+                d="M8.186.113a1 1 0 0 0-.372 0l-7 1.75A1 1 0 0 0 0 2.83v10.34a1 1 0 0 0 .757.97l7 1.75a1 1 0 0 0 .486 0l7-1.75A1 1 0 0 0 16 13.17V2.83a1 1 0 0 0-.757-.97zM8 1.15l6.5 1.625L8 4.4 1.5 2.775zM1 3.694l6.5 1.625v9.531L1 13.225zm14 0v9.531l-6.5 1.625V5.319z"/>
+        </svg>
+
+        <span class="description">Modelos</span>
+    </a>
+
+    <a class="nav-link" href="./dashboardModular.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+            <path fill-rule="evenodd"
+                d="M0 0h1v15h15v1H0zm10-10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V-9.293l-4.146 4.147a.5.5 0 0 1-.708 0L7.5-7.293 3.854-3.646a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0L9.5-6.707 13.293-10.5z"/>
+        </svg>
+
+        <span class="description">Módulos</span>
+    </a>
+    </div>
+    </nav
+</div>
             <div class="dropdown usuario">
                 <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -152,29 +181,27 @@
                     <li><a class="dropdown-item" style="color: #13347b;" style="color: #13347b;">Sair</a></li>
                 </ul>
             </div>
-        </nav>
     </div>
-
     <div class="container-fluid" style="width:148.5vh; height: 100%; margin-left: 260px;">
         <div class="boxesModular">
-           <div class="KpisMonitoresAntigos">
+           <div class="KpisMonitoresAntigos" style="border-bottom: 4px solid;">
               <div class="containerKpiMA">
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Módulo mais utilizado
                   <br>
-                  <h1 id="moduloutilizadoKPI" style="color: green; font-weight: bold;"></h1>
+                  <h1 id="moduloutilizadoKPI" style="color: #13347b; font-weight: bold;"></h1>
                 </div>
                 <div class="imgKpiContainer" style="width: 100%;">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 10C0 4.47715 4.47715 0 10 0H38C43.5229 0 48 4.47715 48 10V38C48 43.5229 43.5228 48 38 48H10C4.47715 48 0 43.5228 0 38V10Z" fill="#F0FDF4"/>
-                <path d="M34 24H31.52C31.083 23.9991 30.6577 24.1413 30.3091 24.405C29.9606 24.6686 29.708 25.0392 29.59 25.46L27.24 33.82C27.2249 33.8719 27.1933 33.9175 27.15 33.95C27.1067 33.9825 27.0541 34 27 34C26.9459 34 26.8933 33.9825 26.85 33.95C26.8067 33.9175 26.7751 33.8719 26.76 33.82L21.24 14.18C21.2249 14.1281 21.1933 14.0825 21.15 14.05C21.1067 14.0175 21.0541 14 21 14C20.9459 14 20.8933 14.0175 20.85 14.05C20.8067 14.0825 20.7751 14.1281 20.76 14.18L18.41 22.54C18.2925 22.9592 18.0414 23.3285 17.6949 23.592C17.3483 23.8555 16.9253 23.9988 16.49 24H14" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M0 10C0 4.47715 4.47715 0 10 0H38C43.5229 0 48 4.47715 48 10V38C48 43.5229 43.5228 48 38 48H10C4.47715 48 0 43.5228 0 38V10Z" fill="#ddf5f1"/>
+                <path d="M34 24H31.52C31.083 23.9991 30.6577 24.1413 30.3091 24.405C29.9606 24.6686 29.708 25.0392 29.59 25.46L27.24 33.82C27.2249 33.8719 27.1933 33.9175 27.15 33.95C27.1067 33.9825 27.0541 34 27 34C26.9459 34 26.8933 33.9825 26.85 33.95C26.8067 33.9175 26.7751 33.8719 26.76 33.82L21.24 14.18C21.2249 14.1281 21.1933 14.0825 21.15 14.05C21.1067 14.0175 21.0541 14 21 14C20.9459 14 20.8933 14.0175 20.85 14.05C20.8067 14.0825 20.7751 14.1281 20.76 14.18L18.41 22.54C18.2925 22.9592 18.0414 23.3285 17.6949 23.592C17.3483 23.8555 16.9253 23.9988 16.49 24H14" stroke="#13347b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 </div>
               </div>
               <span id="frequenciaKPI" style="font-weight: bolder;"></span> de frequência
             </div>
 
-            <div class="KpisMonitoresAntigos">
+            <div class="KpisMonitoresAntigos" style="border-bottom: 4px solid #ff4b4b">
               <div class="containerKpiMA">
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Módulo mais Crítico
@@ -192,7 +219,7 @@
               <span id="ocorrenciasKPI" style="font-weight: bolder;"></span> ocorrências
             </div>
 
-            <div class="KpisMonitoresAntigos">
+            <div class="KpisMonitoresAntigos" style="border-bottom: 4px solid green;">
               <div class="containerKpiMA">
                 <div class="tituloKpi" style="font-weight: bolder;">
                   Estabilidade Geral
@@ -279,8 +306,8 @@
         </div>
     </main>
 
-</body>
 </div>
+</body>
 <script>
         Chart.register(window['chartjs-plugin-annotation']);
         
@@ -303,7 +330,6 @@
             listarModelos();
         };
 
-
     function listarModelos() {
     const selectModelo = document.getElementById("selectModelo");
     var fkEmpresa = sessionStorage.FK_EMPRESA;
@@ -322,15 +348,26 @@
                     option.textContent = modelo.nome;
                     selectModelo.appendChild(option);
                 });
+
+                selectModelo.value = modelos[0].id_modelo;
+                atualizar();
             })
             .catch(function (erro) {
                 console.error("Erro ao preencher select de modelos:", erro);
             });
     }
 
-    function atualizar() {
-        modelo = selectModelo.value;
+async function atualizar() {
+
+    const selectModelo = document.getElementById("selectModelo");
+    const idModelo = selectModelo.value;
+
+    if (!idModelo || idModelo == "0") {
+        return;
     }
+
+    await buscarDadosModelo(idModelo);
+}
 
 const modulos = ['BPM', 'PA', 'SPO2', 'RESP', 'TEMP', 'PIC', 'PVC', 'ECG', 'ETCO2'];
 
@@ -338,13 +375,16 @@ const impactCtx = document.getElementById('impactChart');
 
 const LimiteBar = 75
 
-new Chart(impactCtx, { 
+const impactChart = new Chart(impactCtx, { 
     type: 'bar', 
     data: { 
         labels: modulos, 
-        datasets: [{ 
-            data: [], 
-            backgroundColor: (context) => { 
+        datasets: [{
+            data: [],
+            minBarLength: 6,
+            borderRadius: 8,
+            maxBarThickness: 45,
+            backgroundColor: (context) => {
                 const value = context.raw;
                 if (value >= 80) return '#E7000B';
                 if (value >= 60) return '#ff9800';
@@ -356,8 +396,23 @@ new Chart(impactCtx, {
         responsive: true, 
         maintainAspectRatio: false, 
         scales: { 
-            x: { title: { display: true, text: 'Módulos' } }, 
-            y: { title: { display: true, text: 'Impacto(%)' }, max: 100, min: 0 } 
+            x: { 
+                title: { display: true, text: 'Módulos' },
+                grid: { display: false }
+            }, 
+            y: {
+                title: { display: true, text: 'Impacto (%)', font: { size: 14, weight: 'bold' } },
+                min: 0,
+                max: 115,
+                ticks: {
+                    stepSize: 20,
+                    color: '#666',
+                    callback: function(value) {
+                        if (value <= 100) return value + '%';
+                    }
+                },
+                grid: { color: 'rgba(0,0,0,0.06)' }
+            }
         }, 
         plugins: { 
             annotation: { 
@@ -381,25 +436,14 @@ new Chart(impactCtx, {
                     } 
                 } 
             },
-            legend: {
-            display: false
-        } ,
-        tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw}% de Instabilidade`;
-                        }
-                    }
-                }
-    }
-        
+            legend: { display: false }
+        }
     }
 });
 
+const trendCtx = document.getElementById("trendChart")
 
-const trendCtx = document.getElementById('trendChart');
-
-new Chart(trendCtx, {
+const trendChart = new Chart(trendCtx, {
     type: 'polarArea',
     data: {
           labels: modulos,
@@ -419,7 +463,7 @@ new Chart(trendCtx, {
                 '#82a8ff',
                 '#9bb9ff',
                 '#b5cbff'
-            ]
+            ],
         }]
     },
     options: {
@@ -444,9 +488,9 @@ new Chart(trendCtx, {
         }
     });
 
-const radarCtx = document.getElementById('radarChart');
+const radarCtx = document.getElementById("radarChart")
 
-new Chart(radarCtx, {
+const radarChart = new Chart(radarCtx, {
     type: 'radar',
     data: {
         labels: modulos,
@@ -458,33 +502,167 @@ new Chart(radarCtx, {
             pointBackgroundColor: '#00A63E'
         }]
     },
+
     options: {
         responsive: true,
         maintainAspectRatio: false,
 
-        
+        scales: {
+            r: {
+                min: 0,
+                max: 100,
+
+                ticks: {
+                    stepSize: 10,
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }
+        },
+
         plugins: {
-            annotation: {
-                annotations: {
-                    limite: {
-                        type: 'polygon',
-                        radius: 70,
-                        borderColor: 'red',
-                        borderWidth: 2,
-                        borderDash: [5, 5]
-                    }
-                }
-            },
             tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw}% de estabilidade`;
-                        }
+                callbacks: {
+                    label: function(context) {
+                        return `${context.label}: ${context.raw}% de estabilidade`;
                     }
                 }
+            }
         }
     }
 });
 
+    async function buscarDadosModelo(idModelo) {
+
+    const empresa = sessionStorage.FK_EMPRESA;
+
+    try {
+
+        const resposta = await fetch(`/moduloS3/${empresa}/${idModelo}`);
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao buscar dados");
+        }
+
+        const dados = await resposta.json();
+
+        console.log(dados);
+
+        dados.modulos.sort((a, b) => {
+
+            if (b.critico !== a.critico) {
+                return b.critico - a.critico;
+            }
+
+            if (b.alerta !== a.alerta) {
+                return b.alerta - a.alerta;
+            }
+
+            return b.instabilidade - a.instabilidade;
+        });
+
+        preencherKPIs(dados);
+
+        preencherTabela(dados.modulos);
+
+        atualizarGraficos(dados.modulos);
+
+    } catch (erro) {
+
+        console.error("Erro ao buscar dashboard:", erro);
+
+    }
+}
+
+function preencherKPIs(dados) {
+
+    kpi0.innerHTML = `${dados.periodo.diasCaptura} dias`;
+
+    kpi1.innerHTML = dados.kpis.moduloMaisUtilizado;
+    metakpi1.innerHTML = `${dados.kpis.frequenciaMaisUtilizada}%`;
+
+    kpi2.innerHTML = dados.kpis.moduloMaisCritico;
+    metakpi2.innerHTML = dados.kpis.ocorrenciasCriticas;
+
+    kpi3.innerHTML = `${dados.kpis.estabilidadeGeral}%`;
+
+    metakpi30.innerHTML = `${dados.kpis.metaAtual}%`;
+    metakpi31.innerHTML = `${dados.kpis.meta}%`;
+
+}
+
+function preencherTabela(modulos) {
+
+    const tbody = tabela.querySelector("tbody");
+
+    tbody.innerHTML = "";
+
+    modulos.sort((a, b) => {
+        if (b.critico !== a.critico) {
+            return b.critico - a.critico;
+        }
+
+        if (b.alerta !== a.alerta) {
+            return b.alerta - a.alerta;
+        }
+
+        return a.ok - b.ok;
+    });
+
+    modulos.forEach(modulo => {
+
+        let classeLinha = "";
+
+        if (modulo.critico > 0) {
+            classeLinha = "linha-critica";
+        } else if (modulo.alerta > 0) {
+            classeLinha = "linha-alerta";
+        }
+
+        tbody.innerHTML += `
+            <tr class="${classeLinha}">
+                <td>
+                    <strong>${modulo.nome}</strong>
+                </td>
+
+                <td class="ok-bg">
+                    ${modulo.ok}
+                </td>
+
+                <td class="warning-bg">
+                    ${modulo.alerta}
+                </td>
+
+                <td class="critical-bg">
+                    ${modulo.critico}
+                </td>
+            </tr>
+        `;
+    });
+}
+
+function atualizarGraficos(modulosDados) {
+
+    const labels = modulosDados.map(m => m.nome);
+
+    const instabilidade = modulosDados.map(m => m.instabilidade);
+
+    const uso = modulosDados.map(m => m.usoPercentual);
+
+    const estabilidade = modulosDados.map(m => m.estabilidade);
+
+    impactChart.data.labels = labels;
+    impactChart.data.datasets[0].data = instabilidade;
+    impactChart.update();
+
+    trendChart.data.labels = labels;
+    trendChart.data.datasets[0].data = uso;
+    trendChart.update();
+
+    radarChart.data.labels = labels;
+    radarChart.data.datasets[0].data = estabilidade;
+    radarChart.update();
+}
 </script>
 </html>

@@ -18,6 +18,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/dashAlertasHospital.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -121,7 +124,9 @@
         </div>
 
         <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 25px;">
-            <div class="cardFormulario card-kpi-dashboard" style="flex: 1; min-width: 280px; position: relative;">
+
+            <div id="cardKpiAlertas" class="cardFormulario card-kpi-dashboard"
+                style="flex: 1; min-width: 280px; position: relative; border-bottom: 4px solid transparent; transition: border-color 0.3s ease;">
                 <p class="kpi-label" id="totalDeAlertas"></p>
                 <h1 class="kpi-valor" id="kpiAlertas" style="color: #e53e3e;"></h1>
                 <div class="d-flex align-items-center" style="font-size: 12px; font-weight: bold;"
@@ -135,7 +140,8 @@
                 </div>
             </div>
 
-            <div class="cardFormulario card-kpi-dashboard" style="flex: 1; min-width: 280px; position: relative;">
+            <div id="cardKpiUnidade" class="cardFormulario card-kpi-dashboard"
+                style="flex: 1; min-width: 280px; position: relative; border-bottom: 4px solid transparent; transition: border-color 0.3s ease;">
                 <p class="kpi-label">Unidade em Destaque</p>
                 <h1 class="kpi-valor-medio" id="kpiNomeUnidadeCritica">Carregando...</h1>
                 <div class="d-flex align-items-center" style="font-size: 12px; font-weight: bold;">
@@ -149,7 +155,8 @@
                 </div>
             </div>
 
-            <div class="cardFormulario card-kpi-dashboard" style="flex: 1; min-width: 280px; position: relative;">
+            <div id="cardKpiCrescimento" class="cardFormulario card-kpi-dashboard"
+                style="flex: 1; min-width: 280px; position: relative; border-bottom: 4px solid transparent; transition: border-color 0.3s ease;">
                 <p class="kpi-label">Crescimento Semanal</p>
                 <h1 class="kpi-valor" id="kpiCrescimentoPorcentagem">0%</h1>
                 <div class="d-flex align-items-center" style="font-size: 12px; font-weight: 500;"
@@ -161,6 +168,7 @@
                     <i id="iconeChartLine" class="fa-solid fa-chart-line fa-lg"></i>
                 </div>
             </div>
+
         </div>
 
         <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 25px;">
@@ -179,32 +187,82 @@
                 </div>
             </div>
 
-                <div class="cardFormulario card-filtro-componente"
-                    style="flex: 1; min-width: 320px; display: flex; flex-direction: column;">
-                    <div class="mb-3">
-                        <h4
-                            style="color: #13347b; font-weight: bold; font-size: 16px; margin: 0; font-family: 'Exo 2', sans-serif;">
-                            Unidades Críticas
-                        </h4>
-                        <p style="font-size: 12px; color: #a0aec0; margin: 4px 0 0 0;">Ranqueamento de criticidade por
-                            componente</p>
-                    </div>
-
-                    <div id="listaUnidadesCriticas" class="lista-critica-scroll d-flex flex-column gap-2">
-
-                    </div>
+            <div class="cardFormulario card-filtro-componente"
+                style="flex: 1; min-width: 320px; display: flex; flex-direction: column;">
+                <div class="mb-3">
+                    <h4
+                        style="color: #13347b; font-weight: bold; font-size: 16px; margin: 0; font-family: 'Exo 2', sans-serif;">
+                        Unidades Críticas
+                    </h4>
+                    <p style="font-size: 12px; color: #a0aec0; margin: 4px 0 0 0;">Ranqueamento de criticidade por
+                        componente</p>
                 </div>
+                <div id="listaUnidadesCriticas" class="lista-critica-scroll d-flex flex-column gap-2">
+                </div>
+            </div>
+
+            <div style="margin-top: 24px; margin-bottom: 24px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">
+                    Visão Geográfica e Monitoramento Climático
+                </h3>
+
+                <div style="display: flex; gap: 16px; margin-bottom: 12px; flex-wrap: wrap;">
+
+                    <div
+                        style="background-color: #fff5f5; border-left: 4px solid #e53e3e; padding: 12px 16px; border-radius: 6px; flex: 1; min-width: 280px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                        <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.4;">
+                            <strong
+                                style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #9b2c2c; margin-bottom: 4px;">
+                                🌡️ Atenção: Temperatura > 30°C
+                            </strong>
+                            O calor excessivo pode comprometer o resfriamento natural e fazer com que os monitores
+                            apresentem leituras errôneas. Comprometendo o monitoramento e a vida dos pacientes.
+                        </p>
+                    </div>
+
+                    <div
+                        style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 6px; flex: 1; min-width: 280px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                        <p style="margin: 0; font-size: 13px; color: #1e3a8a; line-height: 1.4;">
+                            <strong
+                                style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #1d4ed8; margin-bottom: 4px;">
+                                💧 Atenção: Umidade > 85%
+                            </strong>
+                            Níveis críticos de umidade geram riscos de oxidação e corrosão
+                            nas conexões dos módulos físicos. Comprometendo a vida útil do aparelho.
+                        </p>
+                    </div>
+
+                </div>
+
+                <p
+                    style="margin: 0 0 16px 0; font-size: 13.5px; color: #475569; display: flex; align-items: center; gap: 6px; font-style: italic;">
+                    💡 <span>Clique em uma unidade no mapa para visualizar os alertas ativos e os dados de clima
+                        tempo.</span>
+                </p>
+
+                <div id="container-mapa"
+                    style="width: 100%; height: 450px; border-radius: 8px; z-index: 1; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                </div>
+            </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/2.2.1/chartjs-plugin-annotation.min.js"></script>
     <script src="../js/sessao.js"></script>
 
     <script>
+        var dadosHospital = null;
+        let myChart = null
+        var mapa = null;
+        var camadaMarcadores = null;
+
         window.onload = function () {
             validarSessao();
             carregarNomeHospital();
+            iniciarMapa();
             atualizarDashboard();
         }
 
@@ -231,21 +289,33 @@
                 });
         }
 
-        var dadosHospital = null;
-        let myChart = null
-
         async function atualizarDashboard() {
             const idHospital = sessionStorage.ID_HOSPITAL;
             const idEmpresa = sessionStorage.FK_EMPRESA;
 
             try {
-                const resposta = await fetch(`/hospitalS3/${idEmpresa}/${idHospital}`);
-                if (!resposta.ok) return;
+                const respostaS3 = await fetch(`/hospitalS3/${idEmpresa}/${idHospital}`);
+                if (!respostaS3.ok) return;
+                dadosHospital = await respostaS3.json();
+                const respostaBanco = await fetch(`/unidade/listarPorHospital?idHospital=${idHospital}`);
 
-                dadosHospital = await resposta.json();
+                if (respostaBanco.ok) {
+                    const unidades = await respostaBanco.json();
+
+                    unidades.forEach(unidadeDB => {
+                        const idUnidade = unidadeDB.id_unidade;
+
+                        if (dadosHospital.unidades[idUnidade]) {
+                            dadosHospital.unidades[idUnidade].latitude = parseFloat(unidadeDB.latitude); // Convertendo retorno de String do banco em números
+                            dadosHospital.unidades[idUnidade].longitude = parseFloat(unidadeDB.longitude);
+                        }
+                    });
+                }
+
                 carregarDados();
+
             } catch (erro) {
-                console.error("Erro ao buscar dados do S3:", erro);
+                console.error("Erro ao carregar dados da dashboard:", erro);
             }
         }
 
@@ -256,16 +326,19 @@
             const totalDeAlertas = document.getElementById("totalDeAlertas");
             const qtdAlertas = document.getElementById("qtdAlertas");
             const mensagemKpiAlerta = document.getElementById("mensagemKpiAlerta");
+            const bordaKpiAlerta = document.getElementById("cardKpiAlertas");
+            const bordaKpiUnidade = document.getElementById("cardKpiUnidade");
 
             const kpiNomeUnidade = document.getElementById("kpiNomeUnidadeCritica");
             const kpiTotalUnidade = document.getElementById("kpiTotalUnidadeCritica");
             const kpiIndicadorCor = document.getElementById("kpiIndicadorCor");
+
             var valorAtualCrescimento = 0;
             var valorPassadoCrescimento = 0;
 
             if (!dadosHospital) return;
 
-            const unidadesArray = Object.values(dadosHospital.unidades); // Convertendo o JSON para
+            const unidadesArray = Object.values(dadosHospital.unidades);
             var maxValor = -1;
             var unidadeVencedora = null;
             var labelFiltro = "";
@@ -276,18 +349,15 @@
 
                 var totalGeral = dadosHospital.criticos.totalCriticos + dadosHospital.alertasSemanais.totalAlertas;
                 var totalCriticos = dadosHospital.criticos.totalCriticos;
-                qtdAlertas.style.color = "#1e293b";
+
                 qtdAlertas.innerHTML = "Total de alertas no hospital: ";
-                mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${totalGeral}`;
 
                 if (totalGeral == 0) {
-                    kpiAlertas.style.color = `green`;
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (totalCriticos == 0) {
-                    mensagemKpiAlerta.style.color = `green`;
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
 
@@ -298,7 +368,6 @@
                     }
                 }
                 labelFiltro = "críticos ativos";
-
                 valorAtualCrescimento = dadosHospital.criticos.totalCriticos;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalCriticos;
 
@@ -309,21 +378,16 @@
                 var alertasCriticos = dadosHospital.criticos.totalCriticos;
                 var alertasGeral = dadosHospital.alertasSemanais.totalAlertas;
 
-                qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasCriticos}`;
 
                 if (alertasGeral == 0) {
-                    kpiAlertas.style.color = `green`;
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasCriticos == 0) {
-                    mensagemKpiAlerta.style.color = `green`;
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
-
 
                 for (var i = 0; i < unidadesArray.length; i++) {
                     if (unidadesArray[i].totalComuns > maxValor) {
@@ -332,7 +396,6 @@
                     }
                 }
                 labelFiltro = "gerais ativos";
-
                 valorAtualCrescimento = dadosHospital.alertasSemanais.totalAlertas;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalAlertas;
 
@@ -343,18 +406,14 @@
                 var alertasCpuCriticos = dadosHospital.criticos.porComponente.cpuCritico;
                 var alertasCpu = dadosHospital.alertasSemanais.porComponente.cpu;
 
-                qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasCpuCriticos}`;
 
                 if (alertasCpu == 0) {
-                    kpiAlertas.style.color = `green`;
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasCpuCriticos == 0) {
-                    mensagemKpiAlerta.style.color = `green`;
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
 
@@ -366,7 +425,6 @@
                     }
                 }
                 labelFiltro = "alertas de CPU";
-
                 valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.cpu + dadosHospital.criticos.porComponente.cpuCritico;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.cpu + dadosHospital.alertasSemanaPassada.criticosPorComponente.cpuCritico;
 
@@ -377,18 +435,14 @@
                 var alertasRamCriticos = dadosHospital.criticos.porComponente.ramCritico;
                 var alertasRam = dadosHospital.alertasSemanais.porComponente.ram;
 
-                qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasRamCriticos}`;
 
                 if (alertasRam == 0) {
-                    kpiAlertas.style.color = `green`;
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasRamCriticos == 0) {
-                    mensagemKpiAlerta.style.color = `green`;
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
 
@@ -400,7 +454,6 @@
                     }
                 }
                 labelFiltro = "alertas de RAM";
-
                 valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.ram + dadosHospital.criticos.porComponente.ramCritico;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.ram + dadosHospital.alertasSemanaPassada.criticosPorComponente.ramCritico;
 
@@ -411,18 +464,14 @@
                 var alertasDiscoCriticos = dadosHospital.criticos.porComponente.discoCritico;
                 var alertasDisco = dadosHospital.alertasSemanais.porComponente.disco;
 
-                qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasDiscoCriticos}`;
 
                 if (alertasDisco == 0) {
-                    kpiAlertas.style.color = `green`;
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasDiscoCriticos == 0) {
-                    mensagemKpiAlerta.style.color = `green`;
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
 
@@ -434,7 +483,6 @@
                     }
                 }
                 labelFiltro = "alertas de Disco";
-
                 valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.disco + dadosHospital.criticos.porComponente.discoCritico;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.disco + dadosHospital.alertasSemanaPassada.criticosPorComponente.discoCritico;
 
@@ -445,18 +493,14 @@
                 var alertasRedeCriticos = dadosHospital.criticos.porComponente.redeCritico;
                 var alertasRede = dadosHospital.alertasSemanais.porComponente.rede;
 
-                qtdAlertas.style.color = "#1e293b";
                 qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.style.color = `#e53e3e`;
                 mensagemKpiAlerta.innerText = ` ${alertasRedeCriticos}`;
 
                 if (alertasRede == 0) {
-                    kpiAlertas.style.color = `green`;
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasRedeCriticos == 0) {
-                    mensagemKpiAlerta.style.color = `green`;
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
 
@@ -468,7 +512,6 @@
                     }
                 }
                 labelFiltro = "alertas de Rede";
-
                 valorAtualCrescimento = dadosHospital.alertasSemanais.porComponente.rede + dadosHospital.criticos.porComponente.redeCritico;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.rede + dadosHospital.alertasSemanaPassada.criticosPorComponente.redeCritico;
             }
@@ -476,21 +519,55 @@
             if (unidadeVencedora && maxValor > 0) {
                 kpiNomeUnidade.innerText = unidadeVencedora.nome;
                 kpiTotalUnidade.innerText = `${maxValor} ${labelFiltro}`;
-
                 kpiNomeUnidade.style.color = "#1e293b";
                 kpiTotalUnidade.style.color = "#dd6b20";
                 kpiIndicadorCor.style.backgroundColor = "#dd6b20";
+                bordaKpiUnidade.style.borderBottom = "4px solid #dd6b20";
             } else {
                 kpiNomeUnidade.innerText = "Sem unidades críticas";
                 kpiTotalUnidade.innerText = `0 ${labelFiltro}`;
                 kpiNomeUnidade.style.color = "green";
                 kpiTotalUnidade.style.color = "green";
                 kpiIndicadorCor.style.backgroundColor = "green";
+                bordaKpiUnidade.style.borderBottom = "4px solid green";
             }
+
+            var valorAlerta = kpiAlertas.innerHTML;
+            var corAlerta = "green";
+
+            if (valorAlerta != "Sem Alertas" && valorAlerta != "0") {
+                valorAlerta = Number(valorAlerta);
+
+                if (selectFiltro == 0) {
+                    if (valorAlerta >= 100) {
+                        corAlerta = "#e53e3e";
+                    } else if (valorAlerta >= 90) {
+                        corAlerta = "#dd6b20";
+                    }
+                } else if (selectFiltro == 1) {
+                    if (valorAlerta >= 200) {
+                        corAlerta = "#e53e3e";
+                    } else if (valorAlerta >= 190) {
+                        corAlerta = "#dd6b20";
+                    }
+                } else {
+                    if (valorAlerta >= 75) {
+                        corAlerta = "#e53e3e";
+                    } else if (valorAlerta >= 65) {
+                        corAlerta = "#dd6b20";
+                    }
+                }
+            }
+
+            qtdAlertas.style.color = "#1e293b";
+            bordaKpiAlerta.style.borderBottom = "4px solid " + corAlerta;
+            kpiAlertas.style.color = corAlerta;
+            mensagemKpiAlerta.style.color = corAlerta;
 
             atualizarKpiCrescimento(valorAtualCrescimento, valorPassadoCrescimento);
             atualizarListaUnidades(selectFiltro);
             plotarGrafico(selectFiltro);
+            plotarMapa(selectFiltro);
         }
 
         function atualizarKpiCrescimento(semanaAtual, semanaPassada) {
@@ -498,6 +575,8 @@
             const divDetalhes = document.getElementById("kpiCrescimentoDetalhes");
             const divIcone = document.getElementById("kpiCrescimentoIcone");
             const iconeChart = document.getElementById("iconeChartLine");
+
+            const bordaKpiCrescimento = document.getElementById("cardKpiCrescimento");
 
             var porcentagem = 0;
 
@@ -511,19 +590,24 @@
 
             var corText = "#718096";
             var corBackground = "#f1f5f9";
+            var corBorda = "4px solid #718096";
             var sinal = "";
 
             if (porcentagem > 0) {
-                corText = "#e53e3e";  // Vermelho (Mais alertas = Ruim)
+                corText = "#e53e3e";
                 corBackground = "#fff5f5";
+                corBorda = "4px solid #e53e3e";
                 sinal = "+";
                 iconeChart.className = "fa-solid fa-arrow-trend-up fa-lg";
+
             } else if (porcentagem < 0) {
-                corText = "#38a169";  // Verde (Menos alertas = Bom)
+                corText = "#38a169";
                 corBackground = "#f0fff4";
+                corBorda = "4px solid #38a169";
                 iconeChart.className = "fa-solid fa-arrow-trend-down fa-lg";
+
             } else {
-                iconeChart.className = "fa-solid fa-minus fa-lg"; // Neutro
+                iconeChart.className = "fa-solid fa-minus fa-lg";
             }
 
             h1Porcentagem.style.color = corText;
@@ -533,6 +617,10 @@
             divIcone.style.backgroundColor = corBackground;
 
             divDetalhes.innerHTML = `Sem. atual: ${semanaAtual} <span class="ms-2" style="color: #cbd5e1;">|</span> Sem. passada: ${semanaPassada}`;
+
+            if (bordaKpiCrescimento) {
+                bordaKpiCrescimento.style.borderBottom = corBorda;
+            }
         }
 
         function atualizarListaUnidades(selectFiltro) {
@@ -541,34 +629,36 @@
 
             if (!dadosHospital || !dadosHospital.unidades) return;
 
-            const unidadesArray = Object.values(dadosHospital.unidades);
+
+            const unidadesEntries = Object.entries(dadosHospital.unidades);
             var unidadesFormatadas = [];
 
-            unidadesArray.forEach(unidade => {
+            unidadesEntries.forEach(([id, unidade]) => {
                 var valor = 0;
                 var label = "alertas";
 
-                if (selectFiltro == 0) { 
+                if (selectFiltro == 0) {
                     valor = unidade.totalCriticos;
                     label = "alertas críticos";
-                } else if (selectFiltro == 1) { 
+                } else if (selectFiltro == 1) {
                     valor = unidade.totalComuns;
                     label = "alertas gerais";
-                } else if (selectFiltro == 2) { 
+                } else if (selectFiltro == 2) {
                     valor = unidade.detalhes.cpu + unidade.detalhesCriticos.cpuCritico;
                     label = "alertas de CPU";
-                } else if (selectFiltro == 3) { 
+                } else if (selectFiltro == 3) {
                     valor = unidade.detalhes.ram + unidade.detalhesCriticos.ramCritico;
                     label = "alertas de RAM";
-                } else if (selectFiltro == 4) { 
+                } else if (selectFiltro == 4) {
                     valor = unidade.detalhes.disco + unidade.detalhesCriticos.discoCritico;
                     label = "alertas de Disco";
-                } else if (selectFiltro == 5) { 
+                } else if (selectFiltro == 5) {
                     valor = unidade.detalhes.rede + unidade.detalhesCriticos.redeCritico;
                     label = "alertas de Rede";
                 }
+
                 if (valor > 0) {
-                    unidadesFormatadas.push({ nome: unidade.nome, valor: valor, label: label });
+                    unidadesFormatadas.push({ id: id, nome: unidade.nome, valor: valor, label: label });
                 }
             });
 
@@ -578,43 +668,52 @@
 
             if (top50.length == 0) {
                 lista.innerHTML = `
-            <div class="text-center mt-4">
-                <p style="font-size: 14px; color: #a0aec0;">Nenhuma unidade com alertas neste filtro.</p>
-            </div>`;
+    <div class="text-center mt-4">
+        <p style="font-size: 14px; color: #a0aec0;">Nenhuma unidade com alertas neste filtro.</p>
+    </div>`;
                 return;
             }
 
             const coresRanking = ["#e53e3e", "#ea580c", "#ea580c", "#eab308", "#eab308"];
 
             top50.forEach((item, index) => {
-                const corBolha = coresRanking[index];
+                const corBolha = coresRanking[index] || "#eab308";
 
-                const divItem = document.createElement("div");
-                divItem.className = "item-lista-critica";
-                divItem.innerHTML = `
-            <div class="d-flex align-items-center gap-3">
+                const tagA = document.createElement("a");
+                tagA.href = `dashboardUnidade.html?id=${item.id}`;
+                tagA.style.textDecoration = "none";
+                tagA.className = "item-lista-critica";
+
+                tagA.setAttribute("onclick", `sessionStorage.setItem('ID_UNIDADE', '${item.id}'); sessionStorage.setItem('NOME_UNIDADE', '${item.nome}');`);
+
+                tagA.innerHTML = `
+                <div class="d-flex align-items-center gap-3">
                 <span class="indicador-bola-critica" style="background-color: ${corBolha};"></span>
                 <div>
-                    <h6 style="margin: 0; font-size: 14px; font-weight: 700; color: #1e293b;">${item.nome}</h6>
-                    <p style="margin: 0; font-size: 12px; color: #64748b;">${item.valor} ${item.label}</p>
+                <h6 style="margin: 0; font-size: 14px; font-weight: 700; color: #1e293b;">${item.nome}</h6>
+                <p style="margin: 0; font-size: 12px; color: #64748b;">${item.valor} ${item.label}</p>
                 </div>
-            </div>
-        `;
-                lista.appendChild(divItem);
+                </div>
+            `;
+                lista.appendChild(tagA);
             });
         }
+
+        Chart.register(window['chartjs-plugin-annotation']);
 
         function plotarGrafico(componente) {
             const ctxBarra = document.getElementById('canvasAlertas').getContext('2d');
 
-            if (myChart) {
+            if (typeof myChart !== 'undefined' && myChart) {
                 myChart.destroy();
             }
 
             var labels = [];
             var data = [];
+            var ancora = 0;
 
             if (componente == 0) {
+                ancora = 100;
                 labels = ['Total (Crit + Geral)', 'Críticos', 'CPU Crit.', 'RAM Crit.', 'Disco Crit.', 'Rede Crit.'];
                 data = [
                     dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
@@ -625,6 +724,7 @@
                     dadosHospital.criticos.porComponente.redeCritico
                 ];
             } else if (componente == 1) {
+                ancora = 200;
                 labels = ['Total (Crit + Geral)', 'Geral', 'CPU', 'RAM', 'Disco', 'Rede'];
                 data = [
                     dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
@@ -635,6 +735,7 @@
                     dadosHospital.alertasSemanais.porComponente.rede
                 ];
             } else if (componente == 2) {
+                ancora = 75;
                 labels = ['Total CPU', 'Total Crit CPU', 'CPU Geral'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.cpu + dadosHospital.criticos.porComponente.cpuCritico,
@@ -642,6 +743,7 @@
                     dadosHospital.alertasSemanais.porComponente.cpu
                 ];
             } else if (componente == 3) {
+                ancora = 75;
                 labels = ['Total RAM', 'Total Crit RAM', 'RAM Geral'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.ram + dadosHospital.criticos.porComponente.ramCritico,
@@ -649,6 +751,7 @@
                     dadosHospital.alertasSemanais.porComponente.ram
                 ];
             } else if (componente == 4) {
+                ancora = 75;
                 labels = ['Total Disco', 'Total Crit Disco', 'Disco Geral'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.disco + dadosHospital.criticos.porComponente.discoCritico,
@@ -656,6 +759,7 @@
                     dadosHospital.alertasSemanais.porComponente.disco
                 ];
             } else {
+                ancora = 75;
                 labels = ['Total Rede', 'Total Crit Rede', 'Rede Geral'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.rede + dadosHospital.criticos.porComponente.redeCritico,
@@ -663,6 +767,20 @@
                     dadosHospital.alertasSemanais.porComponente.rede
                 ];
             }
+
+            var coresBarra = [];
+            for (var i = 0; i < data.length; i++) {
+                var valor = data[i];
+
+                if (valor > ancora) {
+                    coresBarra.push('#e53e3e');
+                } else if (valor >= (ancora - 10)) {
+                    coresBarra.push('#dd6b20');
+                } else {
+                    coresBarra.push('#38a169');
+                }
+            }
+
             myChart = new Chart(ctxBarra, {
                 type: 'bar',
                 data: {
@@ -670,7 +788,7 @@
                     datasets: [{
                         label: 'Alertas',
                         data: data,
-                        backgroundColor: '#3b82f6',
+                        backgroundColor: coresBarra,
                         borderRadius: 5,
                         barThickness: 40
                     }]
@@ -679,10 +797,125 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } }
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9' },
+                            suggestedMax: ancora + (ancora * 0.2)
+                        }
+                    },
+                    plugins: {
+                        annotation: {
+                            annotations: {
+                                linhaLimite: {
+                                    type: 'line',
+                                    yMin: ancora,
+                                    yMax: ancora,
+                                    borderColor: '#e53e3e',
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    label: {
+                                        display: true,
+                                        content: `Limite: ${ancora}`,
+                                        position: 'end',
+                                        backgroundColor: 'rgba(229, 62, 62, 0.8)',
+                                        color: '#fff',
+                                        font: {
+                                            size: 11
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             });
+        }
+
+
+        function iniciarMapa() {
+            mapa = L.map('container-mapa').setView([-23.5505, -46.6333], 11);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(mapa);
+
+            camadaMarcadores = L.layerGroup().addTo(mapa);
+        }
+
+        async function plotarMapa(selectFiltro) {
+            if (!dadosHospital || !dadosHospital.unidades) return;
+
+            camadaMarcadores.clearLayers();
+
+            const unidadesArray = Object.values(dadosHospital.unidades);
+
+            for (var i = 0; i < unidadesArray.length; i++) {
+                var unidade = unidadesArray[i];
+
+                if (!unidade.latitude || !unidade.longitude) continue;
+
+                var valorAlertas = 0;
+                var labelAlerta = "alertas";
+
+                if (selectFiltro == 0) {
+                    valorAlertas = unidade.totalCriticos;
+                    labelAlerta = "Críticos Ativos";
+                } else if (selectFiltro == 1) {
+                    valorAlertas = unidade.totalComuns;
+                    labelAlerta = "Gerais Ativos";
+                } else if (selectFiltro == 2) {
+                    valorAlertas = unidade.detalhes.cpu + unidade.detalhesCriticos.cpuCritico;
+                    labelAlerta = "em CPU";
+                } else if (selectFiltro == 3) {
+                    valorAlertas = unidade.detalhes.ram + unidade.detalhesCriticos.ramCritico;
+                    labelAlerta = "em RAM";
+                } else if (selectFiltro == 4) {
+                    valorAlertas = unidade.detalhes.disco + unidade.detalhesCriticos.discoCritico;
+                    labelAlerta = "em Disco";
+                } else {
+                    valorAlertas = unidade.detalhes.rede + unidade.detalhesCriticos.redeCritico;
+                    labelAlerta = "em Rede";
+                }
+
+                var temperatura = "--";
+                var umidade = "--";
+
+                try {
+                    const openMeteo = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${unidade.latitude}&longitude=${unidade.longitude}&current=temperature_2m,relative_humidity_2m`);
+                    const dadosOpenMeteo = await openMeteo.json();
+                    temperatura = dadosOpenMeteo.current.temperature_2m;
+                    umidade = dadosOpenMeteo.current.relative_humidity_2m;
+                } catch (erro) {
+                    console.log("Falha ao buscar clima para " + unidade.nome);
+                }
+
+                var corAlerta = valorAlertas > 5 ? "#e53e3e" : (valorAlertas > 0 ? "#dd6b20" : "#38a169");
+
+                var popupConteudo = `
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; min-width: 160px;">
+                <h6 style="margin: 0 0 8px 0; font-weight: 700; color: #1e293b;">${unidade.nome}</h6>
+                <div style="background-color: #f8fafc; padding: 6px; border-radius: 4px; border-left: 4px solid ${corAlerta}; margin-bottom: 8px;">
+                    <p style="margin: 0; font-size: 12px; color: #475569;">
+                        Filtro Atual:<br>
+                        <strong style="color: ${corAlerta}; font-size: 14px;">${valorAlertas} ${labelAlerta}</strong>
+                    </p>
+                </div>
+                <p style="margin: 0; font-size: 12px; color: #64748b;">🌤️ Temp: <b>${temperatura}°C</b></p>
+                <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">💧 Umidade: <b>${umidade}%</b></p>
+            </div>
+        `;
+
+                L.circleMarker([unidade.latitude, unidade.longitude], {
+                    radius: 12,
+                    fillColor: corAlerta,
+                    color: "#ffffff",
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                })
+                    .bindPopup(popupConteudo)
+                    .addTo(camadaMarcadores);
+            }
         }
     </script>
 </body>

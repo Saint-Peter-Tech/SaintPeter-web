@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | SPT</title>
+  <title>Modelos | SPT</title>
   <link rel="icon" href="../assets/LogoClara.png" />
 
 
@@ -96,6 +96,31 @@
         <span class="description">Funcionários</span>
       </a>
 
+      <div id="gerenteAba">
+        <span class="menu-title">GERENTE</span>
+
+        <a class="nav-link" href="./dashboardGerente.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.186.113a1 1 0 0 0-.372 0l-7 1.75A1 1 0 0 0 0 2.83v10.34a1 1 0 0 0 .757.97l7 1.75a1 1 0 0 0 .486 0l7-1.75A1 1 0 0 0 16 13.17V2.83a1 1 0 0 0-.757-.97zM8 1.15l6.5 1.625L8 4.4 1.5 2.775zM1 3.694l6.5 1.625v9.531L1 13.225zm14 0v9.531l-6.5 1.625V5.319z" />
+          </svg>
+
+          <span class="description">Modelos</span>
+        </a>
+
+        <a class="nav-link" href="./dashboardModular.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+            <path fill-rule="evenodd"
+              d="M0 0h1v15h15v1H0zm10-10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V-9.293l-4.146 4.147a.5.5 0 0 1-.708 0L7.5-7.293 3.854-3.646a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0L9.5-6.707 13.293-10.5z" />
+          </svg>
+
+          <span class="description">Módulos</span>
+        </a>
+      </div>
+
       <div class="dropdown usuario">
         <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
@@ -149,14 +174,36 @@
       </h4>
 
 
-      <div>
-        <h1 style="color: #13347b;">Dashboard - Modelos</h1>
+      <div class="displayGrid" style="background-color: white; border-radius: 10px; padding: 1.5%; margin-bottom: 2%;">
+        <div>
+          <h1 style="color: #13347b;">Dashboard - Modelos</h1>
+        </div>
+        <div class="d-flex gap-2">
+          <span class="tituloGrafico h5">Gerar relatório</span>
+          <img src="../assets/dash-modelo/icon-download.png" alt="" style="width: 25px; height: 25px; align-self: center;">
+        </div>
       </div>
 
       <div class="container-graficoInicial">
         <div class="lista-modelos">
-          <div class="pt-4 ps-4">
+          <div class="displayGrid pt-4 ps-4 pe-4">
             <h3 style="color: #13347b;">Lista de Modelos</h3>
+            <div class="d-flex gap-3" style="font-style: italic; font-weight: bold; color: #64748b; font-size: 16px;">
+              <div class="legendaItem">
+                <span class="status ok"></span>
+                Estável: Score ≥ 80
+              </div>
+
+              <div class="legendaItem">
+                <span class="status alerta"></span>
+                Atenção: Score ≥ 60
+              </div>
+
+              <div class="legendaItem">
+                <span class="status critico"></span>
+                Crítico: Score &lt; 60
+              </div>
+            </div>
           </div>
 
           <div class="table-scroll">
@@ -164,42 +211,13 @@
               <thead>
                 <tr>
                   <th>Modelo</th>
-                  <th>Score</th>
+                  <th>Health Score</th>
                   <th>Status</th>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>IntelliVue MX400</td>
-                  <td>91</td>
-                  <td class="critical-bg">Crítico</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX450</td>
-                  <td>87</td>
-                  <td class="critical-bg">Crítico</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX500</td>
-                  <td>68</td>
-                  <td class="warning-bg">Atenção</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX550</td>
-                  <td>22</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX750</td>
-                  <td>11</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
-                <tr>
-                  <td>IntelliVue MX850</td>
-                  <td>10</td>
-                  <td class="ok-bg">Estável</td>
-                </tr>
+              <tbody id="corpoLista">
+
               </tbody>
             </table>
           </div>
@@ -207,37 +225,41 @@
 
         <div class="d-flex flex-column gap-4">
           <div class="kpiModelo">
-            <div class="displayFlex" style="gap: 65%;">
-              <h5>MONITORES</h5>
+            <div class="displayGrid">
+              <h5>MODELO MAIS CRÍTICO</h5>
               <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
             </div>
 
-            <span style="display: flex; gap: 20%;">
+            <!-- <span style="display: flex; gap: 20%;"> -->
               <div>
-                <h4><b>156</b></h4>
-                <p><i>Quantidade total de monitores do modelo</i></p>
+                <h4><b id="kpiModeloMaisCritico"></b></h4>
               </div>
-              <div style="align-self: flex-end; text-align: end;">
+              <div>
+                <p><i>Modelo com pior Health Score</i></p>
+              </div>
+              <!-- <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
-              </div>
-            </span>
+              </div> -->
+            <!-- </span> -->
           </div>
 
           <div class="kpiModelo">
-            <div class="displayFlex" style="gap: 55%;">
+            <div class="displayGrid">
               <h5>MODELOS INSTÁVEIS</h5>
               <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
             </div>
 
-            <span style="display: flex; gap: 20%;">
+            <!-- <span style="display: flex; gap: 20%;"> -->
               <div>
-                <h4><b>2</b></h4>
-                <p><i>Quantidade total de modelos instáveis</i></p>
+                <h4><b id="kpiModelosInstaveis"></b></h4>
               </div>
-              <div style="align-self: flex-end; text-align: end;">
+              <div>
+                <p><i>Quantidade de modelos com Health Score abaixo de 60</i></p>
+              </div>
+              <!-- <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
-              </div>
-            </span>
+              </div> -->
+            <!-- </span> -->
           </div>
         </div>
       </div>
@@ -245,69 +267,75 @@
 
       <!-- Escolher Modelo -->
       <div class="div_escolha_unidade">
-        <h5>Selecionar Modelo</h5>
+        <h3>Selecionar Modelo</h3>
         <p>
           Escolha um modelo para visualizar informações detalhadas de monitoramento
         </p>
-        <select class="opcaoDashboard" id="select_modelo">
+        <select class="opcaoDashboard" id="select_modelo" onchange="filtrar()">
           <option value="0" selected disabled>Selecione um modelo</option>
         </select>
-        <button class="buttonDashboard"><a style="text-decoration: none; color: #13347b;"
-            href="./dashGraficosGerente.html">Visualizar Dashboard</a></button>
+        <div>
+          <h4 style="padding-top: 20px; margin: 0;">Modelo Selecionado: <b><span id="modeloEspecifico"></span></b></h4>
+        </div>
       </div>
-
 
       <!-- KPIs -->
       <div class="displayFlex">
         <div class="kpiModelo">
-          <div class="displayFlex" style="gap: 65%;">
-            <h5>MONITORES</h5>
+          <div class="displayGrid">
+            <h5>LANÇAMENTO</h5>
             <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
           </div>
 
-          <span style="display: flex; gap: 20%;">
-            <div>
-              <h4><b>156</b></h4>
-              <p><i>Quantidade total de monitores do modelo</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 20%;"> -->
+          <div>
+            <h4><b id="kpiLancamento"></b></h4>
+          </div>
+          <div>
+            <p><i>Ano em que o modelo foi criado</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
 
-        <div class="kpiModelo" style="color: #00A63E; border-bottom: 4px solid #00A63E; margin-bottom: 2%;">
-          <div class="displayFlex" style="gap: 55%;">
-            <h5 style="color: #13347b;">DISPONIBILIDADE</h5>
-            <img src="../assets/dash-modelo/icon-uptime.png" alt="" class="kpiImg">
+        <div class="kpiModelo" style="margin-bottom: 2%;" id="containerKpiAcimaLimite">
+          <div class="displayGrid">
+            <h5 style="color: #13347b;">TEMPO ACIMA DO LIMITE</h5>
+            <img alt="" class="kpiImg" id="imgKpiAcimaLimite">
           </div>
 
-          <span style="display: flex; gap: 25%; color: #13347b;">
-            <div>
-              <h4 style="color: #00A63E;"><b>98.5%</b></h4>
-              <p><i>Uptime do Modelo</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 20%; color: #13347b;"> -->
+          <div>
+            <h4><b id="kpiAcimaLimite"></b></h4>
+          </div>
+          <div>
+            <p style="color: #13347b;"><i>Com ao menos um componente acima do limite</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
 
-        <div class="kpiModelo" style="color: #e41033; border-bottom: 4px solid #e41033; margin-bottom: 2%;">
-          <div class="displayFlex" style="gap: 67%;">
-            <h5 style="color: #13347b;">INSTABILIDADE</h5>
-            <img src="../assets/dash-modelo/icon-criticidade.png" alt="" class="kpiImg">
+        <div class="kpiModelo" style="margin-bottom: 2%;" id="containerKpiEstabilidade">
+          <div class="displayGrid">
+            <h5 style="color: #13347b;">ESTABILIDADE</h5>
+            <img alt="" class="kpiImg" id="imgKpiEstabilidade">
           </div>
 
-          <span style="display: flex; gap: 25%; color: #13347b;">
-            <div>
-              <h4 style="color: #e41033;"><b>87</b></h4>
-              <p><i>Score de risco operacional</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 25%; color: #13347b;"> -->
+          <div>
+            <h4><b id="kpiScore"></b></h4>
+          </div>
+          <div>
+            <p style="color: #13347b;"><i>Health Score do modelo</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
       </div>
 
@@ -322,15 +350,15 @@
 
             <canvas id="modeloGraficoCpu"></canvas>
 
-            <div class="d-flex justify-content-evenly">
+            <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
-                <span>Acima do limite</span>
-                <span class="h3">8.2%</span>
+                <span class="h6" style="color: #13347b;">Acima do limite</span>
+                <span class="h3" style="color: #57D6E2;" id="pctCpu"></span>
               </div>
               <div class="d-flex flex-column gap-1">
-                <span>Status</span>
-                <div class="rounded p-2" style="background-color: #FEF9C2; color: #A65F00;">
-                  <span class="h4">Atenção</span>
+                <span class="h6" style="color: #13347b;">Status</span>
+                <div class="rounded p-2" id="divStatusCpu">
+                  <span class="h5" id="statusCpu">Atenção</span>
                 </div>
               </div>
             </div>
@@ -342,15 +370,35 @@
               <h3 class="tituloGrafico">RAM - Distribuição de Captações</h3>
             </div>
             <canvas id="modeloGraficoRam"></canvas>
-            <div class="d-flex justify-content-evenly">
+            <div class="d-flex justify-content-around">
               <div class="d-flex flex-column gap-1">
-                <span>Acima do limite</span>
-                <span class="h3">12.5%</span>
+                <span class="h6" style="color: #13347b;">Acima do limite</span>
+                <span class="h3" style="color: #1268B8;" id="pctRam"></span>
               </div>
               <div class="d-flex flex-column">
-                <span>Status</span>
-                <div class="rounded p-2" style="background-color: #FFA2A2; color: #C10007;">
-                  <span class="h4">Crítico</span>
+                <span class="h6" style="color: #13347b;">Status</span>
+                <div class="rounded p-2" id="divStatusRam">
+                  <span class="h5" id="statusRam"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modeloGrafico d-flex flex-column gap-4 p-4">
+            <div class="d-flex gap-3">
+              <img src="../assets/dash-modelo/icon-rede.png" class="imgGrafico" alt="">
+              <h3 class="tituloGrafico">Rede - Distribuição de Captações</h3>
+            </div>
+            <canvas id="modeloGraficoRede"></canvas>
+            <div class="d-flex justify-content-around">
+              <div class="d-flex flex-column gap-1">
+                <span class="h6" style="color: #13347b;">Acima do limite</span>
+                <span class="h3" style="color: #4698c1;" id="pctRede"></span>
+              </div>
+              <div class="d-flex flex-column">
+                <span class="h6" style="color: #13347b;">Status</span>
+                <div class="rounded p-2" id="divStatusRede">
+                  <span class="h5" id="statusRede">Crítico</span>
                 </div>
               </div>
             </div>
@@ -360,22 +408,10 @@
         <div class="container-graficos2">
           <div class="modeloGrafico d-flex flex-column gap-4 p-4">
             <div class="d-flex gap-3">
-              <img src="../assets/dash-modelo/icon-rede.png" class="imgGrafico" alt="">
-              <h3 class="tituloGrafico">Rede - Utilização por Dia</h3>
+              <img src="../assets/dash-modelo/icon-linha.png" class="imgGrafico" alt="">
+              <h3 class="tituloGrafico">Estabilidade por Componente</h3>
             </div>
-            <canvas id="modeloGraficoRede"></canvas>
-            <div class="d-flex justify-content-evenly">
-              <div class="d-flex flex-column gap-1">
-                <span>Acima do limite</span>
-                <span class="h3">18.5%</span>
-              </div>
-              <div class="d-flex flex-column">
-                <span>Status</span>
-                <div class="rounded p-2" style="background-color: #FEF9C2; color: #A65F00;">
-                  <span class="h4">Atenção</span>
-                </div>
-              </div>
-            </div>
+            <canvas id="modeloGraficoLinhaAlertas"></canvas>
           </div>
 
           <div class="modeloGrafico p-4" id="containerGraficoPizza">
@@ -386,30 +422,29 @@
             <div>
               <canvas id="modeloGraficoPizza"></canvas>
             </div>
-            <div class="d-flex justify-content-evenly">
-              <div class="d-flex flex-column col-3 align-items-center">
-                <span>CPU</span>
-                <span class="h3">35%</span>
-              </div>
-              <div class="d-flex flex-column col-3 align-items-center">
-                <span>RAM</span>
-                <span class="h3">48%</span>
-              </div>
-              <div class="d-flex flex-column col-3 align-items-center">
-                <span>Rede</span>
-                <span class="h3">17%</span>
-              </div>
+          </div>
+        </div>
+
+        <div class="modeloGrafico d-flex flex-column gap-4 p-4">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex gap-3">
+              <img src="../assets/dash-modelo/icon-modulo.png" class="imgGrafico" alt="">
+              <h3 class="tituloGrafico">Status dos Módulos</h3>
             </div>
+            <a href="./dashboardModular.html" id="ref-modulo">
+              <div class="d-flex gap-1 w-100 h-100">
+                <span class="tituloGrafico h5">Ver análise completa</span>
+                <img src=" ../assets/dash-modelo/icon-seta.png" style="width: 35px; height: 35px; align-self: center;"
+                  alt="">
+              </div>
+            </a>
+          </div>
+
+          <div id="containerCardsModulos">
+
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- Dash de analista -->
-
-    <div id="div_analista" style="display: none;">
-
     </div>
   </main>
 
@@ -418,11 +453,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 
 </body>
 
 
 <script>
+  Chart.register(window['chartjs-plugin-annotation']);
 
   function selecionarG() {
     document.getElementById('div_gerente').style.display = "block";
@@ -438,13 +477,13 @@
   window.onload = function () {
     validarSessao();
     listarModelos();
+    buscarDadosS3(sessionStorage.FK_EMPRESA);
+    filtrar();
   };
 
   function listarModelos() {
     var fk_Empresa = sessionStorage.FK_EMPRESA;
     var selectModelo = document.getElementById("select_modelo");
-
-    console.log(fk_Empresa);
 
     fetch(`/modelo/listarModelos?fkEmpresa=${fk_Empresa}`)
       .then(function (resposta) {
@@ -466,266 +505,590 @@
   }
 
   // GRÁFICOS
-
-  // Gráfico CPU
-  const parametros = ["0-40%", "40-80%", ">80%"];
-
-  const graficoModeloCpu = document.getElementById('modeloGraficoCpu');
-
-  new Chart(graficoModeloCpu, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1680, 4120, 450],
-        backgroundColor: '#57D6E2',
-        borderRadius: 8
-      }]
+  const parametros = ["Sem alertas", "Alertas", "Alertas Críticos"];
+  const configGraficoBarra = {
+    plugins: {
+      legend: {
+        display: false
+      }
     },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas"
-          }
-        }
-      }
-    }
-  })
-
-  // Gráfico RAM
-  const graficoModeloRam = document.getElementById('modeloGraficoRam');
-
-  new Chart(graficoModeloRam, {
-    type: 'bar',
-    data: {
-      labels: parametros,
-      datasets: [{
-        label: 'Captações por Porcentagem',
-        data: [1450, 4320, 680],
-        backgroundColor: '#1268B8',
-        borderRadius: 8
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false,
-            text: "Intervalo da Captura"
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Quantidade de capturas"
-          }
-        }
-      }
-    }
-  })
-
-  // Gráfico Rede
-  const rotulos = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
-
-  const graficoModeloRede = document.getElementById('modeloGraficoRede');
-
-  new Chart(graficoModeloRede, {
-    type: 'line',
-    data: {
-      labels: rotulos,
-      datasets: [
-        {
-          label: 'P50',
-          data: [45, 52, 48, 56, 51, 38, 35],
-          borderColor: "#CAD1DA"
-        },
-        {
-          label: 'P95',
-          data: [78, 85, 82, 89, 87, 65, 62],
-          borderColor: "#3790BB"
-        },
-        {
-          label: 'Limite',
-          data: Array(7).fill(80),
-          borderDash: [5, 5],
-          borderColor: '#FFE821',
-          borderWidth: 2,
-          backgroundColor: 'transparent',
-          pointRadius: 0,
-          fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          title: {
-            display: false
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Utilização (%)"
-          }
-        }
-      }
-    }
-  });
-
-  // Gráfico Origem dos Alertas
-  const data = {
-    labels: ['CPU', 'RAM', 'Rede'],
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [35, 48, 17],
-        backgroundColor: ["#57D6E2", "#1268B8", "#3790BB"]
-      }
-    ]
-  };
-
-  const config = {
-    type: 'pie',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
+    scales: {
+      x: {
         title: {
           display: false,
+          text: "Intervalo da Captura"
+        },
+        ticks: {
+          font: {
+            size: 14
+          }
         }
       },
-      aspectRatio: 1.5
-    }
-  };
-
-  const modeloGraficoPizza = document.getElementById('modeloGraficoPizza');
-
-  new Chart(modeloGraficoPizza, config);
-
-  //b_usuario.innerHTML = "Fernando";
-
-  const dias = [
-    "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"
-  ];
-
-  const consumoCPU = [35, 48, 52, 60, 72, 55, 40];
-  const consumoRAM = [45, 50, 58, 63, 70, 62, 48];
-
-  document.getElementById("kpi_media_ram").innerText = "65%";
-  document.getElementById("kpi_mais").innerText = "Sexta";
-  document.getElementById("kpi_menos").innerText = "Segunda";
-
-  //const ctx = document.getElementById('lineChart');
-
-  const configCPU = {
-    type: 'line',
-    data: {
-      labels: dias,
-      datasets: [{
-        label: 'Consumo médio de CPU (%)',
-        data: consumoCPU,
-        borderColor: '#1c52c8',
-        backgroundColor: '#08a4bd33',
-        fill: true,
-        tension: 0.3
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: true }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100
+      y: {
+        title: {
+          display: true,
+          text: "Capturas (%)",
+          font: {
+            size: 16
+          }
+        },
+        ticks: {
+          font: {
+            size: 14
+          }
         }
       }
     }
-  };
+  }
+  let graficoCpu;
+  let graficoRam;
+  let graficoRede;
+  let graficoAlertas;
+  let graficoOrigem;
 
-  new Chart(ctx, configCPU);
+  async function buscarDadosS3(id_empresa) {
 
+    const resposta = await fetch(`/modeloS3/${id_empresa}`);
 
-  const ctxBar = document.getElementById('barChart');
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar dados");
+    }
 
-  const configRAM = {
-    type: 'bar',
-    data: {
-      labels: dias,
-      datasets: [{
-        label: 'Consumo médio de RAM (%)',
-        data: consumoRAM,
-        backgroundColor: '#1c52c8'
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: true }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100
-        }
+    const dados = await resposta.json();
+
+    plotarListaModelos(dados);
+
+  }
+
+  function plotarListaModelos(dados) {
+    const modelos = Object.values(dados.modelos);
+
+    modelos.sort(
+      (a, b) => a.healthscore - b.healthscore
+    );
+
+    for (const modelo of modelos) {
+      bgColor = "critical-bg";
+      msg = "Crítico";
+
+      if (modelo.healthscore > 79) {
+        bgColor = "ok-bg";
+        msg = "Estável";
+      } else if (modelo.healthscore > 59) {
+        bgColor = "warning-bg";
+        msg = "Atenção";
+      }
+
+      corpoLista.innerHTML += `
+        <tr>
+          <td>${modelo.nome}</td>
+          <td>${modelo.healthscore}</td>
+          <td class="${bgColor}">${msg}</td>
+        </tr>
+      `
+    }
+
+    plotarKpisGerais(modelos);
+  }
+
+  function plotarKpisGerais(modelos) {
+    modelosInstaveis = 0;
+
+    // Plotando a KPI de modelo mais crítico
+    modeloMaisCritico = modelos[0].nome
+    kpiModeloMaisCritico.innerHTML = modeloMaisCritico
+
+    // Plotando KPI de quantidade de modelos instáveis
+    for (const modelo of modelos) {
+
+      if (modelo.healthscore < 60) {
+        modelosInstaveis++
+      }
+
+    }
+
+    kpiModelosInstaveis.innerHTML = modelosInstaveis
+  }
+
+  async function filtrar() {
+
+    const selectModelo = document.getElementById("select_modelo");
+    const idModelo = selectModelo.value;
+
+    await buscarDadosModelo(idModelo);
+
+  }
+
+  async function buscarDadosModelo(idModelo) {
+    const resposta = await fetch(`/modeloS3/${sessionStorage.FK_EMPRESA}`);
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar dados");
+    }
+
+    const dados = await resposta.json();
+
+    const modelos = Object.values(dados.modelos);
+
+    modelos.sort(
+      (a, b) => a.healthscore - b.healthscore
+    );
+
+    if (idModelo == 0) {
+      modelo = modelos[0]
+      idModeloMaisCritico = modelo.id_modelo
+
+      plotarKpisEspecificas(
+        idModeloMaisCritico,
+        modelo.pct_alertas,
+        modelo.healthscore
+      )
+
+      plotarGraficoCpu(
+        modelo.pct_ok_cpu,
+        modelo.pct_alertas_cpu,
+        modelo.pct_criticos_cpu
+      );
+
+      plotarGraficoRam(
+        modelo.pct_ok_ram,
+        modelo.pct_alertas_ram,
+        modelo.pct_criticos_ram
+      );
+
+      plotarGraficoRede(
+        modelo.pct_ok_rede,
+        modelo.pct_alertas_rede,
+        modelo.pct_criticos_rede
+      );
+
+      plotarGraficoBarra(
+        modelo.healthscore_cpu,
+        modelo.healthscore_ram,
+        modelo.healthscore_rede
+      );
+
+      plotarGraficoOrigem(
+        modelo.origem_alertas_cpu,
+        modelo.origem_alertas_ram,
+        modelo.origem_alertas_rede
+      );
+
+      plotarListaModulos(idModeloMaisCritico);
+
+      modeloEspecifico.innerHTML = modelo.nome;
+
+      return;
+
+    }
+
+    for (const modelo of modelos) {
+      if (modelo.id_modelo == idModelo) {
+        plotarKpisEspecificas(
+          idModelo,
+          modelo.pct_alertas,
+          modelo.healthscore
+        )
+
+        plotarGraficoCpu(
+          modelo.pct_ok_cpu,
+          modelo.pct_alertas_cpu,
+          modelo.pct_criticos_cpu
+        );
+
+        plotarGraficoRam(
+          modelo.pct_ok_ram,
+          modelo.pct_alertas_ram,
+          modelo.pct_criticos_ram
+        );
+
+        plotarGraficoRede(
+          modelo.pct_ok_rede,
+          modelo.pct_alertas_rede,
+          modelo.pct_criticos_rede
+        );
+
+        plotarGraficoBarra(
+          modelo.healthscore_cpu,
+          modelo.healthscore_ram,
+          modelo.healthscore_rede
+        );
+
+        plotarGraficoOrigem(
+          modelo.origem_alertas_cpu,
+          modelo.origem_alertas_ram,
+          modelo.origem_alertas_rede
+        );
+
+        plotarListaModulos(idModelo);
+
+        modeloEspecifico.innerHTML = modelo.nome;
+
+        return;
       }
     }
-  };
+  }
 
-  new Chart(ctxBar, configRAM);
+  function plotarKpisEspecificas(idModelo, acimaLimite, score) {
 
+    var corAcimaLimite = '#00A63E';
+    var corEstabilidade = '#e41033';
+    var imgAcimaLimite = '../assets/dash-modelo/icon-uptime.png';
+    var imgEstabilidade = '../assets/dash-modelo/icon-alerta.png';
 
-  function alertaPopUp() {
-    if (Number(consumoCPU[4]) >= 70) {
-      var mensagem = `Consumo de CPU elevado na Sexta-feira`;
+    if (acimaLimite > 30) {
+      corAcimaLimite = '#e41033';
+      imgAcimaLimite = '../assets/dash-modelo/icon-uptime-red.png';
+    } else if (acimaLimite > 20) {
+      corAcimaLimite = '#dac617';
+      imgAcimaLimite = '../assets/dash-modelo/icon-uptime-yellow.png';
+    }
 
-      alerta_popup.style.display = 'flex';
-      mensagem_alerta.innerHTML = mensagem;
+    if (score > 79) {
+      corEstabilidade = '#00A63E';
+      imgEstabilidade = '../assets/dash-modelo/icon-alerta-green.png';
+    } else if (score > 59) {
+      corEstabilidade = '#dac617';
+      imgEstabilidade = '../assets/dash-modelo/icon-alerta-yellow.png';
+    }
+
+    fetch(`/modelo/buscarModelo/${idModelo}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (resposta) {
+            kpiLancamento.innerHTML = resposta[0].dtLancamento
+          })
+        }
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar modelo:", erro);
+      });
+
+    kpiAcimaLimite.innerHTML = `${acimaLimite}%`;
+    kpiAcimaLimite.style.color = corAcimaLimite;
+    containerKpiAcimaLimite.style.borderBottom = `4px solid ${corAcimaLimite}`;
+    imgKpiAcimaLimite.src = imgAcimaLimite;
+
+    kpiScore.innerHTML = score;
+    kpiScore.style.color = corEstabilidade;
+    containerKpiEstabilidade.style.borderBottom = `4px solid ${corEstabilidade}`;
+    imgKpiEstabilidade.src = imgEstabilidade;
+
+  }
+
+  function plotarGraficoCpu(okCpu, alertasCpu, criticosCpu) {
+    const graficoModeloCpu = document.getElementById('modeloGraficoCpu');
+
+    if (graficoCpu) {
+      graficoCpu.destroy();
+    }
+
+    graficoCpu = new Chart(graficoModeloCpu, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okCpu, alertasCpu, criticosCpu],
+          backgroundColor: '#57D6E2',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasCpu, criticosCpu, "Cpu")
+  }
+
+  function plotarGraficoRam(okRam, alertasRam, criticosRam) {
+    const graficoModeloRam = document.getElementById('modeloGraficoRam');
+
+    if (graficoRam) {
+      graficoRam.destroy();
+    }
+
+    graficoRam = new Chart(graficoModeloRam, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okRam, alertasRam, criticosRam],
+          backgroundColor: '#1268B8',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasRam, criticosRam, "Ram")
+  }
+
+  function plotarGraficoRede(okRede, alertasRede, criticosRede) {
+    const graficoModeloRede = document.getElementById('modeloGraficoRede');
+
+    if (graficoRede) {
+      graficoRede.destroy();
+    }
+
+    graficoRede = new Chart(graficoModeloRede, {
+      type: 'bar',
+      data: {
+        labels: parametros,
+        datasets: [{
+          label: 'Captações por Porcentagem',
+          data: [okRede, alertasRede, criticosRede],
+          backgroundColor: '#4698c1',
+          borderRadius: 8
+        }]
+      },
+      options: configGraficoBarra
+    });
+
+    plotarKpiGraficos(alertasRede, criticosRede, "Rede")
+  }
+
+  function plotarKpiGraficos(alertas, criticos, componente) {
+    const pct = document.getElementById(
+      `pct${componente}`
+    );
+
+    const status = document.getElementById(
+      `status${componente}`
+    );
+
+    const divStatus = document.getElementById(`divStatus${componente}`);
+
+    bgColor = "ok-bg";
+    msg = "Estável";
+
+    tmpAcimaLimite = alertas + criticos
+
+    if (tmpAcimaLimite > 30) {
+      bgColor = "critical-bg";
+      msg = "Crítico";
+    } else if (tmpAcimaLimite > 20) {
+      bgColor = "warning-bg";
+      msg = "Atenção";
+    }
+
+    pct.innerHTML = `${tmpAcimaLimite}%`
+    status.innerHTML = msg
+    divStatus.classList.add(bgColor)
+  }
+
+  function plotarGraficoBarra(scoreCpu, scoreRam, scoreRede) {
+    const graficoBarraExemplo = document.getElementById('modeloGraficoLinhaAlertas');
+
+    var corCpu = '#57D6E2'
+    var corRam = '#1268B8'
+    var corRede = '#4698c1'
+
+    if (scoreCpu < 60) {
+      corCpu = '#e41033'
+    }
+    if (scoreRam < 60) {
+      corRam = '#e41033'
+    }
+    if (scoreRede < 60) {
+      corRede = '#e41033'
+    }
+
+    if (graficoAlertas) {
+      graficoAlertas.destroy();
+    }
+
+    graficoAlertas = new Chart(graficoBarraExemplo, {
+      type: 'bar',
+      data: {
+        labels: ['CPU', 'RAM', 'Rede'],
+        datasets: [{
+          label: 'Alertas',
+          data: [scoreCpu, scoreRam, scoreRede],
+          backgroundColor: [corCpu, corRam, corRede],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          legend: {
+            display: true
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Health Score",
+              font: {
+                size: 16
+              }
+            },
+            ticks: {
+              font: {
+                size: 14
+              }
+            }
+          },
+          y: {
+            title: {
+              display: false,
+              text: "Capturas acima do limite (%)",
+              font: {
+                size: 16
+              }
+            },
+            ticks: {
+              font: {
+                size: 14
+              }
+            }
+          }
+        },
+        plugins: {
+          annotation: {
+            annotations: {
+              limitLine: {
+                type: 'line',
+                xMin: 60,
+                xMax: 60,
+                borderColor: '#FF7F7F',
+                borderWidth: 2,
+                label: { display: true, position: 'end' }
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const value = context.raw;
+                const status = value > 60 ? 'Estável' : 'Instável';
+                return `Valor: ${value} (${status})`;
+              }
+            }
+          },
+          legend: { display: false }
+        }
+      }
+    })
+  }
+
+  function plotarGraficoOrigem(pctCpu, pctRam, pctRede) {
+    const data = {
+      labels: ['CPU', 'RAM', 'Rede'],
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: [pctCpu, pctRam, pctRede],
+          backgroundColor: ["#57D6E2", "#1268B8", "#4698c1"]
+        }
+      ]
+    };
+
+    const config = {
+      type: 'pie',
+      data: data,
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: false,
+          },
+          datalabels: {
+            color: ['#57D6E2', '#1268B8', '#4698c1'],
+            font: {
+              weight: 'bold',
+              size: 25
+            },
+            anchor: 'end',
+            align: 'end',
+            formatter: (value) => {
+              return `${value}%`;
+            }
+          }
+        },
+        maintainAspectRatio: false
+      }
+    };
+
+    const modeloGraficoPizza = document.getElementById('modeloGraficoPizza');
+
+    if (graficoOrigem) {
+      graficoOrigem.destroy();
+    }
+
+    graficoOrigem = new Chart(modeloGraficoPizza, config);
+  }
+
+  async function plotarListaModulos(idModelo) {
+    const empresa = sessionStorage.FK_EMPRESA;
+
+    containerCardsModulos.innerHTML = ``;
+
+    try {
+
+      const resposta = await fetch(`/moduloS3/${empresa}/${idModelo}`);
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar dados");
+      }
+
+      const dados = await resposta.json();
+
+      modulos = dados.modulos.sort((a, b) => {
+
+        if (b.critico !== a.critico) {
+          return b.critico - a.critico;
+        }
+
+        if (b.alerta !== a.alerta) {
+          return b.alerta - a.alerta;
+        }
+
+        return b.instabilidade - a.instabilidade;
+      });
+
+      modulos.forEach(modulo => {
+
+        bgColor = "critical-bg";
+        msg = "Crítico";
+        colorText = "#e41033";
+
+        if (modulo.estabilidade > 79) {
+          bgColor = "ok-bg";
+          msg = "Estável";
+          colorText = "#00A63E";
+        } else if (modulo.estabilidade > 59) {
+          bgColor = "warning-bg";
+          msg = "Atenção";
+          colorText = "#FFE821";
+        }
+
+        containerCardsModulos.innerHTML += `
+          <div class="card border-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
+            <div class="card-header"><span class="h4">${modulo.nome}</span></div>
+            <div class="card-body d-flex flex-column gap-3">
+              <div class="card-score d-flex flex-column gap-1 align-items-center p-4">
+                <span class="h1" style="color: ${colorText};">${modulo.estabilidade}</span>
+                <span style="color: #919295;"><i>Score de Estabilidade</i></span>
+              </div>
+              <div class="${bgColor} d-flex justify-content-center">
+                <span>${msg}</span>
+              </div>
+            </div>
+          </div> `;
+      });
+
+    } catch (erro) {
+
+      console.error("Erro ao buscar dashboard:", erro);
+
     }
   }
-
-  function escondeAlerta() {
-    alerta_popup.style.display = 'none';
-  }
-
-  alertaPopUp();
-
-  function fecharAlerta() {
-    document.getElementById("alerta_popup").style.display = "none";
-  }
-
 
 </script>

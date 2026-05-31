@@ -54,6 +54,19 @@ async function buscarDadosMonitor(req, res) {
           ecg_status: "Inativo",
           etco2_status: "Inativo",
         },
+        alertasMonitor: {
+          alertasCpu:   0,
+          alertasRam:   0,
+          alertasDisco: 0,
+          alertasRede:  0,
+          totalAlertas: 0,
+        },
+        graficos: {
+          valoresCpu: [0,0,0,0,0,0,0,0,0,0],
+          valorRam: [0,0,0,0,0,0,0,0,0,0],
+          valorRede: [0,0,0,0,0,0,0,0,0,0],
+          horariosGrafico: [0,0,0,0,0,0,0,0,0,0],
+        },
       });
     }
     console.log("Erro ao buscar JSON");

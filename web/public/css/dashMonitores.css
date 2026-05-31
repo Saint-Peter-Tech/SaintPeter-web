@@ -59,6 +59,7 @@
 
 .botaoAdicionarMonitor:hover,
 .alertasGerados:hover,
+.alertasGeradosAcima:hover,
 .kpiMonitor:hover,
 .kpiPicoRedeRuim:hover,
 .kpiMonitorComponente:hover,
@@ -164,6 +165,18 @@
 }
 
 .alertasGerados {
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  text-align: end;
+  color: #13347b;
+  transition: ease 0.3s transform;
+  cursor: pointer;
+  padding: 2%;
+  line-height: 0.1;
+}
+
+.alertasGeradosAcima {
   display: flex;
   width: 500px;
   flex-direction: column;
@@ -322,6 +335,18 @@
   gap: 20%;
 }
 
+.kpiMonitorComponenteAnalista {
+  color: #13347b;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2%;
+  border-bottom: #13347b solid 4px;
+  transition: transform ease 0.3s;
+  width: 537px;
+  height: 200px;
+  gap: 20%;
+}
+
 .kpiMonitorComponenteAcima {
   color: #991616;
   background-color: white;
@@ -341,6 +366,7 @@
   padding: 1%;
   margin-top: -1%;
   margin-bottom: 1%;
+  width: 101%;
 }
 
 .table-scroll {
@@ -459,3 +485,19 @@
   left: 63%;
   border: #13347b0c 0.5px solid;
 }
+
+.divAlertasEspecifico {
+  background-color: rgba(255, 255, 255, 0.556);
+  padding: 2%;
+  width: 15%;
+  color: #13347b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border: #13347b0c 0.5px solid;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.divAlertasEspecifico:hover {
+  transform: scale(1.03);
+}
+
