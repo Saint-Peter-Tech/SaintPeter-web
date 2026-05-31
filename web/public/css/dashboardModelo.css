@@ -87,7 +87,9 @@
   transition: transform ease 0.3s;
   width: 600px;
   height: 200px;
-  gap: 2%;
+  display: grid;
+  grid-row: 1fr 1fr 1fr;
+  align-items: end;
 }
 
 .kpiModelo:hover {
@@ -97,6 +99,11 @@
 .displayFlex {
   display: flex;
   gap: 2%;
+}
+
+.displayGrid {
+    display: grid;
+    grid-template-columns: 1fr auto;
 }
 
 .container-graficos1{

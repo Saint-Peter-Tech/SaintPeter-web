@@ -45,9 +45,22 @@ function buscarModelosPorNome(req, res) {
     });
 }
 
+function buscarModelo(req, res) {
+  var idModelo = req.params.idModelo
+  modeloModel.buscarModelo(idModelo)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     cadastrarModelo,
     buscarModelos,
-    buscarModelosPorNome
+    buscarModelosPorNome,
+    buscarModelo
 };

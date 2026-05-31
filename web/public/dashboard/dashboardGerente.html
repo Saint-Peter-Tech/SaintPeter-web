@@ -256,54 +256,60 @@
       <!-- KPIs -->
       <div class="displayFlex">
         <div class="kpiModelo">
-          <div class="displayFlex" style="gap: 65%;">
-            <h5>COMPONENTE MAIS CRÍTICO</h5>
+          <div class="displayGrid">
+            <h5>LANÇAMENTO</h5>
             <img class="kpiImg" src="../assets/dash-modelo/icon-monitor.png" alt="">
           </div>
 
-          <span style="display: flex; gap: 20%;">
-            <div>
-              <h4><b>156</b></h4>
-              <p><i>Componente mais crítico</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 20%;"> -->
+          <div>
+            <h4><b id="kpiLancamento"></b></h4>
+          </div>
+          <div>
+            <p><i>Ano em que o modelo foi criado</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
 
         <div class="kpiModelo" style="color: #00A63E; border-bottom: 4px solid #00A63E; margin-bottom: 2%;">
-          <div class="displayFlex" style="gap: 55%;">
-            <h5 style="color: #13347b;">DISPONIBILIDADE</h5>
+          <div class="displayGrid">
+            <h5 style="color: #13347b;">TEMPO ACIMA DO LIMITE</h5>
             <img src="../assets/dash-modelo/icon-uptime.png" alt="" class="kpiImg">
           </div>
 
-          <span style="display: flex; gap: 25%; color: #13347b;">
-            <div>
-              <h4 style="color: #00A63E;"><b>98.5%</b></h4>
-              <p><i>Uptime do Modelo</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 20%; color: #13347b;"> -->
+          <div>
+            <h4 style="color: #00A63E;"><b id="kpiAcimaLimite"></b></h4>
+          </div>
+          <div>
+            <p style="color: #13347b;"><i>Com ao menos um componente acima do limite</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
 
         <div class="kpiModelo" style="color: #e41033; border-bottom: 4px solid #e41033; margin-bottom: 2%;">
-          <div class="displayFlex" style="gap: 60%;">
+          <div class="displayGrid">
             <h5 style="color: #13347b;">ESTABILIDADE</h5>
             <img src="../assets/dash-modelo/icon-criticidade.png" alt="" class="kpiImg">
           </div>
 
-          <span style="display: flex; gap: 25%; color: #13347b;">
-            <div>
-              <h4 style="color: #e41033;"><b>87</b></h4>
-              <p><i>Score de risco operacional</i></p>
-            </div>
-            <div style="align-self: flex-end; text-align: end;">
+          <!-- <span style="display: flex; gap: 25%; color: #13347b;"> -->
+          <div>
+            <h4 style="color: #e41033;"><b id="kpiScore"></b></h4>
+          </div>
+          <div>
+            <p style="color: #13347b;"><i>Score de risco operacional</i></p>
+          </div>
+          <!-- <div style="align-self: flex-end; text-align: end;">
               <p><i>Última atualização: 13/05/2026</i></p>
-            </div>
-          </span>
+            </div> -->
+          <!-- </span> -->
         </div>
       </div>
 
@@ -422,7 +428,8 @@
   <script src="../js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 
 </body>
 
@@ -603,7 +610,15 @@
 
     if (idModelo == 0) {
       modelo = modelos[0]
-      idModeloMaisCritico = modelo.id_modelo;
+      idModeloMaisCritico = modelo.id_modelo
+
+      console.log(idModeloMaisCritico)
+
+      plotarKpisEspecificas(
+        idModeloMaisCritico,
+        modelo.pct_alertas,
+        modelo.healthscore
+      )
 
       plotarGraficoCpu(
         modelo.pct_ok_cpu,
@@ -645,6 +660,13 @@
 
     for (const modelo of modelos) {
       if (modelo.id_modelo == idModelo) {
+        console.log(idModelo)
+        plotarKpisEspecificas(
+          idModelo,
+          modelo.pct_alertas,
+          modelo.healthscore
+        )
+
         plotarGraficoCpu(
           modelo.pct_ok_cpu,
           modelo.pct_alertas_cpu,
@@ -682,6 +704,25 @@
         return;
       }
     }
+  }
+
+  function plotarKpisEspecificas(idModelo, acimaLimite, score) {
+
+    fetch(`/modelo/buscarModelo/${idModelo}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`)
+            kpiLancamento.innerHTML = resposta[0].dtLancamento
+          })
+        }
+      })
+      .catch(function (erro) {
+        console.error("Erro ao buscar modelo:", erro);
+      });
+
+    kpiAcimaLimite.innerHTML = `${acimaLimite}%`
+    kpiScore.innerHTML = score
   }
 
   function plotarGraficoCpu(okCpu, alertasCpu, criticosCpu) {
@@ -794,13 +835,13 @@
 
     if (scoreCpu < 60) {
       corCpu = '#e41033'
-    } 
+    }
     if (scoreRam < 60) {
       corRam = '#e41033'
-    } 
+    }
     if (scoreRede < 60) {
       corRede = '#e41033'
-    } 
+    }
 
     if (graficoAlertas) {
       graficoAlertas.destroy();

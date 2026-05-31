@@ -26,8 +26,17 @@ function buscarModelosPorNome(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function buscarModelo(idModelo) {
+    var instrucaoSql = `
+        SELECT id_modelo, nome, DATE_FORMAT(dtLancamento, '%Y') AS dtLancamento FROM modelos WHERE id_modelo = ${idModelo};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarModelo,
     buscarModelos,
-    buscarModelosPorNome
+    buscarModelosPorNome,
+    buscarModelo
 }
