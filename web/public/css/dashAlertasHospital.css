@@ -124,3 +124,13 @@
     padding-bottom: 12px;
     margin-bottom: 18px;
 }
+
+.card-kpi-dashboard:hover{
+    transition: transform 0.3s ease;
+    transform: scale(1.05);
+}
+
+.cardUnidades:hover{
+    transition: transform 1s ease;
+    transform: scale(1.05);
+}
