@@ -35,30 +35,16 @@ const padraoVazio = {
 
 async function buscarControleJson(req, res) {
     try {
-
         const empresa = req.params.empresa;
-
         const key = `client/empresa_${empresa}/controle.json`;
-
         const dados = await buscarJson(key);
-
         res.json(dados);
-
     } catch (erro) {
-
-        if (
-            erro.Code == "NoSuchKey" ||
-            erro.name == "NoSuchKey"
-        ) {
+        if (erro.Code == "NoSuchKey" || erro.name == "NoSuchKey") {
             return res.json(padraoVazio);
         }
-
-        res.status(500).json({
-            erro: "Erro ao buscar JSON do analista"
-        });
+        res.status(500).json({ erro: "Erro ao buscar JSON do analista" });
     }
 }
 
-module.exports = {
-    buscarControleJson
-};
+module.exports = { buscarControleJson };
