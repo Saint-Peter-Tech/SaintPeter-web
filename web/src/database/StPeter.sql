@@ -156,12 +156,12 @@ VALUES
 INSERT IGNORE INTO unidades 
 (fk_hospital, cep, rua, numero, cidade, latitude, longitude, nome_unidade, email_responsavel, telefone_responsavel, rede_total)
 VALUES
-(1, '04293970', 'Rua do Boqueirão', '320', 'São Paulo', -23.62207690, -46.61616220, 'Unidade Vila da Saúde', 'spnovaesperanca@esperanca.com', '11911111111', 1000),
-(1, '01414001', 'Rua Haddock Lobo', '595', 'São Paulo', -23.55802090, -46.66167880, 'Unidade SPTech', 'spnovaesperanca@esperanca.com', '11952814455', 1000),
-(1, '01424001', 'Alameda Lorena', '53', 'São Paulo', -23.57348290, -46.65604000, 'Unidade Jardim Paulista', 'spnovaesperanca@esperanca.com', '11995735566', 1000),
-(2, '05109130', 'Rua Teixeira Soares', '200', 'São Paulo', -23.50425200, -46.63711190, 'Unidade SP - Bem Estar Saúde', 'spbemestar@bemestar.com', '11922222222', 1000),
-(3,  '04075904', 'Avenida Açocê', '530', 'São Paulo', -23.60424520, -46.65596360, 'Unidade SP - Santa Helena', 'spsantahelena@santahelena.com', '1123235167', 1000),  
-(4, '01007900', 'Rua Doutor Faria Pereira', '56', 'São Paulo', -23.48977930, -46.63747200, 'Unidade SP - Central Brasil', 'spcentralbrasil@centralbrasil.com', '1132567234', 1000);
+(1, '04293970', 'Rua do Boqueirão', '320', 'São Paulo', -23.62207690, -46.61616220, 'Unidade Vila da Saúde', 'spnovaesperanca@esperanca.com', '11911111111', 100),
+(1, '01414001', 'Rua Haddock Lobo', '595', 'São Paulo', -23.55802090, -46.66167880, 'Unidade SPTech', 'spnovaesperanca@esperanca.com', '11952814455', 50),
+(1, '01424001', 'Alameda Lorena', '53', 'São Paulo', -23.57348290, -46.65604000, 'Unidade Jardim Paulista', 'spnovaesperanca@esperanca.com', '11995735566', 60),
+(2, '05109130', 'Rua Teixeira Soares', '200', 'São Paulo', -23.50425200, -46.63711190, 'Unidade SP - Bem Estar Saúde', 'spbemestar@bemestar.com', '11922222222', 70),
+(3,  '04075904', 'Avenida Açocê', '530', 'São Paulo', -23.60424520, -46.65596360, 'Unidade SP - Santa Helena', 'spsantahelena@santahelena.com', '1123235167', 80),  
+(4, '01007900', 'Rua Doutor Faria Pereira', '56', 'São Paulo', -23.48977930, -46.63747200, 'Unidade SP - Central Brasil', 'spcentralbrasil@centralbrasil.com', '1132567234', 90);
 
 INSERT IGNORE INTO usuarios (fk_adm, fk_empresa, nome_usuario, email, senha, cpf) VALUES
 (

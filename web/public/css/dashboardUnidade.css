@@ -32,9 +32,10 @@ body {
 }
 
 .card-kpi {
+    flex: 1;
+    min-width: 200px;
     background-color: white;
     color: #13347b;
-    width: 220px;
     height: 110px;
     padding: 18px;
     border-radius: 10px;
