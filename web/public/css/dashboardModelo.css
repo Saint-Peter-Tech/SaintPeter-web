@@ -1,3 +1,15 @@
+#buttonRelatorio {
+    border-radius: 10px;
+    border: 2px solid #dee0e6;
+    background-color: white;
+}
+
+#buttonRelatorio:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+    border-color: #13347b;
+}
+
 .container-graficoInicial{
     display: grid;
     grid-template-columns: 5fr 2fr;

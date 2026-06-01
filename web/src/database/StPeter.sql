@@ -156,12 +156,12 @@ VALUES
 INSERT IGNORE INTO unidades 
 (fk_hospital, cep, rua, numero, cidade, latitude, longitude, nome_unidade, email_responsavel, telefone_responsavel, rede_total)
 VALUES
-(1, '04293970', 'Rua do Boqueirão', '320', 'São Paulo', -23.62207690, -46.61616220, 'Unidade Vila da Saúde', 'spnovaesperanca@esperanca.com', '11911111111', 1000),
-(1, '01414001', 'Rua Haddock Lobo', '595', 'São Paulo', -23.55802090, -46.66167880, 'Unidade SPTech', 'spnovaesperanca@esperanca.com', '11952814455', 1000),
-(1, '01424001', 'Alameda Lorena', '53', 'São Paulo', -23.57348290, -46.65604000, 'Unidade Jardim Paulista', 'spnovaesperanca@esperanca.com', '11995735566', 1000),
-(2, '05109130', 'Rua Teixeira Soares', '200', 'São Paulo', -23.50425200, -46.63711190, 'Unidade SP - Bem Estar Saúde', 'spbemestar@bemestar.com', '11922222222', 1000),
-(3,  '04075904', 'Avenida Açocê', '530', 'São Paulo', -23.60424520, -46.65596360, 'Unidade SP - Santa Helena', 'spsantahelena@santahelena.com', '1123235167', 1000),  
-(4, '01007900', 'Rua Doutor Faria Pereira', '56', 'São Paulo', -23.48977930, -46.63747200, 'Unidade SP - Central Brasil', 'spcentralbrasil@centralbrasil.com', '1132567234', 1000);
+(1, '04293970', 'Rua do Boqueirão', '320', 'São Paulo', -23.62207690, -46.61616220, 'Unidade Vila da Saúde', 'spnovaesperanca@esperanca.com', '11911111111', 100),
+(1, '01414001', 'Rua Haddock Lobo', '595', 'São Paulo', -23.55802090, -46.66167880, 'Unidade SPTech', 'spnovaesperanca@esperanca.com', '11952814455', 50),
+(1, '01424001', 'Alameda Lorena', '53', 'São Paulo', -23.57348290, -46.65604000, 'Unidade Jardim Paulista', 'spnovaesperanca@esperanca.com', '11995735566', 60),
+(2, '05109130', 'Rua Teixeira Soares', '200', 'São Paulo', -23.50425200, -46.63711190, 'Unidade SP - Bem Estar Saúde', 'spbemestar@bemestar.com', '11922222222', 70),
+(3,  '04075904', 'Avenida Açocê', '530', 'São Paulo', -23.60424520, -46.65596360, 'Unidade SP - Santa Helena', 'spsantahelena@santahelena.com', '1123235167', 80),  
+(4, '01007900', 'Rua Doutor Faria Pereira', '56', 'São Paulo', -23.48977930, -46.63747200, 'Unidade SP - Central Brasil', 'spcentralbrasil@centralbrasil.com', '1132567234', 90);
 
 INSERT IGNORE INTO usuarios (fk_adm, fk_empresa, nome_usuario, email, senha, cpf) VALUES
 (
@@ -209,9 +209,17 @@ VALUES
 (3, 2, 6, '2024-03-01', '2025-03-01', 'Inativo');
 
 INSERT INTO componente_monitor (fk_componente, fk_monitor, limite) VALUES
-(1, 1, 70), (2, 1, 85), (3, 1, 80), (4, 1, 80), (5, 1, 150),
-(1, 2, 70), (2, 2, 85), (3, 2, 80), (4, 2, 80), (5, 2, 150),
-(1, 3, 70), (2, 3, 85), (3, 3, 80), (4, 3, 80), (5, 3, 150),
-(1, 4, 80), (2, 4, 75), (3, 4, 80), (4, 4, 80), (5, 4, 150),
-(1, 5, 80), (2, 5, 75), (3, 5, 80), (4, 5, 80), (5, 5, 150),
-(1, 6, 80), (2, 6, 75), (3, 6, 80), (4, 6, 80), (5, 6, 150);
+(1, 1, 70), (2, 1, 85), (3, 1, 80), (4, 1, 80), (5, 1, 1.5),
+(1, 2, 70), (2, 2, 85), (3, 2, 80), (4, 2, 80), (5, 2, 1.5),
+(1, 3, 70), (2, 3, 85), (3, 3, 80), (4, 3, 80), (5, 3, 1.5),
+(1, 4, 80), (2, 4, 75), (3, 4, 80), (4, 4, 80), (5, 4, 1.5),
+(1, 5, 80), (2, 5, 75), (3, 5, 80), (4, 5, 80), (5, 5, 1.5),
+(1, 6, 80), (2, 6, 75), (3, 6, 80), (4, 6, 80), (5, 6, 1.5);
+
+CREATE USER 'nodejs'@'%' identified by 'SaintPeter@2026';
+grant select, insert, update on SaintPeter.* to 'nodejs'@'%';
+flush privileges;
+
+CREATE USER 'etl'@'%' identified by 'SaintPeter@2026';
+grant select, insert, update on SaintPeter.* to 'etl'@'%';
+flush privileges;

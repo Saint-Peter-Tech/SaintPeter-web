@@ -7,4 +7,8 @@ router.get("/:empresa", function (req, res) {
     modeloController.buscarModeloS3Json(req, res);
 });
 
+router.get("/relatorio/:empresa", function (req, res) {
+    modeloController.buscarRelatorio(req,res);
+})
+
 module.exports = router;
