@@ -30,6 +30,7 @@ var modeloRouter = require("./src/routes/modelo");
 var modeloS3Router = require("./src/routes/modeloS3");
 var unidadeS3Router = require("./src/routes/unidadeS3");
 var analistaRouter = require("./src/routes/analista");
+var analistaS3Router = require("./src/routes/analistaS3");
 var moduloS3Router = require("./src/routes/moduloS3");
 
 app.use(express.json());
@@ -52,6 +53,7 @@ app.use("/modelo", modeloRouter);
 app.use("/modeloS3", modeloS3Router);
 app.use("/unidadeS3", unidadeS3Router);
 app.use("/analista", analistaRouter);
+app.use("/analistaS3", analistaS3Router);
 app.use("/moduloS3", moduloS3Router);
 
 app.listen(PORTA_APP, function () {

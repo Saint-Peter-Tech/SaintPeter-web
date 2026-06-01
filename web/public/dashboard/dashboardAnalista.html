@@ -177,13 +177,7 @@
       <div>
         <div class="displayFlex">
           <div class="" style="margin-top: 0.5%">
-            <div id="parametroR" style="
-                  display: flex;
-                  display: block;
-                  width: 300px;
-                  margin-top: 2%;
-                " class="">
-
+            <div id="parametroR" style="display: block; width: 300px; margin-top: 2%;">
             </div>
           </div>
         </div>
@@ -205,29 +199,29 @@
                 </div>
             </div>
             <div class="parte-baixo-kpi d-flex justify-content-between">
-              <p><i style="width: 10px;">Hoje 5 - Ontem 1</i></p>
+              <p><i style="width: 10px;">DISPONIBILIDADE DOS MONITORES</i></p>
               <p><i><a href="./dashboardMonitores.html" style="color: inherit;">Saiba mais</a></i></p>
               </span>
             </div>
           </div>
 
           <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
-            <div class="parte-cima-kpi d-flex justify-content-between">
-              <div class="displayFlex" style="gap: 60%">
-                <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
-              </div>
+  <div class="parte-cima-kpi d-flex justify-content-between">
+    <div class="displayFlex" style="gap: 60%">
+      <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
+    </div>
 
-              <span class="text-end" style="display: flex; gap: 10%">
-                <h4><b>EINSTEIN - ALPHAVILLE</b></h4>
-            </div>
-            <div class="parte-baixo-kpi d-flex justify-content-between">
-              <p><i>14 Quedas</i></p>
-              <div style="align-self: flex-end; text-align: end">
-                <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
-              </div>
-              </span>
-            </div>
-          </div>
+    <span class="text-end" style="display: flex; gap: 10%">
+      <h4><b id="quedasUnidadeNome">EINSTEIN - ALPHAVILLE</b></h4>
+  </div>
+  <div class="parte-baixo-kpi d-flex justify-content-between">
+    <p><i id="quedasUnidadeQtd">14 Quedas</i></p>
+    <div style="align-self: flex-end; text-align: end">
+      <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
+    </div>
+    </span>
+  </div>
+</div>
 
           <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
             <div class="parte-cima-kpi d-flex justify-content-between">
@@ -237,12 +231,11 @@
 
               <span style="display: flex; gap: 25%">
                 <div>
-                  <h1><b>6</b></h1>
+                  <h1><b id="hospAlertasTotal">6</b></h1>
                 </div>
             </div>
             <div class="parte-baixo-kpi d-flex justify-content-between">
-              <p><i>HOJE 6 - ONTEM 1</i></p>
-              <!-- </div> -->
+              <p><i id="hospAlertasComparativo">HOJE 6 - ONTEM 1</i></p>
               <div style="align-self: flex-end; text-align: end">
                 <p><i><a href="./dashboardAlertasHospital.html" style="color: inherit;">Saiba mais</a></i></p>
               </div>
@@ -280,11 +273,11 @@
               <table id="example" class="table table-striped">
                 <thead class="sticky-top">
                   <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">UNIDADE</th>
                     <th scope="col">QTD. QUEDAS</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="rankingQuedas">
                   <tr>
                     <th>MON-UTI-007</th>
                     <td>12</td>
@@ -316,7 +309,7 @@
                     <th scope="col">QTD. ALERTAS</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="listaHospitaisAlertas">
                   <tr class="bg-white">
                     <td class="bg-white">MON-UTI-007</td>
                   </tr>
@@ -353,8 +346,15 @@
 
         <!-- graficos de cpu e ram -->
         <div class="pai-graficos">
+            <div style="margin-bottom: 16px; width: 300px;">
+              <label for="filtroUnidade" class="form-label">Unidade</label>
+              <select id="filtroUnidade" class="form-select">
+                <option value="0">Todas as unidades</option>
+              </select>
+            </div>
+
           <div class="displayFlex">
-            <div class="grafico" style="width: 820px; height: 550px;">
+            <div class="grafico" style="width: 820px; height: 650px;">
               <h4><img src="../assets/dash-modelo/icon-rede.png" alt=""> Quedas por Dia e Turno</h4>
               <div id="quedasDia"></div>
             </div>
@@ -384,54 +384,8 @@
 </body>
 
 <script>
-  // function selecionarG() {
-  //   document.getElementById("gerente").style.display = "block";
-  //   document.getElementById("funcionario").style.display = "none";
-  // }
-
-  // function selecionarF() {
-  //   document.getElementById("funcionario").style.display = "block";
-  //   document.getElementById("gerente").style.display = "none";
-  // }
-
-  // window.onload = function () {
-  //   validarSessao();
-  //   listarUnidades();
-  // };
-
-  // function listarUnidades() {
-  //   var fk_Empresa = sessionStorage.FK_EMPRESA;
-  //   var selectUnidade = document.getElementById("select_unidade");
-
-  //   fetch(`/unidade/unidadesPorEmpresa?fk_Empresa=${fk_Empresa}`)
-  //     .then(function (resposta) {
-  //       if (resposta.ok) {
-  //         return resposta.json();
-  //       }
-  //     })
-  //     .then(function (unidades) {
-  //       unidades.forEach((unidade) => {
-  //         const option = document.createElement("option");
-  //         option.value = unidade.id_unidade;
-  //         option.textContent = unidade.nome_unidade;
-  //         selectUnidade.appendChild(option);
-  //       });
-  //     })
-  //     .catch(function (erro) {
-  //       console.error("Erro ao buscar unidades:", erro);
-  //     });
-  // }
-
-  //b_usuario.innerHTML = "Fernando";
-
-  // const dias = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
-
-  // const consumoCPU = [35, 48, 52, 60, 72, 55, 40];
-  // const consumoRAM = [45, 50, 58, 63, 70, 62, 48];
-
-  // document.getElementById("kpi_media_ram").innerText = "65%";
-  // document.getElementById("kpi_mais").innerText = "Sexta";
-  // document.getElementById("kpi_menos").innerText = "Segunda";
+ 
+  const ID_EMPRESA = sessionStorage.FK_EMPRESA;
 
   function kpiMonitorIndisponivel() {
 
@@ -506,161 +460,238 @@
   listaMonitorIndisponivel();
 
 
-  var testeGraf = {
-    chart: {
-      type: 'heatmap'
-    },
-    series: [
-      {
-        name: "Madrugada",
-        data: [{
-          x: 'W1',
-          y: 23
-        }, {
-          x: 'W2',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }]
-      },
-      {
-        name: "Noite",
-        data: [{
-          x: 'W1',
-          y: 23
-        }, {
-          x: 'W2',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }]
-      },
-      {
-        name: "Tarde",
-        data: [{
-          x: 'W1',
-          y: 23
-        }, {
-          x: 'W2',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }]
-      },
-      {
-        name: "Manhã",
-        data: [{
-          x: 'W1',
-          y: 23
-        }, {
-          x: 'W2',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W3',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }, {
-          x: 'W4',
-          y: 23
-        }]
-      }
-    ]
-    ,
-    xaxis: {
-      categories: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+  let heatmapChart;
+let dadosHeatmap;   
+
+function montarHeatmap() {
+    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            throw "Erro ao buscar heatmap de quedas";
+        })
+        .then(function (dados) {
+            dadosHeatmap = dados.graficos.heatmapQuedas;   
+            montarFiltroUnidades(dadosHeatmap);
+            renderHeatmap("0");                            
+        })
+        .catch(function (erro) {
+            console.log("#ERRO:", erro);
+        });
+}
+
+function montarFiltroUnidades(heatmapData) {
+    const select = document.getElementById("filtroUnidade");
+    select.innerHTML = "";   
+
+    for (const id in heatmapData) {
+        const option = document.createElement("option");
+        option.value = id;                         
+        option.textContent = heatmapData[id].nome;  
+        select.appendChild(option);
     }
-  }
 
-  var teste = new ApexCharts(document.querySelector("#quedasDia"), testeGraf);
+    select.addEventListener("change", function () {
+        renderHeatmap(this.value);
+        renderBarras(this.value); 
+    });
+}
 
-  teste.render();
+function renderHeatmap(unidadeId) {
+    const h = dadosHeatmap[unidadeId];
 
-  const ctx = document.getElementById('alertaSemana');
+    const series = h.turnos.map(function (turno) {
+        return {
+            name: turno,
+            data: h.dias.map(function (dia, i) {
+                return { x: dia, y: h.matriz[turno][i] };
+            }),
+        };
+    });
 
-  const config = {
-    type: 'bar',
-    data: {
-      labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
-      datasets: [{
-        label: 'Alertas',
-        data: [10, 20, 30, 40], // ✅ array com os 4 valores
-        backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2']
-      }]
-    },
-    options: {
-      scales: {
-        y: { beginAtZero: true }
-      }
+    if (heatmapChart) {
+        heatmapChart.updateSeries(series);
+        return;
     }
-  };
 
-  const alertaSemana = new Chart(ctx, config);
+    heatmapChart = new ApexCharts(document.querySelector("#quedasDia"), {
+        chart: { type: "heatmap", height: 480, toolbar: { show: false } },
+        series: series,
+        xaxis: { categories: h.dias },
+        dataLabels: { enabled: true },
+        plotOptions: {
+            heatmap: {
+                colorScale: {
+                    ranges: [
+                        { from: 0,  to: 4,      color: "#00A63E", name: "Menos de 5" },
+                        { from: 5,  to: 10,     color: "#f4b400", name: "5 a 10" },
+                        { from: 11, to: 999999, color: "#E7000B", name: "Mais de 10" },
+                    ],
+                },
+            },
+        },
+    });
+    heatmapChart.render();
+}
 
-  // function alertaPopUp() {
-  //   if (Number(consumoCPU[4]) >= 70) {
-  //     var mensagem = `Consumo de CPU elevado na Sexta-feira`;
+montarHeatmap();
 
-  //     alerta_popup.style.display = "flex";
-  //     mensagem_alerta.innerHTML = mensagem;
-  //   }
-  // }
+  let alertaSemanaChart;
+let dadosBarras;   
 
-  // function escondeAlerta() {
-  //   alerta_popup.style.display = "none";
-  // }
+function montarBarras() {
+    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            throw "Erro ao buscar alertas por semana";
+        })
+        .then(function (dados) {
+            dadosBarras = dados.graficos.alertasPorSemana;   
+            renderBarras("0");                              
+        })
+        .catch(function (erro) {
+            console.log("#ERRO:", erro);
+        });
+}
 
-  // alertaPopUp();
+function renderBarras(unidadeId) {
+    const b = dadosBarras[unidadeId];
 
-  // function fecharAlerta() {
-  //   document.getElementById("alerta_popup").style.display = "none";
-  // }
+    const labels  = b.semanas.map(function (s) { return s.label; });
+    const valores = b.semanas.map(function (s) { return s.alertas; });
+
+    // se já existe, só atualiza
+    if (alertaSemanaChart) {
+        alertaSemanaChart.data.labels = labels;
+        alertaSemanaChart.data.datasets[0].data = valores;
+        alertaSemanaChart.update();
+        return;
+    }
+
+    alertaSemanaChart = new Chart(document.getElementById("alertaSemana"), {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Alertas",
+                data: valores,
+                backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2', '#1268b8'],
+            }],
+        },
+        options: {
+            scales: { y: { beginAtZero: true } },
+        },
+    });
+}
+
+montarBarras();
+
+  function kpiUnidadeMaisQuedas() {
+    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            throw "Erro ao buscar unidade com mais quedas";
+        })
+        .then(function (dados) {
+            const top = dados.unidadesQuedas.unidadeTop;
+            console.log("Unidade com mais quedas:", top);
+            document.getElementById("quedasUnidadeNome").innerHTML = top.nome;
+            document.getElementById("quedasUnidadeQtd").innerHTML = `${top.qtdQuedas} Quedas`;
+        })
+        .catch(function (erro) {
+            console.log("#ERRO:", erro);
+        });
+}
+
+kpiUnidadeMaisQuedas();
+
+function listaUnidadesQuedas() {
+    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            throw "Erro ao listar unidades com quedas";
+        })
+        .then(function (dados) {
+            const ranking = dados.unidadesQuedas.ranking;
+            const lista = document.getElementById("rankingQuedas");
+
+            lista.innerHTML = "";
+
+            ranking.forEach(function (u) {
+                lista.innerHTML += `
+                    <tr>
+                        <th scope="row">${u.nome_unidade}</th>
+                        <td>${u.qtdQuedas}</td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(function (erro) {
+            console.log("#ERRO:", erro);
+        });
+}
+
+listaUnidadesQuedas();
+
+function kpiHospitaisAlertas() {
+    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            throw "Erro ao buscar hospitais com mais de 5 alertas";
+        })
+        .then(function (dados) {
+            const h = dados.hospitaisMais5Alertas;
+            console.log("Hospitais com +5 alertas:", h);
+
+            document.getElementById("hospAlertasTotal").innerHTML = h.total;
+            document.getElementById("hospAlertasComparativo").innerHTML = `HOJE ${h.hoje} - ONTEM ${h.ontem}`;
+        })
+        .catch(function (erro) {
+            console.log("#ERRO:", erro);
+        });
+}
+
+kpiHospitaisAlertas();
+
+function listaHospitaisAlertas() {
+    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            throw "Erro ao listar hospitais com mais de 5 alertas";
+        })
+        .then(function (dados) {
+            const lista = dados.hospitaisMais5Alertas.lista;
+            const tbody = document.getElementById("listaHospitaisAlertas");
+
+            tbody.innerHTML = "";
+
+            lista.forEach(function (h) {
+                tbody.innerHTML += `
+                    <tr>
+                        <th scope="row">${h.nome_hospital}</th>
+                        <td>${h.qtdAlertas}</td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(function (erro) {
+            console.log("#ERRO:", erro);
+        });
+}
+
+listaHospitaisAlertas();
+
 </script>
 
 </html>
