@@ -1,4 +1,4 @@
-const { buscarJson } = require("../s3/conexaoS3");
+const { buscarJson, buscarArquivo } = require("../s3/conexaoS3");
 
 async function buscarModeloS3Json(req, res) {
     try {
@@ -36,6 +36,31 @@ async function buscarModeloS3Json(req, res) {
     }
 }
 
+async function buscarRelatorio(req, res) {
+    try {
+        const empresa = req.params.empresa;
+
+        const key = `client/empresa_${empresa}/relatorios/relatorioModelo.pdf`;
+
+        const arquivo = await buscarArquivo(key);
+
+        res.setHeader("Content-Type", "application/pdf");
+
+        res.setHeader("Content-Disposition", "attachment; filename=relatorioModelos.pdf");
+
+        arquivo.Body.pipe(res);
+    } catch (erro) {
+        console.error("ERRO BACKEND:");
+        console.error(erro);
+
+        res.status(500).json({
+            erro: erro.message
+        });
+    }
+
+}
+
 module.exports = {
-    buscarModeloS3Json
+    buscarModeloS3Json,
+    buscarRelatorio
 };

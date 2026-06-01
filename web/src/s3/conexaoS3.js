@@ -18,4 +18,14 @@ async function buscarJson(key) {
   return JSON.parse(conteudo);
 }
 
-module.exports = { buscarJson };
+async function buscarArquivo(key) {
+
+    const command = new GetObjectCommand({
+        Bucket: process.env.bucket,
+        Key: key
+    });
+
+    return await s3.send(command);
+}
+
+module.exports = { buscarJson, buscarArquivo };

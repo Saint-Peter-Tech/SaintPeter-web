@@ -39,7 +39,7 @@
         <img width="100%" src="../assets/Identidade Visual/LogoEscura.png" id="logo_navbar2" alt="">
       </a>
 
-      <a class="nav-link" href="dashboardGerente.html">
+      <a class="nav-link" href="dashboardAnalista.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid"
           viewBox="0 0 16 16">
           <path
@@ -178,10 +178,13 @@
         <div>
           <h1 style="color: #13347b;">Dashboard - Modelos</h1>
         </div>
-        <div class="d-flex gap-2">
-          <span class="tituloGrafico h5">Gerar relatório</span>
-          <img src="../assets/dash-modelo/icon-download.png" alt="" style="width: 25px; height: 25px; align-self: center;">
-        </div>
+        <button id="buttonRelatorio" onclick="baixarRelatorio(sessionStorage.FK_EMPRESA)">
+          <div class="d-flex gap-2">
+            <span class="tituloGrafico h5">Baixar relatório</span>
+            <img src="../assets/dash-modelo/icon-download.png" alt=""
+              style="width: 25px; height: 25px; align-self: center;">
+          </div>
+        </button>
       </div>
 
       <div class="container-graficoInicial">
@@ -231,13 +234,13 @@
             </div>
 
             <!-- <span style="display: flex; gap: 20%;"> -->
-              <div>
-                <h4><b id="kpiModeloMaisCritico"></b></h4>
-              </div>
-              <div>
-                <p><i>Modelo com pior Health Score</i></p>
-              </div>
-              <!-- <div style="align-self: flex-end; text-align: end;">
+            <div>
+              <h4><b id="kpiModeloMaisCritico"></b></h4>
+            </div>
+            <div>
+              <p><i>Modelo com pior Health Score</i></p>
+            </div>
+            <!-- <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
               </div> -->
             <!-- </span> -->
@@ -250,13 +253,13 @@
             </div>
 
             <!-- <span style="display: flex; gap: 20%;"> -->
-              <div>
-                <h4><b id="kpiModelosInstaveis"></b></h4>
-              </div>
-              <div>
-                <p><i>Quantidade de modelos com Health Score abaixo de 60</i></p>
-              </div>
-              <!-- <div style="align-self: flex-end; text-align: end;">
+            <div>
+              <h4><b id="kpiModelosInstaveis"></b></h4>
+            </div>
+            <div>
+              <p><i>Quantidade de modelos com Health Score abaixo de 60</i></p>
+            </div>
+            <!-- <div style="align-self: flex-end; text-align: end;">
                 <p><i>Última atualização: 13/05/2026</i></p>
               </div> -->
             <!-- </span> -->
@@ -463,25 +466,45 @@
 <script>
   Chart.register(window['chartjs-plugin-annotation']);
 
-  function selecionarG() {
-    document.getElementById('div_gerente').style.display = "block";
-    document.getElementById('div_analista').style.display = "none";
-
-  }
-
-  function selecionarA() {
-    // document.getElementById('div_analista').style.display = "block";
-    // document.getElementById('div_gerente').style.display = "none";
-
-    window.location.href = "dashboardAnalista.html"
-  }
-
   window.onload = function () {
     validarSessao();
     listarModelos();
     buscarDadosS3(sessionStorage.FK_EMPRESA);
     filtrar();
   };
+
+  async function baixarRelatorio(idEmpresa) {
+    try {
+      const resposta = await fetch(
+        `/modeloS3/relatorio/${idEmpresa}`
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar relatório");
+      }
+
+      const blob = await resposta.blob();
+
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+
+      link.download = "relatorioModelos.pdf";
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      link.remove();
+
+      window.URL.revokeObjectURL(url);
+    } catch (erro) {
+
+      console.error("Erro ao baixar pdf: " + erro);
+    }
+  }
 
   function listarModelos() {
     var fk_Empresa = sessionStorage.FK_EMPRESA;
@@ -736,7 +759,7 @@
     var corAcimaLimite = '#00A63E';
     var corEstabilidade = '#e41033';
     var imgAcimaLimite = '../assets/dash-modelo/icon-uptime.png';
-    var imgEstabilidade = '../assets/dash-modelo/icon-alerta.png';
+    var imgEstabilidade = '../assets/dash-modelo/icon-criticidade.png';
 
     if (acimaLimite > 30) {
       corAcimaLimite = '#e41033';
