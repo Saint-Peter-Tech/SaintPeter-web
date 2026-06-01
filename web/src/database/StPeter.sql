@@ -210,8 +210,16 @@ VALUES
 
 INSERT INTO componente_monitor (fk_componente, fk_monitor, limite) VALUES
 (1, 1, 70), (2, 1, 85), (3, 1, 80), (4, 1, 80), (5, 1, 1.5),
-(1, 2, 70), (2, 2, 85), (3, 2, 80), (4, 2, 80), (5, 2, 1.5)
+(1, 2, 70), (2, 2, 85), (3, 2, 80), (4, 2, 80), (5, 2, 1.5),
 (1, 3, 70), (2, 3, 85), (3, 3, 80), (4, 3, 80), (5, 3, 1.5),
 (1, 4, 80), (2, 4, 75), (3, 4, 80), (4, 4, 80), (5, 4, 1.5),
 (1, 5, 80), (2, 5, 75), (3, 5, 80), (4, 5, 80), (5, 5, 1.5),
 (1, 6, 80), (2, 6, 75), (3, 6, 80), (4, 6, 80), (5, 6, 1.5);
+
+CREATE USER 'nodejs'@'%' identified by 'SaintPeter@2026';
+grant select, insert, update on SaintPeter.* to 'nodejs'@'%';
+flush privileges;
+
+CREATE USER 'etl'@'%' identified by 'SaintPeter@2026';
+grant select, insert, update on SaintPeter.* to 'etl'@'%';
+flush privileges;
