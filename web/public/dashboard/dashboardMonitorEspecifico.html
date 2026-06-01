@@ -954,7 +954,6 @@
 
   // gráfico de linha de rede
   let labelsRede = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"];
-  let labelsLimiteRede = Array(10).fill(0);
   let datasetRede = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const data = {
@@ -967,16 +966,6 @@
       backgroundColor: '#4063ce',
       tension: 0.1,
       borderWidth: 1
-    },
-    {
-      label: 'Limite',
-      data: labelsLimiteRede,
-      borderColor: 'red',
-      borderWidth: 2,
-      backgroundColor: 'transparent',
-      borderDash: [5, 5],
-      pointRadius: 0,
-      fill: false
     }
     ]
   };
@@ -1550,8 +1539,6 @@
       .fill(0);
     chartRede.data.datasets[0].data = new Array(10)
       .fill(0);
-    chartRede.data.datasets[1].data = new Array(10)
-      .fill(0);
 
     chartRede.update();
 
@@ -1577,10 +1564,6 @@
     chartRede.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
     chartRede.data.datasets[0].data = [...dadosMonitor.graficos.valorRede];
-
-    chartRede.data.datasets[1].data =
-      new Array(dadosMonitor.graficos.valorRede.length)
-        .fill(dadosMonitor.limites.limiteRede);
 
     chartRede.update();
 
