@@ -899,6 +899,11 @@
 
     pct.innerHTML = `${tmpAcimaLimite}%`
     status.innerHTML = msg
+    divStatus.classList.remove(
+      "ok-bg",
+      "warning-bg",
+      "critical-bg"
+    );
     divStatus.classList.add(bgColor)
   }
 
