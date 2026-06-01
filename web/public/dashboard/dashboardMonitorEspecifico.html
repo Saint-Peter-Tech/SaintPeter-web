@@ -276,7 +276,6 @@
           </span>
 
           <div id="divParametro" style="display: flex; display: block; width: 300px; margin-top: 2%;" class="">
-
             <div class="" style="width: 200px;">
               <div><b>Cadastro:</b></div>
             </div>
@@ -668,7 +667,7 @@
         monitores.forEach(monitor => {
           const optionMonitor = document.createElement('option');
 
-          console.log('Dentro do for each para listar o nome do monitor')
+          //console.log('Dentro do for each para listar o nome do monitor')
           optionMonitor.value = monitor.id_monitor;
           optionMonitor.textContent = `MONITOR: ${monitor.id_monitor}`
 
@@ -701,7 +700,7 @@
         return resposta.json();
       })
       .then(function (status) {
-        console.log('Status: ', status)
+        //console.log('Status: ', status)
 
         var statusMonitor = status[0].status_monitor
         statusMonitorConst = statusMonitor;
@@ -755,7 +754,7 @@
         return resposta.json();
       })
       .then(function (modelo) {
-        console.log('Modelo: ', modelo)
+        //console.log('Modelo: ', modelo)
         divModelo.innerHTML = `<b>Modelo:</b> ${modelo[0].nome}`;
       })
       .catch(function (erro) {
@@ -794,7 +793,7 @@
   var divAtualizarBlock = true;
 
   function aparecerDivAtualizarMonitor() {
-    console.log('estou aqui')
+
     if (divAtualizarBlock) {
       divAtualizar = document.getElementById('atualizarInfoMonitor')
       divAtualizar.style.display = 'none'
@@ -868,7 +867,7 @@
       })
         .then(function (atualizacao) {
 
-          console.log('Status atualizado com sucesso!')
+          //console.log('Status atualizado com sucesso!')
 
           sucesso();
 
@@ -887,7 +886,7 @@
     var iptCompDisco = parseFloat(inputAtualizarCompDisco.value.trim())
     var idMonitor = sessionStorage.ID_MONITOR;
 
-    console.log(sessionStorage.ID_MONITOR);
+   // console.log(sessionStorage.ID_MONITOR);
 
     if (isNaN(iptCompRede)) {
       console.log('numero invalido')
@@ -1137,7 +1136,7 @@
 
 
     try {
-      console.log('Iniciando fetch de dados do monitor')
+     // console.log('Iniciando fetch de dados do monitor')
       const resposta = await fetch(`/monitorS3/${idEmpresa}/${idHospital}/${idUnidade}/${idMonitor}.json`);
       console.log(resposta)
       if (!resposta.ok) {
@@ -1180,7 +1179,7 @@
 
     var modulosArray = Object.entries(dadosMonitor.modulos)
 
-    console.log("Modulos", modulosArray, modulosArray.length)
+    //console.log("Modulos", modulosArray, modulosArray.length)
 
     var modulosArrayTratado = []
 
@@ -1188,7 +1187,7 @@
       modulosArrayTratado[i] = [modulosArray[i][0].replace("_status", "").toUpperCase(), modulosArray[i][1].toUpperCase()]
     }
 
-    console.log("Modulos tratados:", modulosArrayTratado)
+   // console.log("Modulos tratados:", modulosArrayTratado)
 
     var modulosAtivos = []
     var modulosInativos = []
@@ -1213,16 +1212,16 @@
 
     var modulosOrdenados = modulosAtivos.concat(modulosInativos);
 
-    console.log("Inativos: ", modulosInativos)
-    console.log('Ativos: ', modulosAtivos)
+    //console.log("Inativos: ", modulosInativos)
+   //console.log('Ativos: ', modulosAtivos)
 
     divCorpoTabela.innerHTML = " ";
 
     for (var j = 0; j < modulosOrdenados.length; j++) {
-      console.log('dentro do for para criar a tabela de modulos')
+      //console.log('dentro do for para criar a tabela de modulos')
 
       if (modulosOrdenados[j][1] == "ATIVO") {
-        console.log('encontrei um modulo ativo')
+      
         divCorpoTabela.innerHTML += `
           <tr>
             <td>${modulosOrdenados[j][0]}</td>
@@ -1335,7 +1334,7 @@
     // cpu
     if (dadosMonitor.cpu.cpuPico >= dadosMonitor.limites.limiteCpu) {
       picoCpu = dadosMonitor.cpu.cpuPico;
-      console.log("esse é o pico da cpu: ", picoCpu, " Esse é o limite da Cpu: ", dadosMonitor.limites.limiteCpu)
+      //console.log("esse é o pico da cpu: ", picoCpu, " Esse é o limite da Cpu: ", dadosMonitor.limites.limiteCpu)
 
 
       divPicoCpu.innerHTML = `
@@ -1573,7 +1572,7 @@
   }
 
   function atualizarGraficos() {
-    console.log('cheguei na função para atualizar o gráfico')
+    //console.log('cheguei na função para atualizar o gráfico')
     // Rede
     chartRede.data.labels = [...dadosMonitor.graficos.horariosGrafico];
 
