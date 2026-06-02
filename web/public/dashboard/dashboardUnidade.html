@@ -10,7 +10,6 @@
 
     <link rel="stylesheet" href="../css/dashboardUnidade.css">
     <link rel="stylesheet" href="../css/dashboards.css">
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -176,11 +175,6 @@
             </div>
         </div>
 
-        <div class="grafico" id="graficoHeatmap">
-            <h4>Quedas de Rede por Dia e Turno</h4>
-            <div id="quedasDia"></div>
-        </div>
-
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -268,8 +262,6 @@
             carregarAlertas(dados.monitoresEmAlertaLista || []);
             carregarGrafico(dados.trafegoRede || [], dados.redeTotalMbps);
             carregarConsumoRede(dados.monitoresConsumoRede || []);
-            //carregarQuedas(dados.trafegoRede || []);
-            montarHeatmapQuedas(dados.heatmapQuedas);
 
         }
         
@@ -506,62 +498,6 @@
             window.location.href = "./dashboardMonitorEspecifico.html";
         }
 
-        var heatmapChart;
-
-        function montarHeatmapQuedas(dados) {
-
-            console.log("heatmapQuedas recebido:", dados); 
-
-            if (!dados) {
-                return;
-            }
-
-            var series = [];
-
-            for (var i = 0; i < dados.turnos.length; i++) {
-
-                var turno = dados.turnos[i];
-                var pontos = [];
-
-                for (var d = 0; d < dados.dias.length; d++) {
-                    pontos.push({
-                        x: dados.dias[d],
-                        y: dados.matriz[turno][d]
-                    });
-                }
-                series.push({
-                    name: turno,
-                    data: pontos
-                });
-            }
-            if (heatmapChart) {
-                heatmapChart.updateSeries(series);
-                return;
-            }
-
-            heatmapChart = new ApexCharts(document.querySelector("#quedasDia"), {
-                chart: {
-                    type: "heatmap",
-                    height: 350,
-                    toolbar: { show: false }
-                },
-                series: series,
-                dataLabels: { enabled: true },
-                plotOptions: {
-                    heatmap: {
-                        colorScale: {
-                            ranges: [
-                                { from: 0, to: 4, color: "#00A63E", name: "Menos de 5" },
-                                { from: 5, to: 10, color: "#f4b400", name: "5 a 10" },
-                                { from: 11, to: 999999, color: "#E7000B", name: "Mais de 10" }
-                            ]
-                        }
-                    }
-                }
-            });
-
-            heatmapChart.render();
-        }
     </script>
 
     
