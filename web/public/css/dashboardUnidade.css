@@ -138,6 +138,10 @@ body {
     padding-right: 8px;
 }
 
+#graficoConsumoRede {
+    height: 300px !important;
+}
+
 
 
 
