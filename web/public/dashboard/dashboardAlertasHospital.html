@@ -31,7 +31,7 @@
                 <img width="100%" src="../assets/Identidade Visual/LogoWritten.png" id="logo_navbar" alt="">
             </a>
 
-            <a id="navDashInicial" class="nav-link">
+            <a id="navDashInicial" class="nav-link" href="dashboardAnalista.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid"
                     viewBox="0 0 16 16">
                     <path
@@ -76,6 +76,39 @@
                 </svg>
                 <span class="description">Unidades</span>
             </a>
+            <a class="nav-link" id="navFuncionarios" href="./dashboardFuncionarios.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                </svg>
+                <span class="description">Funcionários</span>
+            </a>
+
+            <div id="gerenteAba">
+                <span class="menu-title">GERENTE</span>
+
+                <a class="nav-link" href="./dashboardGerente.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-seam" viewBox="0 0 16 16">
+                        <path
+                            d="M8.186.113a1 1 0 0 0-.372 0l-7 1.75A1 1 0 0 0 0 2.83v10.34a1 1 0 0 0 .757.97l7 1.75a1 1 0 0 0 .486 0l7-1.75A1 1 0 0 0 16 13.17V2.83a1 1 0 0 0-.757-.97zM8 1.15l6.5 1.625L8 4.4 1.5 2.775zM1 3.694l6.5 1.625v9.531L1 13.225zm14 0v9.531l-6.5 1.625V5.319z" />
+                    </svg>
+
+                    <span class="description">Modelos</span>
+                </a>
+
+                <a class="nav-link" href="./dashboardModular.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+
+                        <path fill-rule="evenodd"
+                            d="M0 0h1v15h15v1H0zm10-10.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V-9.293l-4.146 4.147a.5.5 0 0 1-.708 0L7.5-7.293 3.854-3.646a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0L9.5-6.707 13.293-10.5z" />
+                    </svg>
+
+                    <span class="description">Módulos</span>
+                </a>
+            </div>
 
             <div class="dropdown usuario">
                 <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1"
@@ -113,8 +146,8 @@
             <h2 class="titulo-filtro">Filtrar por Componente / Criticidade</h2>
             <div class="d-flex gap-3 align-items-center" style="max-width: 500px;">
                 <select class="form-select select-customizado-dash" id="select_componente" onchange="carregarDados()">
-                    <option value="0" selected>CRÍTICO</option>
-                    <option value="1">GERAL</option>
+                    <option value="0" selected>ALERTAS CRÍTICOS</option>
+                    <option value="1">ALERTAS</option>
                     <option value="2">CPU</option>
                     <option value="3">RAM</option>
                     <option value="4">DISCO</option>
@@ -372,7 +405,7 @@
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalCriticos;
 
             } else if (selectFiltro == 1) {
-                totalDeAlertas.innerHTML = `Total de Alertas: <b>Gerais</b>`;
+                totalDeAlertas.innerHTML = `Total de Alertas: <b>(Ultrapassaram o limite)</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.totalAlertas;
 
                 var alertasCriticos = dadosHospital.criticos.totalCriticos;
@@ -395,7 +428,7 @@
                         unidadeVencedora = unidadesArray[i];
                     }
                 }
-                labelFiltro = "gerais ativos";
+                labelFiltro = "alertas ativos";
                 valorAtualCrescimento = dadosHospital.alertasSemanais.totalAlertas;
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalAlertas;
 
@@ -642,7 +675,7 @@
                     label = "alertas críticos";
                 } else if (selectFiltro == 1) {
                     valor = unidade.totalComuns;
-                    label = "alertas gerais";
+                    label = "alertas";
                 } else if (selectFiltro == 2) {
                     valor = unidade.detalhes.cpu + unidade.detalhesCriticos.cpuCritico;
                     label = "alertas de CPU";
@@ -714,7 +747,7 @@
 
             if (componente == 0) {
                 ancora = 100;
-                labels = ['Total (Crit + Geral)', 'Críticos', 'CPU Crit.', 'RAM Crit.', 'Disco Crit.', 'Rede Crit.'];
+                labels = ['Total (Alertas + Crit)', 'Críticos', 'CPU Crit.', 'RAM Crit.', 'Disco Crit.', 'Rede Crit.'];
                 data = [
                     dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
                     dadosHospital.criticos.totalCriticos,
@@ -725,7 +758,7 @@
                 ];
             } else if (componente == 1) {
                 ancora = 200;
-                labels = ['Total (Crit + Geral)', 'Geral', 'CPU', 'RAM', 'Disco', 'Rede'];
+                labels = ['Total (Alertas + Crit)', 'Alertas', 'CPU', 'RAM', 'Disco', 'Rede'];
                 data = [
                     dadosHospital.alertasSemanais.totalAlertas + dadosHospital.criticos.totalCriticos,
                     dadosHospital.alertasSemanais.totalAlertas,
@@ -736,7 +769,7 @@
                 ];
             } else if (componente == 2) {
                 ancora = 75;
-                labels = ['Total CPU', 'Total Crit CPU', 'CPU Geral'];
+                labels = ['Total CPU', 'Críticos CPU', 'Alertas CPU'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.cpu + dadosHospital.criticos.porComponente.cpuCritico,
                     dadosHospital.criticos.porComponente.cpuCritico,
@@ -744,7 +777,7 @@
                 ];
             } else if (componente == 3) {
                 ancora = 75;
-                labels = ['Total RAM', 'Total Crit RAM', 'RAM Geral'];
+                labels = ['Total RAM', 'Críticos RAM', 'Alertas RAM'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.ram + dadosHospital.criticos.porComponente.ramCritico,
                     dadosHospital.criticos.porComponente.ramCritico,
@@ -752,7 +785,7 @@
                 ];
             } else if (componente == 4) {
                 ancora = 75;
-                labels = ['Total Disco', 'Total Crit Disco', 'Disco Geral'];
+                labels = ['Total Disco', 'Críticos Disco', 'Alertas Disco'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.disco + dadosHospital.criticos.porComponente.discoCritico,
                     dadosHospital.criticos.porComponente.discoCritico,
@@ -760,7 +793,7 @@
                 ];
             } else {
                 ancora = 75;
-                labels = ['Total Rede', 'Total Crit Rede', 'Rede Geral'];
+                labels = ['Total Rede', 'Críticos Rede', 'Alertas Rede'];
                 data = [
                     dadosHospital.alertasSemanais.porComponente.rede + dadosHospital.criticos.porComponente.redeCritico,
                     dadosHospital.criticos.porComponente.redeCritico,
@@ -862,7 +895,7 @@
                     labelAlerta = "Críticos Ativos";
                 } else if (selectFiltro == 1) {
                     valorAlertas = unidade.totalComuns;
-                    labelAlerta = "Gerais Ativos";
+                    labelAlerta = "Alertas Ativos";
                 } else if (selectFiltro == 2) {
                     valorAlertas = unidade.detalhes.cpu + unidade.detalhesCriticos.cpuCritico;
                     labelAlerta = "em CPU";
