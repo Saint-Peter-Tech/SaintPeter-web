@@ -391,7 +391,7 @@
                 }
 
                 if (totalCriticos == 0) {
-                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas Críticos.`;
                 }
 
                 for (var i = 0; i < unidadesArray.length; i++) {
@@ -411,14 +411,14 @@
                 var alertasCriticos = dadosHospital.criticos.totalCriticos;
                 var alertasGeral = dadosHospital.alertasSemanais.totalAlertas;
 
-                qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.innerText = ` ${alertasCriticos}`;
-
-                if (alertasGeral == 0) {
-                    kpiAlertas.innerHTML = `Sem Alertas`;
-                }
+                qtdAlertas.innerHTML = "Alertas: ";
+                mensagemKpiAlerta.innerText = ` ${alertasGeral}`;
 
                 if (alertasCriticos == 0) {
+                    kpiAlertas.innerHTML = `Sem Alertas críticos.`;
+                }
+
+                if (alertasGeral == 0) {
                     mensagemKpiAlerta.innerText = `Sem Alertas`;
                 }
 
@@ -433,14 +433,14 @@
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.totalAlertas;
 
             } else if (selectFiltro == 2) {
-                totalDeAlertas.innerHTML = `Total de Alertas: <b>CPU</b>`;
+                totalDeAlertas.innerHTML = `Total de Alertas Críticos: <b>CPU</b>`;
                 kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.cpu;
 
                 var alertasCpuCriticos = dadosHospital.criticos.porComponente.cpuCritico;
                 var alertasCpu = dadosHospital.alertasSemanais.porComponente.cpu;
 
-                qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.innerText = ` ${alertasCpuCriticos}`;
+                qtdAlertas.innerHTML = "Alertas: ";
+                mensagemKpiAlerta.innerText = ` ${alertasCpu}`;
 
                 if (alertasCpu == 0) {
                     kpiAlertas.innerHTML = `Sem Alertas`;
