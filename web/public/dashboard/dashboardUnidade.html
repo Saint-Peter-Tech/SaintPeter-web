@@ -268,7 +268,7 @@
             carregarAlertas(dados.monitoresEmAlertaLista || []);
             carregarGrafico(dados.trafegoRede || [], dados.redeTotalMbps);
             carregarConsumoRede(dados.monitoresConsumoRede || []);
-            carregarConsumoRedeGrafico(dados.trafegoRede || []);
+            carregarConsumoRedeGrafico(dados.graficoTrafegoUnidade || []);
 
         }
         
@@ -301,146 +301,73 @@
 
         }
 
-        function carregarGrafico(trafego, limite) {
-
-            if (!Array.isArray(trafego)) {
-                trafego = [];
-            }
-
+        function carregarConsumoRedeGrafico(trafego) {
             var labels = [];
             var valores = [];
-            var limiteNumerico = Number(limite);
-
-            function formatarHorario(valor) {
-                if (!valor) {
-                    return "";
-                }
-
-                var texto = String(valor);
-
-                if (texto.indexOf(" ") >= 0) {
-                    return texto.split(" ")[1].substring(0, 8);
-                }
-
-                return texto;
-            }
 
             for (var i = 0; i < trafego.length; i++) {
                 var item = trafego[i];
 
-                labels.push(formatarHorario(item.timestamp || (i + 1)));
-
-                var porcentagem = Number(item.usoRedePercentual);
-
-                if (isNaN(porcentagem)) {
-                    var valor = Number(item.trafegoMbps || 0);
-
-                    if (limiteNumerico > 0) {
-                        porcentagem = (valor / limiteNumerico) * 100;
+               
+                var horario = "";
+                if (item.timestamp) {
+                    var texto = String(item.timestamp);
+                    if (texto.indexOf(" ") >= 0) {
+                        horario = texto.split(" ")[1].substring(0, 8); 
                     } else {
-                        porcentagem = 0;
+                        horario = texto;
                     }
                 }
+                labels.push(horario);
 
-                valores.push(Number(porcentagem.toFixed(2)));
+                var valor = Number(item.trafegoMbps || 0);
+                valores.push(valor);
             }
 
-            var maiorValor = 0;
+            var ctx = document.getElementById("graficoConsumoRede");
 
-            for (var i = 0; i <valores.length; i++) {
-                if (valores[i] > maiorValor) {
-                    maiorValor = valores[i];
-                }
+            if (graficoConsumoRede) {
+                graficoConsumoRede.destroy();
             }
 
-            var maximoGrafico = 10;
-
-            if (maiorValor <= 1) {
-                maximoGrafico = 1;
-            } else if (maiorValor <= 5) {
-                maximoGrafico = 5;
-            } else if (maiorValor <= 10) {
-                maximoGrafico = 10;
-            } else if (maiorValor <= 50) {
-                maximoGrafico = Math.ceil((maiorValor + 5) / 5) * 5;
-            } else {
-                maximoGrafico = Math.ceil((maiorValor + 20) / 10) * 10;
-            }
-
-            var datasets = [{
-                label: "% de uso da rede da unidade",
-                data: valores,
-                borderColor: "#163599",
-                backgroundColor: "transparent",
-                borderWidth: 3,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                tension: 0.2,
-                fill: false
-            }];
-
-            if (maximoGrafico >= 90) {
-                datasets.push({
-                    label: "Limite crítico de utilização (90%)",
-                    data: labels.map(function () { return 90; }),
-                    type: "line",
-                    borderColor: "red",
-                    borderDash: [6, 4],
-                    borderWidth: 2,
-                    pointRadius: 0,
-                    fill: false
-                });
-            }
-
-            if (maximoGrafico >= 100) {
-                datasets.push({
-                    label: "Capacidade da rede (100%)",
-                    data: labels.map(function () { return 100; }),
-                    type: "line",
-                    borderColor: "orange",
-                    borderDash: [4, 4],
-                    borderWidth: 2,
-                    pointRadius: 0,
-                    fill: false
-                });
-            }
-
-            var ctx = document.getElementById("graficoRede");
-
-            if (grafico) {
-                grafico.destroy();
-            }
-
-            grafico = new Chart(ctx, {
+            graficoConsumoRede = new Chart(ctx, {
                 type: "line",
                 data: {
                     labels: labels,
-                    datasets: datasets
+                    datasets: [{
+                        label: "Tráfego da Unidade (Mb/s)",
+                        data: valores,
+                        fill: false,
+                        borderColor: "rgb(75, 192, 192)",
+                        backgroundColor: "#4063ce",
+                        tension: 0.1,
+                        borderWidth: 2,
+                        pointRadius: 4
+                    }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: false, 
                     scales: {
                         y: {
-                            min: 0,
-                            max: maximoGrafico,
+                            min: 0, 
                             ticks: {
-                                callback: function (value) {
-                                    return value + "%";
+                                callback: function(value) {
+                                    return value.toFixed(2) + " Mb/s";
                                 }
                             }
                         },
                         x: {
                             ticks: {
-                                maxTicksLimit: 8
+                                maxTicksLimit: 10
                             }
                         }
                     },
                     plugins: {
                         tooltip: {
                             callbacks: {
-                                label: function (context) {
-                                    return "Uso: " + context.raw + "%";
+                                label: function(context) {
+                                    return "Tráfego: " + context.raw.toFixed(2) + " Mb/s";
                                 }
                             }
                         }
@@ -504,53 +431,103 @@
             sessionStorage.ID_MONITOR = idMonitor;
             window.location.href = "./dashboardMonitorEspecifico.html";
         }
+        
+        function carregarGrafico(trafego, limite) {
 
-        function carregarConsumoRedeGrafico(trafego) {
+            if (!Array.isArray(trafego)) {
+                trafego = [];
+            }
 
             var labels = [];
             var valores = [];
+            var limiteNumerico = Number(limite);
 
             for (var i = 0; i < trafego.length; i++) {
-
                 var item = trafego[i];
 
                 var horario = "";
                 if (item.timestamp) {
                     var texto = String(item.timestamp);
                     if (texto.indexOf(" ") >= 0) {
-                        horario = texto.split(" ")[1].substring(0, 5);
+                        horario = texto.split(" ")[1].substring(0, 8);
                     } else {
                         horario = texto;
                     }
                 }
                 labels.push(horario);
 
-                var valor = Number(item.trafegoMbps || 0);
-                valores.push(valor);
+                var porcentagem = Number(item.usoRedePercentual);
+                if (isNaN(porcentagem)) {
+                    var valor = Number(item.trafegoMbps || 0);
+                    porcentagem = limiteNumerico > 0 ? (valor / limiteNumerico) * 100 : 0;
+                }
+                valores.push(Number(porcentagem.toFixed(2)));
             }
 
-            var ctx = document.getElementById("graficoConsumoRede");
+            var maiorValor = Math.max(...valores, 0);
+            var maximoGrafico = 10;
+            if (maiorValor <= 1) maximoGrafico = 1;
+            else if (maiorValor <= 5) maximoGrafico = 5;
+            else if (maiorValor <= 10) maximoGrafico = 10;
+            else if (maiorValor <= 50) maximoGrafico = Math.ceil((maiorValor + 5) / 5) * 5;
+            else maximoGrafico = Math.ceil((maiorValor + 20) / 10) * 10;
 
-            if (graficoConsumoRede) {
-                graficoConsumoRede.destroy();
+            var datasets = [{
+                label: "% de uso da rede da unidade",
+                data: valores,
+                borderColor: "#163599",
+                backgroundColor: "transparent",
+                borderWidth: 3,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                tension: 0.2,
+                fill: false
+            }];
+
+            if (maximoGrafico >= 90) {
+                datasets.push({
+                    label: "Limite crítico (90%)",
+                    data: labels.map(function() { return 90; }),
+                    borderColor: "red",
+                    borderDash: [6, 4],
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false
+                });
             }
 
-            graficoConsumoRede = new Chart(ctx, {
+            var ctx = document.getElementById("graficoRede");
+            if (grafico) grafico.destroy();
+
+            grafico = new Chart(ctx, {
                 type: "line",
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Tráfego da Unidade (Mb/s)",
-                        data: valores,
-                        fill: false,
-                        borderColor: "rgb(75, 192, 192)",
-                        backgroundColor: "#4063ce",
-                        tension: 0.1,
-                        borderWidth: 1
-                    }]
+                data: { labels: labels, datasets: datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: maximoGrafico,
+                            ticks: {
+                                callback: function(value) { return value + "%"; }
+                            }
+                        },
+                        x: {
+                            ticks: { maxTicksLimit: 8 }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) { return "Uso: " + context.raw + "%"; }
+                            }
+                        }
+                    }
                 }
             });
         }
+            
 
     </script>
 </body>
