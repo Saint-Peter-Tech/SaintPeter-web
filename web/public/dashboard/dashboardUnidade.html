@@ -176,7 +176,7 @@
             </div>
         </div>
 
-        <div class="grafico">
+        <div class="grafico" id="graficoHeatmap">
             <h4>Quedas de Rede por Dia e Turno</h4>
             <div id="quedasDia"></div>
         </div>
@@ -268,7 +268,7 @@
             carregarAlertas(dados.monitoresEmAlertaLista || []);
             carregarGrafico(dados.trafegoRede || [], dados.redeTotalMbps);
             carregarConsumoRede(dados.monitoresConsumoRede || []);
-            carregarQuedas(dados.trafegoRede || []);
+            //carregarQuedas(dados.trafegoRede || []);
             montarHeatmapQuedas(dados.heatmapQuedas);
 
         }
@@ -509,6 +509,8 @@
         var heatmapChart;
 
         function montarHeatmapQuedas(dados) {
+
+            console.log("heatmapQuedas recebido:", dados); 
 
             if (!dados) {
                 return;
