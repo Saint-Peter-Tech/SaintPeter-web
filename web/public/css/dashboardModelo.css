@@ -1,3 +1,8 @@
+#headerModelo {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
 #buttonRelatorio {
     border-radius: 10px;
     border: 2px solid #dee0e6;

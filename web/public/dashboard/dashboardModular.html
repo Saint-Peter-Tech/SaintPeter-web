@@ -241,12 +241,12 @@
         <div class="card large">
 <div class="card-header tabelaHeader" style="background-color: white;">
     
-    <h2>Criticidade por Módulo</h2>
+    <h2>Distribuição de Capturas por Módulo</h2>
 
     <div class="legendaCriticidade" style="font-style: italic; font-weight: bold;">
         <div class="legendaItem">
-            <span class="status ok"></span>
-            Ok &lt; Limite
+            <span class="status critico"></span>
+            Crítico ≥ 10% Acima do Limite
         </div>
 
         <div class="legendaItem">
@@ -255,8 +255,8 @@
         </div>
 
         <div class="legendaItem">
-            <span class="status critico"></span>
-            Crítico ≥ 10% Acima do Limite
+            <span class="status ok"></span>
+            Ok &lt; Limite
         </div>
     </div>
 
@@ -266,9 +266,9 @@
                 <thead>
                 <tr>
                     <th>Módulo</th>
-                    <th>Ok</th>
-                    <th>Alerta</th>
                     <th>Crítico</th>
+                    <th>Alerta</th>
+                    <th>Ok</th>
                 </tr>
                 </thead>
 
@@ -627,7 +627,7 @@ function preencherTabela(modulos) {
                 </td>
 
                 <td class="ok-bg">
-                    ${modulo.ok}
+                    ${modulo.critico}
                 </td>
 
                 <td class="warning-bg">
@@ -635,7 +635,7 @@ function preencherTabela(modulos) {
                 </td>
 
                 <td class="critical-bg">
-                    ${modulo.critico}
+                    ${modulo.ok}
                 </td>
             </tr>
         `;

@@ -66,6 +66,15 @@
         <span class="description">Modelos</span>
       </a>
 
+      <a class="nav-link" href="./dashboardMonitores.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-display"
+          viewBox="0 0 16 16">
+          <path
+            d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
+        </svg>
+        <span class="description">Monitores</span>
+      </a>
+
       <a class="nav-link" href="./dashboardHospitais.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-h-square"
           viewBox="0 0 16 16">
@@ -74,15 +83,6 @@
             d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
         </svg>
         <span class="description">Hospitais</span>
-      </a>
-
-      <a class="nav-link" href="./dashboardMonitores.html">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-display"
-          viewBox="0 0 16 16">
-          <path
-            d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145" />
-        </svg>
-        <span class="description">Monitores</span>
       </a>
 
       <a id="navUnidades" class="nav-link" href="./dashboardUnidades.html">
@@ -206,22 +206,22 @@
           </div>
 
           <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
-  <div class="parte-cima-kpi d-flex justify-content-between">
-    <div class="displayFlex" style="gap: 60%">
-      <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
-    </div>
+            <div class="parte-cima-kpi d-flex justify-content-between">
+              <div class="displayFlex" style="gap: 60%">
+                <h5>UNIDADE COM MAIS QUEDAS / 7 DIAS</h5>
+              </div>
 
-    <span class="text-end" style="display: flex; gap: 10%">
-      <h4><b id="quedasUnidadeNome">NENHUM</b></h4>
-  </div>
-  <div class="parte-baixo-kpi d-flex justify-content-between">
-    <p><i id="quedasUnidadeQtd">0 Quedas</i></p>
-    <div style="align-self: flex-end; text-align: end">
-      <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
-    </div>
-    </span>
-  </div>
-</div>
+              <span class="text-end" style="display: flex; gap: 10%">
+                <h4><b id="quedasUnidadeNome">NENHUM</b></h4>
+            </div>
+            <div class="parte-baixo-kpi d-flex justify-content-between">
+              <p><i id="quedasUnidadeQtd">0 Quedas</i></p>
+              <div style="align-self: flex-end; text-align: end">
+                <p><i><a href="./dashboardUnidades.html" style="color: inherit;">Saiba mais</a></i></p>
+              </div>
+              </span>
+            </div>
+          </div>
 
           <div class="kpiMonitorComponenteAnalista d-flex flex-column gap-5" style="height: 200px !important">
             <div class="parte-cima-kpi d-flex justify-content-between">
@@ -306,12 +306,12 @@
 
         <!-- graficos de cpu e ram -->
         <div class="pai-graficos">
-            <div style="margin-bottom: 16px; width: 300px;">
-              <label for="filtroUnidade" class="form-label">Unidade</label>
-              <select id="filtroUnidade" class="form-select">
-                <option value="0">Todas as unidades</option>
-              </select>
-            </div>
+          <div style="margin-bottom: 16px; width: 300px;">
+            <label for="filtroUnidade" class="form-label">Unidade</label>
+            <select id="filtroUnidade" class="form-select">
+              <option value="0">Todas as unidades</option>
+            </select>
+          </div>
 
           <div class="displayFlex">
             <div class="grafico" style="width: 820px; height: 650px;">
@@ -345,10 +345,10 @@
 
 <script>
 
-  window.onload = function() {
+  window.onload = function () {
     validarSessao();
   }
- 
+
   const ID_EMPRESA = sessionStorage.FK_EMPRESA;
 
   function kpiMonitorIndisponivel() {
@@ -425,236 +425,236 @@
 
 
   let heatmapChart;
-let dadosHeatmap;   
+  let dadosHeatmap;
 
-function montarHeatmap() {
+  function montarHeatmap() {
     fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            throw "Erro ao buscar heatmap de quedas";
-        })
-        .then(function (dados) {
-            dadosHeatmap = dados.graficos.heatmapQuedas;   
-            montarFiltroUnidades(dadosHeatmap);
-            renderHeatmap("0");                            
-        })
-        .catch(function (erro) {
-            console.log("#ERRO:", erro);
-        });
-}
+      .then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+        }
+        throw "Erro ao buscar heatmap de quedas";
+      })
+      .then(function (dados) {
+        dadosHeatmap = dados.graficos.heatmapQuedas;
+        montarFiltroUnidades(dadosHeatmap);
+        renderHeatmap("0");
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+  }
 
-function montarFiltroUnidades(heatmapData) {
+  function montarFiltroUnidades(heatmapData) {
     const select = document.getElementById("filtroUnidade");
-    select.innerHTML = "";   
+    select.innerHTML = "";
 
     for (const id in heatmapData) {
-        const option = document.createElement("option");
-        option.value = id;                         
-        option.textContent = heatmapData[id].nome;  
-        select.appendChild(option);
+      const option = document.createElement("option");
+      option.value = id;
+      option.textContent = heatmapData[id].nome;
+      select.appendChild(option);
     }
 
     select.addEventListener("change", function () {
-        renderHeatmap(this.value);
-        renderBarras(this.value); 
+      renderHeatmap(this.value);
+      renderBarras(this.value);
     });
-}
+  }
 
-function renderHeatmap(unidadeId) {
+  function renderHeatmap(unidadeId) {
     const h = dadosHeatmap[unidadeId];
 
     const series = h.turnos.map(function (turno) {
-        return {
-            name: turno,
-            data: h.dias.map(function (dia, i) {
-                return { x: dia, y: h.matriz[turno][i] };
-            }),
-        };
+      return {
+        name: turno,
+        data: h.dias.map(function (dia, i) {
+          return { x: dia, y: h.matriz[turno][i] };
+        }),
+      };
     });
 
     if (heatmapChart) {
-        heatmapChart.updateSeries(series);
-        return;
+      heatmapChart.updateSeries(series);
+      return;
     }
 
     heatmapChart = new ApexCharts(document.querySelector("#quedasDia"), {
-        chart: { type: "heatmap", height: 480, toolbar: { show: false } },
-        series: series,
-        xaxis: { categories: h.dias },
-        dataLabels: { enabled: true },
-        plotOptions: {
-            heatmap: {
-                colorScale: {
-                    ranges: [
-                        { from: 0,  to: 4,      color: "#00A63E", name: "Menos de 5" },
-                        { from: 5,  to: 10,     color: "#f4b400", name: "5 a 10" },
-                        { from: 11, to: 999999, color: "#E7000B", name: "Mais de 10" },
-                    ],
-                },
-            },
+      chart: { type: "heatmap", height: 480, toolbar: { show: false } },
+      series: series,
+      xaxis: { categories: h.dias },
+      dataLabels: { enabled: true },
+      plotOptions: {
+        heatmap: {
+          colorScale: {
+            ranges: [
+              { from: 0, to: 4, color: "#00A63E", name: "Menos de 5" },
+              { from: 5, to: 10, color: "#f4b400", name: "5 a 10" },
+              { from: 11, to: 999999, color: "#E7000B", name: "Mais de 10" },
+            ],
+          },
         },
+      },
     });
     heatmapChart.render();
-}
+  }
 
-montarHeatmap();
+  montarHeatmap();
 
   let alertaSemanaChart;
-let dadosBarras;   
+  let dadosBarras;
 
-function montarBarras() {
+  function montarBarras() {
     fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            throw "Erro ao buscar alertas por semana";
-        })
-        .then(function (dados) {
-            dadosBarras = dados.graficos.alertasPorSemana;   
-            renderBarras("0");                              
-        })
-        .catch(function (erro) {
-            console.log("#ERRO:", erro);
-        });
-}
+      .then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+        }
+        throw "Erro ao buscar alertas por semana";
+      })
+      .then(function (dados) {
+        dadosBarras = dados.graficos.alertasPorSemana;
+        renderBarras("0");
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+  }
 
-function renderBarras(unidadeId) {
+  function renderBarras(unidadeId) {
     const b = dadosBarras[unidadeId];
 
-    const labels  = b.semanas.map(function (s) { return s.label; });
+    const labels = b.semanas.map(function (s) { return s.label; });
     const valores = b.semanas.map(function (s) { return s.alertas; });
 
     // se já existe, só atualiza
     if (alertaSemanaChart) {
-        alertaSemanaChart.data.labels = labels;
-        alertaSemanaChart.data.datasets[0].data = valores;
-        alertaSemanaChart.update();
-        return;
+      alertaSemanaChart.data.labels = labels;
+      alertaSemanaChart.data.datasets[0].data = valores;
+      alertaSemanaChart.update();
+      return;
     }
 
     alertaSemanaChart = new Chart(document.getElementById("alertaSemana"), {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Alertas",
-                data: valores,
-                backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2', '#1268b8'],
-            }],
-        },
-        options: {
-            scales: { y: { beginAtZero: true } },
-        },
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Alertas",
+          data: valores,
+          backgroundColor: ['#1268b8', '#cad1da', '#3790bb', '#57d6e2', '#1268b8'],
+        }],
+      },
+      options: {
+        scales: { y: { beginAtZero: true } },
+      },
     });
-}
+  }
 
-montarBarras();
+  montarBarras();
 
   function kpiUnidadeMaisQuedas() {
     fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            throw "Erro ao buscar unidade com mais quedas";
-        })
-        .then(function (dados) {
-            const top = dados.unidadesQuedas.unidadeTop;
-            console.log("Unidade com mais quedas:", top);
-            document.getElementById("quedasUnidadeNome").innerHTML = top.nome;
-            document.getElementById("quedasUnidadeQtd").innerHTML = `${top.qtdQuedas} Quedas`;
-        })
-        .catch(function (erro) {
-            console.log("#ERRO:", erro);
-        });
-}
+      .then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+        }
+        throw "Erro ao buscar unidade com mais quedas";
+      })
+      .then(function (dados) {
+        const top = dados.unidadesQuedas.unidadeTop;
+        console.log("Unidade com mais quedas:", top);
+        document.getElementById("quedasUnidadeNome").innerHTML = top.nome;
+        document.getElementById("quedasUnidadeQtd").innerHTML = `${top.qtdQuedas} Quedas`;
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+  }
 
-kpiUnidadeMaisQuedas();
+  kpiUnidadeMaisQuedas();
 
-function listaUnidadesQuedas() {
+  function listaUnidadesQuedas() {
     fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            throw "Erro ao listar unidades com quedas";
-        })
-        .then(function (dados) {
-            const ranking = dados.unidadesQuedas.ranking;
-            const lista = document.getElementById("rankingQuedas");
+      .then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+        }
+        throw "Erro ao listar unidades com quedas";
+      })
+      .then(function (dados) {
+        const ranking = dados.unidadesQuedas.ranking;
+        const lista = document.getElementById("rankingQuedas");
 
-            lista.innerHTML = "";
+        lista.innerHTML = "";
 
-            ranking.forEach(function (u) {
-                lista.innerHTML += `
+        ranking.forEach(function (u) {
+          lista.innerHTML += `
                     <tr>
                         <th scope="row">${u.nome_unidade}</th>
                         <td>${u.qtdQuedas}</td>
                     </tr>
                 `;
-            });
-        })
-        .catch(function (erro) {
-            console.log("#ERRO:", erro);
         });
-}
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+  }
 
-listaUnidadesQuedas();
+  listaUnidadesQuedas();
 
-function kpiHospitaisAlertas() {
+  function kpiHospitaisAlertas() {
     fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            throw "Erro ao buscar hospitais com mais de 5 alertas";
-        })
-        .then(function (dados) {
-            const h = dados.hospitaisMais5Alertas;
-            console.log("Hospitais com +5 alertas:", h);
+      .then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+        }
+        throw "Erro ao buscar hospitais com mais de 5 alertas";
+      })
+      .then(function (dados) {
+        const h = dados.hospitaisMais5Alertas;
+        console.log("Hospitais com +5 alertas:", h);
 
-            document.getElementById("hospAlertasTotal").innerHTML = h.total;
-            document.getElementById("hospAlertasComparativo").innerHTML = `HOJE ${h.hoje} - ONTEM ${h.ontem}`;
-        })
-        .catch(function (erro) {
-            console.log("#ERRO:", erro);
-        });
-}
+        document.getElementById("hospAlertasTotal").innerHTML = h.total;
+        document.getElementById("hospAlertasComparativo").innerHTML = `HOJE ${h.hoje} - ONTEM ${h.ontem}`;
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+  }
 
-kpiHospitaisAlertas();
+  kpiHospitaisAlertas();
 
-function listaHospitaisAlertas() {
+  function listaHospitaisAlertas() {
     fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            throw "Erro ao listar hospitais com mais de 5 alertas";
-        })
-        .then(function (dados) {
-            const lista = dados.hospitaisMais5Alertas.lista;
-            const tbody = document.getElementById("listaHospitaisAlertas");
+      .then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+        }
+        throw "Erro ao listar hospitais com mais de 5 alertas";
+      })
+      .then(function (dados) {
+        const lista = dados.hospitaisMais5Alertas.lista;
+        const tbody = document.getElementById("listaHospitaisAlertas");
 
-            tbody.innerHTML = "";
+        tbody.innerHTML = "";
 
-            lista.forEach(function (h) {
-                tbody.innerHTML += `
+        lista.forEach(function (h) {
+          tbody.innerHTML += `
                     <tr>
                         <th scope="row">${h.nome_hospital}</th>
                         <td>${h.qtdAlertas}</td>
                     </tr>
                 `;
-            });
-        })
-        .catch(function (erro) {
-            console.log("#ERRO:", erro);
         });
-}
+      })
+      .catch(function (erro) {
+        console.log("#ERRO:", erro);
+      });
+  }
 
-listaHospitaisAlertas();
+  listaHospitaisAlertas();
 
 </script>
 

@@ -46,7 +46,7 @@ function validarSessao() {
         if (adm != "null") {
             botaoNavDashInicial.href = "./dashboardAnalista.html";
         } else if (adm == "null") {
-            botaoNavDashInicial.href = "./dashboardGerente.html";
+            botaoNavDashInicial.href = "./dashboardAnalista.html";
         } else {
             botaoNavDashInicial.href = "./dashboardSuporteEmpresa.html";
         }

@@ -163,28 +163,31 @@
     <br><br> -->
 
     <div id="div_gerente" style="display: block;">
-      <h4 class="tituloDash">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
-          viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-          <path
-            d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
-        </svg>
-        Bem vindo(a) de volta, <span id="be_usuario"></span>
-      </h4>
-
-
-      <div class="displayGrid" style="background-color: white; border-radius: 10px; padding: 1.5%; margin-bottom: 2%;">
+      
+      <div style="background-color: white; border-radius: 10px; padding: 1.5%; margin-bottom: 2%;" id="headerModelo">
         <div>
-          <h1 style="color: #13347b;">Dashboard - Modelos</h1>
+          <h4 class="tituloDash">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-laughing"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
+            </svg>
+            Bem vindo(a) de volta, <span id="be_usuario"></span>
+          </h4>
         </div>
-        <button id="buttonRelatorio" onclick="baixarRelatorio(sessionStorage.FK_EMPRESA)">
-          <div class="d-flex gap-2">
-            <span class="tituloGrafico h5">Baixar relatório</span>
-            <img src="../assets/dash-modelo/icon-download.png" alt=""
-              style="width: 25px; height: 25px; align-self: center;">
+        <div class="displayGrid">
+          <div>
+            <h1 style="color: #13347b;">Dashboard - Modelos</h1>
           </div>
-        </button>
+          <button id="buttonRelatorio" onclick="baixarRelatorio(sessionStorage.FK_EMPRESA)">
+            <div class="d-flex gap-2">
+              <span class="tituloGrafico h5">Baixar relatório</span>
+              <img src="../assets/dash-modelo/icon-download.png" alt=""
+                style="width: 25px; height: 25px; align-self: center;">
+            </div>
+          </button>
+        </div>
       </div>
 
       <div class="container-graficoInicial">
@@ -346,9 +349,27 @@
       <div class="d-flex flex-column gap-4">
         <div class="container-graficos1">
           <div class="modeloGrafico d-flex flex-column gap-4 p-4">
-            <div class="d-flex gap-3">
-              <img src="../assets/dash-modelo/icon-cpu.png" alt="" class="imgGrafico">
-              <h3 class="tituloGrafico">CPU - Distribuição de Captações</h3>
+            <div>
+              <div class="d-flex gap-3">
+                <img src="../assets/dash-modelo/icon-cpu.png" alt="" class="imgGrafico">
+                <h4 class="tituloGrafico">CPU - Distribuição de Captações</h4>
+              </div>
+              <div class="d-flex gap-3 justify-content-center" style="font-style: italic; font-weight: bold; color: #64748b; font-size: 12px;">
+                <div class="legendaItem">
+                  <span class="status ok"></span>
+                  Acima Limite &lt; 20
+                </div>
+  
+                <div class="legendaItem">
+                  <span class="status alerta"></span>
+                  Acima Limite > 20
+                </div>
+  
+                <div class="legendaItem">
+                  <span class="status critico"></span>
+                  Acima Limite > 30
+                </div>
+              </div>
             </div>
 
             <canvas id="modeloGraficoCpu"></canvas>
@@ -368,9 +389,27 @@
           </div>
 
           <div class="modeloGrafico d-flex flex-column gap-4 p-4">
-            <div class="d-flex gap-3">
-              <img src="../assets/dash-modelo/icon-ram.png" class="imgGrafico" alt="">
-              <h3 class="tituloGrafico">RAM - Distribuição de Captações</h3>
+            <div>
+              <div class="d-flex gap-3">
+                <img src="../assets/dash-modelo/icon-ram.png" class="imgGrafico" alt="">
+                <h4 class="tituloGrafico">RAM - Distribuição de Captações</h4>
+              </div>
+              <div class="d-flex gap-3 justify-content-center" style="font-style: italic; font-weight: bold; color: #64748b; font-size: 12px;">
+                <div class="legendaItem">
+                  <span class="status ok"></span>
+                  Acima Limite &lt; 20
+                </div>
+  
+                <div class="legendaItem">
+                  <span class="status alerta"></span>
+                  Acima Limite > 20
+                </div>
+  
+                <div class="legendaItem">
+                  <span class="status critico"></span>
+                  Acima Limite > 30
+                </div>
+              </div>
             </div>
             <canvas id="modeloGraficoRam"></canvas>
             <div class="d-flex justify-content-around">
@@ -388,9 +427,27 @@
           </div>
 
           <div class="modeloGrafico d-flex flex-column gap-4 p-4">
-            <div class="d-flex gap-3">
-              <img src="../assets/dash-modelo/icon-rede.png" class="imgGrafico" alt="">
-              <h3 class="tituloGrafico">Rede - Distribuição de Captações</h3>
+            <div>
+              <div class="d-flex gap-3">
+                <img src="../assets/dash-modelo/icon-rede.png" class="imgGrafico" alt="">
+                <h4 class="tituloGrafico">Rede - Distribuição de Captações</h4>
+              </div>
+              <div class="d-flex gap-3 justify-content-center" style="font-style: italic; font-weight: bold; color: #64748b; font-size: 12px;">
+                <div class="legendaItem">
+                  <span class="status ok"></span>
+                  Acima Limite &lt; 20
+                </div>
+  
+                <div class="legendaItem">
+                  <span class="status alerta"></span>
+                  Acima Limite > 20
+                </div>
+  
+                <div class="legendaItem">
+                  <span class="status critico"></span>
+                  Acima Limite > 30
+                </div>
+              </div>
             </div>
             <canvas id="modeloGraficoRede"></canvas>
             <div class="d-flex justify-content-around">
