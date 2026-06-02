@@ -69,7 +69,8 @@ body {
     height: 420px;
 }
 
-#graficoRede {
+#graficoRede,
+#graficoConsumoRede {
     width: 100% !important;
     height: 330px !important;
 }
