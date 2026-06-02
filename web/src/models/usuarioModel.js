@@ -27,9 +27,22 @@ function listarFuncionariosPorEmpresa(fk_empresa) {
     return database.executar(instrucaoSql);
 }
 
+function buscarIdUnidade(fk_empresa){
+     var instrucaoSql = `
+        SELECT  uni.id_unidade
+        FROM unidades as uni
+        join hospitais as h
+        on id_hospital = fk_hospital
+        where h.fk_empresa = ${fk_empresa};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     autenticaremail,
     autenticarcpf,
-    listarFuncionariosPorEmpresa
+    listarFuncionariosPorEmpresa,
+    buscarIdUnidade
 };

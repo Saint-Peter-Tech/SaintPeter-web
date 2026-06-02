@@ -15,4 +15,8 @@ router.get("/listarFuncionarios", function (req, res) {
     usuarioController.listarFuncionariosPorEmpresa(req, res);
 });
 
+router.get("/buscarIdUnidade", function (req, res) {
+    usuarioController.buscarIdUnidade(req, res);
+});
+
 module.exports = router;

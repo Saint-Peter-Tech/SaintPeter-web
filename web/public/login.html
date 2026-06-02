@@ -43,7 +43,7 @@
       </div>
     </div>
   </nav>
-  
+
   <div class="todo">
     <div class="imagem"></div>
     <div class="container">
@@ -142,6 +142,10 @@
             sessionStorage.FK_ADM = json.fk_adm;
             sessionStorage.FK_EMPRESA = json.fk_empresa;
 
+            var fkEmpresa = json.fk_empresa;
+
+            buscarIdUnidade(fkEmpresa);
+
             setTimeout(function () {
               if (json.fk_empresa == 1) {
                 window.location = "../dashboard/dashboardSuporteHospital.html";
@@ -208,6 +212,10 @@
             sessionStorage.FK_ADM = json.fk_adm;
             sessionStorage.FK_EMPRESA = json.fk_empresa;
 
+            var fkEmpresa = json.fk_empresa;
+
+            buscarIdUnidade(fkEmpresa);
+
             setTimeout(function () {
               if (json.fk_empresa == 1) {
                 window.location = "../dashboard/dashboardSuporteHospital.html";
@@ -232,7 +240,6 @@
 
     return false;
   }
-
 
   function verificarcpf(cpfVar, senhaVar) {
     var cpfNum = verificarSeNum(cpfVar.trim());
@@ -319,5 +326,19 @@
       }
     }
     return true;
+  }
+
+  function buscarIdUnidade(fkEmpresa) {
+    fetch(`/usuarios/buscarIdUnidade?fk_empresa=${fkEmpresa}`)
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (dados){
+        console.log("Esse é o id_unidade: ", dados[0].id_unidade)
+        sessionStorage.setItem("ID_UNIDADE", dados[0].id_unidade)
+      })
+      .catch(function (erro){
+        console.log("Erro ao encontrar id_unidade: ", erro)
+      })
   }
 </script>
