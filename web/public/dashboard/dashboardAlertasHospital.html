@@ -411,11 +411,11 @@
                 var alertasCriticos = dadosHospital.criticos.totalCriticos;
                 var alertasGeral = dadosHospital.alertasSemanais.totalAlertas;
 
-                qtdAlertas.innerHTML = "Alertas: ";
-                mensagemKpiAlerta.innerText = ` ${alertasGeral}`;
+                qtdAlertas.innerHTML = "Alertas Críticos: ";
+                mensagemKpiAlerta.innerText = ` ${alertasCriticos}`;
 
                 if (alertasCriticos == 0) {
-                    kpiAlertas.innerHTML = `Sem Alertas críticos.`;
+                    mensagemKpiAlerta.innerHTML = `Sem Alertas críticos.`;
                 }
 
                 if (alertasGeral == 0) {
@@ -434,7 +434,7 @@
 
             } else if (selectFiltro == 2) {
                 totalDeAlertas.innerHTML = `Total de Alertas Críticos: <b>CPU</b>`;
-                kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.cpu;
+                kpiAlertas.innerHTML = dadosHospital.criticos.porComponente.cpuCritico;
 
                 var alertasCpuCriticos = dadosHospital.criticos.porComponente.cpuCritico;
                 var alertasCpu = dadosHospital.alertasSemanais.porComponente.cpu;
@@ -447,7 +447,7 @@
                 }
 
                 if (alertasCpuCriticos == 0) {
-                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas Criticos`;
                 }
 
                 for (var i = 0; i < unidadesArray.length; i++) {
@@ -462,21 +462,21 @@
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.cpu + dadosHospital.alertasSemanaPassada.criticosPorComponente.cpuCritico;
 
             } else if (selectFiltro == 3) {
-                totalDeAlertas.innerHTML = `Total de Alertas: <b>RAM</b>`;
-                kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.ram;
+                totalDeAlertas.innerHTML = `Total de Alertas Crítico: <b>RAM</b>`;
+                kpiAlertas.innerHTML = dadosHospital.criticos.porComponente.ramCritico;
 
                 var alertasRamCriticos = dadosHospital.criticos.porComponente.ramCritico;
                 var alertasRam = dadosHospital.alertasSemanais.porComponente.ram;
 
-                qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.innerText = ` ${alertasRamCriticos}`;
+                qtdAlertas.innerHTML = "Alertas: ";
+                mensagemKpiAlerta.innerText = ` ${alertasRam}`;
 
                 if (alertasRam == 0) {
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasRamCriticos == 0) {
-                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas Críticos`;
                 }
 
                 for (var i = 0; i < unidadesArray.length; i++) {
@@ -491,21 +491,21 @@
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.ram + dadosHospital.alertasSemanaPassada.criticosPorComponente.ramCritico;
 
             } else if (selectFiltro == 4) {
-                totalDeAlertas.innerHTML = `Total de Alertas: <b>DISCO</b>`;
-                kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.disco;
+                totalDeAlertas.innerHTML = `Total de Alertas Crítico: <b>DISCO</b>`;
+                kpiAlertas.innerHTML = dadosHospital.criticos.porComponente.discoCritico;
 
                 var alertasDiscoCriticos = dadosHospital.criticos.porComponente.discoCritico;
                 var alertasDisco = dadosHospital.alertasSemanais.porComponente.disco;
 
-                qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.innerText = ` ${alertasDiscoCriticos}`;
+                qtdAlertas.innerHTML = "Alertas: ";
+                mensagemKpiAlerta.innerText = ` ${alertasDisco}`;
 
                 if (alertasDisco == 0) {
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasDiscoCriticos == 0) {
-                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas Críticos`;
                 }
 
                 for (var i = 0; i < unidadesArray.length; i++) {
@@ -520,21 +520,21 @@
                 valorPassadoCrescimento = dadosHospital.alertasSemanaPassada.porComponente.disco + dadosHospital.alertasSemanaPassada.criticosPorComponente.discoCritico;
 
             } else {
-                totalDeAlertas.innerHTML = `Total de Alertas: <b>REDE</b>`;
-                kpiAlertas.innerHTML = dadosHospital.alertasSemanais.porComponente.rede;
+                totalDeAlertas.innerHTML = `Total de Alertas Críticos: <b>REDE</b>`;
+                kpiAlertas.innerHTML = dadosHospital.criticos.porComponente.redeCritico;
 
                 var alertasRedeCriticos = dadosHospital.criticos.porComponente.redeCritico;
                 var alertasRede = dadosHospital.alertasSemanais.porComponente.rede;
 
-                qtdAlertas.innerHTML = "CRÍTICOS: ";
-                mensagemKpiAlerta.innerText = ` ${alertasRedeCriticos}`;
+                qtdAlertas.innerHTML = "Alertas: ";
+                mensagemKpiAlerta.innerText = ` ${alertasRede}`;
 
                 if (alertasRede == 0) {
                     kpiAlertas.innerHTML = `Sem Alertas`;
                 }
 
                 if (alertasRedeCriticos == 0) {
-                    mensagemKpiAlerta.innerText = `Sem Alertas`;
+                    mensagemKpiAlerta.innerText = `Sem Alertas Críticos`;
                 }
 
                 for (var i = 0; i < unidadesArray.length; i++) {
