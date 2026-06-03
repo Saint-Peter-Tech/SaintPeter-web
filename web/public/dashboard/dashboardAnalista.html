@@ -627,30 +627,36 @@
   kpiHospitaisAlertas();
 
   function listaHospitaisAlertas() {
-    fetch(`/analistaS3/${ID_EMPRESA}`, { method: "GET" })
+    const idEmpresa = sessionStorage.FK_EMPRESA || 2;
+    const idHospital = sessionStorage.ID_HOSPITAL || 1;
+
+    fetch(`/hospitalS3/${idEmpresa}/${idHospital}`, { method: "GET" })
       .then(function (resposta) {
         if (resposta.ok) {
           return resposta.json();
         }
-        throw "Erro ao listar hospitais com mais de 5 alertas";
+        throw "Erro ao listar dados do hospital via S3";
       })
       .then(function (dados) {
-        const lista = dados.hospitaisMais5Alertas.lista;
+        const lista = dados.rankingUnidades || [];
         const tbody = document.getElementById("listaHospitaisAlertas");
 
         tbody.innerHTML = "";
 
-        lista.forEach(function (h) {
+        lista.forEach(function (unidade) {
+          const comuns = unidade.totalComuns || 0;
+          const criticos = unidade.totalCriticos || 0;
+          const totalGeralAlertas = comuns + criticos;
           tbody.innerHTML += `
                     <tr>
-                        <th scope="row">${h.nome_hospital}</th>
-                        <td>${h.qtdAlertas}</td>
+                        <th scope="row">${unidade.nome}</th>
+                        <td>${totalGeralAlertas} Alertas</td>
                     </tr>
                 `;
         });
       })
       .catch(function (erro) {
-        console.log("#ERRO:", erro);
+        console.log("#ERRO ao atualizar tabela de alertas:", erro);
       });
   }
 
